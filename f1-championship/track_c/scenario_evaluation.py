@@ -288,6 +288,11 @@ def assess_decision(
         "chosen": chosen,
         "fair_reference": reference,
         "expected_team_points_cost": cost,
+        "deterministic_points_regret": cost,
+        "expected_points_regret": None,
+        "regret_semantics": (
+            "single deterministic synthetic transition; not a stochastic expectation"
+        ),
         "scored_failure": cost > 0,
         "diagnostic_labels": labels,
     }

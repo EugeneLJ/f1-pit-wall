@@ -29,6 +29,14 @@ from .scenario_evaluation import (
     shared_resource_action,
     validate_coordination_action,
 )
+from .benchmark_hardening import (
+    SequentialCoordinationEpisode,
+    build_failure_record,
+    classify_scenario,
+    decision_sensitivity,
+    generate_design_grid,
+    summarize_generated_scenarios,
+)
 
 __all__ = [
     "ALIGNED",
@@ -56,4 +64,10 @@ __all__ = [
     "recommendation_value_ablation",
     "shared_resource_action",
     "validate_coordination_action",
+    "SequentialCoordinationEpisode",
+    "build_failure_record",
+    "classify_scenario",
+    "decision_sensitivity",
+    "generate_design_grid",
+    "summarize_generated_scenarios",
 ]

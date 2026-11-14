@@ -39,6 +39,16 @@ class ChampionshipRaceResult:
     awarded_points: dict[str, int]
 
 
+@dataclass
+class PreparedChampionshipRace:
+    race_index: int
+    race_name: str
+    seed: int
+    starting_grid: list[str]
+    start_conditions: RaceStartConditions
+    race_state: dict[str, Any]
+
+
 def run_championship_race(
     state: ChampionshipState,
     component_decisions: Any,
@@ -52,26 +62,56 @@ def run_championship_race(
         raise ValueError("race seed must be an integer")
 
     working = copy.deepcopy(state)
-    prepared = prepare_race(working, component_decisions)
+    prepare_race(working, component_decisions)
+    active = start_prepared_race(working, seed)
+    for action in clean_actions:
+        engine.step(active.race_state, action)
+    result = finish_prepared_race(working, active)
+    _commit_state(state, working)
+    return result
+
+
+def start_prepared_race(state: ChampionshipState, seed: int) -> PreparedChampionshipRace:
+    """Apply a prepared race's grid drops and initialize the legacy engine."""
+    if not state.race_prepared:
+        raise ValueError("championship race has not been prepared")
+    if isinstance(seed, bool) or not isinstance(seed, int):
+        raise ValueError("race seed must be an integer")
+    race_index = state.race_index
+    prepared = RaceStartConditions(
+        race_index=race_index,
+        race_name=state.calendar[race_index].name,
+        grid_drop_positions=dict(state.grid_penalties),
+        applied_to_grid=state.grid_penalties_applied,
+    )
     race_state = engine.new_state(seed)
     starting_grid = _apply_grid_penalties(race_state, prepared)
-    applied = mark_grid_penalties_applied(working)
-
-    for action in clean_actions:
-        engine.step(race_state, action)
-    raw_result = engine.result(race_state)
-    mapped_result = _map_race_result(raw_result)
-    awarded_points = _points_from_classification(mapped_result["classification"])
-    race_index = working.race_index
-    race_name = working.calendar[race_index].name
-    complete_race(working, awarded_points)
-    _commit_state(state, working)
-    return ChampionshipRaceResult(
+    applied = mark_grid_penalties_applied(state)
+    return PreparedChampionshipRace(
         race_index=race_index,
-        race_name=race_name,
+        race_name=state.calendar[race_index].name,
         seed=seed,
         starting_grid=starting_grid,
         start_conditions=applied,
+        race_state=race_state,
+    )
+
+
+def finish_prepared_race(
+    state: ChampionshipState, active: PreparedChampionshipRace,
+) -> ChampionshipRaceResult:
+    """Commit a completed legacy race to persistent championship state."""
+    if state.race_index != active.race_index or not active.race_state["complete"]:
+        raise ValueError("prepared race is incomplete or does not match championship state")
+    mapped_result = _map_race_result(engine.result(active.race_state))
+    awarded_points = _points_from_classification(mapped_result["classification"])
+    complete_race(state, awarded_points)
+    return ChampionshipRaceResult(
+        race_index=active.race_index,
+        race_name=active.race_name,
+        seed=active.seed,
+        starting_grid=list(active.starting_grid),
+        start_conditions=active.start_conditions,
         race_result=mapped_result,
         awarded_points=awarded_points,
     )

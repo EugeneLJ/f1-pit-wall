@@ -1,5 +1,5 @@
 schema_version = "1.4"
-artifacts = []
+artifacts = ["/app/submission/action.json"]
 
 [task]
 name = "EugeneLJ/f1-pit-wall"

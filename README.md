@@ -19,7 +19,8 @@ f1ctl act '{"driver_a":"PIT","driver_b":"STAY"}'
 The final command writes `/app/submission/action.json`. The trusted verifier
 reads only those two choices and independently recomputes classification and
 points. It never trusts a submitted score, a CLI result, or agent-visible engine
-code.
+code. Harbor transfers only `/app/submission/action.json` into the isolated
+verifier container through the task's explicit `artifacts` declaration.
 
 This P0 slice intentionally contains no FastF1 data, weather, safety car, or
 championship. Its purpose is to prove the Harbor lifecycle and trust boundary.

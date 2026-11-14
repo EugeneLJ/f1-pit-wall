@@ -27,8 +27,9 @@ from dataclasses import dataclass, field
 from typing import Any, Callable, Dict, Optional, Protocol
 
 DEFAULT_ENGINEER_MODEL = "gemini-3.5-flash-lite"
-DEFAULT_REDBOOL_MODEL = "deepseek-flash"          # requested id per B6 task; verify at runtime
-VERDA_DOC_MODEL_ID = "deepseek-4-1-flash-1017"    # id documented in TRACK_C_VERDA_INFERENCE.md
+# Verda Inference id, confirmed on 2026-11-14: GET /v1/models with the Red Bool key lists exactly
+# this id ("deepseek-flash" is not served). Still verified at startup by verify_model_available.
+DEFAULT_REDBOOL_MODEL = "deepseek-4-1-flash-1017"
 VERDA_BASE_URL = "https://inference.verda.com/v1"
 
 PROMPT_TEMPLATE_VERSION = "chief-v1"

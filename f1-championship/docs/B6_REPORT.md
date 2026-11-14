@@ -156,7 +156,7 @@ Commitments survive SC/VSC and pit stops. **Compliance, driver benefit and const
 **Model ids.**
 - McLearn Chief: `gemini` (set per run).
 - Engineers: `gemini-3.5-flash-lite`.
-- Red Bool Chief: **requested id `deepseek-flash`, as instructed.** Note that `TRACK_C_VERDA_INFERENCE.md` documents the Verda id as `deepseek-4-1-flash-1017`. The startup availability check decides; nothing is silently mapped.
+- Red Bool Chief: **`deepseek-4-1-flash-1017`** (Verda Inference). Checked on 2026-11-14: with the Red Bool key, `GET /v1/models` returns HTTP 200 and lists exactly this id. `deepseek-flash` (the id first given for B6) is not served, and the user confirmed the change. The availability check still runs at startup and never substitutes another model.
 
 **Testing.** All of this is tested with fake transports: provenance, cost, revision, invalid output, no retry on 402, Retry-After on 429, a missing key, isolation, the availability check, and fallback on a 403 for a whole season.
 
@@ -297,7 +297,7 @@ scripts/make_integrated_task.sh /path/to/integrated MOCK_ENGINEERS   # then: har
 ## 10. Limitations and remaining work
 
 1. **Two-team play is not in Harbor.** It runs in the trusted in-process runner, not across sealed containers. The sidecar serves SOLO_COORDINATION only. A two-socket sidecar with a rendezvous, or a custom Harbor agent wrapper, is still to be built.
-2. **No live call was made.** `google-genai` is not installed locally. The Gemini transport is exercised only with fakes, and the DeepSeek id (`deepseek-flash` vs the documented `deepseek-4-1-flash-1017`) must be confirmed with `verify_model_available` before any paid run. No paid smoke test was run; it is ready to run on request.
+2. **No live call was made.** `google-genai` is not installed locally. The Gemini transport is exercised only with fakes, The DeepSeek id `deepseek-4-1-flash-1017` is confirmed as served (models listing only, no inference). No paid smoke test was run; it is ready to run on request.
 3. **Live Engineers in Harbor** need network access from a trusted Engineer service; the sim container has none. In Harbor, only offline Engineer conditions are supported today.
 4. **New coefficients are placeholders.** The exchange and defend coefficients are synthetic. Their sensitivity has not been swept yet.
 5. **The references are one-step.** They use a one-step rollout with a fixed baseline continuation, so values are lower bounds and depend on the continuation. The +5.2 give-back state is unconfirmed.

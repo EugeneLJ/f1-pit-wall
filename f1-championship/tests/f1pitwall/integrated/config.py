@@ -136,7 +136,7 @@ def two_team(layer: int = 1, mclearn_chief: Optional[Dict[str, Any]] = None,
         TeamSpec("McLearn Racing", "McLearn", mclearn_slot,
                  mclearn_chief or {"provider": "google_genai", "model": "gemini"}, engineers),
         TeamSpec("Red Bool Racing", "Red Bool", redbool_slot,
-                 redbool_chief or {"provider": "verda_openai_compatible", "model": "deepseek-flash"}, "CHIEF_ONLY"),
+                 redbool_chief or {"provider": "verda_openai_compatible", "model": "deepseek-4-1-flash-1017"}, "CHIEF_ONLY"),
     ], rival_condition)
     cfg.validate()
     return cfg

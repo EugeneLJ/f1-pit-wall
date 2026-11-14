@@ -557,7 +557,7 @@ class ProviderContractTests(unittest.TestCase):
                                  transport=FakeChat([ok(json.dumps(P.component_action(self.obs)), "deepseek-x-0917")]))
         action, meta = chief(self.obs)
         self.assertEqual(action["type"], "COMPONENT_DECISION")
-        self.assertEqual(meta["requested_model"], "deepseek-flash")
+        self.assertEqual(meta["requested_model"], "deepseek-4-1-flash-1017")
         self.assertEqual(meta["returned_model"], "deepseek-x-0917")
         self.assertAlmostEqual(meta["estimated_cost"]["amount"], 1000 / 1e6 * 0.15 + 100 / 1e6 * 0.60)
         self.assertNotIn("secret-b", json.dumps(meta))

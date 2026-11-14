@@ -165,7 +165,7 @@ A penalty consistently costs Apex B more than Apex A. Apex B qualifies just insi
 | A | Constructors' optimization | Objective = Apex points; rank and margin reported | No rival-relative objective in the scalar |
 | A | Season-level driver prioritization | Only via which driver gets free units/penalties | Team orders not implemented (Track C) |
 | B | 13–18 decision points per race | 3 (`decision_laps` is configurable in the engine) | Exact solver's event tree grows 3^n; agent cost unmeasured |
-| B | Compound choice and degradation | Track-dependent degradation only | PIT always fits MEDIUM (P1-D decision) |
+| B | Compound choice and degradation | B1: compound choice, tyre life cliff, two-compound rule | Cliff rarely binding at 3 decisions per race |
 | B | SC/VSC responses | Per-decision i.i.d. status, cheaper pit stops | No SC duration or field compression |
 | B | Weather and forecasts | — | Not started |
 | B | Rival pit strategy, undercut/overcut | Rule-based rival pits | No explicit in/out-lap model |

@@ -16,7 +16,7 @@ from pathlib import Path
 
 STATE_DIR = Path(os.environ.get("F1SIM_STATE_DIR", "/var/lib/f1sim"))
 EVIDENCE_DIR = Path(os.environ.get("F1SIM_EVIDENCE_DIR", "/evidence/f1sim"))
-SERVER_VERSION = "p1-1"
+SERVER_VERSION = "b1-1"
 
 
 def _sha256(path: Path) -> str:

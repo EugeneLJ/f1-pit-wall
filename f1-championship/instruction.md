@@ -30,12 +30,19 @@ Each race has two phases:
      {"driver":"Apex A","component":"ICE","action":"USE"}, ...one per driver/component...]}
    ```
 
-2. `RACE_STRATEGY` — three sequential decisions per race, one `PIT` or `STAY`
-   for each driver:
+2. `RACE_STRATEGY` — three sequential decisions per race. For each driver choose
+   `STAY`, `PIT_SOFT`, `PIT_MEDIUM` or `PIT_HARD` (a pit stop fits the named
+   compound):
 
    ```json
-   {"type":"RACE_STRATEGY","driver_a":"PIT","driver_b":"STAY"}
+   {"type":"RACE_STRATEGY","driver_a":"PIT_HARD","driver_b":"STAY"}
    ```
+
+   Softer compounds are faster but degrade faster; every compound falls off a
+   cliff once it is older than its published life. Each car must race on at least
+   two different compounds (the starting compound counts) or it receives a time
+   penalty at the finish. Pit loss is lower under VSC and SC. If both Apex cars pit
+   at the same decision, Apex B queues behind Apex A.
 
 Future track status (GREEN/VSC/SC) is seeded and hidden until its decision.
 Points from both Apex cars count; the objective is the team's season total,

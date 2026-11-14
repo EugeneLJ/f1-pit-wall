@@ -130,10 +130,11 @@ class ChampionshipSession:
             race_observation = _public_race_observation(self._active_race.race_state, track.name)
             common["race_progress"] = race_observation
             common["starting_grid"] = list(self._active_race.starting_grid)
+            legal = "|".join(engine.legal_actions(self._active_race.race_state))
             common["action_schema"] = {
                 "type": RACE_STRATEGY,
-                "driver_a": "PIT|STAY",
-                "driver_b": "PIT|STAY",
+                "driver_a": legal,
+                "driver_b": legal,
             }
         return common
 
@@ -210,10 +211,10 @@ class ChampionshipSession:
             raise ValueError("race strategy action must contain type and both drivers")
         if action["type"] != RACE_STRATEGY:
             raise ValueError("action type does not match current decision")
-        clean = engine.validate_action({"driver_a": action["driver_a"],
-                                        "driver_b": action["driver_b"]})
         if self._active_race is None:
             raise ValueError("no active race")
+        clean = engine.validate_action({"driver_a": action["driver_a"],
+                                        "driver_b": action["driver_b"]}, self._active_race.race_state)
         engine.step(self._active_race.race_state, clean)
         if not self._active_race.race_state["complete"]:
             return None

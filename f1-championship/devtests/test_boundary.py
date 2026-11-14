@@ -348,7 +348,7 @@ class VerifierTests(unittest.TestCase):
         def flip(entries):
             for entry in entries:
                 if entry["decision_type"] == "RACE_STRATEGY":
-                    entry["action"]["driver_a"] = "PIT" if entry["action"]["driver_a"] == "STAY" else "STAY"
+                    entry["action"]["driver_a"] = "PIT_MEDIUM" if entry["action"]["driver_a"] == "STAY" else "STAY"
                     break
             return entries
 

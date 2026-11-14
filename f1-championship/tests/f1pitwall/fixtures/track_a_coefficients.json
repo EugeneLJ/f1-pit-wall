@@ -43,6 +43,29 @@
       "Vertex": {"street": -0.05, "high_speed": 0.00, "high_degradation": 0.10, "wet_prone": -0.15, "mixed": 0.10}
     }
   },
+  "tyres": {
+    "note": "Track B (B1) tyre model. Offsets and linear degradation are the legacy values; life and cliff are synthetic placeholders.",
+    "compound_choice": true,
+    "compounds": {
+      "SOFT":   {"offset": -0.55, "degradation": 0.35,  "life_laps": 10},
+      "MEDIUM": {"offset": 0.00,  "degradation": 0.14,  "life_laps": 16},
+      "HARD":   {"offset": 0.28,  "degradation": 0.055, "life_laps": 24}
+    },
+    "cliff": {
+      "formula": "extra s/lap = cliff_sec_per_lap_per_lap * track_degradation_multiplier * max(0, tyre_age - life_laps)",
+      "cliff_sec_per_lap_per_lap": 0.25
+    },
+    "two_compound_rule": {
+      "rule": "each car must race on at least two different compounds (the starting compound counts); otherwise a time penalty is added at the finish",
+      "enabled": true,
+      "penalty_sec": 20.0
+    },
+    "rival_compound_policy": {
+      "rule": "rivals pitting choose SOFT if laps remaining <= soft_max_laps, MEDIUM if <= medium_max_laps, else HARD; if that equals their only compound so far they take the next option that satisfies the two-compound rule; at the last decision a rival that has used only one compound pits",
+      "soft_max_laps": 6,
+      "medium_max_laps": 14
+    }
+  },
   "rival_component_policy": {
     "rule": "before each race, replace any component with wear >= threshold (or above max_wear_for_use), using free units while they last",
     "threshold": 0.65

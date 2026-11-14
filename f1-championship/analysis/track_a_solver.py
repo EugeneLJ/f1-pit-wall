@@ -50,7 +50,7 @@ from play import race_action as _public_race_action  # noqa: E402
 APEX = TEAM_DRIVERS["Apex"]
 COMPONENTS = coef.COMPONENTS
 EVENT_PROBS = (("GREEN", 0.60), ("VSC", 0.25), ("SC", 0.15))
-RACE_ACTIONS = [{"driver_a": a, "driver_b": b} for a in ("PIT", "STAY") for b in ("PIT", "STAY")]
+RACE_ACTIONS = [{"driver_a": a, "driver_b": b} for a in ("PIT", "STAY") for b in ("PIT", "STAY")]  # legacy races only
 
 
 def baseline_race_action(engine_observation: Dict[str, Any]) -> Dict[str, str]:
@@ -63,7 +63,8 @@ def baseline_race_action(engine_observation: Dict[str, Any]) -> Dict[str, str]:
 
 def _copy_race(race: Dict[str, Any]) -> Dict[str, Any]:
     out = dict(race)
-    out["cars"] = [dict(car) for car in race["cars"]]
+    out["cars"] = [{**car, "compounds_used": list(car["compounds_used"])} if "compounds_used" in car else dict(car)
+                   for car in race["cars"]]
     out["events"] = list(race["events"])
     out["actions"] = list(race["actions"])
     return out
@@ -71,7 +72,7 @@ def _copy_race(race: Dict[str, Any]) -> Dict[str, Any]:
 
 def expected_apex_points_at_finish(race: Dict[str, Any]) -> float:
     """Exact expectation over independent retirements given the running order."""
-    order = sorted(race["cars"], key=lambda car: (car["elapsed"], car["name"]))
+    order = sorted(race["cars"], key=lambda car: (car["elapsed"] + engine.finish_penalty(race, car), car["name"]))
     p_dnf = race["config"]["dnf_prob"]
     total = 0.0
     for index, car in enumerate(order):
@@ -120,7 +121,8 @@ def hindsight_race_value(race: Dict[str, Any]) -> Tuple[int, List[Dict[str, str]
     if race["step"] == len(race["events"]):
         return realized_apex_points(race), []
     best = (-1, [])
-    for action in RACE_ACTIONS:
+    legal = engine.legal_actions(race)
+    for action in ({"driver_a": a, "driver_b": b} for a in legal for b in legal):
         branch = _copy_race(race)
         engine.step(branch, action)
         value, rest = hindsight_race_value(branch)

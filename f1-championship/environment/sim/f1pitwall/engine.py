@@ -13,6 +13,8 @@ SEGMENT_LENGTH = 4
 POINTS = (25, 18, 15, 12, 10, 8, 6, 4)
 PIT_LOSS = {"GREEN": 18.0, "VSC": 10.0, "SC": 5.0}
 DOUBLE_STACK_DELAY = 6.0
+LEGACY_ACTIONS = ("PIT", "STAY")
+COMPOUND_ACTIONS = ("STAY", "PIT_SOFT", "PIT_MEDIUM", "PIT_HARD")
 COMPOUNDS = {
     "SOFT": {"offset": -0.55, "degradation": 0.35},
     "MEDIUM": {"offset": 0.00, "degradation": 0.14},
@@ -93,9 +95,40 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
         "overtaking_difficulty": float(config.get("overtaking_difficulty", 0.0)),
         "dnf_prob": {name: float(config.get("dnf_prob", {}).get(name, 0.0)) for name in by_name},
         "decision_laps": decision_laps,
+        "tyres": config.get("tyres"),
     }
+    if clean_config["tyres"] is not None:
+        for car in cars:
+            car["compounds_used"] = [car["compound"]]
     return {"seed": seed, "step": 0, "cars": [by_name[name] for name in grid], "events": events,
             "actions": [], "complete": False, "config": clean_config}
+
+
+def _tyres(state: dict[str, Any]) -> dict[str, Any] | None:
+    return state.get("config", {}).get("tyres") if "config" in state else None
+
+
+def legal_actions(state: dict[str, Any]) -> list[str]:
+    """Per-driver legal race actions for this race."""
+    tyres = _tyres(state)
+    if tyres is None:
+        return list(LEGACY_ACTIONS)
+    if not tyres["compound_choice"]:
+        return ["STAY", "PIT_MEDIUM"]
+    return list(COMPOUND_ACTIONS)
+
+
+def pit_compound(choice: str) -> str | None:
+    """Compound fitted by an action, or None for STAY. Legacy PIT fits MEDIUM."""
+    if choice == "STAY":
+        return None
+    if choice == "PIT":
+        return "MEDIUM"
+    return choice[len("PIT_"):]
+
+
+def laps_total(state: dict[str, Any]) -> int:
+    return _decision_laps(state)[-1] + SEGMENT_LENGTH
 
 
 def _decision_laps(state: dict[str, Any]) -> list[int]:
@@ -119,14 +152,15 @@ LEGACY_CAR_NAMES = ("Rival 1", "Apex A", "Rival 2", "Apex B", "Rival 3", "Rival 
 LEGACY_BASE_PACE = {car["name"]: car["base_pace"] for car in _legacy_cars()}
 
 
-def validate_action(action: Any) -> dict[str, str]:
+def validate_action(action: Any, state: dict[str, Any] | None = None) -> dict[str, str]:
     if not isinstance(action, dict) or set(action) != {"driver_a", "driver_b"}:
         raise ValueError("action must contain exactly driver_a and driver_b")
+    legal = legal_actions(state) if state is not None else list(LEGACY_ACTIONS)
     clean: dict[str, str] = {}
     for driver in ("driver_a", "driver_b"):
         choice = action[driver]
-        if choice not in ("PIT", "STAY"):
-            raise ValueError(f"{driver} must be PIT or STAY")
+        if choice not in legal:
+            raise ValueError(f"{driver} must be one of {'|'.join(legal)}")
         clean[driver] = choice
     return clean
 
@@ -140,15 +174,41 @@ def _classification(cars: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def _rival_action(car: dict[str, Any], status: str, step_index: int,
-                  decision_count: int = len(DECISION_LAPS)) -> str:
-    if status == "SC" and car["tyre_age"] >= 7:
-        return "PIT"
-    if status == "VSC" and car["tyre_age"] >= 10:
-        return "PIT"
-    limits = {"SOFT": 10, "MEDIUM": 14, "HARD": 18}
-    if car["tyre_age"] >= limits[car["compound"]] and step_index < decision_count - 1:
-        return "PIT"
-    return "STAY"
+                  decision_count: int = len(DECISION_LAPS), tyres: dict[str, Any] | None = None,
+                  laps_remaining: int | None = None) -> str:
+    if tyres is None:
+        if status == "SC" and car["tyre_age"] >= 7:
+            return "PIT"
+        if status == "VSC" and car["tyre_age"] >= 10:
+            return "PIT"
+        limits = {"SOFT": 10, "MEDIUM": 14, "HARD": 18}
+        if car["tyre_age"] >= limits[car["compound"]] and step_index < decision_count - 1:
+            return "PIT"
+        return "STAY"
+    life = tyres["compounds"][car["compound"]]["life_laps"]
+    needs_second = tyres["two_compound_rule"] and len(set(car["compounds_used"])) < 2
+    pit = ((status == "SC" and car["tyre_age"] >= 7) or (status == "VSC" and car["tyre_age"] >= 10)
+           or (car["tyre_age"] >= life and step_index < decision_count - 1)
+           or (needs_second and step_index == decision_count - 1))
+    if not pit:
+        return "STAY"
+    return "PIT_" + rival_compound(car, laps_remaining, tyres)
+
+
+def rival_compound(car: dict[str, Any], laps_remaining: int, tyres: dict[str, Any]) -> str:
+    """Public rival compound rule (see track_a_coefficients.json: tyres.rival_compound_policy)."""
+    if not tyres["compound_choice"]:
+        return "MEDIUM"
+    if laps_remaining <= tyres["rival_soft_max_laps"]:
+        choice = "SOFT"
+    elif laps_remaining <= tyres["rival_medium_max_laps"]:
+        choice = "MEDIUM"
+    else:
+        choice = "HARD"
+    if tyres["two_compound_rule"] and set(car["compounds_used"]) == {choice}:
+        choice = {"SOFT": "MEDIUM", "HARD": "MEDIUM",
+                  "MEDIUM": "SOFT" if laps_remaining <= 10 else "HARD"}[choice]
+    return choice
 
 
 def observation(state: dict[str, Any]) -> dict[str, Any]:
@@ -157,28 +217,43 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
     classification = _classification(state["cars"])
     positions = {entry["driver"]: entry["position"] for entry in classification}
     apex = {}
+    tyres = _tyres(state)
     for key, name in (("driver_a", "Apex A"), ("driver_b", "Apex B")):
         car = next(car for car in state["cars"] if car["name"] == name)
         apex[key] = {"position": positions[name], "compound": car["compound"],
                      "tyre_age": car["tyre_age"], "elapsed": round(car["elapsed"], 3)}
+        if tyres is not None:
+            apex[key]["compounds_used"] = sorted(set(car["compounds_used"]))
     index = state["step"]
     laps = _decision_laps(state)
-    return {"race": "Harbor Grand Prix", "lap": laps[index], "laps_total": laps[-1] + SEGMENT_LENGTH,
-            "decision_index": index + 1, "decision_count": len(laps),
-            "track_status": state["events"][index], "drivers": apex,
-            "classification": classification, "legal_actions": ["PIT", "STAY"],
-            "future_track_status": "hidden", "submitted_actions": len(state["actions"])}
+    out = {"race": "Harbor Grand Prix", "lap": laps[index], "laps_total": laps[-1] + SEGMENT_LENGTH,
+           "decision_index": index + 1, "decision_count": len(laps),
+           "track_status": state["events"][index], "drivers": apex,
+           "classification": classification, "legal_actions": legal_actions(state),
+           "future_track_status": "hidden", "submitted_actions": len(state["actions"])}
+    if tyres is not None:
+        out["laps_remaining"] = laps_total(state) - laps[index]
+        for entry in classification:
+            car = next(c for c in state["cars"] if c["name"] == entry["driver"])
+            entry["compounds_used"] = sorted(set(car["compounds_used"]))
+    return out
 
 
 def _segment_time(car: dict[str, Any], position: int, deg_multiplier: float = 1.0,
-                  traffic: float | None = None) -> float:
-    """Legacy traffic is positional; configured races pass a gap-based dirty-air loss."""
-    tyre = COMPOUNDS[car["compound"]]
+                  traffic: float | None = None, tyres: dict[str, Any] | None = None) -> float:
+    """Legacy traffic is positional; configured races pass a gap-based dirty-air loss.
+
+    With a B1 tyre model, laps beyond a compound's life add a cliff term that grows
+    linearly with every extra lap (scaled by the track degradation multiplier)."""
+    tyre = (tyres["compounds"] if tyres is not None else COMPOUNDS)[car["compound"]]
     if traffic is None:
         traffic = min(0.70, 0.10 * (position - 1))
     degradation = tyre["degradation"] * deg_multiplier
+    cliff = tyres["cliff_sec_per_lap_per_lap"] * deg_multiplier if tyres is not None else 0.0
+    life = tyre.get("life_laps", 10**6)
     return sum(car["base_pace"] + tyre["offset"] + degradation * (car["tyre_age"] + offset)
-               + traffic for offset in range(SEGMENT_LENGTH))
+               + cliff * max(0, car["tyre_age"] + offset - life) + traffic
+               for offset in range(SEGMENT_LENGTH))
 
 
 def _apply_overtaking(order: list[dict[str, Any]], finish: dict[str, float],
@@ -195,19 +270,24 @@ def _apply_overtaking(order: list[dict[str, Any]], finish: dict[str, float],
 def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
     if state["complete"]:
         raise ValueError("race is already complete")
-    clean = validate_action(action)
+    clean = validate_action(action, state)
     status, index = state["events"][state["step"]], state["step"]
     config = state.get("config")
+    tyres = _tyres(state)
     decision_count = len(_decision_laps(state))
+    remaining = laps_total(state) - _decision_laps(state)[index]
     apex_actions = {"Apex A": clean["driver_a"], "Apex B": clean["driver_b"]}
     pit_actions = {car["name"]: (apex_actions[car["name"]] if car["team"] == "Apex"
-                                 else _rival_action(car, status, index, decision_count))
+                                 else _rival_action(car, status, index, decision_count, tyres, remaining))
                    for car in state["cars"]}
     for car in state["cars"]:
-        if pit_actions[car["name"]] == "PIT":
+        compound = pit_compound(pit_actions[car["name"]])
+        if compound is not None:
             car["elapsed"] += PIT_LOSS[status]
-            car["compound"], car["tyre_age"] = "MEDIUM", 0
-    if clean["driver_a"] == clean["driver_b"] == "PIT":
+            car["compound"], car["tyre_age"] = compound, 0
+            if tyres is not None:
+                car["compounds_used"].append(compound)
+    if pit_compound(clean["driver_a"]) and pit_compound(clean["driver_b"]):
         next(car for car in state["cars"] if car["name"] == "Apex B")["elapsed"] += DOUBLE_STACK_DELAY
     order = sorted(state["cars"], key=lambda car: (car["elapsed"], car["name"]))
     positions = {car["name"]: index + 1 for index, car in enumerate(order)}
@@ -218,7 +298,7 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
         for index, car in enumerate(order):
             close = index > 0 and car["elapsed"] - order[index - 1]["elapsed"] < model["dirty_air_gap_sec"]
             traffic[car["name"]] = model["dirty_air_loss_sec_per_lap"] if close else 0.0
-    finish = {car["name"]: car["elapsed"] + _segment_time(car, positions[car["name"]], deg, traffic[car["name"]])
+    finish = {car["name"]: car["elapsed"] + _segment_time(car, positions[car["name"]], deg, traffic[car["name"]], tyres)
               for car in state["cars"]}
     if config and config["overtaking"] is not None:
         _apply_overtaking(order, finish, config["overtaking"], config["overtaking_difficulty"])
@@ -243,22 +323,36 @@ def result(state: dict[str, Any]) -> dict[str, Any]:
                 "constructors_points": constructors_points}
     draws = dnf_uniforms(state["seed"])
     retired = {name for name, p in state["config"]["dnf_prob"].items() if draws[name] < p}
+    tyres = _tyres(state)
+    penalty = {car["name"]: finish_penalty(state, car) for car in state["cars"]}
     running = [car for car in state["cars"] if car["name"] not in retired]
     out = [car for car in state["cars"] if car["name"] in retired]
-    ordered = (sorted(running, key=lambda car: (car["elapsed"], car["name"]))
+    ordered = (sorted(running, key=lambda car: (car["elapsed"] + penalty[car["name"]], car["name"]))
                + sorted(out, key=lambda car: car["name"]))
     classification = []
     for index, car in enumerate(ordered):
         finished = car["name"] not in retired
-        classification.append({
+        entry = {
             "position": index + 1, "driver": car["name"], "team": car["team"],
-            "elapsed": round(car["elapsed"], 3), "compound": car["compound"],
+            "elapsed": round(car["elapsed"] + penalty[car["name"]], 3), "compound": car["compound"],
             "tyre_age": car["tyre_age"], "status": "FINISHED" if finished else "DNF",
             "points": POINTS[index] if finished else 0,
-        })
+        }
+        if tyres is not None:
+            entry["compounds_used"] = sorted(set(car["compounds_used"]))
+            entry["penalty_sec"] = penalty[car["name"]]
+        classification.append(entry)
     return {"complete": True, "seed": state["seed"], "actions": state["actions"],
             "event_history": state["events"], "classification": classification,
             "constructors_points": sum(e["points"] for e in classification if e["team"] == "Apex")}
+
+
+def finish_penalty(state: dict[str, Any], car: dict[str, Any]) -> float:
+    """Time penalty added at the finish (two-compound rule, B1)."""
+    tyres = _tyres(state)
+    if tyres is not None and tyres["two_compound_rule"] and len(set(car["compounds_used"])) < 2:
+        return tyres["two_compound_penalty_sec"]
+    return 0.0
 
 
 def run_episode(actions: Any, seed: int = SEED) -> dict[str, Any]:

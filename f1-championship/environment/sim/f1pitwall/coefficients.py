@@ -22,6 +22,9 @@ MECHANICS = (
     "team_profiles",      # track-archetype pace profile per team
     "overtaking",         # track-dependent overtaking resistance
     "tyre_degradation",   # track-dependent tyre degradation
+    "compound_choice",    # B1: PIT chooses a compound (ablation: MEDIUM only)
+    "tyre_cliff",         # B1: tyres fall off beyond their life (ablation: linear only)
+    "two_compound_rule",  # B1: two compounds per race (ablation: no rule)
 )
 
 
@@ -63,6 +66,12 @@ def ablate(coeffs: Mapping[str, Any], *mechanics: str) -> Dict[str, Any]:
             out["track_performance"]["overtaking"]["fixed_difficulty"] = 0.5
         elif mechanic == "tyre_degradation":
             out["track_performance"]["tyre_degradation_multiplier"] = None
+        elif mechanic == "compound_choice":
+            out["tyres"]["compound_choice"] = False
+        elif mechanic == "tyre_cliff":
+            out["tyres"]["cliff"]["cliff_sec_per_lap_per_lap"] = 0.0
+        elif mechanic == "two_compound_rule":
+            out["tyres"]["two_compound_rule"]["enabled"] = False
     out.setdefault("ablated", [])
     out["ablated"] = sorted(set(out["ablated"]) | set(mechanics))
     return out
@@ -108,3 +117,17 @@ def max_wear_for_use(coeffs: Mapping[str, Any]) -> float:
 
 def wear_increment(component: str, stress: float, coeffs: Mapping[str, Any]) -> float:
     return stress * coeffs["components"]["wear_per_unit_stress"][component]
+
+
+def tyre_model(coeffs: Mapping[str, Any]) -> Dict[str, Any]:
+    """Race-config tyre block (B1): compounds, cliff, two-compound rule, rival compound rule."""
+    tyres = coeffs["tyres"]
+    return {
+        "compound_choice": bool(tyres["compound_choice"]),
+        "compounds": copy.deepcopy(tyres["compounds"]),
+        "cliff_sec_per_lap_per_lap": float(tyres["cliff"]["cliff_sec_per_lap_per_lap"]),
+        "two_compound_rule": bool(tyres["two_compound_rule"]["enabled"]),
+        "two_compound_penalty_sec": float(tyres["two_compound_rule"]["penalty_sec"]),
+        "rival_soft_max_laps": int(tyres["rival_compound_policy"]["soft_max_laps"]),
+        "rival_medium_max_laps": int(tyres["rival_compound_policy"]["medium_max_laps"]),
+    }

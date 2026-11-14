@@ -79,6 +79,7 @@ def race_config(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAU
         "overtaking": coef.overtaking_model(coeffs),
         "overtaking_difficulty": coef.overtaking_difficulty(track.overtaking_difficulty, coeffs),
         "dnf_prob": {name: values["dnf_probability"] for name, values in perf.items()},
+        "tyres": coef.tyre_model(coeffs),
         "events": events,
     }
 
@@ -92,7 +93,7 @@ def run_championship_race(state: ChampionshipState, component_decisions: Any, ra
     working = copy.deepcopy(state)
     prepare_race(working, component_decisions, coeffs)
     active = start_prepared_race(working, seed, coeffs)
-    actions = _validate_race_actions(race_actions, len(engine._decision_laps(active.race_state)))
+    actions = _validate_race_actions(race_actions, active.race_state)
     for action in actions:
         engine.step(active.race_state, action)
     result = finish_prepared_race(working, active, coeffs)
@@ -136,7 +137,7 @@ def finish_prepared_race(state: ChampionshipState, active: PreparedChampionshipR
                                   awarded_points=awarded_points)
 
 
-def stay_race_policy(_: ChampionshipState) -> List[Dict[str, str]]:
+def stay_race_policy(_: ChampionshipState) -> List[Dict[str, str]]:  # legacy smoke helper
     return [{"driver_a": "STAY", "driver_b": "STAY"} for _ in engine.DECISION_LAPS]
 
 
@@ -162,10 +163,11 @@ def _apply_grid_penalties(race_state: Dict[str, Any], start: RaceStartConditions
     return [ENGINE_TO_CHAMPIONSHIP_DRIVER[name] for name in grid]
 
 
-def _validate_race_actions(value: Any, count: int) -> List[Dict[str, str]]:
+def _validate_race_actions(value: Any, race_state: Dict[str, Any]) -> List[Dict[str, str]]:
+    count = len(engine._decision_laps(race_state))
     if not isinstance(value, list) or len(value) != count:
         raise ValueError(f"exactly {count} race actions are required")
-    return [engine.validate_action(action) for action in value]
+    return [engine.validate_action(action, race_state) for action in value]
 
 
 def _map_race_result(value: Dict[str, Any]) -> Dict[str, Any]:

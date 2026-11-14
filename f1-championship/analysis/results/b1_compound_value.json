@@ -1,0 +1,5981 @@
+{
+ "races": [
+  {
+   "scenario": "S00",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.885
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.67610949382724,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.743458895618414,
+   "compound_blind": 30.370771556046094,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S00",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.885
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.67610949382724,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.592087768792336,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S00",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.885
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.13694932322272,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.347941871127784,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S00",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.586
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.67158358710182,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.032183818406423,
+   "compound_blind": 27.790240645616706,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.6
+  },
+  {
+   "scenario": "S00",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.586
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.67158358710182,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.032183818406423,
+   "seconds": 5.7
+  },
+  {
+   "scenario": "S00",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.586
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.430864050738922,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.57504274058384,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S00",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.516
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.183899128741068,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.27326668036811,
+   "compound_blind": 25.645878379534942,
+   "always_stay": 10.498785203604072,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S00",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.516
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.183899128741068,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.154724571040656,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S00",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.516
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.153625978804467,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.534014184808676,
+   "seconds": 4.8
+  },
+  {
+   "scenario": "S01",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.545
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.477637428016443,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 23.92387594947663,
+   "compound_blind": 25.350024385672892,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S01",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.545
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.477637428016443,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 23.968918709476633,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S01",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.545
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.44628127022809,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.08933439649701,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S01",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.434
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.981136878416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.434322186826634,
+   "compound_blind": 25.848294791872892,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S01",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.434
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.981136878416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.389832713266635,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S01",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.434
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.2047169440455,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.57542063161695,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S01",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.514
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.377711195234596,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.393650196460136,
+   "compound_blind": 25.790830129255045,
+   "always_stay": 10.310801997797688,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S01",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.514
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.377711195234596,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.16385319510235,
+   "seconds": 5.6
+  },
+  {
+   "scenario": "S01",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.514
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.25359458297585,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.569780979000296,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S02",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.491
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.378907840416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.36917727625586,
+   "compound_blind": 25.79172242987289,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S02",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.491
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.378907840416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.21217098552674,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S02",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.491
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.254207512828096,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.56638266736695,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S02",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.983
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.84481563877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.543163758198133,
+   "compound_blind": 30.96151698452937,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S02",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.983
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.84481563877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.292582954775536,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S02",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.983
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.107058609260967,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.767445813198368,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S02",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.402
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.980736582032442,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_MEDIUM/PIT_HARD"
+   },
+   "baseline": 24.43401395060011,
+   "compound_blind": 25.85790529151218,
+   "always_stay": 10.310101492035528,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S02",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.402
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.980736582032442,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_MEDIUM/PIT_HARD"
+   },
+   "baseline": 24.211571326665357,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S02",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.402
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.204467285390624,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.48885158237862,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S03",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.955
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.59271063877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.335851457601613,
+   "compound_blind": 30.96151698452937,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S03",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.955
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.59271063877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.335851457601613,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S03",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.955
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.070280381858797,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.299315459662377,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S03",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.355
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.62491412439168,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.1601999030604,
+   "compound_blind": 39.51272992044168,
+   "always_stay": 10.897389974975077,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S03",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.355
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.62491412439168,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.1601999030604,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S03",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.355
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 36.28804528652733,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 31.972180907786232,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S03",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.473
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.350957743956965,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.28167623571083,
+   "compound_blind": 25.69681260790791,
+   "always_stay": 10.337495120068578,
+   "seconds": 5.7
+  },
+  {
+   "scenario": "S03",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.473
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.350957743956965,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.28167623571083,
+   "seconds": 5.7
+  },
+  {
+   "scenario": "S03",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.473
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.136405852841037,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.422937149751245,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S04",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.385
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.52266870305073,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.96823454758345,
+   "compound_blind": 39.43911566380968,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S04",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.385
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.52266870305073,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.96823454758345,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S04",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.385
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 35.48312242568733,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 32.3005021405266,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S04",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.609
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.28271482867356,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.722933090458294,
+   "compound_blind": 29.547806471625243,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S04",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.609
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.104756934433563,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.722933090458294,
+   "seconds": 5.6
+  },
+  {
+   "scenario": "S04",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.609
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.396384131607817,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.543797896355507,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S04",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.543
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.500171855454155,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.001280520737804,
+   "compound_blind": 29.07167198435074,
+   "always_stay": 10.473911925371143,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S04",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.543
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.500171855454155,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.895554071619774,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S04",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.543
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.12107589494977,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.442111243958166,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S05",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.648
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.305271353701826,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.23387195836131,
+   "compound_blind": 27.47859024460607,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S05",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.648
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.305271353701826,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.23387195836131,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S05",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.648
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.742697767338925,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.582249247710344,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S05",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.591
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.032957636796628,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.733738009845766,
+   "compound_blind": 29.47600717398831,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S05",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.591
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.032957636796628,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.733738009845766,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S05",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.591
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.223505421408266,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.543797896355507,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S05",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.33
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.40922491022735,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.8753599402308,
+   "compound_blind": 39.25415161686838,
+   "always_stay": 11.084253234711607,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S05",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.33
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.40922491022735,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.8753599402308,
+   "seconds": 5.6
+  },
+  {
+   "scenario": "S05",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.33
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 35.9440294609516,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 31.838931190528502,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S06",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.567
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.67158358710182,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.249671996862762,
+   "compound_blind": 28.01968520850227,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S06",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.567
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.67158358710182,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.20640349403668,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S06",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.567
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.430864050738922,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.66287676837601,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S06",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.676
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.28271482867356,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.583154279782942,
+   "compound_blind": 29.65458120816924,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S06",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.676
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.28271482867356,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.289895086800385,
+   "seconds": 5.7
+  },
+  {
+   "scenario": "S06",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.676
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.508833413679437,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.59719167834006,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S06",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.497
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.086082917502807,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 23.802100390190205,
+   "compound_blind": 25.197051059241893,
+   "always_stay": 10.52158634729639,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S06",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.497
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.15949566329599,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 23.802100390190205,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S06",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.497
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.06752761646452,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 19.842211910272464,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S07",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.515
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.378907840416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.39438875482663,
+   "compound_blind": 25.79172242987289,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S07",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.515
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.378907840416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.290665434295292,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S07",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.515
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.254207512828096,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.613208589561747,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S07",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.902
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.70280317796324,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.575615135317697,
+   "compound_blind": 30.980054265179373,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S07",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.902
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.718480092762526,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.563242100241617,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S07",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.902
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.108185030132315,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.243745177120786,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S07",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.39
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.28136741324326,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.74535148464891,
+   "compound_blind": 39.132515095695595,
+   "always_stay": 10.37274717156502,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S07",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.39
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.28136741324326,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.74535148464891,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S07",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.39
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 35.37233063711315,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 32.13017737458658,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S08",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.433
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.588041743395664,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.83798521894196,
+   "compound_blind": 39.38944609176434,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S08",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.433
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.588041743395664,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.83798521894196,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S08",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.433
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 34.59329608503866,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 32.10787063973911,
+   "seconds": 4.8
+  },
+  {
+   "scenario": "S08",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.511
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.598888643085647,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.08450396788603,
+   "compound_blind": 29.227980857756066,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S08",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.511
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.598888643085647,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.01035484528603,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S08",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.511
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.166547110694,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.46962527418122,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S08",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.641
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.304558135050186,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.281253995899462,
+   "compound_blind": 27.4779982858912,
+   "always_stay": 10.310235225294084,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S08",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.641
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.304558135050186,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.281253995899462,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S08",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.641
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.74235280284423,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.63011622474396,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S09",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.469
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.378907840416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.108447664995403,
+   "compound_blind": 25.54470110638733,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S09",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.469
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.378907840416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.108447664995403,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S09",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.469
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.254207512828096,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.427384575616944,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S09",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.416
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.870210678416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.434322186826634,
+   "compound_blind": 25.848294791872892,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S09",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.416
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.870210678416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.211874819026633,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S09",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.416
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.093790744045503,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.57542063161695,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S09",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.62
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.869333955753905,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.263416662764808,
+   "compound_blind": 27.45764167121422,
+   "always_stay": 10.331916397453151,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S09",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.62
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.869333955753905,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.23756489971214,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S09",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.62
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.667645209971003,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.628925319876714,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S10",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.629
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.893365397701825,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.281772554153477,
+   "compound_blind": 27.47859024460607,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S10",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.629
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.893365397701825,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.281772554153477,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S10",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.629
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.679671517338925,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.63014984350251,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S10",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.452
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.981136878416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 23.992658119926745,
+   "compound_blind": 25.514699371672894,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S10",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.452
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.981136878416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.043898235290666,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S10",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.452
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.2047169440455,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.207871710016946,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S10",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.574
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.602974373815883,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.61979880267028,
+   "compound_blind": 29.342411625432362,
+   "always_stay": 10.424238282332464,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S10",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.574
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.602974373815883,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.51770277880811,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S10",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.574
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.15274654123293,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.51168722357833,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S11",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.396
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.56836450605433,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.97209771747597,
+   "compound_blind": 39.48509845991834,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S11",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.396
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.56836450605433,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.97209771747597,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S11",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.396
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 35.336009516078654,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 32.277671626283116,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S11",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.456
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.433261678416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.194935845371372,
+   "compound_blind": 25.54470110638733,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S11",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.456
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.433261678416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.290665434295295,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S11",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.456
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.2047169440455,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.427384575616944,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S11",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.435
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.908326939376337,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.051314837723083,
+   "compound_blind": 25.39402746187642,
+   "always_stay": 10.398839011914585,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S11",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.435
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.908326939376337,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.03777472511881,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S11",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.435
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.159224899463005,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.263138829566696,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S12",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.491
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.378907840416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.36917727625586,
+   "compound_blind": 25.79172242987289,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S12",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.491
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.378907840416893,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.21217098552674,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S12",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.491
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.254207512828096,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.56638266736695,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S12",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.402
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.981136878416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_MEDIUM/PIT_HARD"
+   },
+   "baseline": 24.434322186826634,
+   "compound_blind": 25.85827814987289,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S12",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.402
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.981136878416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_MEDIUM/PIT_HARD"
+   },
+   "baseline": 24.211874819026633,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S12",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.402
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.2047169440455,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.488932451240977,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S12",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.379
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.397828463820375,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.87274206979201,
+   "compound_blind": 39.22814710181251,
+   "always_stay": 10.354180755683478,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S12",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.379
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.397828463820375,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.87274206979201,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S12",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.379
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 35.479116996113554,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 32.15789830882708,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S13",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.561
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.67158358710182,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.249671996862762,
+   "compound_blind": 28.01968520850227,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S13",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.561
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.67158358710182,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.20640349403668,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S13",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.561
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.430864050738922,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.66287676837601,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S13",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.303
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.65776844799168,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.1930542266604,
+   "compound_blind": 39.45759758220168,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S13",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.303
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.65776844799168,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.1930542266604,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S13",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.303
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 35.43983946615212,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 30.69658260485563,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S13",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.582
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.496753352538843,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 25.901351265324863,
+   "compound_blind": 27.62879184024676,
+   "always_stay": 10.470908292400551,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S13",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.582
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.496753352538843,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 25.901351265324863,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S13",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.582
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.344704466584222,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.565301220928,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S14",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.596
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.853835333701824,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.21797876003374,
+   "compound_blind": 27.457366210619174,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S14",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.596
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.853835333701824,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.12001784619859,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S14",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.596
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.613115797338924,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.66287676837601,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S14",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.579
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.67158358710182,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.032183818406423,
+   "compound_blind": 27.790240645616706,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S14",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.579
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.67158358710182,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.032183818406423,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S14",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.579
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.430864050738922,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.57504274058384,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S14",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.669
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.226537686347996,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.575007356081755,
+   "compound_blind": 29.601250171790184,
+   "always_stay": 10.355345877851969,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S14",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.669
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.226537686347996,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.246946001915298,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S14",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.669
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.5157271676527,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.584389499528257,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S15",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.692
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.25958554620636,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.802073841889374,
+   "compound_blind": 29.399592696632418,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.6
+  },
+  {
+   "scenario": "S15",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.692
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.15148292220636,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.249790443649374,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S15",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.692
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.280542404291193,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.698428971729495,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S15",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.316
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.62491412439168,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.086050780460404,
+   "compound_blind": 39.45759758220168,
+   "always_stay": 11.001117201094807,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S15",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.316
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.62491412439168,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.086050780460404,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S15",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.316
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 36.08920547463213,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 31.874187010174104,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S15",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.634
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.82399993268525,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.142585314196253,
+   "compound_blind": 27.363432183029005,
+   "always_stay": 10.37358339799103,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S15",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.634
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.82399993268525,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.142585314196253,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S15",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.634
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.64487990479005,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.540267812979028,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S16",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.433
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.654111649235325,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/PIT_HARD"
+   },
+   "baseline": 38.865322980931964,
+   "compound_blind": 39.512088359604,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S16",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.433
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.654111649235325,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/PIT_HARD"
+   },
+   "baseline": 38.865322980931964,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S16",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.433
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 34.59329608503866,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 32.10787063973911,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S16",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.553
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.980979750877825,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.44425672006276,
+   "compound_blind": 28.706230452278273,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S16",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.553
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.980979750877825,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.32836530805408,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S16",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.553
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.631628381783123,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.85746149157601,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S16",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.579
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.4452603623863,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.09634599055439,
+   "compound_blind": 27.81768594259958,
+   "always_stay": 10.339259623928967,
+   "seconds": 5.6
+  },
+  {
+   "scenario": "S16",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.579
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.4452603623863,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.09634599055439,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S16",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.579
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.509340160613164,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.661200418232443,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S17",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.853
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.07105749382724,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.23199335647542,
+   "compound_blind": 30.392364627620015,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S17",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.853
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.07105749382724,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.054035462235422,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S17",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.853
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.4247995198356,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.86403568942938,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S17",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.682
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.55037544870846,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.37083221642038,
+   "compound_blind": 27.807138391079025,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S17",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.682
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.55037544870846,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.37083221642038,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S17",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.682
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.915576477538476,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.647176709852932,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S17",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.488
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.340293200038634,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.242269880700032,
+   "compound_blind": 25.590949693858228,
+   "always_stay": 10.348068011156482,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S17",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.488
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.340293200038634,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.085963001296214,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S17",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.488
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.23440222059312,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.473562470205692,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S18",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.328
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.613791756001675,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.0749284120704,
+   "compound_blind": 39.45759758220168,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S18",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.328
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.613791756001675,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.0749284120704,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S18",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.328
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 36.11440348861771,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 31.163252851360344,
+   "seconds": 4.9
+  },
+  {
+   "scenario": "S18",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.574
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.738897823518336,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.733738009845766,
+   "compound_blind": 29.47600717398831,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S18",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.574
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.738897823518336,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.63001078372603,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S18",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.574
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.223505421408266,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.543797896355507,
+   "seconds": 5.0
+  },
+  {
+   "scenario": "S18",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.647
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.2697425926725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.208182230123203,
+   "compound_blind": 27.4490885057082,
+   "always_stay": 10.34097862349265,
+   "seconds": 5.6
+  },
+  {
+   "scenario": "S18",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.647
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.2697425926725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.208182230123203,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S18",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.647
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.72548419727359,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.58066784454467,
+   "seconds": 5.2
+  },
+  {
+   "scenario": "S19",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.691
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.55037544870846,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.37083221642038,
+   "compound_blind": 27.83306922121186,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S19",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.691
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.55037544870846,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.37083221642038,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S19",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.691
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.895818730364557,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.647176709852932,
+   "seconds": 4.7
+  },
+  {
+   "scenario": "S19",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.971
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.84481563877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.478302183798135,
+   "compound_blind": 30.896655410129373,
+   "always_stay": 10.309602360296601,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S19",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.971
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.84481563877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.227721380375534,
+   "seconds": 5.5
+  },
+  {
+   "scenario": "S19",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.971
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.070280381858797,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.43636135879837,
+   "seconds": 5.1
+  },
+  {
+   "scenario": "S19",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.863
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 32.867359395608375,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.473798888853466,
+   "compound_blind": 30.224017240907035,
+   "always_stay": 10.444490828603698,
+   "seconds": 5.4
+  },
+  {
+   "scenario": "S19",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.863
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 32.867359395608375,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.2079737919407,
+   "seconds": 5.3
+  },
+  {
+   "scenario": "S19",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.863
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 28.274796734666715,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.599856285649423,
+   "seconds": 4.8
+  },
+  {
+   "scenario": "S20",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.347
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.62491412439168,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.1601999030604,
+   "compound_blind": 39.51272992044168,
+   "always_stay": 10.897389974975077,
+   "seconds": 4.4
+  },
+  {
+   "scenario": "S20",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.347
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.62491412439168,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.1601999030604,
+   "seconds": 4.0
+  },
+  {
+   "scenario": "S20",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.347
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 36.28804528652733,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 31.972180907786232,
+   "seconds": 3.8
+  },
+  {
+   "scenario": "S20",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.342
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.613791756001675,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.0749284120704,
+   "compound_blind": 39.45759758220168,
+   "always_stay": 10.897389974975077,
+   "seconds": 4.1
+  },
+  {
+   "scenario": "S20",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.342
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.613791756001675,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 39.0749284120704,
+   "seconds": 4.0
+  },
+  {
+   "scenario": "S20",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.342
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 36.28804528652733,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 31.972180907786232,
+   "seconds": 3.9
+  },
+  {
+   "scenario": "S20",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.536
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.405984833887434,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.934039846501527,
+   "compound_blind": 29.002789450374557,
+   "always_stay": 10.471318024343987,
+   "seconds": 4.5
+  },
+  {
+   "scenario": "S20",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.536
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.895773031125703,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.934039846501527,
+   "seconds": 4.1
+  },
+  {
+   "scenario": "S20",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.536
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.069189663403144,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 21.44287363581642,
+   "seconds": 3.8
+  },
+  {
+   "scenario": "S21",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_speed",
+    0.45
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.981136878416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 23.992658119926745,
+   "compound_blind": 25.514699371672894,
+   "always_stay": 10.309602360296601,
+   "seconds": 4.2
+  },
+  {
+   "scenario": "S21",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_speed",
+    0.45
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 26.981136878416894,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 24.043898235290666,
+   "seconds": 4.1
+  },
+  {
+   "scenario": "S21",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_speed",
+    0.45
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.2047169440455,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 20.207871710016946,
+   "seconds": 3.9
+  },
+  {
+   "scenario": "S21",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.536
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.596153265677035,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.08450396788603,
+   "compound_blind": 29.186345007643105,
+   "always_stay": 10.309602360296601,
+   "seconds": 4.4
+  },
+  {
+   "scenario": "S21",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.536
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.094132074890975,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.08450396788603,
+   "seconds": 4.1
+  },
+  {
+   "scenario": "S21",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.536
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.168747476438092,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/STAY"
+   },
+   "baseline": 21.487653817025418,
+   "seconds": 3.9
+  },
+  {
+   "scenario": "S21",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "wet_prone",
+    0.681
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.382070406802267,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.249509831949993,
+   "compound_blind": 27.690450066132847,
+   "always_stay": 10.4516820886849,
+   "seconds": 4.2
+  },
+  {
+   "scenario": "S21",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "wet_prone",
+    0.681
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.21215923299331,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.249509831949993,
+   "seconds": 4.1
+  },
+  {
+   "scenario": "S21",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "wet_prone",
+    0.681
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 23.77059062016422,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 19.63753988325187,
+   "seconds": 3.9
+  },
+  {
+   "scenario": "S22",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.959
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.59271063877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.292582954775536,
+   "compound_blind": 30.96151698452937,
+   "always_stay": 10.309602360296601,
+   "seconds": 4.4
+  },
+  {
+   "scenario": "S22",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.959
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.59271063877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.292582954775536,
+   "seconds": 4.0
+  },
+  {
+   "scenario": "S22",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.959
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.070280381858797,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.52231866211249,
+   "seconds": 3.8
+  },
+  {
+   "scenario": "S22",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.435
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.588041743395664,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.83798521894196,
+   "compound_blind": 39.38944609176434,
+   "always_stay": 10.309602360296601,
+   "seconds": 4.1
+  },
+  {
+   "scenario": "S22",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.435
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.588041743395664,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.83798521894196,
+   "seconds": 4.0
+  },
+  {
+   "scenario": "S22",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.435
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 34.59329608503866,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 32.10787063973911,
+   "seconds": 3.8
+  },
+  {
+   "scenario": "S22",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "street",
+    0.31
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.44359375756902,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.983787054065026,
+   "compound_blind": 39.24493095126774,
+   "always_stay": 10.405544588077525,
+   "seconds": 4.4
+  },
+  {
+   "scenario": "S22",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "street",
+    0.31
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 39.44359375756902,
+   "optimal_first": {
+    "GREEN": "PIT_MEDIUM/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_MEDIUM/STAY"
+   },
+   "baseline": 38.983787054065026,
+   "seconds": 4.1
+  },
+  {
+   "scenario": "S22",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "street",
+    0.31
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 35.88507321072499,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_SOFT/STAY"
+   },
+   "baseline": 31.086304826902243,
+   "seconds": 3.8
+  },
+  {
+   "scenario": "S23",
+   "race_index": 0,
+   "mechanic": null,
+   "track": [
+    "high_degradation",
+    0.955
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.59271063877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.513809351841616,
+   "compound_blind": 30.379965825396095,
+   "always_stay": 10.309602360296601,
+   "seconds": 4.2
+  },
+  {
+   "scenario": "S23",
+   "race_index": 0,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "high_degradation",
+    0.955
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 33.59271063877725,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 26.335851457601613,
+   "seconds": 4.1
+  },
+  {
+   "scenario": "S23",
+   "race_index": 0,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "high_degradation",
+    0.955
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 29.070280381858797,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 20.472389470966696,
+   "seconds": 3.8
+  },
+  {
+   "scenario": "S23",
+   "race_index": 3,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.582
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.032957636796628,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.733738009845766,
+   "compound_blind": 29.47600717398831,
+   "always_stay": 10.309602360296601,
+   "seconds": 4.4
+  },
+  {
+   "scenario": "S23",
+   "race_index": 3,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.582
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.032957636796628,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/PIT_HARD",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.733738009845766,
+   "seconds": 4.2
+  },
+  {
+   "scenario": "S23",
+   "race_index": 3,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.582
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.223505421408266,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_MEDIUM/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.543797896355507,
+   "seconds": 3.9
+  },
+  {
+   "scenario": "S23",
+   "race_index": 6,
+   "mechanic": null,
+   "track": [
+    "mixed",
+    0.646
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.66206765501343,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.48543549545384,
+   "compound_blind": 29.476765151145532,
+   "always_stay": 10.313952933230393,
+   "seconds": 4.2
+  },
+  {
+   "scenario": "S23",
+   "race_index": 6,
+   "mechanic": "tyre_cliff",
+   "track": [
+    "mixed",
+    0.646
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 30.66206765501343,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 27.48543549545384,
+   "seconds": 4.2
+  },
+  {
+   "scenario": "S23",
+   "race_index": 6,
+   "mechanic": "two_compound_rule",
+   "track": [
+    "mixed",
+    0.646
+   ],
+   "apex_start": {
+    "driver_a": [
+     "SOFT",
+     8
+    ],
+    "driver_b": [
+     "MEDIUM",
+     8
+    ]
+   },
+   "optimal": 24.542753295930865,
+   "optimal_first": {
+    "GREEN": "PIT_HARD/STAY",
+    "VSC": "PIT_HARD/STAY",
+    "SC": "PIT_HARD/PIT_HARD"
+   },
+   "baseline": 21.510344241046642,
+   "seconds": 3.7
+  }
+ ],
+ "wall_seconds": 118.8
+}

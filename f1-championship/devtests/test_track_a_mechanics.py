@@ -118,7 +118,7 @@ class WearMechanicTests(unittest.TestCase):
     def test_wear_accrues_by_stress_and_ignores_race_actions_and_events(self):
         base = season([{"stress": 0.9}, {}])
         out = []
-        for events, actions in ((["GREEN"] * 3, [STAY] * 3), (["SC", "VSC", "SC"], [{"driver_a": "PIT", "driver_b": "PIT"}] * 3)):
+        for events, actions in ((["GREEN"] * 3, [STAY] * 3), (["SC", "VSC", "SC"], [{"driver_a": "PIT_MEDIUM", "driver_b": "PIT_HARD"}] * 3)):
             session_state = copy.deepcopy(base)
             prepare_race(session_state, use_all(session_state))
             active = start_prepared_race(session_state, 5, events=events)

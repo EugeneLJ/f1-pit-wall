@@ -30,19 +30,39 @@ def component_action(obs):
 
 
 def race_action(obs):
+    """Public baseline: pit cheaply under SC/VSC or when a SOFT is worn, choose the compound
+    from the laps remaining, and make sure the two-compound rule is met by the last stop."""
     race = obs["race_progress"]
     status = race["track_status"]
+    legal = race.get("legal_actions", ["PIT", "STAY"])
     threshold = {"SC": 6, "VSC": 8}.get(status, 99)
-    wants = {}
+    last = race["decision_index"] == race["decision_count"]
+    wants, must = {}, {}
     for key, car in race["drivers"].items():
         worn_soft = car["compound"] == "SOFT" and car["tyre_age"] >= 8 and race["decision_index"] == 1
-        wants[key] = car["tyre_age"] >= threshold or worn_soft
-    if wants["driver_a"] and wants["driver_b"]:
-        older = max(("driver_a", "driver_b"), key=lambda k: race["drivers"][k]["tyre_age"])
-        wants = {k: k == older for k in wants}
+        must[key] = last and "compounds_used" in car and len(car["compounds_used"]) < 2
+        wants[key] = car["tyre_age"] >= threshold or worn_soft or must[key]
+    if wants["driver_a"] and wants["driver_b"] and not (must["driver_a"] and must["driver_b"]):
+        keep = [k for k in wants if must[k]] or [max(("driver_a", "driver_b"),
+                                                     key=lambda k: race["drivers"][k]["tyre_age"])]
+        wants = {k: k == keep[0] for k in wants}
     return {"type": "RACE_STRATEGY",
-            "driver_a": "PIT" if wants["driver_a"] else "STAY",
-            "driver_b": "PIT" if wants["driver_b"] else "STAY"}
+            "driver_a": _pit_choice(race, "driver_a", legal) if wants["driver_a"] else "STAY",
+            "driver_b": _pit_choice(race, "driver_b", legal) if wants["driver_b"] else "STAY"}
+
+
+def _pit_choice(race, key, legal):
+    if "PIT" in legal:
+        return "PIT"
+    if legal == ["STAY", "PIT_MEDIUM"]:
+        return "PIT_MEDIUM"
+    remaining = race["laps_remaining"]
+    compound = "SOFT" if remaining <= 6 else "MEDIUM" if remaining <= 14 else "HARD"
+    used = set(race["drivers"][key].get("compounds_used", []))
+    if used == {compound}:
+        compound = {"SOFT": "MEDIUM", "HARD": "MEDIUM",
+                    "MEDIUM": "SOFT" if remaining <= 10 else "HARD"}[compound]
+    return "PIT_" + compound
 
 
 def main():

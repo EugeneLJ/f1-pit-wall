@@ -37,7 +37,7 @@ from f1pitwall.journal import (
     seal_entry,
 )
 
-SERVER_VERSION = "p1-1"
+SERVER_VERSION = "b1-1"
 SOCKET_PATH = Path(os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock"))
 STATE_DIR = Path(os.environ.get("F1SIM_STATE_DIR", "/var/lib/f1sim"))
 SEED_PATH = Path(os.environ.get("F1SIM_SEED_PATH", "/opt/f1sim/secret/seed.json"))
@@ -69,6 +69,13 @@ PUBLIC_RULES = {
         "retirements": ("each car retires with its published dnf probability; draws are seeded and independent "
                         "of all actions; a retired car scores 0 and is classified last"),
         "points": "only finishers score; points by finishing position",
+        "race_actions": ("per driver STAY | PIT_SOFT | PIT_MEDIUM | PIT_HARD; PIT fits the named compound "
+                         "(legacy bare PIT is not accepted)"),
+        "tyres": ("compound offset and linear degradation, scaled by the track's degradation multiplier; "
+                  "laps beyond a compound's life add a cliff term; each car must use two compounds per race "
+                  "or receive a time penalty; see track_a_model.tyres"),
+        "double_stack": "if both Apex cars pit at the same decision, Apex B queues for DOUBLE_STACK_DELAY seconds",
+        "rival_pits": "rivals follow the public rule in track_a_model.tyres.rival_compound_policy",
     },
     "track_a_model": coef.DEFAULT,
     "objective": "maximize Apex constructors' points over the whole championship",

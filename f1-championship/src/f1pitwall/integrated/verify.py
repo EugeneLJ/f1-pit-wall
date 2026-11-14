@@ -75,4 +75,5 @@ def replay(config: IntegratedConfig, base_seed: int, journal: List[Dict[str, Any
     if require_complete and session.decision_type != CHAMPIONSHIP_COMPLETE:
         raise ReplayError("journal does not complete the championship")
     return {"resolved_ticks": resolved, "standings": session.standings(),
-            "race_results": session.race_results}
+            "race_results": session.race_results, "session": session,
+            "complete": session.decision_type == CHAMPIONSHIP_COMPLETE}

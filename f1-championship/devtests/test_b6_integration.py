@@ -451,7 +451,9 @@ class JournalReplayTests(unittest.TestCase):
         s = play(cfg, 21, pols)
         out = V.replay(cfg, 21, s.journal)
         self.assertEqual(out["standings"], s.standings())
-        self.assertEqual(sum(out["standings"]["team_points"].values()), 8 * sum(engine.POINTS))
+        self.assertLessEqual(sum(out["standings"]["team_points"].values()), 8 * sum(engine.POINTS))
+        for rr in out["race_results"]:  # points are conserved: only finishers score, by position
+            self.assertEqual(sum(rr["team_points"].values()), sum(e["points"] for e in rr["classification"]))
         tampered = copy.deepcopy(s.journal)
         tampered[30]["submissions"]["McLearn Racing"]["action"]["driver_a"] = "PIT_SOFT"
         with self.assertRaises(V.ReplayError):

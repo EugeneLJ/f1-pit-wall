@@ -108,6 +108,10 @@ could edit its sequence after observing later events. A policy-on-held-out-seed
 contract or authenticated sidecar is required before claiming strong hindsight
 resistance.
 
+The first three frontier-agent trials matched the planning reference and did
+not expose a failure. See [`docs/EVALUATION_2026-11-14.md`](docs/EVALUATION_2026-11-14.md)
+for the exact jobs, traces, scores, and proposed next experiment.
+
 ## Optional MCP adapter
 
 The task is CLI-first. `environment/f1pitwall/mcp_server.py` is an optional

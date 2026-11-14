@@ -39,6 +39,8 @@ import track_a_solver as ts  # noqa: E402
 from f1pitwall import engine  # noqa: E402
 
 RACE_INDICES = (0, 3, 6)
+FORMATS = ("long", "b3")
+OUTPUT = "b4_decision_points"
 TRAJECTORIES = 4
 FUTURES = 48
 MEANINGFUL = 0.5
@@ -78,7 +80,9 @@ def race_job(args):
     from f1pitwall.championship import new_championship_state
     from f1pitwall.championship_transition import initial_inventory
     spec, index, fmt = args
-    coeffs = coef.DEFAULT if fmt == "long" else coef.ablate(coef.DEFAULT, "long_race_format")
+    coeffs = {"long": coef.DEFAULT,  # B4: long format with SC/VSC dynamics
+              "b3": coef.ablate(coef.DEFAULT, "neutralization_dynamics"),
+              "short": coef.ablate(coef.DEFAULT, "long_race_format")}[fmt]
     solver = ts.Solver(coeffs)
     state = new_championship_state(calendar=spec["calendar"], resource_inventory=initial_inventory(coeffs))
     for _ in range(index):
@@ -89,19 +93,18 @@ def race_job(args):
     n = len(race["events"])
     started = time.time()
     decisions = []
-    for k, path in enumerate(_paths(n, probs, TRAJECTORIES, "trajectory")):
+    for k, path in enumerate(ts.crn_event_paths(race, TRAJECTORIES)):
         node = ts._copy_race(race)
         node["events"] = list(path)
         while node["step"] < n:
-            remaining = n - node["step"] - 1
-            select = _paths(remaining, probs, FUTURES, f"select{node['step']}")
+            select = ts.public_futures(node, FUTURES, "select")
             q_sel = q_values(node, select)
             best_key = max(q_sel, key=q_sel.get)
             obs = engine.observation(node)
             base = ts.baseline_race_action(obs)
             base_key = f"{base['driver_a']}/{base['driver_b']}"
             # Score on independent futures so the max over actions is not biased upward.
-            evaluate = _paths(remaining, probs, FUTURES, f"evaluate{node['step']}")
+            evaluate = ts.public_futures(node, FUTURES, "evaluate")
             q = q_values(node, evaluate, keys={best_key, base_key, "STAY/STAY"})
             decisions.append({"trajectory": k, "decision": node["step"] + 1, "lap": obs["lap"],
                               "status": obs["track_status"], "best": best_key, "baseline": base_key,
@@ -115,7 +118,7 @@ def race_job(args):
 def summarize(results):
     lines = ["| Format | Decisions per race | Meaningful per race (stakes > 0.5) | Baseline-improvable per race (gain > 0.25) | Mean gain per decision | Max gain |",
              "|---|---:|---:|---:|---:|---:|"]
-    for fmt in ("short", "long"):
+    for fmt in ("short", "b3", "long"):
         rows = [r for r in results if r["format"] == fmt]
         if not rows:
             continue
@@ -129,7 +132,7 @@ def summarize(results):
         lines.append(f"| {fmt} | {rows[0]['decisions_per_race']} | {st.mean(per_traj_meaning):.2f} "
                      f"(median {st.median(per_traj_meaning):.0f}) | {st.mean(per_traj_improve):.2f} "
                      f"(median {st.median(per_traj_improve):.0f}) | {st.mean(gains):.3f} | {max(gains):.2f} |")
-    long_rows = [d for r in results if r["format"] == "long" for d in r["decisions"]]
+    long_rows = [d for r in results if r["format"] == "long" for d in r["decisions"]]  # B4
     if long_rows:
         lines += ["", "Long format, by decision index (mean stakes / mean gain / share meaningful):", "",
                   "| Decision | Lap | Mean stakes | Mean gain | Meaningful share | Improvable share |", "|---:|---:|---:|---:|---:|---:|"]
@@ -154,13 +157,13 @@ def main():
     parser.add_argument("--workers", type=int, default=10)
     args = parser.parse_args()
     specs = sc.generate_specs(args.scenarios)
-    jobs = [(s, i, f) for s in specs for i in RACE_INDICES for f in ("long", "short")]
+    jobs = [(s, i, f) for s in specs for i in RACE_INDICES for f in FORMATS]
     started = time.time()
     with mp.Pool(args.workers) as pool:
         results = pool.map(race_job, jobs)
     out = {"trajectories": TRAJECTORIES, "futures": FUTURES, "races": results,
            "wall_seconds": round(time.time() - started, 1)}
-    (HERE / "results" / "b3_decision_points.json").write_text(json.dumps(out, indent=1))
+    (HERE / "results" / f"{OUTPUT}.json").write_text(json.dumps(out, indent=1))
     print(f"wall {out['wall_seconds']}s")
     print(summarize(results))
 

@@ -29,6 +29,7 @@ MECHANICS = (
     "double_stack_queue", # B2: shared crew queue for same-team stops (ablation: no queue)
     "tyre_warmup",        # B2: slower out-lap on new tyres (ablation: none)
     "long_race_format",   # B3: 14 decisions per race (ablation: legacy 3-decision short format)
+    "neutralization_dynamics",  # B4: SC/VSC durations, compression, slow laps (ablation: B3 i.i.d. events)
 )
 
 
@@ -82,6 +83,8 @@ def ablate(coeffs: Mapping[str, Any], *mechanics: str) -> Dict[str, Any]:
             out["pit_stops"]["loss_green_sec_by_archetype"] = {k: mean for k in table}
         elif mechanic == "double_stack_queue":
             out["pit_stops"]["double_stack_queue_sec"] = 0.0
+        elif mechanic == "neutralization_dynamics":
+            out["neutralization"]["enabled"] = False
         elif mechanic == "long_race_format":
             out["race_format"]["use"] = "short"
         elif mechanic == "tyre_warmup":
@@ -166,7 +169,20 @@ def race_format(coeffs: Mapping[str, Any]) -> Dict[str, Any]:
     decision_laps = list(range(int(fmt["first_decision_lap"]), laps - every + 1, every))
     if decision_laps[-1] + every != laps:
         raise ValueError("race format must end exactly one segment after the last decision")
-    return {"decision_laps": decision_laps, "segment_laps": every,
-            "grid_gap_scale": float(fmt["grid_gap_scale"]),
-            "start_tyre_age": fmt["start_tyre_age_laps"],
-            "event_probs": {k: float(v) for k, v in fmt["event_probabilities_per_decision"].items()}}
+    out = {"decision_laps": decision_laps, "segment_laps": every,
+           "grid_gap_scale": float(fmt["grid_gap_scale"]),
+           "start_tyre_age": fmt["start_tyre_age_laps"],
+           "event_probs": {k: float(v) for k, v in fmt["event_probabilities_per_decision"].items()},
+           "neutralization": None}
+    neutral = coeffs.get("neutralization")
+    if coeffs["race_format"]["use"] == "long" and neutral and neutral["enabled"]:
+        out["neutralization"] = {
+            "start": {k: float(v) for k, v in neutral["start_probability_per_green_decision"].items()},
+            "duration": {status: {int(d): float(p) for d, p in table.items()}
+                         for status, table in neutral["duration_segments"].items()},
+            "cooldown": int(neutral["green_segments_after_neutralization"]),
+            "sc_gap": float(neutral["sc_compressed_gap_sec"]),
+            "lap_time_factor": {k: float(v) for k, v in neutral["lap_time_factor"].items()},
+            "tyre_age_laps": {k: int(v) for k, v in neutral["tyre_age_laps_per_segment"].items()},
+        }
+    return out

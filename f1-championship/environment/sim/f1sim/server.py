@@ -37,7 +37,7 @@ from f1pitwall.journal import (
     seal_entry,
 )
 
-SERVER_VERSION = "b3-1"
+SERVER_VERSION = "b4-1"
 SOCKET_PATH = Path(os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock"))
 STATE_DIR = Path(os.environ.get("F1SIM_STATE_DIR", "/var/lib/f1sim"))
 SEED_PATH = Path(os.environ.get("F1SIM_SEED_PATH", "/opt/f1sim/secret/seed.json"))
@@ -79,8 +79,14 @@ PUBLIC_RULES = {
                       "pit at the same decision the one arriving second on the road waits double_stack_queue_sec; "
                       "the first lap on new tyres is slower by out_lap_warmup_sec for that compound"),
         "rival_pits": "rivals follow the public rule in track_a_model.tyres.rival_compound_policy",
-        "race_format": ("45 laps, one RACE_STRATEGY decision every 3 laps from lap 3 to lap 42 (14 per race); "
-                        "per-decision SC/VSC odds in track_a_model.race_format.long"),
+        "race_format": "45 laps, one RACE_STRATEGY decision every 3 laps from lap 3 to lap 42 (14 per race)",
+        "safety_car": ("SC/VSC follow the seeded process in track_a_model.neutralization: at a GREEN decision "
+                       "an SC or VSC starts with the published probability, lasts a number of 3-lap segments "
+                       "drawn from the published duration distribution, and is followed by at least one GREEN "
+                       "segment. The observation shows the current status and how many segments it has lasted, "
+                       "not how long it will last. Under SC all cars run slow laps, gaps close up to "
+                       "sc_compressed_gap_sec and nobody overtakes; under VSC all cars slow equally and gaps are "
+                       "kept. Pit loss is multiplied by pit_stops.status_factor and tyres age less."),
     },
     "track_a_model": coef.DEFAULT,
     "objective": "maximize Apex constructors' points over the whole championship",

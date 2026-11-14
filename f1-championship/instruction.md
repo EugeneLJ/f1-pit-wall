@@ -48,8 +48,12 @@ Each race has two phases:
    their first lap (more so for harder compounds). The observation shows this
    track's pit losses and which car would be serviced first.
 
-Future track status (GREEN/VSC/SC) is seeded and hidden until its decision; the
-per-decision probabilities are published in every race observation.
+Safety Car (SC) and Virtual Safety Car (VSC) periods are seeded and hidden until
+they happen. Their start probabilities and duration distribution are published in
+every race observation (`event_model`), together with the current status and how
+many segments it has lasted so far. Under SC the field closes up and nobody
+overtakes; under VSC everyone slows equally. Stops are cheaper under both, but a
+stop still costs track position.
 Points from both Apex cars count; the objective is the team's season total,
 not either driver's result.
 

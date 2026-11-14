@@ -94,6 +94,17 @@
     },
     "use": "long"
   },
+  "neutralization": {
+    "note": "Track B (B4) SC/VSC state model for the long race format; synthetic placeholders. Statuses are drawn per decision from a seeded, action-independent Markov process.",
+    "enabled": true,
+    "start_probability_per_green_decision": {"SC": 0.035, "VSC": 0.035},
+    "duration_segments": {"SC": {"1": 0.35, "2": 0.50, "3": 0.15}, "VSC": {"1": 0.70, "2": 0.30}},
+    "green_segments_after_neutralization": 1,
+    "sc_compressed_gap_sec": 0.8,
+    "lap_time_factor": {"SC": 1.40, "VSC": 1.30},
+    "tyre_age_laps_per_segment": {"SC": 1, "VSC": 2},
+    "effects": "SC: gaps compress to sc_compressed_gap_sec, no overtaking, reduced tyre ageing, pit loss x status_factor. VSC: all cars slowed equally (gaps kept), no overtaking, reduced tyre ageing, pit loss x status_factor."
+  },
   "rival_component_policy": {
     "rule": "before each race, replace any component with wear >= threshold (or above max_wear_for_use), using free units while they last",
     "threshold": 0.65

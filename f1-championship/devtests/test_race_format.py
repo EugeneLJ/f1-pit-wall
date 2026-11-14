@@ -56,7 +56,12 @@ class RaceFormatTests(unittest.TestCase):
 
     def test_observation_publishes_odds_life_and_progress(self):
         obs = first_race().observation()["race_progress"]
-        self.assertEqual(obs["event_probabilities_per_decision"], coef.race_format(coef.DEFAULT)["event_probs"])
+        neutral = coef.DEFAULT["neutralization"]
+        self.assertEqual(obs["event_model"]["start_probability_per_green_decision"],
+                         neutral["start_probability_per_green_decision"])
+        self.assertEqual(obs["neutralization"]["status"], first_race()._active_race.race_state["events"][0])
+        b3 = first_race(coef.ablate(coef.DEFAULT, "neutralization_dynamics")).observation()["race_progress"]
+        self.assertEqual(b3["event_probabilities_per_decision"], coef.race_format(coef.DEFAULT)["event_probs"])
         self.assertEqual(obs["tyre_life_laps"], {"SOFT": 10, "MEDIUM": 16, "HARD": 24})
         self.assertEqual((obs["decision_index"], obs["decision_count"], obs["laps_remaining"]), (1, 14, 42))
 

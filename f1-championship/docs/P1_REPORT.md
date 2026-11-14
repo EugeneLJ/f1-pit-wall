@@ -166,7 +166,7 @@ A penalty consistently costs Apex B more than Apex A. Apex B qualifies just insi
 | A | Season-level driver prioritization | Only via which driver gets free units/penalties | Team orders not implemented (Track C) |
 | B | 13–18 decision points per race | B3: 14 per race (45 laps), about 5.8 meaningful; solver uses public CRN paths | Last 2 decisions never meaningful; SC/VSC decisions rare; frontier time unmeasured |
 | B | Compound choice and degradation | B1: compound choice, tyre life cliff, two-compound rule | Cliff rarely binding at 3 decisions per race |
-| B | SC/VSC responses | Per-decision i.i.d. status, cheaper pit stops | No SC duration or field compression |
+| B | SC/VSC responses | B4: seeded SC/VSC process with public durations, SC compression, VSC slow-down, reduced tyre ageing | Status granularity is one 3-lap segment |
 | B | Weather and forecasts | — | Not started |
 | B | Rival pit strategy, undercut/overcut | Rule-based rival pits | No explicit in/out-lap model |
 | B | Shared pit crew / double stack | B2: one crew per team, second arrival queues (all teams); track pit loss; out-lap warm-up | No random slow stops |

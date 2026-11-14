@@ -113,23 +113,29 @@ def event_probs(race: Dict[str, Any]) -> List[Tuple[str, float]]:
 
 
 def crn_event_paths(race: Dict[str, Any], samples: int = CRN_SAMPLES) -> List[List[str]]:
-    """Fixed, public common-random-number event paths for the remaining decisions.
+    """Fixed, public common-random-number event paths for decisions from race["step"] on.
 
-    Drawn from the published per-decision probabilities with a public seed derived only
-    from the race format, never from the hidden evaluation seed."""
+    Drawn from the published event model (B4 SC/VSC process or B3 i.i.d. odds), conditioned
+    only on statuses already observed before race["step"], with a public seed derived only
+    from the race format. Never reads the hidden evaluation seed."""
     import random
-    remaining = len(race["events"]) - race["step"]
-    probs = engine.event_probabilities(race)
-    rng = random.Random(f"crn|{remaining}|{sorted(probs.items())}")
-    green, vsc = probs["GREEN"], probs["GREEN"] + probs["VSC"]
-    paths = []
-    for _ in range(samples):
-        path = []
-        for _ in range(remaining):
-            u = rng.random()
-            path.append("GREEN" if u < green else "VSC" if u < vsc else "SC")
-        paths.append(path)
-    return paths
+    step, n = race["step"], len(race["events"])
+    model = race["config"].get("neutralization")
+    rng = random.Random(f"crn|{n}|{step}|{sorted(engine.event_probabilities(race).items())}|{model is not None}")
+    if model is None:
+        probs = engine.event_probabilities(race)
+        green, vsc = probs["GREEN"], probs["GREEN"] + probs["VSC"]
+        return [["GREEN" if (u := rng.random()) < green else "VSC" if u < vsc else "SC" for _ in range(n - step)]
+                for _ in range(samples)]
+    history = race["events"][:step]
+    return [engine._continue_schedule(rng, history, n, model)[step:] for _ in range(samples)]
+
+
+def public_futures(node: Dict[str, Any], samples: int, tag: str) -> List[List[str]]:
+    """Futures after the current decision, conditioned on everything observed so far (incl. now)."""
+    import random
+    rng = random.Random(f"{tag}|{len(node['events'])}|{node['step']}|{node['events'][:node['step'] + 1]}")
+    return engine.sample_future_statuses(rng, node, samples)
 
 
 def expected_race_value(race: Dict[str, Any],

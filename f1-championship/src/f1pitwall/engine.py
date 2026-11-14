@@ -61,6 +61,94 @@ def _event_schedule(seed: int, count: int = len(DECISION_LAPS),
     return schedule
 
 
+def _draw_duration(rng: random.Random, table: dict[int, float]) -> int:
+    u, acc = rng.random(), 0.0
+    for duration in sorted(table):
+        acc += table[duration]
+        if u < acc:
+            return duration
+    return max(table)
+
+
+def neutralization_schedule(seed: int, count: int, model: dict[str, Any]) -> list[str]:
+    """Seeded SC/VSC process (B4): starts at GREEN decisions, public duration distributions,
+    a GREEN cooldown after each neutralization. Independent of every action."""
+    return _continue_schedule(random.Random(f"neutral:{seed}"), [], count, model)
+
+
+def _continue_schedule(rng: random.Random, history: list[str], count: int, model: dict[str, Any]) -> list[str]:
+    """Extend `history` to `count` statuses; if history ends inside a neutralization, its
+    remaining duration is drawn from the duration distribution conditioned on its length so far."""
+    out = list(history)
+    remaining, cooldown = 0, 0
+    if out and out[-1] != "GREEN":
+        status, elapsed = out[-1], segments_so_far(out, len(out) - 1)
+        table = model["duration"][status]
+        tail = {d: p for d, p in table.items() if d >= elapsed}
+        total = sum(tail.values())
+        duration = _draw_duration(rng, {d: p / total for d, p in tail.items()}) if total > 0 else elapsed
+        remaining = duration - elapsed
+        if remaining == 0:
+            cooldown = model["cooldown"]
+    elif out:
+        # history ends GREEN: is it still inside a cooldown?
+        last_non_green = max((i for i, e in enumerate(out) if e != "GREEN"), default=None)
+        if last_non_green is not None:
+            cooldown = max(0, model["cooldown"] - (len(out) - 1 - last_non_green))
+    current = out[-1] if out and out[-1] != "GREEN" else None
+    while len(out) < count:
+        if remaining > 0:
+            out.append(current)
+            remaining -= 1
+            if remaining == 0:
+                cooldown = model["cooldown"]
+            continue
+        if cooldown > 0:
+            out.append("GREEN")
+            cooldown -= 1
+            continue
+        u = rng.random()
+        if u < model["start"]["SC"]:
+            current = "SC"
+        elif u < model["start"]["SC"] + model["start"]["VSC"]:
+            current = "VSC"
+        else:
+            out.append("GREEN")
+            continue
+        duration = _draw_duration(rng, model["duration"][current])
+        out.append(current)
+        remaining = duration - 1
+        if remaining == 0:
+            cooldown = model["cooldown"]
+    return out
+
+
+def segments_so_far(events: list[str], index: int) -> int:
+    """How many consecutive segments (including `index`) the current neutralization has lasted."""
+    status = events[index]
+    if status == "GREEN":
+        return 0
+    count = 0
+    while index >= 0 and events[index] == status:
+        count += 1
+        index -= 1
+    return count
+
+
+def sample_future_statuses(rng: random.Random, state: dict[str, Any], samples: int) -> list[list[str]]:
+    """Public planner helper: futures for decisions after the current one, drawn from the
+    published model conditioned on the statuses observed so far (never the hidden seed)."""
+    n = len(state["events"])
+    seen = state["events"][:state["step"] + 1]
+    model = state.get("config", {}).get("neutralization") if "config" in state else None
+    if model is None:
+        probs = event_probabilities(state)
+        green, vsc = probs["GREEN"], probs["GREEN"] + probs["VSC"]
+        return [["GREEN" if (u := rng.random()) < green else "VSC" if u < vsc else "SC"
+                 for _ in range(n - len(seen))] for _ in range(samples)]
+    return [_continue_schedule(rng, seen, n, model)[len(seen):] for _ in range(samples)]
+
+
 GRID_ELAPSED_SLOTS = (720.0, 721.8, 723.0, 724.0, 725.2, 727.0, 729.0, 731.0)
 
 
@@ -95,8 +183,13 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
             by_name[name]["tyre_age"] = int(start_age)
     decision_laps = list(config.get("decision_laps", DECISION_LAPS))
     event_probs = dict(config.get("event_probs") or LEGACY_EVENT_PROBS)
-    events = (list(config["events"]) if config.get("events") is not None
-              else _event_schedule(seed, len(decision_laps), event_probs))
+    neutral = config.get("neutralization")
+    if config.get("events") is not None:
+        events = list(config["events"])
+    elif neutral is not None:
+        events = neutralization_schedule(seed, len(decision_laps), neutral)
+    else:
+        events = _event_schedule(seed, len(decision_laps), event_probs)
     if len(events) != len(decision_laps) or any(e not in PIT_LOSS for e in events):
         raise ValueError("invalid event schedule")
     clean_config = {
@@ -109,6 +202,7 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
         "decision_laps": decision_laps,
         "segment_laps": int(config.get("segment_laps", SEGMENT_LENGTH)),
         "event_probs": event_probs,
+        "neutralization": neutral,
         "tyres": config.get("tyres"),
         "pit": config.get("pit"),
     }
@@ -272,7 +366,15 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
         out["pit"] = {"loss_sec": dict(pit["loss_sec"]), "double_stack_queue_sec": pit["double_stack_queue_sec"],
                       "out_lap_warmup_sec": dict(pit["out_lap_warmup_sec"]),
                       "if_both_pit_serviced_first": first}
-    out["event_probabilities_per_decision"] = event_probabilities(state)
+    neutral = state["config"].get("neutralization") if "config" in state else None
+    if neutral is None:
+        out["event_probabilities_per_decision"] = event_probabilities(state)
+    else:
+        out["event_model"] = {"start_probability_per_green_decision": dict(neutral["start"]),
+                              "duration_segments": {k: dict(v) for k, v in neutral["duration"].items()},
+                              "green_segments_after_neutralization": neutral["cooldown"]}
+        out["neutralization"] = {"status": state["events"][index],
+                                 "segments_so_far": segments_so_far(state["events"], index)}
     out["segment_laps"] = segment_laps(state)
     if tyres is not None:
         out["tyre_life_laps"] = {name: spec["life_laps"] for name, spec in tyres["compounds"].items()}
@@ -345,6 +447,13 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
             car["out_lap"] = True
     if pit is None and pit_compound(clean["driver_a"]) and pit_compound(clean["driver_b"]):
         next(car for car in state["cars"] if car["name"] == "Apex B")["elapsed"] += DOUBLE_STACK_DELAY
+    neutral = config.get("neutralization") if config else None
+    if neutral is not None and status != "GREEN":
+        _neutralized_segment(state, status, neutral)
+        state["actions"].append(clean)
+        state["step"] += 1
+        state["complete"] = state["step"] == decision_count
+        return state
     order = sorted(state["cars"], key=lambda car: (car["elapsed"], car["name"]))
     positions = {car["name"]: index + 1 for index, car in enumerate(order)}
     deg = config["deg_multiplier"] if config else 1.0
@@ -368,6 +477,22 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
     state["step"] += 1
     state["complete"] = state["step"] == decision_count
     return state
+
+
+def _neutralized_segment(state: dict[str, Any], status: str, neutral: dict[str, Any]) -> None:
+    """SC/VSC segment (B4): equal slow laps for every car, no overtaking, reduced tyre ageing.
+    Under SC the field then closes up to the compressed gap (order kept); under VSC gaps are kept."""
+    laps = segment_laps(state)
+    reference_lap = sum(LEGACY_BASE_PACE.values()) / len(LEGACY_BASE_PACE)
+    slow = neutral["lap_time_factor"][status] * reference_lap * laps
+    for car in state["cars"]:
+        car["elapsed"] += slow
+        car["tyre_age"] += neutral["tyre_age_laps"][status]
+        car.pop("out_lap", None)  # tyres come up to temperature behind the SC/VSC
+    if status == "SC":
+        order = sorted(state["cars"], key=lambda car: (car["elapsed"], car["name"]))
+        for ahead, car in zip(order, order[1:]):
+            car["elapsed"] = min(car["elapsed"], ahead["elapsed"] + neutral["sc_gap"])
 
 
 def result(state: dict[str, Any]) -> dict[str, Any]:

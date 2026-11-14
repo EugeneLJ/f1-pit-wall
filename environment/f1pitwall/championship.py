@@ -71,6 +71,8 @@ class ChampionshipState:
     power_units: dict[str, dict[str, PowerUnitComponent]]
     grid_penalties: dict[str, int]
     resource_inventory: dict[str, dict[str, int]]
+    race_prepared: bool = False
+    grid_penalties_applied: bool = False
     schema_version: int = SCHEMA_VERSION
 
     def validate(self) -> None:
@@ -81,6 +83,10 @@ class ChampionshipState:
             raise ValueError("calendar must contain at least one race")
         if self.race_index > len(self.calendar):
             raise ValueError("race_index cannot exceed calendar length")
+        if not isinstance(self.race_prepared, bool) or not isinstance(self.grid_penalties_applied, bool):
+            raise ValueError("race preparation flags must be boolean")
+        if not self.race_prepared and self.grid_penalties_applied:
+            raise ValueError("grid penalties cannot be applied outside a prepared race")
         for race in self.calendar:
             race.validate()
         names = [race.name for race in self.calendar]
@@ -125,7 +131,8 @@ class ChampionshipState:
         if not isinstance(value, dict):
             raise ValueError("championship state must be an object")
         required = {"schema_version", "race_index", "calendar", "driver_points", "team_points",
-                    "power_units", "grid_penalties", "resource_inventory"}
+                    "power_units", "grid_penalties", "resource_inventory", "race_prepared",
+                    "grid_penalties_applied"}
         if set(value) != required:
             raise ValueError("championship state contains missing or unknown fields")
         try:
@@ -141,6 +148,8 @@ class ChampionshipState:
                 grid_penalties=dict(value["grid_penalties"]),
                 resource_inventory={team: dict(resources)
                                     for team, resources in value["resource_inventory"].items()},
+                race_prepared=value["race_prepared"],
+                grid_penalties_applied=value["grid_penalties_applied"],
             )
         except (TypeError, AttributeError) as exc:
             raise ValueError("invalid championship state structure") from exc

@@ -186,3 +186,14 @@ def race_format(coeffs: Mapping[str, Any]) -> Dict[str, Any]:
             "tyre_age_laps": {k: int(v) for k, v in neutral["tyre_age_laps_per_segment"].items()},
         }
     return out
+
+
+def with_rival_policy(coeffs: Mapping[str, Any], name: str) -> Dict[str, Any]:
+    """Analysis-only copy that makes rivals use an opt-in pit strategy (see rival_policies.py).
+    The published model never contains this key, so `f1ctl rules` and default races are unchanged."""
+    from .rival_policies import VARIANTS
+    if name not in VARIANTS:
+        raise ValueError(f"unknown rival policy {name}")
+    out = copy.deepcopy(dict(coeffs))
+    out["rival_policy_variant"] = name
+    return out

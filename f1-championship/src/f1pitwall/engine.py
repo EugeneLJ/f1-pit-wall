@@ -206,6 +206,8 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
         "tyres": config.get("tyres"),
         "pit": config.get("pit"),
     }
+    if config.get("rival_policy") not in (None, "public"):
+        clean_config["rival_policy"] = config["rival_policy"]  # opt-in only (B5-P1); default state unchanged
     if clean_config["tyres"] is not None:
         for car in cars:
             car["compounds_used"] = [car["compound"]]
@@ -424,8 +426,14 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
     decision_count = len(_decision_laps(state))
     remaining = laps_total(state) - _decision_laps(state)[index]
     apex_actions = {"Apex A": clean["driver_a"], "Apex B": clean["driver_b"]}
-    pit_actions = {car["name"]: (apex_actions[car["name"]] if car["team"] == "Apex"
-                                 else _rival_action(car, status, index, decision_count, tyres, remaining))
+    variant = config.get("rival_policy") if config else None
+    if variant not in (None, "public"):
+        from . import rival_policies  # opt-in variants (B5-P1); default behaviour unchanged
+        rival = lambda car: rival_policies.decide(variant, car, state, status, index, decision_count,  # noqa: E731
+                                                  tyres, remaining)
+    else:
+        rival = lambda car: _rival_action(car, status, index, decision_count, tyres, remaining)  # noqa: E731
+    pit_actions = {car["name"]: (apex_actions[car["name"]] if car["team"] == "Apex" else rival(car))
                    for car in state["cars"]}
     pit = _pit(state)
     pitting = [car for car in sorted(state["cars"], key=lambda c: (c["elapsed"], c["name"]))

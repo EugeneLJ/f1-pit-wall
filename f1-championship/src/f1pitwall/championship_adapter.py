@@ -72,7 +72,7 @@ def race_config(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAU
     perf = {CHAMPIONSHIP_TO_ENGINE_DRIVER[d]: car_performance(state, d, coeffs)
             for d in CHAMPIONSHIP_TO_ENGINE_DRIVER}
     grid = sorted(perf, key=lambda name: (perf[name]["pace"], name))
-    return {
+    config = {
         "grid": grid,
         "pace": {name: values["pace"] for name, values in perf.items()},
         "deg_multiplier": coef.degradation_multiplier(track.tyre_degradation, coeffs),
@@ -84,6 +84,9 @@ def race_config(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAU
         **coef.race_format(coeffs),
         "events": events,
     }
+    if coeffs.get("rival_policy_variant"):  # opt-in (B5-P1); absent in the published model
+        config["rival_policy"] = coeffs["rival_policy_variant"]
+    return config
 
 
 def run_championship_race(state: ChampionshipState, component_decisions: Any, race_actions: Any,

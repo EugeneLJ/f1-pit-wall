@@ -1,3 +1,10 @@
 .env
 .env.*
 !.env.example
+
+# Harbor local run artifacts
+jobs/
+
+# Python caches
+__pycache__/
+*.pyc

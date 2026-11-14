@@ -1,0 +1,36 @@
+schema_version = "1.4"
+artifacts = []
+
+[task]
+name = "EugeneLJ/f1-pit-wall"
+version = "1.0.0"
+description = "Choose one PIT/STAY decision for two drivers to maximize constructors' points."
+keywords = ["f1", "strategy", "reasoning", "custom-verifier"]
+
+[[task.authors]]
+name = "EugeneLJ"
+
+[metadata]
+difficulty = "easy"
+category = "reasoning"
+tags = ["python", "f1", "strategy", "custom-verifier"]
+
+[verifier]
+timeout_sec = 60.0
+environment_mode = "separate"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 300.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

@@ -77,7 +77,7 @@ Practice, qualifying sessions, upgrades, budget management.
 | P1-A | Track A mechanics + per-mechanic tests | Done (`docs/P1_REPORT.md`) |
 | P1-B | Exact 3-race solver, fair reference, hindsight oracle | Done (`docs/P1_REPORT.md`) |
 | P1-C | Counterfactual + control pairs, representative scenarios, policy gaps | Done (`docs/P1_REPORT.md`) |
-| P1-D | Decide compound choice / race mechanics; 8-race reference; first frontier probe | Pending review |
+| P1-D | 8-race fair reference (budgeted receding-horizon planner), horizon ablation 1/2/3/5/8, season-level pairs | Done (`docs/P1D_REPORT.md`); compound choice and frontier probe not started |
 | Track B | Adaptive race strategy | Not started |
 | Track C | Engineers / coordination | Not started |
 

@@ -181,6 +181,16 @@ def state_key(state: ChampionshipState) -> str:
     }, sort_keys=True)
 
 
+def race_key(prepared: ChampionshipState) -> str:
+    """A race's expected value depends only on the current track and the prepared car state."""
+    track = prepared.calendar[prepared.race_index]
+    return json.dumps({
+        "track": [track.archetype, track.power_unit_stress, track.overtaking_difficulty, track.tyre_degradation],
+        "wear": {d: {c: round(v.wear, 9) for c, v in comps.items()} for d, comps in prepared.power_units.items()},
+        "pen": prepared.grid_penalties,
+    }, sort_keys=True)
+
+
 def option_label(option) -> str:
     replaced = [f"{d[-1]}:{c}" for d, c, a in option if a == "REPLACE"]
     return "+".join(replaced) if replaced else "USE-all"
@@ -196,7 +206,7 @@ class Solver:
         self.race_evaluations = 0
 
     def race_value(self, prepared: ChampionshipState) -> float:
-        key = state_key(prepared)
+        key = race_key(prepared)
         if key not in self._race_cache:
             self.race_evaluations += 1
             self._race_cache[key] = expected_race_value(prepared_race_state(prepared, self.coeffs))

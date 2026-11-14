@@ -159,7 +159,7 @@ A penalty consistently costs Apex B more than Apex A. Apex B qualifies just insi
 
 | Area | Requirement | Status | Gap |
 |---|---|---|---|
-| A | 8-race championship | Harbor task runs 8 races with Track A rules | Exact solver only for the final 3; no 8-race fair reference (P1-D) |
+| A | 8-race championship | Harbor task runs 8 races with Track A rules; budgeted 8-race fair reference (P1-D) | Reference not proven optimal; not yet exposed as `solution/solve.sh` |
 | A | Persistent wear, replacement, spare allocation | Implemented (synthetic) | Coefficients uncalibrated |
 | A | Grid penalties and track-dependent opportunity cost | Implemented | Penalty cost vs overtaking difficulty is weak and not monotonic |
 | A | Constructors' optimization | Objective = Apex points; rank and margin reported | No rival-relative objective in the scalar |

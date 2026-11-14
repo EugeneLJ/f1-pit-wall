@@ -37,6 +37,18 @@ from .benchmark_hardening import (
     generate_design_grid,
     summarize_generated_scenarios,
 )
+from .engineer_runtime import (
+    DEFAULT_GEMINI_ENGINEER_MODEL,
+    EngineerRuntimeHarness,
+    GeminiEngineerProvider,
+    ImmutableRecommendationStore,
+    MockRuntimeProvider,
+    build_runtime_record,
+    format_runtime_observation,
+    measure_engineer_usage,
+    run_provider_safely,
+    validate_runtime_recommendation,
+)
 
 __all__ = [
     "ALIGNED",
@@ -70,4 +82,14 @@ __all__ = [
     "decision_sensitivity",
     "generate_design_grid",
     "summarize_generated_scenarios",
+    "DEFAULT_GEMINI_ENGINEER_MODEL",
+    "EngineerRuntimeHarness",
+    "GeminiEngineerProvider",
+    "ImmutableRecommendationStore",
+    "MockRuntimeProvider",
+    "build_runtime_record",
+    "format_runtime_observation",
+    "measure_engineer_usage",
+    "run_provider_safely",
+    "validate_runtime_recommendation",
 ]

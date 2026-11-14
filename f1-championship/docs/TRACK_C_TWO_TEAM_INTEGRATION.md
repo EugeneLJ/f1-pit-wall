@@ -13,6 +13,12 @@ model calls or shared-engine changes in Track C.
 Exact provider identifiers and immutable model revisions must be resolved and
 logged at execution time; product names alone are insufficient.
 
+As checked on 2026-11-14, the intended request identifiers are
+`gemini-3.5-flash-lite` for the Engineer adapter and `deepseek-flash` for the
+future rival. The latter currently resolves to DeepSeek-V4.1-Flash-1017; that
+marketing/version string is not the request ID. Availability must be queried again
+at run time and the returned model revision recorded.
+
 ## Observation boundaries
 
 Each team receives its own drivers' public telemetry, tyre state, observed pace,
@@ -62,3 +68,22 @@ raw outputs, scenario/config hash, seed identifier available only to trusted
 infrastructure, code commit, and container image digest. Engineer calls should run
 in parallel when their observations are independent, while preserving deterministic
 report ordering in the Chief observation.
+
+## B5-P1 integration boundary and likely conflicts
+
+- B5-P1 must expose public SC/VSC status and observable rival actions without
+  exposing the future event schedule. The runtime formatter can project those
+  fields only after the public observation schema is stable.
+- Track C currently validates `RACE_STRATEGY` recommendations with `PIT/STAY`.
+  Compound choice and B5 rival-response actions require additive schema versions;
+  they must not be silently coerced into PIT/STAY.
+- Sidecar integration needs a trusted private directory for hash-chained records.
+  It must not place provider raw output, keys, or private Engineer reasoning in the
+  agent-writable/shared volume.
+- Parallel Engineer calls must receive one immutable observation snapshot and be
+  joined in deterministic Engineer A/B order before the Chief decision.
+- The Chief trace needs explicit report IDs or hashes if consumption is to be
+  observable. Mere action agreement is insufficient evidence that a report was
+  read.
+- Track B's action deadline must define timeout behavior for missing or invalid
+  reports. The runtime returns an explicit status and never fabricates a fallback.

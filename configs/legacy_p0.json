@@ -1,0 +1,22 @@
+{
+  "configuration": "legacy_p0",
+  "seed": 20261114,
+  "decision_laps": [8, 12, 16],
+  "segment_length": 4,
+  "oracle": {
+    "actions": [
+      {"driver_a": "PIT", "driver_b": "STAY"},
+      {"driver_a": "STAY", "driver_b": "STAY"},
+      {"driver_a": "STAY", "driver_b": "PIT"}
+    ],
+    "event_history": ["GREEN", "GREEN", "SC"],
+    "constructors_points": 23,
+    "reward": 1.0
+  },
+  "baselines": {
+    "do_nothing": {"constructors_points": 16, "reward": 0.46153846},
+    "pit_spam": {"constructors_points": 10, "reward": 0.0},
+    "stop_early": {"reward": 0.0},
+    "reward_field_injection": {"reward": 0.0}
+  }
+}

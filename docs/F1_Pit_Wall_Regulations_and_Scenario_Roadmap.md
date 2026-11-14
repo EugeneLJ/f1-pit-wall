@@ -131,6 +131,43 @@ The simulation must enforce legal racing behavior. Do **not** reward unsafe or p
 
 **Evaluation:** Compare Chief alone, aligned advice, conflicting advice, and miscalibrated-confidence advice, with evidence visible for each recommendation. Separate the effect of advice from the underlying race mechanics.
 
+### C2. Teammate position swap, conditional give-back and defensive roles — **high priority**
+
+When two teammates run close together, the trailing driver may have substantially better pace or fresher tyres. The Chief Strategist can consider ordering the leading teammate to let the other through, especially if the faster car can catch or overtake a rival ahead. However, a swap is not free: both cars may lose time during the exchange, the previously leading car may fall into a rival's attack range, and the change may alter the team's chance of a podium or its combined points.
+
+**Strategic alternatives:**
+
+- **Hold position:** Preserve the current order, particularly when a following rival threatens both cars or when the faster car's projected advantage is too small to justify the swap.
+- **Swap and release:** Let the faster or fresher-tyred teammate through to attack a car ahead, while the other driver attempts to defend against the pursuing pack.
+- **Defensive buffer:** Keep the faster trailing teammate behind for a limited period to defend against a rival and protect the leading teammate's track position, rather than automatically swapping the two cars.
+- **Conditional swap with give-back:** Allow an attack window (e.g., until a specified lap or gap threshold), then consider reversing the swap if the advancing driver has not achieved the agreed objective. The give-back is *conditional*, not automatic: late-race rival proximity, podium implications, safety and the team's combined points may make reversal counterproductive or infeasible.
+
+**Decision-critical situations:**
+
+1. **Fresh-tyre advantage:** Driver B catches Driver A and is demonstrably faster; a rival is within reach ahead.
+2. **Podium-sensitive exchange:** The teammates occupy P3/P4 late in the race. A successful attack could improve the team's result, but an unsuccessful exchange may cost a podium or increase exposure to P5.
+3. **A tightly packed pursuing group:** A rival runs within a small gap of the trailing teammate. The switch can expose the previously leading driver to attack and cost more than the nominal position swap.
+4. **Buffer versus attack:** The better-tyred driver could either defend against the rival behind or be released to attack the rival ahead; neither role should be universally optimal.
+5. **Give-back dilemma:** The initial reason for swapping disappears, but restoring the original order would now incur traffic loss or create a rival overtaking opportunity.
+
+**Simulation requirements:**
+
+- Model both drivers' **relative pace, tyre age/compound, live gaps, overtaking difficulty, rival proximity, laps remaining and championship situation**.
+- Add a structured **TEAM_ORDER** action with explicit states or commands such as `HOLD`, `SWAP`, `RELEASE_TO_ATTACK`, and, when a prior agreement exists, `REQUEST_GIVE_BACK`. An order should be an instruction, not an instantaneous position teleport: the transition must account for when a safe, feasible exchange can occur.
+- Account for time lost by facilitating a swap, local traffic interactions, changes in dirty air and the risk of exposing a driver to a rival. A swap may fail, be delayed or become unwise as the race evolves.
+- Support an **attack window** or deadline and record the intended objective (e.g., pass the rival ahead), observed progress, and any conditional promise to reconsider the order. Do not assume that a give-back is always physically possible or required.
+- Require the two drivers to be close enough for a feasible exchange. Do not implement implausible remote swaps or guaranteed aerodynamic benefits; constrain behavior by applicable sporting and safety rules.
+- Optimize **combined Constructors' Points**. Record Drivers' Championship or driver fairness as secondary diagnostics rather than silently making them the primary reward.
+- Let Engineer A/B provide their own evidence-backed advice about relative pace, tyre state and nearby opponents, while the Chief alone authorizes the final team order.
+
+**Failure modes:** The Chief swaps reflexively whenever the trailing car is faster; refuses a valuable swap; fails to consider the rival immediately behind; forgets an attack-window or give-back commitment; restores an order even when this risks the team's podium; or overprioritizes a single driver's finishing position over the team's expected points.
+
+**Controlled evaluation:** Use plausible matched situations with (i) a clear attack opportunity and safe margin, (ii) a fast trailing rival, (iii) a P3/P4 podium-sensitive exchange, (iv) an unsuccessful attack followed by a genuinely feasible give-back, and (v) a near-tie/control where swapping should make little difference. Compare `HOLD`, `SWAP` and conditional give-back policies under identical observations and shared event draws. Measure **team-points regret, swap-induced time loss, rival exposure, successful attack rate, reversals attempted/completed and commitment consistency**. Include cases where *holding* is optimal, not only cases where a swap is beneficial.
+
+**Track C ablation:** Chief alone vs Engineer A/B with aligned recommendations vs conflicting recommendations vs miscalibrated confidence. Keep the underlying race state and swap mechanics identical across conditions so the measured difference reflects coordination rather than a different race.
+
+**Rules and realism caveat:** Treat teammate swaps and give-backs as strategic interactions subject to racing and safety rules. Do not make a universal claim that drivers must give a position back; distinguish a team agreement from a binding sporting regulation. Confirm any event-specific requirements using the applicable versioned FIA documents.
+
 ### A3. Development budget and driver-specific upgrades — **later extension**
 
 F1 development is constrained by spending rules, technical requirements, testing/development resources, manufacturing lead times and relevant homologation restrictions—not simply a universal cap on the number of upgrades.
@@ -187,7 +224,7 @@ Keep independent fields for action validity, completion, integrity, raw Construc
 | 1 | Multi-component quotas and stacked penalties | A | Strong, realistic long-horizon resource decisions |
 | 2 | Track-dependent penalty opportunity cost | A | Reuses existing track/car performance model |
 | 3 | Rival two-stop/three-stop response | B | Tests strategy revision after observable rival action |
-| 4 | Asymmetric two-driver cooperation | C | Creates measurable local-versus-global objectives |
+| 4 | Asymmetric two-driver cooperation and conditional teammate swaps | C | Tests whether to attack, hold a defensive buffer, or reverse a swap under rival pressure |
 | 5 | Qualifying/parc fermé trade-offs | B | Adds a distinct pre-race decision layer |
 | 6 | Voluntary finish/retire trade-off | A/B | Connects immediate points to future component wear |
 | 7 | Driver-specific upgrade allocation and timing | A extension | Potentially valuable but significantly harder to calibrate |
@@ -198,7 +235,7 @@ Keep independent fields for action validity, completion, integrity, raw Construc
 2. Conduct an **initial Frontier-agent probe** with the existing benchmark before changing several mechanics at once; save traces and limitations.
 3. Introduce **A1 + A2** (multi-component penalties and track-dependent penalty timing) as a controlled Track A enhancement and compare with the preserved baseline.
 4. Add **B1** (rival stop-count adaptation) with counterfactual tests.
-5. Introduce **C1** (Engineer A/B advice and coordinated driver roles) with no-engineer/aligned/conflicting controls.
+5. Introduce **C1 + C2** (Engineer A/B advice, coordinated driver roles, teammate swaps and conditional give-backs) with no-engineer/aligned/conflicting controls.
 6. Consider qualifying, retirement and development modules only if they create new, distinguishable strategic failure modes at an acceptable verification and calibration cost.
 
 Retain the eight-race Championship as the core task. Avoid reducing meaningful event-driven decisions merely to save API calls; optimize wall-clock time and parallelism separately. Preserve the legacy single-race task as a regression baseline and maintain the Harbor sidecar security boundary throughout.
@@ -212,11 +249,13 @@ Retain the eight-race Championship as the core task. Avoid reducing meaningful e
 5. Can natural, representative scenarios produce genuinely different preferred penalty-stacking or penalty-timing strategies, rather than differences engineered by parameter tuning?
 6. Which proposed upgrade and pit-lane-start decisions are allowed by the selected regulations and can be scored without speculative mechanisms?
 7. How will each new feature change the fair-reference plan, and how will its effect be isolated from Tracks B and C?
+8. For a teammate swap, what safe gap, relative-pace evidence, attack-window deadline and rival proximity make the exchange or a give-back feasible? How can these be observed without exposing future events?
 
 ## 8. Next deliverables
 
 - **Regulation matrix:** FIA clause / effective revision / structured rule / implementation test / evidence link.
 - **Track A scenario specification:** component-specific allocations, stacked penalties, driver-specific inventories, race/grid state transition, and representative concentration-versus-distribution cases.
+- **Track C swap scenario specification:** feasible position-exchange physics, attack windows, conditional give-back rules, rival-pressure controls and team-points regret tests.
 - **Calibration notebook or script:** prior versus 2026-dependent coefficients, source provenance and sensitivity analyses.
 - **Counterfactual evaluation suite:** reversal and control pairs, equal-information reference, and opportunity-cost measurements.
 - **Updated roadmap and benchmark documentation:** explicit separation between implemented behavior, proposed behavior and empirically observed agent failures.

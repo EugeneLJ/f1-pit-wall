@@ -52,6 +52,9 @@ class IntegratedSession:
         self.coeffs = copy.deepcopy(coeffs if coeffs is not None else coef.DEFAULT)
         if config.rival_policy_variant:
             self.coeffs = coef.with_rival_policy(self.coeffs, config.rival_policy_variant)
+        if config.benchmark_version == "2.1.0":  # opt-in FIA-based PU rules (B8)
+            from .. import pu_rules
+            self.coeffs = pu_rules.with_fia_pu_rules(self.coeffs)
         self._base_seed = base_seed
         self._broker = engineer_broker
         self._clock = clock
@@ -186,6 +189,13 @@ class IntegratedSession:
                 clean.append(dict(item))
             if seen != expected:
                 raise ValueError("every own driver/component pair needs exactly one decision")
+            from .. import pu_rules
+            if pu_rules.enabled(self.coeffs):
+                counts = {}
+                for item in clean:
+                    if item["action"] == "REPLACE":
+                        counts[item["component"]] = counts.get(item["component"], 0) + 1
+                pu_rules.check_team_stock(self.state, slot, counts)
             return {"type": COMPONENT_DECISION, "decisions": clean,
                     "consumed_reports": _reports(action)}
         if set(action) - {"type", "driver_a", "driver_b", "team_order", "consumed_reports"}:
@@ -252,7 +262,19 @@ class IntegratedSession:
                 item["action"] = chosen[key]
             else:  # published threshold rule for every uncontrolled team (incl. Apex if uncontrolled)
                 wear = working.power_units[item["driver"]][item["component"]].wear
-                item["action"] = "REPLACE" if wear >= threshold or wear > limit else "USE"
+                want = "REPLACE" if wear >= threshold or wear > limit else "USE"
+                legal = available_component_actions(working, item["driver"], self.coeffs)[item["component"]]
+                if want == "REPLACE" and "REPLACE" in legal:
+                    from .. import pu_rules
+                    if pu_rules.enabled(self.coeffs):  # stock is shared by the team's two drivers
+                        team = driver_team(item["driver"])
+                        key = pu_rules.stock_key(item["component"])
+                        used = sum(1 for d in decisions if d is not item and d.get("action") == "REPLACE"
+                                   and d["component"] == item["component"] and driver_team(d["driver"]) == team
+                                   and decisions.index(d) < decisions.index(item))
+                        if working.resource_inventory[team].get(key, 0) - used <= 0:
+                            want = "USE"
+                item["action"] = want if want in legal else legal[0]
         prepare_race(working, decisions, self.coeffs)
         self._active = start_prepared_race(working, self._base_seed + working.race_index, self.coeffs)
         self.state = working
@@ -285,7 +307,7 @@ class IntegratedSession:
         drivers = sorted(((self.public_driver(d), p) for d, p in state.driver_points.items()), key=lambda x: (-x[1], x[0]))
         from ..championship_contract import _track_public
         obs: Dict[str, Any] = {
-            "contract_version": CONTRACT_VERSION, "benchmark_version": INTEGRATED_VERSION,
+            "contract_version": CONTRACT_VERSION, "benchmark_version": self.config.benchmark_version,
             "mode": self.config.mode, "team": label, "tick_id": self.tick_id, "decision_type": self.decision_type,
             "championship": {"race_index": state.race_index, "races_total": len(state.calendar),
                              "team_standings": [{"team": t, "points": p} for t, p in teams],

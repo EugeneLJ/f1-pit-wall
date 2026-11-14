@@ -122,7 +122,7 @@ def start_prepared_race(state: ChampionshipState, seed: int,
         applied_to_grid=state.grid_penalties_applied,
     )
     race_state = engine.new_state(seed, race_config(state, coeffs, events))
-    starting_grid = _apply_grid_penalties(race_state, prepared)
+    starting_grid = _apply_grid_penalties(race_state, prepared, coeffs)
     applied = mark_grid_penalties_applied(state)
     return PreparedChampionshipRace(race_index=race_index, race_name=state.calendar[race_index].name,
                                     seed=seed, starting_grid=starting_grid, start_conditions=applied,
@@ -146,10 +146,18 @@ def stay_race_policy(_: ChampionshipState) -> List[Dict[str, str]]:  # legacy sm
     return [{"driver_a": "STAY", "driver_b": "STAY"} for _ in engine.DECISION_LAPS]  # legacy format only
 
 
-def _apply_grid_penalties(race_state: Dict[str, Any], start: RaceStartConditions) -> List[str]:
-    """Each penalised car drops N places from its qualifying slot; slots keep their gaps."""
+def _apply_grid_penalties(race_state: Dict[str, Any], start: RaceStartConditions,
+                          coeffs: Mapping[str, Any] = coef.DEFAULT) -> List[str]:
+    """Each penalised car drops N places from its qualifying slot; slots keep their gaps.
+    With the opt-in FIA rules (2.1.0) the grid follows B2.5.4b instead."""
     baseline = [car["name"] for car in sorted(race_state["cars"],
                                                key=lambda car: (car["elapsed"], car["name"]))]
+    from . import pu_rules
+    if pu_rules.enabled(coeffs):
+        drops = {name: start.grid_drop_positions[ENGINE_TO_CHAMPIONSHIP_DRIVER[name]] for name in baseline}
+        grid = pu_rules.fia_grid(baseline, drops)
+        baseline_for_slots = baseline
+        return _place_on_grid(race_state, grid, baseline_for_slots)
     grid = list(baseline)
     for engine_driver in baseline:
         drop = start.grid_drop_positions[ENGINE_TO_CHAMPIONSHIP_DRIVER[engine_driver]]
@@ -157,6 +165,10 @@ def _apply_grid_penalties(race_state: Dict[str, Any], start: RaceStartConditions
             current = grid.index(engine_driver)
             grid.pop(current)
             grid.insert(min(current + drop, len(grid)), engine_driver)
+    return _place_on_grid(race_state, grid, baseline)
+
+
+def _place_on_grid(race_state: Dict[str, Any], grid: List[str], baseline: List[str]) -> List[str]:
     if len(grid) != 8 or set(grid) != set(baseline):
         raise ValueError("grid penalties did not produce a valid eight-car permutation")
     elapsed_slots = sorted(car["elapsed"] for car in race_state["cars"])

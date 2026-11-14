@@ -16,6 +16,8 @@ from typing import Any, Dict, List, Optional
 from ..version import BENCHMARK_VERSION as LEGACY_VERSION
 
 INTEGRATED_VERSION = "2.0.1"
+FIA_PU_VERSION = "2.1.0"  # opt-in: FIA-2026-based PU allocation/penalty/grid rules (B8)
+OPT_IN_VERSIONS = (FIA_PU_VERSION,)
 SOLO_LEGACY = "SOLO_LEGACY"
 SOLO_COORDINATION = "SOLO_COORDINATION"
 TWO_TEAM_COMPETITION = "TWO_TEAM_COMPETITION"
@@ -27,6 +29,11 @@ ENGINEER_CONDITIONS = ("CHIEF_ONLY", "GEMINI_LITE_ENGINEERS", "RECORDED_RECOMMEN
 RIVAL_CONDITIONS = ("ADAPTIVE", "FIXED_REPLAY")
 
 VERSION_NOTES = {
+    "2.1.0": ("OPT-IN (B8): 2.0.1 plus FIA-2026-based power-unit rules (pu_rules.py, "
+              "fixtures/pu_rules_fia2026.json): per-driver element allocation, team physical stock, "
+              "B8.2.8 10/5 penalties (cumulative), B2.5.4b grid formation with back-of-grid above the "
+              "threshold. Allocation, places and stock are SYNTHETICALLY scaled to an 8-race, 8-car "
+              "championship. Everything else equals 2.0.1."),
     "2.0.1": ("Interface clarification only (B7-P0 probe): action_schema states that component decisions "
               "are a list and that consumed_reports is a top-level field, and gives one format example "
               "per phase (the same examples as instruction.md). Mechanics, legal actions, scoring unchanged."),
@@ -84,8 +91,8 @@ class IntegratedConfig:
             raise ValueError("team names must not collide with uncontrolled team names")
         if self.rival_condition not in RIVAL_CONDITIONS:
             raise ValueError("unknown rival condition")
-        if self.benchmark_version != INTEGRATED_VERSION:
-            raise ValueError("integrated modes are benchmark 2.0.0")
+        if self.benchmark_version not in (INTEGRATED_VERSION,) + OPT_IN_VERSIONS:
+            raise ValueError(f"integrated modes are benchmark {INTEGRATED_VERSION} or opt-in {OPT_IN_VERSIONS}")
 
     def as_dict(self) -> Dict[str, Any]:
         return {"mode": self.mode, "benchmark_version": self.benchmark_version,
@@ -117,6 +124,14 @@ class IntegratedConfig:
                                value.get("benchmark_version", INTEGRATED_VERSION))
         cfg.validate()
         return cfg
+
+
+def with_version(cfg: IntegratedConfig, version: str) -> IntegratedConfig:
+    """Same configuration under another integrated version (e.g. the opt-in 2.1.0 PU rules)."""
+    out = IntegratedConfig(cfg.mode, list(cfg.teams), cfg.rival_condition, cfg.rival_policy_variant,
+                           cfg.decision_timeout_sec, version)
+    out.validate()
+    return out
 
 
 def solo_coordination(engineers: str = "CHIEF_ONLY", chief: Optional[Dict[str, Any]] = None) -> IntegratedConfig:

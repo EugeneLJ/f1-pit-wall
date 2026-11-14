@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://f1-pit-wall.local/schemas/coordination-evaluation-bundle-v1.json",
+  "title": "C4 coordination evaluation bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "result_kind", "layer", "rival_condition",
+    "seed_id", "slot_assignment", "journal", "engineer_record_chains", "decisions",
+    "season_result"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "result_kind": {
+      "enum": ["ACTUAL_MODEL", "SYNTHETIC_CONTROL", "SCRIPTED_CONTROL", "RECORDED_REPLAY"]
+    },
+    "layer": {"enum": ["LAYER_1", "LAYER_2"]},
+    "rival_condition": {"enum": ["ADAPTIVE", "FIXED_REPLAY"]},
+    "seed_id": {"type": "string", "minLength": 1},
+    "slot_assignment": {
+      "type": "object",
+      "additionalProperties": {"type": "string"},
+      "minProperties": 1
+    },
+    "journal": {"type": "array", "items": {"type": "object"}},
+    "engineer_record_chains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["team", "records"],
+        "properties": {
+          "team": {"type": "string"},
+          "records": {"type": "array", "items": {"type": "object"}}
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "tick_id", "team", "chief_observation", "engineer_reports", "legal_action_set",
+          "chosen_action", "equal_information_reference", "diagnostic_hypotheses", "diagnostics"
+        ],
+        "properties": {
+          "tick_id": {"type": "string"},
+          "team": {"type": "string"},
+          "chief_observation": {"type": "object"},
+          "engineer_reports": {"type": "array", "items": {"type": "object"}},
+          "legal_action_set": {"type": "array", "items": {"type": "string"}},
+          "chosen_action": {"type": "object"},
+          "equal_information_reference": {"type": ["object", "null"]},
+          "diagnostic_hypotheses": {"type": "array", "items": {"type": "object"}},
+          "diagnostics": {"type": "array", "items": {"type": "object"}}
+        }
+      }
+    },
+    "season_result": {
+      "type": "object",
+      "required": ["team_points", "driver_points", "race_results", "complete"],
+      "properties": {
+        "team_points": {"type": "object"},
+        "driver_points": {"type": "object"},
+        "race_results": {"type": "array"},
+        "complete": {"type": "boolean"}
+      }
+    }
+  }
+}

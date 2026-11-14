@@ -28,6 +28,7 @@ MECHANICS = (
     "pit_loss_by_track",  # B2: pit-lane loss depends on the track (ablation: 20 s everywhere)
     "double_stack_queue", # B2: shared crew queue for same-team stops (ablation: no queue)
     "tyre_warmup",        # B2: slower out-lap on new tyres (ablation: none)
+    "long_race_format",   # B3: 14 decisions per race (ablation: legacy 3-decision short format)
 )
 
 
@@ -81,6 +82,8 @@ def ablate(coeffs: Mapping[str, Any], *mechanics: str) -> Dict[str, Any]:
             out["pit_stops"]["loss_green_sec_by_archetype"] = {k: mean for k in table}
         elif mechanic == "double_stack_queue":
             out["pit_stops"]["double_stack_queue_sec"] = 0.0
+        elif mechanic == "long_race_format":
+            out["race_format"]["use"] = "short"
         elif mechanic == "tyre_warmup":
             out["pit_stops"]["out_lap_warmup_sec"] = {k: 0.0 for k in out["pit_stops"]["out_lap_warmup_sec"]}
     out.setdefault("ablated", [])
@@ -153,3 +156,17 @@ def pit_model(archetype: str, coeffs: Mapping[str, Any]) -> Dict[str, Any]:
         "double_stack_queue_sec": float(pit["double_stack_queue_sec"]),
         "out_lap_warmup_sec": {k: float(v) for k, v in pit["out_lap_warmup_sec"].items()},
     }
+
+
+def race_format(coeffs: Mapping[str, Any]) -> Dict[str, Any]:
+    """Race-config format block (B3): decision laps, segment length, grid spacing, event odds."""
+    fmt = coeffs["race_format"][coeffs["race_format"]["use"]]
+    every = int(fmt["decision_every_laps"])
+    laps = int(fmt["laps"])
+    decision_laps = list(range(int(fmt["first_decision_lap"]), laps - every + 1, every))
+    if decision_laps[-1] + every != laps:
+        raise ValueError("race format must end exactly one segment after the last decision")
+    return {"decision_laps": decision_laps, "segment_laps": every,
+            "grid_gap_scale": float(fmt["grid_gap_scale"]),
+            "start_tyre_age": fmt["start_tyre_age_laps"],
+            "event_probs": {k: float(v) for k, v in fmt["event_probabilities_per_decision"].items()}}

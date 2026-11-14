@@ -81,6 +81,7 @@ def race_config(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAU
         "dnf_prob": {name: values["dnf_probability"] for name, values in perf.items()},
         "tyres": coef.tyre_model(coeffs),
         "pit": coef.pit_model(track.archetype, coeffs),
+        **coef.race_format(coeffs),
         "events": events,
     }
 
@@ -139,7 +140,7 @@ def finish_prepared_race(state: ChampionshipState, active: PreparedChampionshipR
 
 
 def stay_race_policy(_: ChampionshipState) -> List[Dict[str, str]]:  # legacy smoke helper
-    return [{"driver_a": "STAY", "driver_b": "STAY"} for _ in engine.DECISION_LAPS]
+    return [{"driver_a": "STAY", "driver_b": "STAY"} for _ in engine.DECISION_LAPS]  # legacy format only
 
 
 def _apply_grid_penalties(race_state: Dict[str, Any], start: RaceStartConditions) -> List[str]:

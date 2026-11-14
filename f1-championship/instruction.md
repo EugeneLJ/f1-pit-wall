@@ -30,7 +30,8 @@ Each race has two phases:
      {"driver":"Apex A","component":"ICE","action":"USE"}, ...one per driver/component...]}
    ```
 
-2. `RACE_STRATEGY` — three sequential decisions per race. For each driver choose
+2. `RACE_STRATEGY` — 14 sequential decisions per race (a 45-lap race, one decision
+   every 3 laps from lap 3 to lap 42). For each driver choose
    `STAY`, `PIT_SOFT`, `PIT_MEDIUM` or `PIT_HARD` (a pit stop fits the named
    compound):
 
@@ -47,7 +48,8 @@ Each race has two phases:
    their first lap (more so for harder compounds). The observation shows this
    track's pit losses and which car would be serviced first.
 
-Future track status (GREEN/VSC/SC) is seeded and hidden until its decision.
+Future track status (GREEN/VSC/SC) is seeded and hidden until its decision; the
+per-decision probabilities are published in every race observation.
 Points from both Apex cars count; the objective is the team's season total,
 not either driver's result.
 

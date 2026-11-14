@@ -45,13 +45,19 @@ def _car(name: str, team: str, elapsed: float, base_pace: float,
             "compound": compound, "tyre_age": tyre_age}
 
 
-def _event_schedule(seed: int, count: int = len(DECISION_LAPS)) -> list[str]:
+LEGACY_EVENT_PROBS = {"GREEN": 0.60, "VSC": 0.25, "SC": 0.15}
+
+
+def _event_schedule(seed: int, count: int = len(DECISION_LAPS),
+                    probs: dict[str, float] | None = None) -> list[str]:
     """Seeded per-decision track status; independent of every action (common random numbers)."""
+    probs = probs or LEGACY_EVENT_PROBS
+    green, vsc = probs["GREEN"], probs["GREEN"] + probs["VSC"]
     rng = random.Random(seed)
     schedule = []
     for _ in range(count):
         value = rng.random()
-        schedule.append("GREEN" if value < 0.60 else "VSC" if value < 0.85 else "SC")
+        schedule.append("GREEN" if value < green else "VSC" if value < vsc else "SC")
     return schedule
 
 
@@ -80,11 +86,17 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
     grid = list(config["grid"])
     if sorted(grid) != sorted(by_name):
         raise ValueError("grid must be a permutation of the eight cars")
+    scale = float(config.get("grid_gap_scale", 1.0))
+    start_age = config.get("start_tyre_age")
     for slot, name in zip(GRID_ELAPSED_SLOTS, grid):
-        by_name[name]["elapsed"] = slot
+        by_name[name]["elapsed"] = GRID_ELAPSED_SLOTS[0] + (slot - GRID_ELAPSED_SLOTS[0]) * scale
         by_name[name]["base_pace"] = float(config["pace"][name])
+        if start_age is not None:
+            by_name[name]["tyre_age"] = int(start_age)
     decision_laps = list(config.get("decision_laps", DECISION_LAPS))
-    events = list(config["events"]) if config.get("events") is not None else _event_schedule(seed, len(decision_laps))
+    event_probs = dict(config.get("event_probs") or LEGACY_EVENT_PROBS)
+    events = (list(config["events"]) if config.get("events") is not None
+              else _event_schedule(seed, len(decision_laps), event_probs))
     if len(events) != len(decision_laps) or any(e not in PIT_LOSS for e in events):
         raise ValueError("invalid event schedule")
     clean_config = {
@@ -95,6 +107,8 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
         "overtaking_difficulty": float(config.get("overtaking_difficulty", 0.0)),
         "dnf_prob": {name: float(config.get("dnf_prob", {}).get(name, 0.0)) for name in by_name},
         "decision_laps": decision_laps,
+        "segment_laps": int(config.get("segment_laps", SEGMENT_LENGTH)),
+        "event_probs": event_probs,
         "tyres": config.get("tyres"),
         "pit": config.get("pit"),
     }
@@ -138,8 +152,17 @@ def pit_compound(choice: str) -> str | None:
     return choice[len("PIT_"):]
 
 
+def segment_laps(state: dict[str, Any]) -> int:
+    return state["config"]["segment_laps"] if "config" in state else SEGMENT_LENGTH
+
+
+def event_probabilities(state: dict[str, Any]) -> dict[str, float]:
+    """Published per-decision SC/VSC/GREEN probabilities for this race."""
+    return dict(state["config"]["event_probs"]) if "config" in state else dict(LEGACY_EVENT_PROBS)
+
+
 def laps_total(state: dict[str, Any]) -> int:
-    return _decision_laps(state)[-1] + SEGMENT_LENGTH
+    return _decision_laps(state)[-1] + segment_laps(state)
 
 
 def _decision_laps(state: dict[str, Any]) -> list[int]:
@@ -237,7 +260,7 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
             apex[key]["compounds_used"] = sorted(set(car["compounds_used"]))
     index = state["step"]
     laps = _decision_laps(state)
-    out = {"race": "Harbor Grand Prix", "lap": laps[index], "laps_total": laps[-1] + SEGMENT_LENGTH,
+    out = {"race": "Harbor Grand Prix", "lap": laps[index], "laps_total": laps_total(state),
            "decision_index": index + 1, "decision_count": len(laps),
            "track_status": state["events"][index], "drivers": apex,
            "classification": classification, "legal_actions": legal_actions(state),
@@ -249,7 +272,10 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
         out["pit"] = {"loss_sec": dict(pit["loss_sec"]), "double_stack_queue_sec": pit["double_stack_queue_sec"],
                       "out_lap_warmup_sec": dict(pit["out_lap_warmup_sec"]),
                       "if_both_pit_serviced_first": first}
+    out["event_probabilities_per_decision"] = event_probabilities(state)
+    out["segment_laps"] = segment_laps(state)
     if tyres is not None:
+        out["tyre_life_laps"] = {name: spec["life_laps"] for name, spec in tyres["compounds"].items()}
         out["laps_remaining"] = laps_total(state) - laps[index]
         for entry in classification:
             car = next(c for c in state["cars"] if c["name"] == entry["driver"])
@@ -258,7 +284,8 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
 
 
 def _segment_time(car: dict[str, Any], position: int, deg_multiplier: float = 1.0,
-                  traffic: float | None = None, tyres: dict[str, Any] | None = None) -> float:
+                  traffic: float | None = None, tyres: dict[str, Any] | None = None,
+                  laps: int = SEGMENT_LENGTH) -> float:
     """Legacy traffic is positional; configured races pass a gap-based dirty-air loss.
 
     With a B1 tyre model, laps beyond a compound's life add a cliff term that grows
@@ -271,7 +298,7 @@ def _segment_time(car: dict[str, Any], position: int, deg_multiplier: float = 1.
     life = tyre.get("life_laps", 10**6)
     return sum(car["base_pace"] + tyre["offset"] + degradation * (car["tyre_age"] + offset)
                + cliff * max(0, car["tyre_age"] + offset - life) + traffic
-               for offset in range(SEGMENT_LENGTH))
+               for offset in range(laps))
 
 
 def _apply_overtaking(order: list[dict[str, Any]], finish: dict[str, float],
@@ -328,14 +355,15 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
             close = index > 0 and car["elapsed"] - order[index - 1]["elapsed"] < model["dirty_air_gap_sec"]
             traffic[car["name"]] = model["dirty_air_loss_sec_per_lap"] if close else 0.0
     warmup = pit["out_lap_warmup_sec"] if pit is not None else {}
-    finish = {car["name"]: car["elapsed"] + _segment_time(car, positions[car["name"]], deg, traffic[car["name"]], tyres)
+    seg = segment_laps(state)
+    finish = {car["name"]: car["elapsed"] + _segment_time(car, positions[car["name"]], deg, traffic[car["name"]], tyres, seg)
               + (warmup.get(car["compound"], 0.0) if car.pop("out_lap", False) else 0.0)
               for car in state["cars"]}
     if config and config["overtaking"] is not None:
         _apply_overtaking(order, finish, config["overtaking"], config["overtaking_difficulty"])
     for car in state["cars"]:
         car["elapsed"] = finish[car["name"]]
-        car["tyre_age"] += SEGMENT_LENGTH
+        car["tyre_age"] += seg
     state["actions"].append(clean)
     state["step"] += 1
     state["complete"] = state["step"] == decision_count

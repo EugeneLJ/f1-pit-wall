@@ -49,7 +49,7 @@ from play import race_action as _public_race_action  # noqa: E402
 
 APEX = TEAM_DRIVERS["Apex"]
 COMPONENTS = coef.COMPONENTS
-EVENT_PROBS = (("GREEN", 0.60), ("VSC", 0.25), ("SC", 0.15))
+EVENT_PROBS = (("GREEN", 0.60), ("VSC", 0.25), ("SC", 0.15))  # legacy short format; use event_probs(race)
 RACE_ACTIONS = [{"driver_a": a, "driver_b": b} for a in ("PIT", "STAY") for b in ("PIT", "STAY")]  # legacy races only
 
 
@@ -96,28 +96,80 @@ def realized_apex_points(race: Dict[str, Any]) -> int:
 
 def prepared_race_state(prepared: ChampionshipState, coeffs, events: Optional[List[str]] = None,
                         seed: int = 0) -> Dict[str, Any]:
+    """Race state for a prepared championship state. With events=None the engine draws the
+    schedule from `seed`; expectation functions overwrite events, so the seed is irrelevant there."""
     working = copy.deepcopy(prepared)
-    count = len(engine.DECISION_LAPS)
-    active = start_prepared_race(working, seed, coeffs, events=events or ["GREEN"] * count)
+    active = start_prepared_race(working, seed, coeffs, events=events)
     return active.race_state
+
+
+EXACT_TREE_MAX_DECISIONS = 4
+CRN_SAMPLES = 96
+
+
+def event_probs(race: Dict[str, Any]) -> List[Tuple[str, float]]:
+    probs = engine.event_probabilities(race)
+    return [(status, probs[status]) for status in ("GREEN", "VSC", "SC")]
+
+
+def crn_event_paths(race: Dict[str, Any], samples: int = CRN_SAMPLES) -> List[List[str]]:
+    """Fixed, public common-random-number event paths for the remaining decisions.
+
+    Drawn from the published per-decision probabilities with a public seed derived only
+    from the race format, never from the hidden evaluation seed."""
+    import random
+    remaining = len(race["events"]) - race["step"]
+    probs = engine.event_probabilities(race)
+    rng = random.Random(f"crn|{remaining}|{sorted(probs.items())}")
+    green, vsc = probs["GREEN"], probs["GREEN"] + probs["VSC"]
+    paths = []
+    for _ in range(samples):
+        path = []
+        for _ in range(remaining):
+            u = rng.random()
+            path.append("GREEN" if u < green else "VSC" if u < vsc else "SC")
+        paths.append(path)
+    return paths
 
 
 def expected_race_value(race: Dict[str, Any],
                         race_policy: Callable[[Dict[str, Any]], Dict[str, str]] = baseline_race_action) -> float:
-    """Exact expectation over the per-decision SC/VSC/GREEN tree under race_policy."""
+    """Expected Apex points under race_policy over SC/VSC/GREEN; retirements always exact.
+
+    <= EXACT_TREE_MAX_DECISIONS remaining decisions: exact event tree.
+    Longer races (B3 format): mean over CRN_SAMPLES fixed public event paths (see crn_event_paths)."""
+    remaining = len(race["events"]) - race["step"]
+    if remaining <= EXACT_TREE_MAX_DECISIONS:
+        return _exact_tree_value(race, race_policy)
+    total = 0.0
+    paths = crn_event_paths(race)
+    for path in paths:
+        branch = _copy_race(race)
+        branch["events"][branch["step"]:] = path
+        while branch["step"] < len(branch["events"]):
+            engine.step(branch, race_policy(engine.observation(branch)))
+        total += expected_apex_points_at_finish(branch)
+    return total / len(paths)
+
+
+def _exact_tree_value(race, race_policy) -> float:
     if race["step"] == len(race["events"]):
         return expected_apex_points_at_finish(race)
     total = 0.0
-    for status, prob in EVENT_PROBS:
+    for status, prob in event_probs(race):
         branch = _copy_race(race)
         branch["events"][branch["step"]] = status
         engine.step(branch, race_policy(engine.observation(branch)))
-        total += prob * expected_race_value(branch, race_policy)
+        total += prob * _exact_tree_value(branch, race_policy)
     return total
 
 
 def hindsight_race_value(race: Dict[str, Any]) -> Tuple[int, List[Dict[str, str]]]:
-    """Best realized points over every PIT/STAY sequence for the known events and draws."""
+    """Best realized points over every PIT/STAY sequence for the known events and draws.
+
+    Exhaustive, so only for short formats (<= EXACT_TREE_MAX_DECISIONS decisions)."""
+    if len(race["events"]) > EXACT_TREE_MAX_DECISIONS:
+        raise NotImplementedError("exhaustive hindsight is infeasible for the long race format")
     if race["step"] == len(race["events"]):
         return realized_apex_points(race), []
     best = (-1, [])
@@ -290,8 +342,7 @@ class Solver:
 
     def _seeded_race(self, prepared: ChampionshipState, base_seed: int) -> Dict[str, Any]:
         seed = base_seed + prepared.race_index
-        events = engine._event_schedule(seed, len(engine.DECISION_LAPS))
-        return prepared_race_state(prepared, self.coeffs, events=events, seed=seed)
+        return prepared_race_state(prepared, self.coeffs, events=None, seed=seed)  # session's own schedule
 
 
 def _replacements(option) -> int:

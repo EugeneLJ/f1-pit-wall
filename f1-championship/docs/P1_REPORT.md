@@ -164,7 +164,7 @@ A penalty consistently costs Apex B more than Apex A. Apex B qualifies just insi
 | A | Grid penalties and track-dependent opportunity cost | Implemented | Penalty cost vs overtaking difficulty is weak and not monotonic |
 | A | Constructors' optimization | Objective = Apex points; rank and margin reported | No rival-relative objective in the scalar |
 | A | Season-level driver prioritization | Only via which driver gets free units/penalties | Team orders not implemented (Track C) |
-| B | 13–18 decision points per race | 3 (`decision_laps` is configurable in the engine) | Exact solver's event tree grows 3^n; agent cost unmeasured |
+| B | 13–18 decision points per race | B3: 14 per race (45 laps), about 5.8 meaningful; solver uses public CRN paths | Last 2 decisions never meaningful; SC/VSC decisions rare; frontier time unmeasured |
 | B | Compound choice and degradation | B1: compound choice, tyre life cliff, two-compound rule | Cliff rarely binding at 3 decisions per race |
 | B | SC/VSC responses | Per-decision i.i.d. status, cheaper pit stops | No SC duration or field compression |
 | B | Weather and forecasts | — | Not started |

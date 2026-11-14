@@ -37,7 +37,7 @@ from f1pitwall.journal import (
     seal_entry,
 )
 
-SERVER_VERSION = "b2-1"
+SERVER_VERSION = "b3-1"
 SOCKET_PATH = Path(os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock"))
 STATE_DIR = Path(os.environ.get("F1SIM_STATE_DIR", "/var/lib/f1sim"))
 SEED_PATH = Path(os.environ.get("F1SIM_SEED_PATH", "/opt/f1sim/secret/seed.json"))
@@ -55,7 +55,7 @@ PUBLIC_RULES = {
     "contract": "f1-championship sequential decisions, P0 mechanics",
     "phases": {
         COMPONENT_DECISION: "one USE/REPLACE choice per Apex driver/component before each race",
-        RACE_STRATEGY: "three sequential PIT/STAY choices for Apex A and Apex B per race",
+        RACE_STRATEGY: "14 sequential STAY/PIT_<compound> choices for Apex A and Apex B per race",
         CHAMPIONSHIP_COMPLETE: "no further actions",
     },
     "decision_id": ("every observation carries decision_id; act must echo it. A stale id is "
@@ -79,6 +79,8 @@ PUBLIC_RULES = {
                       "pit at the same decision the one arriving second on the road waits double_stack_queue_sec; "
                       "the first lap on new tyres is slower by out_lap_warmup_sec for that compound"),
         "rival_pits": "rivals follow the public rule in track_a_model.tyres.rival_compound_policy",
+        "race_format": ("45 laps, one RACE_STRATEGY decision every 3 laps from lap 3 to lap 42 (14 per race); "
+                        "per-decision SC/VSC odds in track_a_model.race_format.long"),
     },
     "track_a_model": coef.DEFAULT,
     "objective": "maximize Apex constructors' points over the whole championship",

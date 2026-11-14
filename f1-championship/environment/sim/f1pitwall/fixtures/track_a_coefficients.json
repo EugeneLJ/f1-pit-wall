@@ -74,6 +74,26 @@
     "double_stack_queue_sec": 6.0,
     "out_lap_warmup_sec": {"SOFT": 0.3, "MEDIUM": 0.6, "HARD": 1.0}
   },
+  "race_format": {
+    "note": "Track B (B3) race format; synthetic placeholders. Decisions every decision_every_laps from first_decision_lap until laps - decision_every_laps.",
+    "long": {
+      "laps": 45,
+      "first_decision_lap": 3,
+      "decision_every_laps": 3,
+      "start_tyre_age_laps": 3,
+      "grid_gap_scale": 0.4,
+      "event_probabilities_per_decision": {"GREEN": 0.92, "VSC": 0.04, "SC": 0.04}
+    },
+    "short": {
+      "laps": 20,
+      "first_decision_lap": 8,
+      "decision_every_laps": 4,
+      "start_tyre_age_laps": null,
+      "grid_gap_scale": 1.0,
+      "event_probabilities_per_decision": {"GREEN": 0.60, "VSC": 0.25, "SC": 0.15}
+    },
+    "use": "long"
+  },
   "rival_component_policy": {
     "rule": "before each race, replace any component with wear >= threshold (or above max_wear_for_use), using free units while they last",
     "threshold": 0.65

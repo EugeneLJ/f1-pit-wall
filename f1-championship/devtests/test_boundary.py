@@ -28,6 +28,8 @@ from f1sim import server as server_mod  # noqa: E402
 from play import component_action, race_action  # noqa: E402
 
 SEED = json.loads((SIM / "secret" / "seed.json").read_text())["base_seed"]
+from f1pitwall import coefficients as _coef  # noqa: E402
+SEASON_DECISIONS = 8 * (1 + len(_coef.race_format(_coef.DEFAULT)["decision_laps"]))
 
 
 def next_action(obs, policy="heuristic"):
@@ -280,7 +282,7 @@ class VerifierTests(unittest.TestCase):
         reward, report = self.h.grade()
         self.assertTrue(report["completion"]["complete"])
         self.assertTrue(report["integrity"]["intact"])
-        self.assertEqual(report["completion"]["accepted_decisions"], 32)
+        self.assertEqual(report["completion"]["accepted_decisions"], SEASON_DECISIONS)
         self.assertGreaterEqual(reward, 0.0)
         self.assertLessEqual(reward, 1.0)
         norm = report["normalization"]
@@ -384,7 +386,7 @@ class VerifierTests(unittest.TestCase):
         self.h.play()
         self.h.export()
         _, report = self.h.grade()
-        self.assertEqual(report["timing"]["accepted_decisions"], 32)
+        self.assertEqual(report["timing"]["accepted_decisions"], SEASON_DECISIONS)
         self.assertIn("decision_span_sec", report["timing"])
 
 

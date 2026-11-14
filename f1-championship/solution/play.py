@@ -30,18 +30,26 @@ def component_action(obs):
 
 
 def race_action(obs):
-    """Public baseline: pit cheaply under SC/VSC or when a SOFT is worn, choose the compound
-    from the laps remaining, and make sure the two-compound rule is met by the last stop."""
+    """Public baseline: pit cheaply under SC/VSC, before a tyre passes its published life, or when
+    a SOFT is worn at the first decision; choose the compound from the laps remaining; make sure the
+    two-compound rule is met by the last stop; avoid double stacks unless the rule needs both."""
     race = obs["race_progress"]
     status = race["track_status"]
     legal = race.get("legal_actions", ["PIT", "STAY"])
     threshold = {"SC": 6, "VSC": 8}.get(status, 99)
     last = race["decision_index"] == race["decision_count"]
+    life = race.get("tyre_life_laps")
+    segment = race.get("segment_laps", 4)
+    remaining = race.get("laps_remaining", 99)
     wants, must = {}, {}
     for key, car in race["drivers"].items():
         worn_soft = car["compound"] == "SOFT" and car["tyre_age"] >= 8 and race["decision_index"] == 1
+        # Long races: stop once the tyre has reached its published life, unless the race is nearly
+        # over (with fewer than 3 segments left the cliff costs less than a green pit stop).
+        end_of_life = (life is not None and car["tyre_age"] >= life[car["compound"]]
+                       and remaining >= 3 * segment)
         must[key] = last and "compounds_used" in car and len(car["compounds_used"]) < 2
-        wants[key] = car["tyre_age"] >= threshold or worn_soft or must[key]
+        wants[key] = (car["tyre_age"] >= threshold and remaining > segment) or worn_soft or end_of_life or must[key]
     if wants["driver_a"] and wants["driver_b"] and not (must["driver_a"] and must["driver_b"]):
         keep = [k for k in wants if must[k]] or [max(("driver_a", "driver_b"),
                                                      key=lambda k: race["drivers"][k]["tyre_age"])]

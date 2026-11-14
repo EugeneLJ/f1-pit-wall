@@ -78,7 +78,7 @@ Practice, qualifying sessions, upgrades, budget management.
 | P1-B | Exact 3-race solver, fair reference, hindsight oracle | Done (`docs/P1_REPORT.md`) |
 | P1-C | Counterfactual + control pairs, representative scenarios, policy gaps | Done (`docs/P1_REPORT.md`) |
 | P1-D | 8-race fair reference (budgeted receding-horizon planner), horizon ablation 1/2/3/5/8, season-level pairs | Done (`docs/P1D_REPORT.md`); compound choice and frontier probe not started |
-| Track B | Adaptive race strategy | B1 (compound choice, tyre model) and B2 (track pit loss, shared crew queue for all teams, out-lap warm-up) done on `feature/track-b` (`docs/B1_REPORT.md`, `docs/B2_REPORT.md`); B3–B6 pending |
+| Track B | Adaptive race strategy | B1 (compound choice, tyre model), B2 (track pit loss, shared crew, out-lap warm-up) and B3 (14 decisions per race, about 6 meaningful) done on `feature/track-b` (`docs/B1_REPORT.md`–`docs/B3_REPORT.md`); B4–B6 pending |
 | Track C | Engineers / coordination | Not started |
 
 ## Gap table (current implementation vs final requirements)

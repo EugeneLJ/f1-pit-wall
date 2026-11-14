@@ -60,7 +60,7 @@ def expectimax(race, restrict=None):
         if node["step"] == len(node["events"]):
             return ts.expected_apex_points_at_finish(node)
         total = 0.0
-        for status, prob in ts.EVENT_PROBS:
+        for status, prob in ts.event_probs(node):
             best = float("-inf")
             for action in _joint(node, restrict):
                 child = ts._copy_race(node)
@@ -72,7 +72,7 @@ def expectimax(race, restrict=None):
 
     first = {}
     total = 0.0
-    for status, prob in ts.EVENT_PROBS:
+    for status, prob in ts.event_probs(race):
         scored = []
         for action in _joint(race, restrict):
             child = ts._copy_race(race)
@@ -94,7 +94,8 @@ def race_job(args):
     import scenarios as sc
     from f1pitwall import coefficients as coef
     spec, index, mechanic = args
-    coeffs = coef.DEFAULT if mechanic is None else coef.ablate(coef.DEFAULT, mechanic)
+    # Exact single-race expectimax is only feasible in the 3-decision short format (B1/B2 analyses).
+    coeffs = coef.ablate(coef.DEFAULT, "long_race_format", *([mechanic] if mechanic else []))
     solver = ts.Solver(coeffs)
     from f1pitwall.championship import new_championship_state
     from f1pitwall.championship_transition import initial_inventory
@@ -152,7 +153,7 @@ def summarize(results):
     print(line("Baseline − always STAY", [r["baseline"] - r["always_stay"] for r in base]))
     print("\n| Mechanic off | Optimal − baseline (b) | First-decision policy changes (c) | Real-world loss of the ablated first decision: mean / max (c) |")
     print("|---|---:|---:|---:|")
-    probs = dict(ts.EVENT_PROBS)
+    probs = dict(ts.EVENT_PROBS)  # short format
     for mech in ABLATIONS:
         rows = {(r["scenario"], r["race_index"]): r for r in results if r["mechanic"] == mech}
         if not rows:

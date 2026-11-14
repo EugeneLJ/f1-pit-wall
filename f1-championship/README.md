@@ -12,8 +12,8 @@ repository root is unchanged and remains the regression baseline.
 ## What the agent does
 
 Uses `f1ctl observe | rules | act <decision_id> '<json>'` to make 32 sequential
-decisions: per race, one component decision (USE/REPLACE per power-unit
-component) and three PIT/STAY decisions for both cars. See `instruction.md`.
+decisions per season (32 before Track B, 120 from B3): per race, one component decision (USE/REPLACE per power-unit
+component) and, since Track B, 14 STAY/PIT_<compound> decisions per race for both cars. See `instruction.md`.
 
 ## Architecture
 

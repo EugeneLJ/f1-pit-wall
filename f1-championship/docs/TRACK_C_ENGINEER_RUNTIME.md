@@ -15,16 +15,16 @@ Checked against official provider documentation on 2026-11-14:
   low-latency, and structured-output capable. `gemini-3.1-flash-lite` remains
   available but has an announced 2027-05-07 shutdown; 3.5 is its recommended
   replacement.
-- Future DeepSeek rival: request ID `deepseek-flash`, currently resolving to
-  DeepSeek-V4.1-Flash-1017. Track C does not implement that rival adapter yet.
+- Future DeepSeek rival through Verda Inference: request ID
+  `deepseek-4-1-flash-1017`. Track C does not implement that rival adapter yet.
 
 Sources:
 
 - <https://ai.google.dev/gemini-api/docs/models>
 - <https://ai.google.dev/gemini-api/docs/structured-output>
 - <https://ai.google.dev/gemini-api/docs/deprecations>
-- <https://api-docs.deepseek.com/api/list-models/>
-- <https://api-docs.deepseek.com/updates/>
+- <https://docs.verda.com/inference/models/deepseek-4-1-flash-1017/>
+- <https://docs.verda.com/inference/quickstart/>
 
 Provider aliases can change. Every live record therefore stores the requested
 model ID and returned model revision.
@@ -94,3 +94,6 @@ The adapter does not embed mutable prices. `estimated_cost_usd` remains null unl
 a transport supplies it. Later evaluation should compute cost from recorded token
 counts and a versioned pricing snapshot, avoiding application of a current price to
 a historical replay.
+
+The future rival's Verda credential and billing procedure is documented in
+`TRACK_C_VERDA_INFERENCE.md`. No Verda key or paid request was used here.

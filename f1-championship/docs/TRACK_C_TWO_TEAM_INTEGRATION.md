@@ -14,10 +14,10 @@ Exact provider identifiers and immutable model revisions must be resolved and
 logged at execution time; product names alone are insufficient.
 
 As checked on 2026-11-14, the intended request identifiers are
-`gemini-3.5-flash-lite` for the Engineer adapter and `deepseek-flash` for the
-future rival. The latter currently resolves to DeepSeek-V4.1-Flash-1017; that
-marketing/version string is not the request ID. Availability must be queried again
-at run time and the returned model revision recorded.
+`gemini-3.5-flash-lite` for the Engineer adapter and
+`deepseek-4-1-flash-1017` through Verda Inference for the future rival.
+Availability, service status, and the account-currency price must be checked again
+at run time. See `TRACK_C_VERDA_INFERENCE.md` for credential and billing details.
 
 ## Observation boundaries
 

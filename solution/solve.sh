@@ -1,4 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 mkdir -p /app/submission
-printf '%s\n' '{"driver_a":"PIT","driver_b":"STAY"}' > /app/submission/action.json
+cat > /app/submission/actions.json <<'JSON'
+{"version":2,"actions":[{"driver_a":"PIT","driver_b":"STAY"},{"driver_a":"STAY","driver_b":"STAY"},{"driver_a":"STAY","driver_b":"PIT"}]}
+JSON

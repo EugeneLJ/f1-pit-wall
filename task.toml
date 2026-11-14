@@ -1,17 +1,17 @@
 schema_version = "1.4"
-artifacts = ["/app/submission/action.json"]
+artifacts = ["/app/submission/actions.json"]
 
 [task]
 name = "EugeneLJ/f1-pit-wall"
-version = "1.0.0"
-description = "Choose one PIT/STAY decision for two drivers to maximize constructors' points."
+version = "2.0.0"
+description = "Manage three sequential PIT/STAY decisions for two coupled F1 drivers."
 keywords = ["f1", "strategy", "reasoning", "custom-verifier"]
 
 [[task.authors]]
 name = "EugeneLJ"
 
 [metadata]
-difficulty = "easy"
+difficulty = "medium"
 category = "reasoning"
 tags = ["python", "f1", "strategy", "custom-verifier"]
 

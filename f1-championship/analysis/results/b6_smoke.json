@@ -1,0 +1,131 @@
+{
+ "date_utc": "2026-11-14T20:14:43Z",
+ "deepseek_availability": {
+  "available": true,
+  "listed_models": 1,
+  "model": "deepseek-4-1-flash-1017"
+ },
+ "deepseek_chief": {
+  "action": {
+   "driver_a": "STAY",
+   "driver_b": "STAY",
+   "team_order": {
+    "order": "RACE"
+   },
+   "type": "RACE_STRATEGY"
+  },
+  "credential_env": "VERDA_INFERENCE_API_KEY",
+  "estimated_cost": {
+   "amount": 0.00050865,
+   "currency": "USD",
+   "price_snapshot_date": "2026-11-14"
+  },
+  "http_status": 200,
+  "latency_ms": 368.529,
+  "prompt_sha256": "c5aa1afaf8ab51c05ebbdba4e9b24eae1cfcffa0cb00b49b6e266f847e0fe8cd",
+  "prompt_template": "chief-v1",
+  "prompt_template_sha256": "e7f0abc8ad356299175d4d5f3d55c3591d3b9f68682bf3a7a88e29f1a12079b6",
+  "provider": "verda_openai_compatible",
+  "request_id": "01a1dbb2-b25b-704c-81a7-5e2d90d6d70d",
+  "requested_model": "deepseek-4-1-flash-1017",
+  "retries": 0,
+  "returned_model": "deepseek-4-1-flash-1017",
+  "sampling": {
+   "max_output_tokens": 1024,
+   "temperature": 0.0
+  },
+  "service_tier": "standard",
+  "session_validation": {
+   "accepted": true,
+   "action_sha256": "c736c95077ae8e2f02f1467fc5c09b761bf5377b0838b6d79923f0c5a1468bc0"
+  },
+  "status": "VALID_JSON",
+  "submitted_via": "provider:verda_openai_compatible",
+  "usage": {
+   "cached_input_tokens": 0,
+   "input_tokens": 3235,
+   "output_tokens": 39,
+   "total_tokens": 3274
+  }
+ },
+ "gemini_engineer": {
+  "error": null,
+  "estimated_cost": null,
+  "recommendation": {
+   "confidence": {
+    "kind": "self_reported",
+    "value": 0.85
+   },
+   "driver_id": "driver_a",
+   "engineer_id": "engineer_a",
+   "expected_local_benefit": {
+    "basis": "Maintaining track position and avoiding unnecessary pit stop time loss while current SOFT tires are still fresh.",
+    "unit": "position",
+    "value": 0.0
+   },
+   "observation_hash": "a1b83bdaa8aefb7ac5a1142e064b6b569768fc42a993335d94d82b235f0f88c6",
+   "proposed_action": {
+    "choice": "STAY",
+    "driver": "driver_a",
+    "type": "RACE_STRATEGY"
+   },
+   "reasoning_summary": "Driver A is in position 2 on lap 3 with soft tyres that are only 3 laps old. Staying out preserves track position and avoids unnecessary pit stop delta early in the race when the tyres have significant remaining life.",
+   "supporting_evidence": [
+    {
+     "field": "race_context.assigned_driver_state.tyre_age",
+     "observed_value": 3,
+     "relevance": "Driver A currently has tyre age of 3 laps on SOFT tires with a maximum life of 10 laps, indicating the tires are still very fresh."
+    },
+    {
+     "field": "race_context.assigned_driver_state.position",
+     "observed_value": 2,
+     "relevance": "Driver A is currently running in position 2, maintaining a strong position in the race."
+    },
+    {
+     "field": "race_context.laps_remaining",
+     "observed_value": 42,
+     "relevance": "There are 42 laps remaining out of 45, meaning early pitting without necessity is suboptimal given current tire condition."
+    }
+   ]
+  },
+  "requested_model": "gemini-3.5-flash-lite",
+  "runtime": {
+   "estimated_cost_usd": null,
+   "latency_ms": 2140.131,
+   "model": "gemini-3.5-flash-lite",
+   "model_revision": "gemini-3.5-flash-lite",
+   "prompt_hash": "23404a9714779655334ed5c6d6f58392c1a41e278aa64a3df726c049fbd86d4a",
+   "provider": "google_genai",
+   "retries": 0,
+   "sampling": {
+    "max_output_tokens": 1024,
+    "temperature": 0.0
+   },
+   "usage": {
+    "input_tokens": 1022,
+    "output_tokens": 486,
+    "total_tokens": 1508
+   }
+  },
+  "source": "LIVE_MODEL",
+  "status": "VALID"
+ },
+ "gemini_engineer_attempt1": {
+  "error": "RuntimeError",
+  "estimated_cost": null,
+  "recommendation": null,
+  "requested_model": "gemini-3.5-flash-lite",
+  "runtime": {
+   "requested_source": "LIVE_MODEL"
+  },
+  "source": "INVALID",
+  "status": "INVALID"
+ },
+ "gemini_retry_date_utc": "2026-11-14T20:25:15Z",
+ "label": "B6-C paid connectivity smoke test (DeepSeek 1 call; Gemini 1 failed call + 1 retry after fix)",
+ "observation": {
+  "bytes_red_bool": 8200,
+  "decision_type": "RACE_STRATEGY",
+  "tick_id": "t002"
+ }
+}

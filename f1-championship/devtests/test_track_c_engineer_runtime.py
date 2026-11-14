@@ -148,6 +148,8 @@ class LiveAdapterTests(unittest.TestCase):
         self.assertEqual(record["runtime"]["sampling"]["temperature"], 0.0)
         self.assertEqual(record["runtime"]["retries"], 0)
         self.assertEqual(record["runtime"]["estimated_cost_usd"], 0.001)
+        # the model cannot compute SHA-256: the exact hash to echo is part of the prompt
+        self.assertIn(observation_hash(observation), transport.calls[0]["prompt"])
 
     def test_missing_key_and_invalid_response_remain_invalid(self):
         observation = format_runtime_observation(chief_observation(), "engineer_a")
@@ -170,6 +172,8 @@ class LiveAdapterTests(unittest.TestCase):
         )
         self.assertEqual(invalid["status"], "INVALID")
         self.assertIsNone(invalid["recommendation"])
+        self.assertIn("JSONDecodeError", invalid["runtime"]["error_detail"])
+        self.assertNotIn("unit-test-secret", json.dumps(invalid))
 
     def test_secret_redaction_is_recursive(self):
         value = redact_secrets({

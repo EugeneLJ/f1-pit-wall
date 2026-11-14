@@ -315,7 +315,9 @@ class GeminiEngineerProvider:
             "You are {engineer_id}, responsible only for {driver_id}. Use only the supplied "
             "driver-local public observation. Do not invent telemetry or future events. Return "
             "one JSON recommendation matching the supplied schema. Confidence is self-reported, "
-            "not a calibrated probability.\nOBSERVATION={observation}"
+            "not a calibrated probability. Set observation_hash to exactly {observation_hash} and "
+            "quote evidence fields by their dotted path in the observation with the exact value."
+            "\nOBSERVATION={observation}"
         )
 
     def recommend(self, observation: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -325,6 +327,7 @@ class GeminiEngineerProvider:
         driver_id = ENGINEERS[self.engineer_id][0]
         prompt = self.prompt_template.format(
             engineer_id=self.engineer_id, driver_id=driver_id,
+            observation_hash=observation_hash(observation),
             observation=json.dumps(observation, sort_keys=True, allow_nan=False),
         )
         started = time.monotonic()
@@ -353,7 +356,8 @@ class GeminiEngineerProvider:
                 return recommendation, metadata
             except Exception as exc:
                 last_error = exc
-        raise RuntimeError(f"Gemini recommendation failed: {type(last_error).__name__}") from last_error
+        detail = str(last_error)[:200] if last_error is not None else ""
+        raise RuntimeError(f"Gemini recommendation failed: {type(last_error).__name__}: {detail}") from last_error
 
 
 class ImmutableRecommendationStore:
@@ -442,10 +446,15 @@ def run_provider_safely(
             recommendation=recommendation, metadata=metadata,
         )
     except Exception as exc:  # provider/network/schema boundary
+        detail = str(exc)[:300]
+        for name in ("GOOGLE_API_KEY", "GEMINI_API_KEY"):
+            secret = os.environ.get(name)
+            if secret:
+                detail = detail.replace(secret, "[REDACTED]")
         return build_runtime_record(
             engineer_id=engineer_id, observation=observation, source="INVALID",
             recommendation=None, error=type(exc).__name__,
-            metadata={"requested_source": source},
+            metadata={"requested_source": source, "error_detail": detail},
         )
 
 

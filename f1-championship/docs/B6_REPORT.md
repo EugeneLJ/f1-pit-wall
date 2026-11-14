@@ -304,7 +304,27 @@ scripts/make_integrated_task.sh /path/to/integrated MOCK_ENGINEERS   # then: har
 6. **Scripted rivals barely react to McLearn**, so fixed and adaptive results coincide here. Adaptive-rival variance needs LLM Chiefs.
 7. **The scripted `coordinator` uses orders rarely**, roughly once per season, because executable and safe exchange states are naturally uncommon (about 8% of decisions are executable, 3% also safe).
 
-## 11. Commits
+## 11. Paid connectivity smoke test (B6-C, separately labelled; not an evaluation)
+
+Run on Verda on 2026-11-14 with `analysis/b6_smoke.py` (results in `analysis/results/b6_smoke.json`; no credential in the output, checked). Each call used a real integrated observation (two-team, first RACE_STRATEGY tick, 8.2 kB).
+
+| Call | Result |
+|---|---|
+| Verda `GET /v1/models` (free) | HTTP 200, one model listed: `deepseek-4-1-flash-1017` |
+| Red Bool Chief, `deepseek-4-1-flash-1017` | HTTP 200 in 0.37 s. Returned model `deepseek-4-1-flash-1017`, request id recorded, service tier `standard`. 3 235 input / 39 output tokens. **Estimated USD 0.00051** (2026-11-14 price snapshot). Action `STAY/STAY`, team order `RACE`: valid JSON, **accepted by the session**. |
+| Engineer A, `gemini-3.5-flash-lite`, attempt 1 | **INVALID** (`RuntimeError`). |
+| Engineer A, `gemini-3.5-flash-lite`, attempt 2 (after the fix) | **VALID** in 2.1 s. 1 022 input / 486 output tokens. Recommends `STAY`, with three evidence fields quoted exactly from the observation, confidence 0.85 (self-reported). |
+
+**What failed and what was fixed.**
+- **Cause.** Track C's Engineer schema requires the model to return the SHA-256 of its observation, but the prompt never gave it the hash, so every live report would have failed validation. The fake-transport tests had missed this because the mock computes the hash itself.
+- **Fix.** The prompt now states the exact hash to echo, and the Track C test asserts that it is in the prompt. Invalid records now keep a short, credential-scrubbed `error_detail`, because attempt 1 recorded only the exception type.
+- Attempt 1 stays in the results file.
+
+**Other notes.**
+- **Revision.** Google returned `model_version = gemini-3.5-flash-lite`, the alias itself. That is not an immutable revision, and it is recorded as returned.
+- **Cost.** No dated Gemini price snapshot is in the repository, so only tokens are recorded for that call. Verda's billing page is the source of truth for the DeepSeek cost.
+
+## 12. Commits
 
 All commits are on `feature/championship-integration` and pushed to `origin/feature/championship-integration` only. `main`, `feature/track-b` and `feature/track-c` are untouched.
 

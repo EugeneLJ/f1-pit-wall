@@ -26,6 +26,8 @@ from f1pitwall.championship_contract import (
     ChampionshipSession,
 )
 from f1pitwall import coefficients as coef
+from f1pitwall.championship_adapter import ENGINE_TO_CHAMPIONSHIP_DRIVER
+from f1pitwall.version import BENCHMARK_VERSION
 from f1pitwall.journal import (
     GENESIS_HASH,
     JOURNAL_VERSION,
@@ -37,7 +39,7 @@ from f1pitwall.journal import (
     seal_entry,
 )
 
-SERVER_VERSION = "b4-1"
+SERVER_VERSION = BENCHMARK_VERSION
 SOCKET_PATH = Path(os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock"))
 STATE_DIR = Path(os.environ.get("F1SIM_STATE_DIR", "/var/lib/f1sim"))
 SEED_PATH = Path(os.environ.get("F1SIM_SEED_PATH", "/opt/f1sim/secret/seed.json"))
@@ -52,7 +54,8 @@ COMMAND_FIELDS = {
 }
 
 PUBLIC_RULES = {
-    "contract": "f1-championship sequential decisions, P0 mechanics",
+    "benchmark_version": BENCHMARK_VERSION,
+    "contract": "f1-championship sequential decisions (Track A + Track B race strategy)",
     "phases": {
         COMPONENT_DECISION: "one USE/REPLACE choice per Apex driver/component before each race",
         RACE_STRATEGY: "14 sequential STAY/PIT_<compound> choices for Apex A and Apex B per race",
@@ -64,7 +67,17 @@ PUBLIC_RULES = {
     "race_rules": engine.RULES,
     "race_rules_track_a": {
         "grid": "qualifying order by pace = published base pace + team track offset + wear pace loss; then grid drops",
-        "published_base_pace": engine.LEGACY_BASE_PACE,
+        # Keyed by the driver names used in every observation (1.1.0). Before 1.1.0 this was
+        # keyed by the engine's internal identifiers without the mapping below.
+        "published_base_pace": {ENGINE_TO_CHAMPIONSHIP_DRIVER[name]: pace
+                                for name, pace in engine.LEGACY_BASE_PACE.items()},
+        "driver_identifiers": {
+            "note": ("Observations, classifications and all rules use the public driver names. Engine-internal "
+                     "identifiers appear nowhere agent-visible except this table, given for completeness."),
+            "engine_internal_to_public": dict(ENGINE_TO_CHAMPIONSHIP_DRIVER),
+            "teams": {"Apex": ["Apex A", "Apex B"], "Orion": ["Orion A", "Orion B"],
+                      "Nova": ["Nova A", "Nova B"], "Vertex": ["Vertex A", "Vertex B"]},
+        },
         "traffic": "dirty-air loss replaces the legacy positional traffic term (see track_a_model.track_performance.overtaking)",
         "retirements": ("each car retires with its published dnf probability; draws are seeded and independent "
                         "of all actions; a retired car scores 0 and is classified last"),
@@ -162,7 +175,7 @@ class Simulator:
             cmd = request["cmd"]
             if cmd == "ping":
                 self._stats["ping"] += 1
-                return {"ok": True, "server_version": SERVER_VERSION}
+                return {"ok": True, "server_version": SERVER_VERSION, "benchmark_version": BENCHMARK_VERSION}
             if cmd == "rules":
                 self._stats["rules"] += 1
                 self._save_stats()

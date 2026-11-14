@@ -38,6 +38,7 @@ from f1pitwall.championship_contract import (  # noqa: E402
     ChampionshipSession,
 )
 from f1pitwall.journal import JournalError, parse_journal, replay  # noqa: E402
+from f1pitwall.version import BENCHMARK_VERSION  # noqa: E402
 
 EVIDENCE_DIR = Path(os.environ.get("F1_EVIDENCE_DIR", "/evidence/f1sim"))
 SEED_PATH = Path(os.environ.get("F1_SEED_PATH", str(Path(__file__).resolve().parent / "hidden_seed.json")))
@@ -87,6 +88,7 @@ def timing(entries) -> Dict[str, Any]:
 
 def grade() -> Dict[str, Any]:
     report: Dict[str, Any] = {
+        "benchmark_version": BENCHMARK_VERSION,
         "scalar_version": SCALAR_VERSION,
         "completion": {"complete": False, "accepted_decisions": 0, "races_completed": 0},
         "integrity": {"intact": False, "error": None},
@@ -102,7 +104,8 @@ def grade() -> Dict[str, Any]:
 
     raw = journal_path.read_bytes()
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    report["evidence"] = {"manifest": manifest, "journal_sha256": hashlib.sha256(raw).hexdigest()}
+    report["evidence"] = {"manifest": manifest, "journal_sha256": hashlib.sha256(raw).hexdigest(),
+                          "evidence_benchmark_version": manifest.get("benchmark_version", "pre-1.1.0")}
     try:
         if manifest.get("journal_sha256") != hashlib.sha256(raw).hexdigest():
             raise JournalError("journal does not match sealed manifest")

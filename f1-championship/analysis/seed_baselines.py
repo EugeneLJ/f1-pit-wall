@@ -44,6 +44,11 @@ def season(component_rule, race_policy):
     return {"total": sum(per_race), "per_race": per_race, "replacements": replacements, "grid_drops": drops}
 
 
+def _guard_runtime():
+    from _runtime import require_runtime_python
+    require_runtime_python()
+
+
 def main(out):
     baseline = lambda race: ts.baseline_race_action(engine.observation(race))  # noqa: E731
     stay = lambda race: {"driver_a": "STAY", "driver_b": "STAY"}  # noqa: E731
@@ -60,4 +65,5 @@ def main(out):
 
 
 if __name__ == "__main__":
+    _guard_runtime()
     main(sys.argv[1])

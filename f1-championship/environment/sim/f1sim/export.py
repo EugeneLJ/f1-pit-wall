@@ -16,7 +16,11 @@ from pathlib import Path
 
 STATE_DIR = Path(os.environ.get("F1SIM_STATE_DIR", "/var/lib/f1sim"))
 EVIDENCE_DIR = Path(os.environ.get("F1SIM_EVIDENCE_DIR", "/evidence/f1sim"))
-SERVER_VERSION = "b4-1"
+try:
+    from f1pitwall.version import BENCHMARK_VERSION
+except ImportError:  # pragma: no cover - export always runs inside the sim image
+    BENCHMARK_VERSION = "unknown"
+SERVER_VERSION = BENCHMARK_VERSION
 
 
 def _sha256(path: Path) -> str:
@@ -43,6 +47,7 @@ def export(state_dir: Path = STATE_DIR, evidence_dir: Path = EVIDENCE_DIR) -> di
     lines = [line for line in journal.read_text(encoding="utf-8").splitlines() if line]
     manifest = {
         "server_version": SERVER_VERSION,
+        "benchmark_version": BENCHMARK_VERSION,
         "sealed_at": round(time.time(), 6),
         "journal_sha256": _sha256(evidence_dir / "journal.jsonl"),
         "journal_entries": len(lines),

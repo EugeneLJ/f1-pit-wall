@@ -1,5 +1,7 @@
 # Repeated frontier evaluation and policy-delegation analysis (Track B, after B4)
 
+> **Benchmark version: 1.0.0.** These results were produced on benchmark 1.0.0 and are kept as historical results. Version 1.1.0 changes only how `f1ctl rules` names the published base paces (see `docs/VERSIONS.md`).
+
 Date: 2026-11-14. Branch `feature/track-b`. **No environment, mechanics, reward or verifier change was made for this analysis.** Environment defects found during the analysis are listed as proposals in "Environment changes proposed" and kept separate from model/policy observations.
 
 The report is split into:
@@ -231,6 +233,9 @@ The reference has no hidden seed or future events. But it does have an **exact e
    5. The documentation fix below.
 
 ### Environment changes proposed (not applied; separate changeset)
+
+Update: items 1 and 2 were applied as benchmark version 1.1.0; see `docs/VERSIONS.md`.
+
 
 1. **Publish base paces under the observation names.** Keep `published_base_pace` keyed by `Orion A`, …, or publish the `Rival n → team driver` mapping. Today the mapping has to be inferred, and r3 got it wrong. This changes public information, so it needs a version bump, and earlier runs should be marked as pre-fix.
 2. **Pin the Python used by `analysis/` to 3.12**, the same as the images, for bit-exact replays.

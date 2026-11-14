@@ -230,6 +230,11 @@ def summarize(rows, ref="gemini"):
     return "\n".join(lines)
 
 
+def _guard_runtime():
+    from _runtime import require_runtime_python
+    require_runtime_python()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("policy")
@@ -269,4 +274,5 @@ def main():
 
 
 if __name__ == "__main__":
+    _guard_runtime()
     main()

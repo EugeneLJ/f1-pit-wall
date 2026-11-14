@@ -1,7 +1,9 @@
-# F1 Pit Wall — Championship task (P0: sealed evaluation boundary)
+# F1 Pit Wall — Championship task
+
+**Benchmark version 1.1.0** (`f1pitwall.version`; history in [docs/VERSIONS.md](docs/VERSIONS.md)). Analysis and replays run on Python 3.12, the same as the images (`scripts/py312`).
 
 Harbor task in which an agent runs Apex GP through an eight-race constructors'
-championship. **Status: P1-C.** The sealed evaluation boundary (P0) is verified
+championship. **Status: Track B through B4 (benchmark 1.1.0).** The sealed evaluation boundary (P0) is verified
 on Harbor 0.26.0. Track A long-horizon mechanics (component wear, reliability,
 shared free units, grid penalties, track-dependent performance) are implemented
 and analysed with an exact reduced-season solver. See
@@ -69,7 +71,7 @@ a reference planner and reference-relative regret as a separate report field.
 harbor run -p ./f1-championship -a oracle    # P0 heuristic oracle
 harbor run -p ./f1-championship -a nop       # stop-early / do-nothing
 scripts/make_probe_task.sh /tmp/probe complete && harbor run -p /tmp/probe -a oracle
-python3 -m unittest discover -s devtests -v  # local boundary tests (no Docker)
+scripts/py312 -m unittest discover -s devtests -v  # local tests on the image interpreter (no Docker)
 ```
 
 Edit the engine only in `src/f1pitwall/`, then run `scripts/sync_engine.py`

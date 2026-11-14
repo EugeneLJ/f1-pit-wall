@@ -102,6 +102,11 @@ def penalty_cost_job(args):
     return out
 
 
+def _guard_runtime():
+    from _runtime import require_runtime_python
+    require_runtime_python()
+
+
 def main():
     import scenarios as sc
     from f1pitwall.coefficients import MECHANICS
@@ -145,4 +150,5 @@ def main():
 
 
 if __name__ == "__main__":
+    _guard_runtime()
     main()

@@ -1,0 +1,16 @@
+{
+  "head_hash": "436e1434eb584ea96c5b78106cfe21cfe09f001a100421950e6c1a531da2e52e",
+  "journal_entries": 120,
+  "journal_sha256": "f087635c5e2c2f46a2e800f191637aedca7ae7afb224691e8b7ce15ac8f3229c",
+  "request_stats": {
+    "act_accepted": 120,
+    "act_rejected": 0,
+    "observe": 129,
+    "ping": 530,
+    "protocol_errors": 0,
+    "rejections_not_logged": 0,
+    "rules": 5
+  },
+  "sealed_at": 1794678458.784672,
+  "server_version": "b4-1"
+}

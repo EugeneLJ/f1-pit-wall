@@ -120,6 +120,11 @@ def race_job(args):
     return out
 
 
+def _guard_runtime():
+    from _runtime import require_runtime_python
+    require_runtime_python()
+
+
 def main():
     import scenarios as sc
     parser = argparse.ArgumentParser()
@@ -175,4 +180,5 @@ def summarize(results):
 
 
 if __name__ == "__main__":
+    _guard_runtime()
     main()

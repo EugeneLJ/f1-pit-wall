@@ -1,5 +1,7 @@
 # B4 report — SC/VSC-driven adaptive replanning and an initial frontier probe
 
+> **Benchmark version: 1.0.0.** These results were produced on benchmark 1.0.0 and are kept as historical results. Version 1.1.0 changes only how `f1ctl rules` names the published base paces (see `docs/VERSIONS.md`).
+
 Branch `feature/track-b`. Part A is the implementation and validation. Part B is the exploratory Gemini run and is added after the run.
 
 ## Part A — B4 implementation

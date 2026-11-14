@@ -73,6 +73,11 @@ def job(args):
     return result
 
 
+def _guard_runtime():
+    from _runtime import require_runtime_python
+    require_runtime_python()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("runs")
@@ -126,4 +131,5 @@ def main():
 
 
 if __name__ == "__main__":
+    _guard_runtime()
     main()

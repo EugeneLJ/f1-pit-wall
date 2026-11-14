@@ -1,0 +1,13 @@
+#!/bin/bash
+# Run Python 3.12 (the interpreter of the sim sidecar and verifier images) for analysis and replays.
+# Usage: scripts/py312 analysis/frontier_trace.py ...   |   scripts/py312 -m unittest discover -s devtests
+set -euo pipefail
+if command -v uv >/dev/null 2>&1; then
+  exec uv run --no-project --python 3.12 python "$@"
+elif [ -x "$HOME/.local/bin/uv" ]; then
+  exec "$HOME/.local/bin/uv" run --no-project --python 3.12 python "$@"
+elif command -v python3.12 >/dev/null 2>&1; then
+  exec python3.12 "$@"
+fi
+echo "Python 3.12 not found: install uv (https://docs.astral.sh/uv/) or python3.12" >&2
+exit 1

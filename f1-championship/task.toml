@@ -7,7 +7,7 @@ service = "sim"
 
 [task]
 name = "EugeneLJ/f1-championship"
-version = "0.1.0"
+version = "1.1.0"
 description = "Run an eight-race F1 constructors' championship for two coupled drivers through a sealed simulator sidecar."
 keywords = ["f1", "strategy", "planning", "multi-agent-coordination", "custom-verifier"]
 

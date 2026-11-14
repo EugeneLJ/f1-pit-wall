@@ -38,6 +38,11 @@ def job(args):
     return ft.q_eval(node, keys, futures)
 
 
+def _guard_runtime():
+    from _runtime import require_runtime_python
+    require_runtime_python()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("evidence")
@@ -86,4 +91,5 @@ def main():
 
 
 if __name__ == "__main__":
+    _guard_runtime()
     main()

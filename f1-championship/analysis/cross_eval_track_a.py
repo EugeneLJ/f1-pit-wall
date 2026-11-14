@@ -29,6 +29,11 @@ def world_job(args):
     return {"scenario": spec["id"].split("-")[0], "world": tag, "values": values}
 
 
+def _guard_runtime():
+    from _runtime import require_runtime_python
+    require_runtime_python()
+
+
 def main():
     import scenarios as sc
     data = json.loads((HERE / "results" / "track_a_p1.json").read_text())
@@ -76,4 +81,5 @@ def main():
 
 
 if __name__ == "__main__":
+    _guard_runtime()
     main()

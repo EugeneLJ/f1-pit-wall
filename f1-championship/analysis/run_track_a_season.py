@@ -103,6 +103,11 @@ def hindsight_job(args):
             "seconds": round(time.time() - started, 1)}
 
 
+def _guard_runtime():
+    from _runtime import require_runtime_python
+    require_runtime_python()
+
+
 def main():
     import scenarios as sc
     import season_planner as sp
@@ -153,4 +158,5 @@ def main():
 
 
 if __name__ == "__main__":
+    _guard_runtime()
     main()

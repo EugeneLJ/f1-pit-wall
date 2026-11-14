@@ -599,6 +599,27 @@ class ProviderContractTests(unittest.TestCase):
             PR.verify_model_available(Lister(), "deepseek-flash", "B6_TEST_KEY_A")
         self.assertTrue(PR.verify_model_available(Lister(), "deepseek-4-1-flash-1017", "B6_TEST_KEY_A")["available"])
 
+    def test_cost_ceiling_aborts_cleanly_and_prefix_replays(self):
+        guard = PR.CostGuard(usd_limit=0.01)
+        pol = P.scripted("baseline")
+
+        class Replier:
+            def complete(self, *, prompt, **kw):
+                obs = json.loads(prompt.split("OBSERVATION=", 1)[1])
+                return {"text": json.dumps(pol(obs)), "model": "m", "request_id": "r", "status": 200,
+                        "usage": {"input_tokens": 3000, "output_tokens": 100, "thinking_tokens": 400}}
+        chief = PR.GuardedChief(PR.redbool_chief(api_key_env="B6_TEST_KEY_B", transport=Replier()), guard,
+                                PR.VERDA_DEEPSEEK_PRICE_2026_11_14)
+        seen = []
+        out = M.run_season(C.two_team(1), 4, {"McLearn Racing": pol, "Red Bool Racing": chief},
+                           observer=seen.append, abort_on=(PR.BudgetExceeded,))
+        self.assertIsNotNone(out["aborted"])
+        self.assertFalse(out["complete"])
+        self.assertGreaterEqual(guard.ceiling_usd, 0.01)
+        self.assertEqual(len(seen), len([e for e in out["journal"] if e["kind"] == "resolved"]))
+        V.replay(C.two_team(1), 4, out["journal"], require_complete=False)
+        self.assertEqual(guard.tokens["chief:Red Bool Racing"]["thinking"], 400 * guard.calls["chief:Red Bool Racing"])
+
     def test_runner_falls_back_on_provider_failure(self):
         failing = PR.redbool_chief(api_key_env="B6_TEST_KEY_B",
                                    transport=FakeChat([PR.ProviderError("http_error", 403)] * 200))

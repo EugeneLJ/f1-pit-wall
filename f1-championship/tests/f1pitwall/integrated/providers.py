@@ -63,12 +63,94 @@ class PriceSnapshot:
         if inp is None or out is None:
             return None
         cached = usage.get("cached_input_tokens") or 0
+        out += usage.get("thinking_tokens") or 0  # Gemini bills thinking tokens as output
         return round((inp - cached) / 1e6 * self.input_per_mtok + cached / 1e6 * self.cached_input_per_mtok
                      + out / 1e6 * self.output_per_mtok, 8)
 
 
 VERDA_DEEPSEEK_PRICE_2026_11_14 = PriceSnapshot("2026-11-14", "USD", 0.15, 0.60, 0.006,
                                                 "docs/TRACK_C_VERDA_INFERENCE.md public price snapshot")
+# https://ai.google.dev/gemini-api/docs/pricing (read 2026-11-14). 3.8 Flash: introductory
+# 0.75/3.75 until 2026-12-31, standard 1.50/7.50 from 2027-01-01; 3.5 Flash-Lite 0.30/2.50.
+GEMINI_38_FLASH_PRICE_2026_11_14 = PriceSnapshot("2026-11-14", "USD", 0.75, 3.75, 0.0,
+                                                 "ai.google.dev pricing, introductory standard tier")
+GEMINI_38_FLASH_CEILING_PRICE = PriceSnapshot("2026-11-14", "USD", 1.50, 7.50, 0.0,
+                                              "ai.google.dev pricing, 2027 standard tier (conservative)")
+GEMINI_35_FLASH_LITE_PRICE_2026_11_14 = PriceSnapshot("2026-11-14", "USD", 0.30, 2.50, 0.0,
+                                                      "ai.google.dev pricing, standard tier")
+
+
+class BudgetExceeded(RuntimeError):
+    """Raised before a call when the run's cost ceiling has been reached (clean abort)."""
+
+
+class CostGuard:
+    """Shared run budget. Every call is charged at a conservative ceiling price; when the
+    accumulated ceiling cost reaches the limit, the next call is refused before it is sent."""
+
+    def __init__(self, usd_limit: float) -> None:
+        self.usd_limit = float(usd_limit)
+        self.ceiling_usd = 0.0
+        self.estimated_usd = 0.0
+        self.calls: Dict[str, int] = {}
+        self.tokens: Dict[str, Dict[str, int]] = {}
+
+    def check(self, who: str) -> None:
+        if self.ceiling_usd >= self.usd_limit:
+            raise BudgetExceeded(f"cost ceiling USD {self.usd_limit} reached before call by {who}")
+
+    def charge(self, who: str, usage: Dict[str, Any], price: PriceSnapshot, ceiling: PriceSnapshot) -> None:
+        self.calls[who] = self.calls.get(who, 0) + 1
+        bucket = self.tokens.setdefault(who, {"input": 0, "output": 0, "thinking": 0})
+        bucket["input"] += usage.get("input_tokens") or 0
+        bucket["output"] += usage.get("output_tokens") or 0
+        bucket["thinking"] += usage.get("thinking_tokens") or 0
+        self.estimated_usd += price.estimate(usage) or 0.0
+        self.ceiling_usd += ceiling.estimate(usage) or 0.0
+
+    def summary(self) -> Dict[str, Any]:
+        return {"usd_limit": self.usd_limit, "estimated_usd": round(self.estimated_usd, 6),
+                "ceiling_basis_usd": round(self.ceiling_usd, 6), "calls": dict(self.calls),
+                "tokens": {k: dict(v) for k, v in self.tokens.items()}}
+
+
+class GuardedChief:
+    """LLMChief under a CostGuard (a failed call with usage is still charged)."""
+
+    def __init__(self, chief: "LLMChief", guard: CostGuard, ceiling: PriceSnapshot) -> None:
+        self.chief, self.guard, self.ceiling = chief, guard, ceiling
+        self.team = chief.team
+
+    def __call__(self, observation):
+        who = f"chief:{self.chief.team}"
+        self.guard.check(who)
+        try:
+            action, meta = self.chief(observation)
+        except Exception as exc:
+            meta = getattr(exc, "metadata", {})
+            if meta.get("usage"):
+                self.guard.charge(who, meta["usage"], self.chief.price, self.ceiling)
+            raise
+        self.guard.charge(who, meta.get("usage", {}), self.chief.price, self.ceiling)
+        meta["run_cost_so_far"] = self.guard.summary()["estimated_usd"]
+        return action, meta
+
+
+class GuardedEngineer:
+    """Track C GeminiEngineerProvider under a CostGuard."""
+
+    def __init__(self, provider: Any, guard: CostGuard, team: str) -> None:
+        self.provider, self.guard, self.team = provider, guard, team
+        self.engineer_id = provider.engineer_id
+
+    def recommend(self, observation):
+        who = f"engineer:{self.team}:{self.engineer_id}"
+        self.guard.check(who)
+        recommendation, meta = self.provider.recommend(observation)
+        self.guard.charge(who, meta.get("usage", {}), GEMINI_35_FLASH_LITE_PRICE_2026_11_14,
+                          GEMINI_35_FLASH_LITE_PRICE_2026_11_14)
+        meta["estimated_cost_usd"] = GEMINI_35_FLASH_LITE_PRICE_2026_11_14.estimate(meta.get("usage", {}))
+        return recommendation, meta
 
 
 class ProviderError(RuntimeError):
@@ -137,12 +219,19 @@ class GoogleChatTransport:
         config = types.GenerateContentConfig(response_mime_type="application/json",
                                              temperature=sampling.get("temperature", 0.0),
                                              max_output_tokens=sampling.get("max_output_tokens", 1024))
-        response = client.models.generate_content(model=model, contents=prompt, config=config)
+        try:
+            response = client.models.generate_content(model=model, contents=prompt, config=config)
+        except Exception as exc:  # map SDK errors onto the provider error contract (retry policy)
+            code = getattr(exc, "code", None)
+            if isinstance(code, int):
+                raise ProviderError("http_error", code) from None
+            raise ProviderError("network_or_timeout") from exc
         usage = getattr(response, "usage_metadata", None)
         return {"text": response.text, "model": getattr(response, "model_version", None),
                 "request_id": getattr(response, "response_id", None), "status": 200,
                 "usage": {"input_tokens": getattr(usage, "prompt_token_count", None),
                           "output_tokens": getattr(usage, "candidates_token_count", None),
+                          "thinking_tokens": getattr(usage, "thoughts_token_count", None),
                           "cached_input_tokens": getattr(usage, "cached_content_token_count", None),
                           "total_tokens": getattr(usage, "total_token_count", None)}}
 
@@ -203,7 +292,13 @@ class LLMChief:
         meta["estimated_cost"] = None if self.price is None else {
             "amount": self.price.estimate(meta["usage"]), "currency": self.price.currency,
             "price_snapshot_date": self.price.date}
-        action = parse_action(response.get("text"))
+        meta["raw_text"] = (response.get("text") or "")[:4000]
+        try:
+            action = parse_action(response.get("text"))
+        except ValueError as exc:
+            meta["status"] = "INVALID_OUTPUT"
+            exc.metadata = meta
+            raise
         meta["status"] = "VALID_JSON"
         return action, meta
 

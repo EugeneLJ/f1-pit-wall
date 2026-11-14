@@ -38,17 +38,25 @@ class ReplayPolicy:
 
 def run_season(config: IntegratedConfig, base_seed: int, policies: Dict[str, Policy],
                engineer_broker: Any = None, coeffs: Optional[dict] = None,
-               timeout_sec: Optional[float] = None) -> Dict[str, Any]:
-    """Play one full championship. A policy returns an action, or (action, metadata)."""
+               timeout_sec: Optional[float] = None, observer: Optional[Callable[[Dict[str, Any]], None]] = None,
+               abort_on: tuple = ()) -> Dict[str, Any]:
+    """Play one full championship. A policy returns an action, or (action, metadata).
+    `observer` receives every tick (team observations, provenance, new journal entries) as it
+    resolves. An exception whose type is in `abort_on` (e.g. a cost ceiling) stops the season
+    cleanly at the open tick: nothing of that tick is applied, and the journal stays a valid
+    prefix that replays exactly."""
     if set(policies) != {t.label for t in config.teams}:
         raise ValueError("one policy per controlled team is required")
     session = IntegratedSession(config, base_seed, coeffs=coeffs, engineer_broker=engineer_broker)
     limit = timeout_sec if timeout_sec is not None else config.decision_timeout_sec
     provenance: List[Dict[str, Any]] = []
-    while session.decision_type != CHAMPIONSHIP_COMPLETE:
+    aborted = None
+    while session.decision_type != CHAMPIONSHIP_COMPLETE and aborted is None:
         tick, failures = session.tick_id, {}
+        tick_obs, tick_prov, journal_before = {}, [], len(session.journal)
         for label in sorted(policies):  # order of calls cannot leak: each sees only its snapshot
             obs = session.observation(label)
+            tick_obs[label] = obs
             started = time.monotonic()
             meta: Dict[str, Any] = {}
             try:
@@ -61,19 +69,28 @@ def run_season(config: IntegratedConfig, base_seed: int, policies: Dict[str, Pol
                 else:
                     session.submit(label, tick, action, submitted_via=meta.get("submitted_via", "runner"))
                     status = "SUBMITTED"
+            except abort_on as exc:  # clean abort: the tick is not resolved
+                aborted = {"tick_id": tick, "team": label, "reason": f"{type(exc).__name__}: {exc}"}
+                break
             except TickError as exc:
                 failures[label], status, meta = INVALID, "INVALID", {**meta, "error": str(exc)}
             except Exception as exc:  # provider/policy failure -> published fallback
                 meta = {**meta, **getattr(exc, "metadata", {}), "error": type(exc).__name__,
                         "error_kind": getattr(exc, "kind", None)}
                 failures[label], status = INVALID, "POLICY_ERROR"
-            provenance.append({"tick_id": tick, "team": label, "status": status,
-                               "latency_ms": round((time.monotonic() - started) * 1000, 3),
-                               "metadata": _strip(meta)})
+            entry = {"tick_id": tick, "team": label, "status": status,
+                     "latency_ms": round((time.monotonic() - started) * 1000, 3), "metadata": _strip(meta)}
+            provenance.append(entry)
+            tick_prov.append(entry)
+        if aborted is not None:
+            break
         if failures:
             reason = TIMEOUT if TIMEOUT in failures.values() else INVALID
             session.close_tick(tick, reason=reason)
-    return {"config": config.as_dict(), "config_hash": config.config_hash(), "base_seed_id": _seed_id(base_seed),
+        if observer is not None:
+            observer({"tick_id": tick, "observations": tick_obs, "provenance": tick_prov,
+                      "journal_entries": session.journal[journal_before:]})
+    return {"aborted": aborted, "complete": session.decision_type == CHAMPIONSHIP_COMPLETE,"config": config.as_dict(), "config_hash": config.config_hash(), "base_seed_id": _seed_id(base_seed),
             "rival_condition": config.rival_condition, "standings": session.standings(),
             "race_results": session.race_results, "journal": session.journal, "provenance": provenance}
 

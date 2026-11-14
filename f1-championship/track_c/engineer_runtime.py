@@ -136,6 +136,7 @@ class GoogleGenAITransport:
             "usage": {
                 "input_tokens": getattr(usage, "prompt_token_count", None),
                 "output_tokens": getattr(usage, "candidates_token_count", None),
+                "thinking_tokens": getattr(usage, "thoughts_token_count", None),
                 "total_tokens": getattr(usage, "total_token_count", None),
             },
             "estimated_cost_usd": None,

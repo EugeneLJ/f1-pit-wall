@@ -1,0 +1,1 @@
+{"cost": {"calls": {"chief:McLearn Racing": 120, "chief:Red Bool Racing": 120}, "ceiling_basis_usd": 1.919404, "estimated_usd": 0.979995, "tokens": {"chief:McLearn Racing": {"input": 432055, "output": 8110, "thinking": 155988}, "chief:Red Bool Racing": {"input": 421013, "output": 5153, "thinking": 0}}, "usd_limit": 5.0}, "tick_id": "t120", "time": 1794697499.5115042}

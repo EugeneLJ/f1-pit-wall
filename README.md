@@ -49,7 +49,9 @@ harbor --version
 ```
 
 The repository follows `harbor task init` from 0.26.0: schema 1.4, an agent
-environment, and a separate verifier image. Run:
+environment, and a separate verifier image. The agent image pins OpenCode
+`1.19.5` so setup remains compatible with the task's offline network policy.
+Run:
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_local.py' -v

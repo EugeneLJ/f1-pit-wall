@@ -81,6 +81,27 @@ RECOMMENDATION_SCHEMA = {
 }
 
 
+# Additive v2 contract for the integrated championship (benchmark 2.0.0): the pit choice is any
+# legal compound action of the observation, and an Engineer may instead ask the Chief to
+# prioritize its assigned driver (a team-order request; only the Chief can issue orders).
+TEAM_ORDER_REQUESTS = ("PRIORITIZE_ASSIGNED_DRIVER", "NO_TEAM_ORDER")
+RECOMMENDATION_SCHEMA_V2 = copy.deepcopy(RECOMMENDATION_SCHEMA)
+RECOMMENDATION_SCHEMA_V2["properties"]["proposed_action"] = {
+    "type": "object", "additionalProperties": False,
+    "required": ["type", "driver"],
+    "properties": {
+        "type": {"type": "string", "enum": ["RACE_STRATEGY", "TEAM_ORDER"]},
+        "driver": {"type": "string", "enum": ["driver_a", "driver_b"]},
+        "choice": {"type": "string", "enum": ["STAY", "PIT_SOFT", "PIT_MEDIUM", "PIT_HARD"]},
+        "order": {"type": "string", "enum": list(TEAM_ORDER_REQUESTS)},
+    },
+}
+
+
+def schema_for(observation: dict[str, Any]) -> dict[str, Any]:
+    return RECOMMENDATION_SCHEMA_V2 if observation.get("runtime_schema_version") == 2 else RECOMMENDATION_SCHEMA
+
+
 class LiveTransport(Protocol):
     def generate(
         self, *, api_key: str, model: str, prompt: str,
@@ -128,6 +149,10 @@ def format_runtime_observation(
     local = build_engineer_observation(chief_observation, engineer_id)
     driver_id = local["assigned_driver"]["key"]
     team_context = chief_observation.get("team_context", {})
+    if chief_observation.get("contract_version") == 2:
+        local["runtime_schema_version"] = 2
+        if not team_context:
+            team_context = _integrated_team_context(chief_observation)
     if team_context and not isinstance(team_context, dict):
         raise ValueError("public team context must be an object")
     instructions = team_context.get("public_instructions", [])
@@ -142,6 +167,21 @@ def format_runtime_observation(
         ],
     }
     return local
+
+
+def _integrated_team_context(chief_observation: dict[str, Any]) -> dict[str, Any]:
+    """Public team context of an integrated observation: the commitment roles of each driver
+    (never the teammate's telemetry or the other Engineer's report)."""
+    orders = chief_observation.get("team_orders") or {}
+    commitment = orders.get("commitment")
+    commitments = []
+    if isinstance(commitment, dict):
+        for role in ("promoted", "yielded"):
+            commitments.append({"driver_id": commitment[role], "role": role,
+                                "objective": commitment["objective"], "status": commitment["status"],
+                                "deadline_lap": commitment["deadline_lap"]})
+    return {"public_instructions": ["maximize the team's Constructors' points"],
+            "public_commitments": commitments}
 
 
 def observation_hash(observation: dict[str, Any]) -> str:
@@ -159,7 +199,16 @@ def validate_runtime_recommendation(
     if value["engineer_id"] != engineer_id or value["driver_id"] != driver_id:
         raise ValueError("recommendation identity does not match provider")
     action = value["proposed_action"]
-    if (not isinstance(action, dict) or set(action) != {"type", "driver", "choice"}
+    if observation.get("runtime_schema_version") == 2:
+        legal = observation["race_context"].get("legal_actions", [])
+        valid = isinstance(action, dict) and action.get("driver") == driver_id and (
+            (set(action) == {"type", "driver", "choice"} and action.get("type") == "RACE_STRATEGY"
+             and action.get("choice") in legal)
+            or (set(action) == {"type", "driver", "order"} and action.get("type") == "TEAM_ORDER"
+                and action.get("order") in TEAM_ORDER_REQUESTS))
+        if not valid:
+            raise ValueError("invalid proposed action")
+    elif (not isinstance(action, dict) or set(action) != {"type", "driver", "choice"}
             or action.get("type") != "RACE_STRATEGY" or action.get("driver") != driver_id
             or action.get("choice") not in {"PIT", "STAY"}):
         raise ValueError("invalid proposed action")
@@ -198,23 +247,38 @@ def validate_runtime_recommendation(
 
 
 class MockRuntimeProvider:
-    def __init__(self, engineer_id: str, *, confidence: float = 0.7) -> None:
+    def __init__(self, engineer_id: str, *, confidence: float = 0.7,
+                 proposal: str = "local_pit") -> None:
         if engineer_id not in ENGINEERS:
             raise ValueError("unknown engineer")
         if not 0 <= confidence <= 1:
             raise ValueError("invalid mock confidence")
+        if proposal not in ("local_pit", "claim_priority"):
+            raise ValueError("unknown mock proposal mode")
         self.engineer_id = engineer_id
         self.confidence = confidence
+        self.proposal = proposal
 
     def recommend(self, observation: dict[str, Any]) -> dict[str, Any]:
         driver_id = ENGINEERS[self.engineer_id][0]
         state = observation["race_context"]["assigned_driver_state"]
         tyre_age = state.get("tyre_age")
         choice = "PIT" if isinstance(tyre_age, (int, float)) and tyre_age >= 12 else "STAY"
+        proposed = {"type": "RACE_STRATEGY", "driver": driver_id, "choice": choice}
+        if observation.get("runtime_schema_version") == 2:
+            context = observation["race_context"]
+            if self.proposal == "claim_priority":
+                proposed = {"type": "TEAM_ORDER", "driver": driver_id, "order": "PRIORITIZE_ASSIGNED_DRIVER"}
+            elif choice == "PIT":
+                remaining = context.get("laps_remaining", 0)
+                compound = "SOFT" if remaining <= 6 else "MEDIUM" if remaining <= 14 else "HARD"
+                if state.get("compounds_used") == [compound]:
+                    compound = "MEDIUM" if compound != "MEDIUM" else "HARD"
+                proposed["choice"] = f"PIT_{compound}"
         value = {
             "engineer_id": self.engineer_id,
             "driver_id": driver_id,
-            "proposed_action": {"type": "RACE_STRATEGY", "driver": driver_id, "choice": choice},
+            "proposed_action": proposed,
             "supporting_evidence": [{
                 "field": "race_context.assigned_driver_state.tyre_age",
                 "observed_value": tyre_age,
@@ -225,7 +289,8 @@ class MockRuntimeProvider:
                 "basis": "deterministic mock fixture, not a calibrated expectation",
             },
             "confidence": {"value": self.confidence, "kind": "self_reported"},
-            "reasoning_summary": f"Local public tyre evidence supports {choice} for {driver_id}.",
+            "reasoning_summary": (f"Local public tyre evidence supports {proposed.get('choice', proposed.get('order'))} "
+                                  f"for {driver_id}."),
             "observation_hash": observation_hash(observation),
         }
         return validate_runtime_recommendation(value, observation, self.engineer_id)
@@ -268,7 +333,7 @@ class GeminiEngineerProvider:
             try:
                 response = self.transport.generate(
                     api_key=api_key, model=self.model, prompt=prompt,
-                    response_schema=RECOMMENDATION_SCHEMA, sampling=self.sampling,
+                    response_schema=schema_for(observation), sampling=self.sampling,
                 )
                 parsed = json.loads(response["text"])
                 recommendation = validate_runtime_recommendation(
@@ -418,7 +483,9 @@ class EngineerRuntimeHarness:
                     )
             else:
                 confidence = 0.95 if condition == "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL" else 0.7
-                provider = MockRuntimeProvider(engineer_id, confidence=confidence)
+                proposal = ("claim_priority" if condition == "CONFLICTING_LOCAL_RECOMMENDATIONS"
+                            and observation.get("runtime_schema_version") == 2 else "local_pit")
+                provider = MockRuntimeProvider(engineer_id, confidence=confidence, proposal=proposal)
                 record = run_provider_safely(provider, observation, source="MOCK")
                 record["runtime"]["confidence_condition"] = (
                     "high_self_reported_uncalibrated"
@@ -445,7 +512,8 @@ def measure_engineer_usage(
         matches = None
         if available and chief_action is not None:
             proposed = recommendation["proposed_action"]
-            matches = chief_action.get(proposed["driver"]) == proposed["choice"]
+            if "choice" in proposed:
+                matches = chief_action.get(proposed["driver"]) == proposed["choice"]
         measurements.append({
             "engineer_id": record.get("engineer_id"),
             "recommendation_available": available,

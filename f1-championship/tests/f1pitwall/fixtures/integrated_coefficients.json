@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_placeholder",
+  "benchmark_version": "2.0.0",
+  "note": "Team-order extension of the Track B race engine (B6). Values are synthetic placeholders chosen before any agent was evaluated and are NOT tuned to create failures. Where a Track C reduced-model value maps directly, it is reused (track_c/fixtures/coordination_scenarios.json). Everything else (tyres, pit loss, SC/VSC, overtaking, points) is the unchanged 1.1.0 model.",
+  "team_orders": {
+    "exchange": {
+      "description": "SWAP and REQUEST_GIVE_BACK. During one GREEN segment the car ahead lifts by exactly the time the car behind needs to get by (its own segment deficit incl. dirty air, plus pass_loss_sec and the minimum gap) plus clearance_sec. If that lift would exceed max_lift_sec the manoeuvre is aborted after lifting max_lift_sec and the exchange FAILS (time is still lost). The pass between the two teammates only needs the normal minimum gap (cooperative); every other car still needs the full overtaking margin, including against the lifting car, so a close rival behind can gain or pass.",
+      "max_lift_sec": 2.0,
+      "max_lift_rationale": "An exchange is a short manoeuvre inside one 3-lap segment; letting by a car that is more than about 2 s slower over the segment is treated as not completable. Set before any agent evaluation.",
+      "max_gap_sec": 1.5,
+      "max_gap_source": "track_c mechanics.max_swap_gap",
+      "clearance_sec": 0.5,
+      "pass_loss_sec": 0.2,
+      "pass_loss_source": "track_c mechanics.base_swap_loss",
+      "safe_rear_gap_sec": 0.8,
+      "safe_rear_gap_source": "track_c mechanics.safe_give_back_gap",
+      "requires": ["track status GREEN", "neither teammate pits at this decision", "teammates adjacent in the running order", "gap <= max_gap_sec"]
+    },
+    "hold": {
+      "description": "HOLD and KEEP_ORDER: the car behind may not pass its teammate this segment (it is held min_gap behind)."
+    },
+    "defensive_buffer": {
+      "description": "The car behind holds station behind its teammate and defends against the next car: it loses loss_sec_per_segment, and a non-teammate directly behind it needs pass_bonus_sec extra margin to pass it this segment.",
+      "loss_sec_per_segment": 0.35,
+      "loss_source": "track_c mechanics.defensive_buffer_time_loss",
+      "pass_bonus_sec": 1.0,
+      "pass_bonus_rationale": "Track C's buffer always protected the leader within its window at a fixed time cost. Here it is not absolute: defending is modelled as making the track 0.5 overtaking-difficulty units harder (0.5 x pass_scale_sec 2.0 = 1.0 s) for the one car directly behind. Set before any agent evaluation."
+    },
+    "neutralized": "Under SC/VSC no car can pass (unchanged 1.1.0 rule), so an exchange requested under SC/VSC is DELAYED and must be requested again; HOLD/KEEP_ORDER/DEFENSIVE_BUFFER have no effect under SC/VSC.",
+    "commitment": {
+      "objective": "PASS_CAR_AHEAD: after a successful SWAP, the promoted car must finish a decision ahead of the car that was directly ahead of the pair when the exchange started.",
+      "deadline": "deadline_lap; from the first decision at or after it the commitment is DUE and the team must answer KEEP_ORDER or REQUEST_GIVE_BACK.",
+      "no_points_penalty": "Breaking a commitment has no points or time penalty. Only the racing consequences of the orders count."
+    }
+  }
+}

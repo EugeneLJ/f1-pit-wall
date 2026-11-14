@@ -47,9 +47,13 @@ def build_engineer_observation(
     if not isinstance(drivers, dict) or driver_key not in drivers:
         raise ValueError("assigned driver is absent from the public race observation")
 
+    # Integrated contract (v2, benchmark 2.0.0): the team and driver names come from the
+    # team-local observation; v1 observations keep the original Apex naming.
+    team = chief_observation.get("team", "Apex") if chief_observation.get("contract_version") == 2 else "Apex"
+    driver_name = drivers[driver_key].get("name", driver_name)
     public_classification = []
     for entry in progress.get("classification", []):
-        if entry.get("driver") == driver_name or entry.get("team") != "Apex":
+        if entry.get("driver") == driver_name or entry.get("team") != team:
             public_classification.append(copy.deepcopy(entry))
     observation = {
         "schema_version": 1,
@@ -66,6 +70,9 @@ def build_engineer_observation(
             "assigned_driver_state": copy.deepcopy(drivers[driver_key]),
             "public_rivals": public_classification,
             "legal_actions": copy.deepcopy(progress.get("legal_actions", [])),
+            **{key: copy.deepcopy(progress[key]) for key in (
+                "laps_remaining", "segment_laps", "tyre_life_laps", "neutralization", "event_model")
+               if key in progress},
         },
         "information_boundary": {
             "teammate_telemetry_visible": False,

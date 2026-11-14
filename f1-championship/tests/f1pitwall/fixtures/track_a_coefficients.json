@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_placeholder",
+  "note": "Every number here is a synthetic placeholder chosen for plausibility, not fitted to real F1 data. Calibrate later; code reads only this file.",
+  "components": {
+    "names": ["ICE", "turbo", "energy_store"],
+    "wear_per_unit_stress": {"ICE": 0.22, "turbo": 0.18, "energy_store": 0.14},
+    "max_wear_for_use": 0.90,
+    "pace_loss_sec_per_lap": {
+      "formula": "sum_c k_c * power_unit_stress * wear_c^2",
+      "k": {"ICE": 0.30, "turbo": 0.20, "energy_store": 0.15}
+    },
+    "reliability": {
+      "formula": "p_dnf = base + sum_c r_c * power_unit_stress * max(0, wear_c - onset)^2, capped",
+      "base": 0.02,
+      "onset": 0.50,
+      "r": {"ICE": 1.20, "turbo": 0.80, "energy_store": 0.60},
+      "cap": 0.60
+    }
+  },
+  "allocation": {
+    "free_units_per_team": 4,
+    "free_units_are_shared_between_drivers": true,
+    "grid_drop_when_no_free_unit": {"ICE": 4, "turbo": 2, "energy_store": 2}
+  },
+  "track_performance": {
+    "tyre_degradation_multiplier": {"formula": "0.5 + tyre_degradation"},
+    "overtaking": {
+      "formula": "a following car completes a pass in a segment only if it would finish the segment at least pass_base + overtaking_difficulty * pass_scale seconds ahead; otherwise it is held min_gap behind",
+      "min_gap_sec": 0.30,
+      "pass_base_sec": 0.20,
+      "pass_scale_sec": 2.00,
+      "dirty_air": "configured races replace the legacy positional traffic term with a dirty-air loss for any car starting a segment within dirty_air_gap_sec of the car ahead",
+      "dirty_air_gap_sec": 1.00,
+      "dirty_air_loss_sec_per_lap": 0.15,
+      "fixed_difficulty": null
+    },
+    "team_archetype_pace_offset_sec_per_lap": {
+      "note": "Published performance profile. Each team's offsets average to zero across the five archetypes, so no team gains on average.",
+      "Apex":   {"street": -0.15, "high_speed": 0.10, "high_degradation": -0.05, "wet_prone": 0.05, "mixed": 0.05},
+      "Orion":  {"street": 0.15, "high_speed": -0.15, "high_degradation": 0.05, "wet_prone": 0.00, "mixed": -0.05},
+      "Nova":   {"street": 0.05, "high_speed": 0.05, "high_degradation": -0.15, "wet_prone": -0.05, "mixed": 0.10},
+      "Vertex": {"street": -0.05, "high_speed": 0.00, "high_degradation": 0.10, "wet_prone": -0.15, "mixed": 0.10}
+    }
+  },
+  "rival_component_policy": {
+    "rule": "before each race, replace any component with wear >= threshold (or above max_wear_for_use), using free units while they last",
+    "threshold": 0.65
+  }
+}

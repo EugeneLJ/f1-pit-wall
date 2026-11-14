@@ -39,7 +39,22 @@ Each race has two phases:
 
 Future track status (GREEN/VSC/SC) is seeded and hidden until its decision.
 Points from both Apex cars count; the objective is the team's season total,
-not either driver's result. Keep acting until `decision_type` is
+not either driver's result.
+
+Season rules that carry over from race to race (exact formulas and
+coefficients are in `f1ctl rules` under `track_a_model`):
+
+- Component wear grows after every race with the track's `power_unit_stress`,
+  regardless of what happens in the race. Worn components make the car slower and
+  raise its retirement probability; a component above the wear limit cannot be used.
+- Apex has a small pool of free replacement units shared by both drivers. A
+  replacement without a free unit costs that driver grid places for that race.
+- Tracks differ in power-unit stress, overtaking difficulty, tyre degradation,
+  and each team's published pace profile. The full remaining calendar is public.
+- Each observation shows both Apex cars' current projections, the cost of a
+  replacement, and rivals' public component usage and published pace.
+- Retirements and track status come from seeded draws that do not depend on
+  your actions. Keep acting until `decision_type` is
 `CHAMPIONSHIP_COMPLETE`. An unfinished championship scores zero.
 
 Scoring is done by an isolated verifier that replays the simulator's own

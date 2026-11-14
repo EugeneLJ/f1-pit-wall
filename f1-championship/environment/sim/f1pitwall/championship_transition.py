@@ -1,53 +1,101 @@
-"""Deterministic synthetic race-to-race championship transitions."""
+"""Deterministic race-to-race championship transitions (Track A rules).
+
+Rules (coefficients in fixtures/track_a_coefficients.json, all synthetic):
+- Each driver has ICE, turbo and energy_store. Wear accrues after every race in
+  proportion to the track's power_unit_stress and never depends on race events.
+- USE is legal while wear <= max_wear_for_use; REPLACE is always legal.
+- REPLACE consumes a free unit from the team pool (shared by both drivers) if one
+  is left; otherwise it costs a component-specific grid drop for that race.
+- Rivals follow a public threshold rule.
+"""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Dict, List, Mapping, Optional
 
+from . import coefficients as coef
 from .championship import ChampionshipState, TEAM_DRIVERS
 
-# Synthetic placeholders, not measurements from real Formula 1 data.
-SYNTHETIC_RULES = {
-    "free_replacements_per_component": 1,
-    "excess_replacement_grid_drop": 5,
-    "maximum_wear_for_use": 0.85,
-    "wear_factor": {"ICE": 0.16, "turbo": 0.13, "energy_store": 0.10},
-}
+SPARES = "component_spares"
 
 
 @dataclass(frozen=True)
 class RaceStartConditions:
     race_index: int
     race_name: str
-    grid_drop_positions: dict[str, int]
+    grid_drop_positions: Dict[str, int]
     applied_to_grid: bool
 
 
-def default_component_decisions(state: ChampionshipState) -> list[dict[str, str]]:
-    """Return an explicit USE decision for every driver/component pair."""
+def driver_team(driver: str) -> str:
+    for team, drivers in TEAM_DRIVERS.items():
+        if driver in drivers:
+            return team
+    raise ValueError("unknown driver")
+
+
+def pool_key(driver: str, coeffs: Mapping[str, Any]) -> str:
+    return SPARES if coeffs["allocation"]["free_units_are_shared_between_drivers"] else f"{SPARES}:{driver}"
+
+
+def free_units(state: ChampionshipState, driver: str, coeffs: Mapping[str, Any]) -> int:
+    return state.resource_inventory[driver_team(driver)][pool_key(driver, coeffs)]
+
+
+def initial_inventory(coeffs: Mapping[str, Any]) -> Dict[str, Dict[str, int]]:
+    units = coeffs["allocation"]["free_units_per_team"]
+    inventory = {}
+    for team, drivers in TEAM_DRIVERS.items():
+        if coeffs["allocation"]["free_units_are_shared_between_drivers"]:
+            inventory[team] = {SPARES: units}
+        else:
+            inventory[team] = {f"{SPARES}:{drivers[0]}": units - units // 2,
+                               f"{SPARES}:{drivers[1]}": units // 2}
+        inventory[team]["development_units"] = 100
+    return inventory
+
+
+def default_component_decisions(state: ChampionshipState) -> List[Dict[str, str]]:
     return [{"driver": driver, "component": component, "action": "USE"}
             for driver, components in state.power_units.items() for component in components]
 
 
-def available_component_actions(state: ChampionshipState, driver: str) -> dict[str, list[str]]:
-    state.validate()
+def available_component_actions(state: ChampionshipState, driver: str,
+                                coeffs: Mapping[str, Any] = coef.DEFAULT) -> Dict[str, List[str]]:
     if driver not in state.power_units:
         raise ValueError("unknown driver")
-    team = _driver_team(driver)
-    spares = state.resource_inventory[team]["component_spares"]
-    available = {}
-    for name, component in state.power_units[driver].items():
-        actions = []
-        if component.wear <= SYNTHETIC_RULES["maximum_wear_for_use"]:
-            actions.append("USE")
-        if spares > 0:
-            actions.append("REPLACE")
-        available[name] = actions
-    return available
+    limit = coef.max_wear_for_use(coeffs)
+    return {name: (["USE", "REPLACE"] if component.wear <= limit else ["REPLACE"])
+            for name, component in state.power_units[driver].items()}
 
 
-def prepare_race(state: ChampionshipState, decisions: Any) -> RaceStartConditions:
+def replacement_cost(state: ChampionshipState, driver: str, component: str,
+                     coeffs: Mapping[str, Any] = coef.DEFAULT, already_used: int = 0) -> Dict[str, Any]:
+    """Public cost of replacing one component, given `already_used` units this race."""
+    if free_units(state, driver, coeffs) - already_used > 0:
+        return {"uses_free_unit": True, "grid_drop": 0}
+    return {"uses_free_unit": False, "grid_drop": coef.grid_drop(component, coeffs)}
+
+
+def rival_component_decisions(state: ChampionshipState,
+                              coeffs: Mapping[str, Any] = coef.DEFAULT) -> List[Dict[str, str]]:
+    """Public threshold rule used by Orion, Nova and Vertex."""
+    threshold = coeffs["rival_component_policy"]["threshold"]
+    limit = coef.max_wear_for_use(coeffs)
+    decisions = []
+    for driver, components in state.power_units.items():
+        if driver_team(driver) == "Apex":
+            continue
+        for name, component in components.items():
+            replace = component.wear >= threshold or component.wear > limit
+            decisions.append({"driver": driver, "component": name,
+                              "action": "REPLACE" if replace else "USE"})
+    return decisions
+
+
+def prepare_race(state: ChampionshipState, decisions: Any,
+                 coeffs: Mapping[str, Any] = coef.DEFAULT) -> RaceStartConditions:
     """Validate and atomically apply component choices before the current race."""
     state.validate()
     if state.race_index >= len(state.calendar):
@@ -55,25 +103,21 @@ def prepare_race(state: ChampionshipState, decisions: Any) -> RaceStartCondition
     if state.race_prepared:
         raise ValueError("current race is already prepared")
     clean = _validate_decisions(state, decisions)
-
-    replacements_by_team = {team: 0 for team in TEAM_DRIVERS}
-    for driver, component, action in clean:
-        if action == "USE" and component.wear > SYNTHETIC_RULES["maximum_wear_for_use"]:
-            raise ValueError(f"{driver} {component} is too worn to use")
-        if action == "REPLACE":
-            replacements_by_team[_driver_team(driver)] += 1
-    for team, count in replacements_by_team.items():
-        if count > state.resource_inventory[team]["component_spares"]:
-            raise ValueError(f"{team} does not have enough component spares")
-
-    for driver, component, action in clean:
-        if action == "REPLACE":
-            team = _driver_team(driver)
-            if component.replacements >= SYNTHETIC_RULES["free_replacements_per_component"]:
-                state.grid_penalties[driver] += SYNTHETIC_RULES["excess_replacement_grid_drop"]
-            component.wear = 0.0
-            component.replacements += 1
-            state.resource_inventory[team]["component_spares"] -= 1
+    limit = coef.max_wear_for_use(coeffs)
+    for driver, name, component, action in clean:
+        if action == "USE" and component.wear > limit:
+            raise ValueError(f"{driver} {name} is too worn to use")
+    for driver, name, component, action in clean:
+        if action != "REPLACE":
+            continue
+        key = pool_key(driver, coeffs)
+        inventory = state.resource_inventory[driver_team(driver)]
+        if inventory[key] > 0:
+            inventory[key] -= 1
+        else:
+            state.grid_penalties[driver] += coef.grid_drop(name, coeffs)
+        component.wear = 0.0
+        component.replacements += 1
     state.race_prepared = True
     state.grid_penalties_applied = not any(state.grid_penalties.values())
     state.validate()
@@ -92,14 +136,32 @@ def race_start_conditions(state: ChampionshipState) -> RaceStartConditions:
 
 
 def mark_grid_penalties_applied(state: ChampionshipState) -> RaceStartConditions:
-    """Acknowledge that an external race engine applied the exposed grid drops."""
     if not state.race_prepared:
         raise ValueError("race has not been prepared")
     state.grid_penalties_applied = True
     return race_start_conditions(state)
 
 
-def complete_race(state: ChampionshipState, driver_points: Any) -> ChampionshipState:
+def accrue_wear(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAULT) -> None:
+    stress = state.calendar[state.race_index].power_unit_stress
+    for components in state.power_units.values():
+        for name, component in components.items():
+            component.wear = min(1.0, component.wear + coef.wear_increment(name, stress, coeffs))
+
+
+def advance_without_result(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAULT) -> None:
+    """Planner helper: apply the action-independent part of a race transition."""
+    if not state.race_prepared:
+        raise ValueError("race has not been prepared")
+    accrue_wear(state, coeffs)
+    state.race_index += 1
+    state.grid_penalties = {driver: 0 for driver in state.grid_penalties}
+    state.race_prepared = False
+    state.grid_penalties_applied = False
+
+
+def complete_race(state: ChampionshipState, driver_points: Any,
+                  coeffs: Mapping[str, Any] = coef.DEFAULT) -> ChampionshipState:
     """Apply points and deterministic wear, then advance to the next race."""
     state.validate()
     if not state.race_prepared:
@@ -111,25 +173,16 @@ def complete_race(state: ChampionshipState, driver_points: Any) -> ChampionshipS
     for points in driver_points.values():
         if isinstance(points, bool) or not isinstance(points, int) or points < 0:
             raise ValueError("race points must be non-negative integers")
-
-    stress = state.calendar[state.race_index].power_unit_stress
     for driver, points in driver_points.items():
         state.driver_points[driver] += points
     for team, drivers in TEAM_DRIVERS.items():
         state.team_points[team] += sum(driver_points[driver] for driver in drivers)
-    for components in state.power_units.values():
-        for name, component in components.items():
-            component.wear = min(1.0, component.wear + stress * SYNTHETIC_RULES["wear_factor"][name])
-
-    state.race_index += 1
-    state.grid_penalties = {driver: 0 for driver in state.grid_penalties}
-    state.race_prepared = False
-    state.grid_penalties_applied = False
+    advance_without_result(state, coeffs)
     state.validate()
     return state
 
 
-def _validate_decisions(state: ChampionshipState, decisions: Any) -> list[tuple[str, Any, str]]:
+def _validate_decisions(state: ChampionshipState, decisions: Any):
     if not isinstance(decisions, list):
         raise ValueError("component decisions must be a list")
     expected = {(driver, name) for driver, components in state.power_units.items()
@@ -147,14 +200,17 @@ def _validate_decisions(state: ChampionshipState, decisions: Any) -> list[tuple[
         if decision["action"] not in ("USE", "REPLACE"):
             raise ValueError("component action must be USE or REPLACE")
         seen.add(key)
-        clean.append((key[0], state.power_units[key[0]][key[1]], decision["action"]))
+        clean.append((key[0], key[1], state.power_units[key[0]][key[1]], decision["action"]))
     if seen != expected:
         raise ValueError("every driver/component pair requires exactly one decision")
     return clean
 
 
+# Backwards-compatible name used by P0 code paths.
 def _driver_team(driver: str) -> str:
-    for team, drivers in TEAM_DRIVERS.items():
-        if driver in drivers:
-            return team
-    raise ValueError("unknown driver")
+    return driver_team(driver)
+
+
+SYNTHETIC_RULES = {
+    "see": "fixtures/track_a_coefficients.json",
+}

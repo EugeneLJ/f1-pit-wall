@@ -25,7 +25,7 @@ from f1pitwall.championship_contract import (
     RACE_STRATEGY,
     ChampionshipSession,
 )
-from f1pitwall.championship_transition import SYNTHETIC_RULES
+from f1pitwall import coefficients as coef
 from f1pitwall.journal import (
     GENESIS_HASH,
     JOURNAL_VERSION,
@@ -37,7 +37,7 @@ from f1pitwall.journal import (
     seal_entry,
 )
 
-SERVER_VERSION = "p0-1"
+SERVER_VERSION = "p1-1"
 SOCKET_PATH = Path(os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock"))
 STATE_DIR = Path(os.environ.get("F1SIM_STATE_DIR", "/var/lib/f1sim"))
 SEED_PATH = Path(os.environ.get("F1SIM_SEED_PATH", "/opt/f1sim/secret/seed.json"))
@@ -62,7 +62,15 @@ PUBLIC_RULES = {
                     "rejected as a duplicate, a future id as out of order. Rejected requests do "
                     "not change state."),
     "race_rules": engine.RULES,
-    "component_rules": SYNTHETIC_RULES,
+    "race_rules_track_a": {
+        "grid": "qualifying order by pace = published base pace + team track offset + wear pace loss; then grid drops",
+        "published_base_pace": engine.LEGACY_BASE_PACE,
+        "traffic": "dirty-air loss replaces the legacy positional traffic term (see track_a_model.track_performance.overtaking)",
+        "retirements": ("each car retires with its published dnf probability; draws are seeded and independent "
+                        "of all actions; a retired car scores 0 and is classified last"),
+        "points": "only finishers score; points by finishing position",
+    },
+    "track_a_model": coef.DEFAULT,
     "objective": "maximize Apex constructors' points over the whole championship",
     "no_reset": "the championship cannot be reset, rewound, previewed or replayed",
 }

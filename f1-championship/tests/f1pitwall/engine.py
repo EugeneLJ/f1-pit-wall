@@ -43,17 +43,67 @@ def _car(name: str, team: str, elapsed: float, base_pace: float,
             "compound": compound, "tyre_age": tyre_age}
 
 
-def _event_schedule(seed: int) -> list[str]:
+def _event_schedule(seed: int, count: int = len(DECISION_LAPS)) -> list[str]:
+    """Seeded per-decision track status; independent of every action (common random numbers)."""
     rng = random.Random(seed)
     schedule = []
-    for _ in DECISION_LAPS:
+    for _ in range(count):
         value = rng.random()
         schedule.append("GREEN" if value < 0.60 else "VSC" if value < 0.85 else "SC")
     return schedule
 
 
-def new_state(seed: int = SEED) -> dict[str, Any]:
-    cars = [
+GRID_ELAPSED_SLOTS = (720.0, 721.8, 723.0, 724.0, 725.2, 727.0, 729.0, 731.0)
+
+
+def dnf_uniforms(seed: int) -> dict[str, float]:
+    """One action-independent uniform draw per car per race (common random numbers)."""
+    rng = random.Random(f"dnf:{seed}")
+    return {name: rng.random() for name in sorted(LEGACY_CAR_NAMES)}
+
+
+def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Legacy race when config is None; otherwise a Track A configured race.
+
+    config keys: grid (car names P1..P8), pace {car: base s/lap}, deg_multiplier,
+    overtaking (model dict or None), dnf_prob {car: p}, decision_laps (optional),
+    events (optional explicit schedule, planners/oracles only - never set by the
+    championship session).
+    """
+    cars = _legacy_cars()
+    if config is None:
+        return {"seed": seed, "step": 0, "cars": cars, "events": _event_schedule(seed),
+                "actions": [], "complete": False}
+    by_name = {car["name"]: car for car in cars}
+    grid = list(config["grid"])
+    if sorted(grid) != sorted(by_name):
+        raise ValueError("grid must be a permutation of the eight cars")
+    for slot, name in zip(GRID_ELAPSED_SLOTS, grid):
+        by_name[name]["elapsed"] = slot
+        by_name[name]["base_pace"] = float(config["pace"][name])
+    decision_laps = list(config.get("decision_laps", DECISION_LAPS))
+    events = list(config["events"]) if config.get("events") is not None else _event_schedule(seed, len(decision_laps))
+    if len(events) != len(decision_laps) or any(e not in PIT_LOSS for e in events):
+        raise ValueError("invalid event schedule")
+    clean_config = {
+        "grid": grid,
+        "pace": {name: float(config["pace"][name]) for name in by_name},
+        "deg_multiplier": float(config.get("deg_multiplier", 1.0)),
+        "overtaking": config.get("overtaking"),
+        "overtaking_difficulty": float(config.get("overtaking_difficulty", 0.0)),
+        "dnf_prob": {name: float(config.get("dnf_prob", {}).get(name, 0.0)) for name in by_name},
+        "decision_laps": decision_laps,
+    }
+    return {"seed": seed, "step": 0, "cars": [by_name[name] for name in grid], "events": events,
+            "actions": [], "complete": False, "config": clean_config}
+
+
+def _decision_laps(state: dict[str, Any]) -> list[int]:
+    return list(state["config"]["decision_laps"]) if "config" in state else list(DECISION_LAPS)
+
+
+def _legacy_cars() -> list[dict[str, Any]]:
+    return [
         _car("Rival 1", "Orion", 720.0, 89.55, "MEDIUM", 8),
         _car("Apex A", "Apex", 721.8, 89.65, "SOFT", 8),
         _car("Rival 2", "Nova", 723.0, 89.75, "SOFT", 8),
@@ -63,8 +113,10 @@ def new_state(seed: int = SEED) -> dict[str, Any]:
         _car("Rival 5", "Vertex", 729.0, 90.05, "HARD", 3),
         _car("Rival 6", "Vertex", 731.0, 90.15, "MEDIUM", 6),
     ]
-    return {"seed": seed, "step": 0, "cars": cars, "events": _event_schedule(seed),
-            "actions": [], "complete": False}
+
+
+LEGACY_CAR_NAMES = ("Rival 1", "Apex A", "Rival 2", "Apex B", "Rival 3", "Rival 4", "Rival 5", "Rival 6")
+LEGACY_BASE_PACE = {car["name"]: car["base_pace"] for car in _legacy_cars()}
 
 
 def validate_action(action: Any) -> dict[str, str]:
@@ -87,13 +139,14 @@ def _classification(cars: list[dict[str, Any]]) -> list[dict[str, Any]]:
             for index, car in enumerate(ordered)]
 
 
-def _rival_action(car: dict[str, Any], status: str, step_index: int) -> str:
+def _rival_action(car: dict[str, Any], status: str, step_index: int,
+                  decision_count: int = len(DECISION_LAPS)) -> str:
     if status == "SC" and car["tyre_age"] >= 7:
         return "PIT"
     if status == "VSC" and car["tyre_age"] >= 10:
         return "PIT"
     limits = {"SOFT": 10, "MEDIUM": 14, "HARD": 18}
-    if car["tyre_age"] >= limits[car["compound"]] and step_index < 2:
+    if car["tyre_age"] >= limits[car["compound"]] and step_index < decision_count - 1:
         return "PIT"
     return "STAY"
 
@@ -109,18 +162,34 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
         apex[key] = {"position": positions[name], "compound": car["compound"],
                      "tyre_age": car["tyre_age"], "elapsed": round(car["elapsed"], 3)}
     index = state["step"]
-    return {"race": "Harbor Grand Prix", "lap": DECISION_LAPS[index], "laps_total": 20,
-            "decision_index": index + 1, "decision_count": len(DECISION_LAPS),
+    laps = _decision_laps(state)
+    return {"race": "Harbor Grand Prix", "lap": laps[index], "laps_total": laps[-1] + SEGMENT_LENGTH,
+            "decision_index": index + 1, "decision_count": len(laps),
             "track_status": state["events"][index], "drivers": apex,
             "classification": classification, "legal_actions": ["PIT", "STAY"],
             "future_track_status": "hidden", "submitted_actions": len(state["actions"])}
 
 
-def _segment_time(car: dict[str, Any], position: int) -> float:
+def _segment_time(car: dict[str, Any], position: int, deg_multiplier: float = 1.0,
+                  traffic: float | None = None) -> float:
+    """Legacy traffic is positional; configured races pass a gap-based dirty-air loss."""
     tyre = COMPOUNDS[car["compound"]]
-    traffic = min(0.70, 0.10 * (position - 1))
-    return sum(car["base_pace"] + tyre["offset"] + tyre["degradation"] * (car["tyre_age"] + offset)
+    if traffic is None:
+        traffic = min(0.70, 0.10 * (position - 1))
+    degradation = tyre["degradation"] * deg_multiplier
+    return sum(car["base_pace"] + tyre["offset"] + degradation * (car["tyre_age"] + offset)
                + traffic for offset in range(SEGMENT_LENGTH))
+
+
+def _apply_overtaking(order: list[dict[str, Any]], finish: dict[str, float],
+                      model: dict[str, float], difficulty: float) -> None:
+    """Hold a following car behind unless its pass margin beats the track's threshold."""
+    required = model["pass_base_sec"] + difficulty * model["pass_scale_sec"]
+    for index in range(1, len(order)):
+        ahead, car = order[index - 1]["name"], order[index]["name"]
+        if finish[car] < finish[ahead] + model["min_gap_sec"]:
+            if finish[ahead] - finish[car] < required:
+                finish[car] = finish[ahead] + model["min_gap_sec"]
 
 
 def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
@@ -128,34 +197,68 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
         raise ValueError("race is already complete")
     clean = validate_action(action)
     status, index = state["events"][state["step"]], state["step"]
+    config = state.get("config")
+    decision_count = len(_decision_laps(state))
     apex_actions = {"Apex A": clean["driver_a"], "Apex B": clean["driver_b"]}
     pit_actions = {car["name"]: (apex_actions[car["name"]] if car["team"] == "Apex"
-                                 else _rival_action(car, status, index)) for car in state["cars"]}
+                                 else _rival_action(car, status, index, decision_count))
+                   for car in state["cars"]}
     for car in state["cars"]:
         if pit_actions[car["name"]] == "PIT":
             car["elapsed"] += PIT_LOSS[status]
             car["compound"], car["tyre_age"] = "MEDIUM", 0
     if clean["driver_a"] == clean["driver_b"] == "PIT":
         next(car for car in state["cars"] if car["name"] == "Apex B")["elapsed"] += DOUBLE_STACK_DELAY
-    positions = {entry["driver"]: entry["position"] for entry in _classification(state["cars"])}
+    order = sorted(state["cars"], key=lambda car: (car["elapsed"], car["name"]))
+    positions = {car["name"]: index + 1 for index, car in enumerate(order)}
+    deg = config["deg_multiplier"] if config else 1.0
+    model = config["overtaking"] if config else None
+    traffic = {car["name"]: None for car in state["cars"]}
+    if model is not None:
+        for index, car in enumerate(order):
+            close = index > 0 and car["elapsed"] - order[index - 1]["elapsed"] < model["dirty_air_gap_sec"]
+            traffic[car["name"]] = model["dirty_air_loss_sec_per_lap"] if close else 0.0
+    finish = {car["name"]: car["elapsed"] + _segment_time(car, positions[car["name"]], deg, traffic[car["name"]])
+              for car in state["cars"]}
+    if config and config["overtaking"] is not None:
+        _apply_overtaking(order, finish, config["overtaking"], config["overtaking_difficulty"])
     for car in state["cars"]:
-        car["elapsed"] += _segment_time(car, positions[car["name"]])
+        car["elapsed"] = finish[car["name"]]
         car["tyre_age"] += SEGMENT_LENGTH
     state["actions"].append(clean)
     state["step"] += 1
-    state["complete"] = state["step"] == len(DECISION_LAPS)
+    state["complete"] = state["step"] == decision_count
     return state
 
 
 def result(state: dict[str, Any]) -> dict[str, Any]:
     if not state["complete"]:
         raise ValueError("race is incomplete")
-    classification = _classification(state["cars"])
-    constructors_points = sum(POINTS[entry["position"] - 1]
-                               for entry in classification if entry["team"] == "Apex")
+    if "config" not in state:
+        classification = _classification(state["cars"])
+        constructors_points = sum(POINTS[entry["position"] - 1]
+                                   for entry in classification if entry["team"] == "Apex")
+        return {"complete": True, "seed": state["seed"], "actions": state["actions"],
+                "event_history": state["events"], "classification": classification,
+                "constructors_points": constructors_points}
+    draws = dnf_uniforms(state["seed"])
+    retired = {name for name, p in state["config"]["dnf_prob"].items() if draws[name] < p}
+    running = [car for car in state["cars"] if car["name"] not in retired]
+    out = [car for car in state["cars"] if car["name"] in retired]
+    ordered = (sorted(running, key=lambda car: (car["elapsed"], car["name"]))
+               + sorted(out, key=lambda car: car["name"]))
+    classification = []
+    for index, car in enumerate(ordered):
+        finished = car["name"] not in retired
+        classification.append({
+            "position": index + 1, "driver": car["name"], "team": car["team"],
+            "elapsed": round(car["elapsed"], 3), "compound": car["compound"],
+            "tyre_age": car["tyre_age"], "status": "FINISHED" if finished else "DNF",
+            "points": POINTS[index] if finished else 0,
+        })
     return {"complete": True, "seed": state["seed"], "actions": state["actions"],
             "event_history": state["events"], "classification": classification,
-            "constructors_points": constructors_points}
+            "constructors_points": sum(e["points"] for e in classification if e["team"] == "Apex")}
 
 
 def run_episode(actions: Any, seed: int = SEED) -> dict[str, Any]:

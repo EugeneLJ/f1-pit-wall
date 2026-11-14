@@ -5,18 +5,26 @@ from __future__ import annotations
 import copy
 from typing import Any
 
+from . import coefficients as coef
 from . import engine
 from .championship import ChampionshipState, TEAM_DRIVERS, new_championship_state
 from .championship_adapter import (
     ENGINE_TO_CHAMPIONSHIP_DRIVER,
     PreparedChampionshipRace,
+    car_performance,
     finish_prepared_race,
     start_prepared_race,
 )
 from .championship_transition import (
     available_component_actions,
     default_component_decisions,
+    driver_team,
+    free_units,
+    initial_inventory,
+    pool_key,
     prepare_race,
+    replacement_cost,
+    rival_component_decisions,
 )
 
 COMPONENT_DECISION = "COMPONENT_DECISION"
@@ -29,10 +37,12 @@ class ChampionshipSession:
     """Phase-ordered public API; hidden seeds and engine state never enter observations."""
 
     def __init__(self, state: ChampionshipState | None = None,
-                 base_seed: int = engine.SEED) -> None:
+                 base_seed: int = engine.SEED, coeffs: dict | None = None) -> None:
         if isinstance(base_seed, bool) or not isinstance(base_seed, int):
             raise ValueError("base_seed must be an integer")
-        self.state = copy.deepcopy(state if state is not None else new_championship_state())
+        self.coeffs = coeffs if coeffs is not None else coef.DEFAULT
+        self.state = copy.deepcopy(state if state is not None else
+                                   new_championship_state(resource_inventory=initial_inventory(self.coeffs)))
         self.state.validate()
         if self.state.race_prepared:
             raise ValueError("session requires a state between races")
@@ -60,10 +70,8 @@ class ChampionshipSession:
                                    for team, points in team_standings],
                 "driver_standings": [{"driver": driver, "points": points}
                                      for driver, points in driver_standings],
-                "remaining_calendar": [
-                    {"name": race.name, "archetype": race.archetype}
-                    for race in state.calendar[state.race_index:]
-                ],
+                "completed_calendar": [_track_public(race) for race in state.calendar[:state.race_index]],
+                "remaining_calendar": [_track_public(race) for race in state.calendar[state.race_index:]],
             },
         }
         if self._decision_type == CHAMPIONSHIP_COMPLETE:
@@ -84,22 +92,37 @@ class ChampionshipSession:
             driver: {
                 "components": {
                     name: {
-                        "wear": component.wear,
+                        "wear": round(component.wear, 6),
                         "replacements": component.replacements,
-                        "legal_actions": available_component_actions(state, driver)[name],
+                        "legal_actions": available_component_actions(state, driver, self.coeffs)[name],
+                        "replace_cost_if_only_replacement": replacement_cost(state, driver, name, self.coeffs),
                     }
                     for name, component in state.power_units[driver].items()
-                }
+                },
+                "free_units_available": free_units(state, driver, self.coeffs),
+                "projection_if_all_used": _rounded(car_performance(state, driver, self.coeffs)),
             }
             for driver in CONTROLLED_DRIVERS
         }
         common["resource_inventory"] = copy.deepcopy(state.resource_inventory["Apex"])
+        common["rivals_public"] = {
+            driver: {
+                "team": driver_team(driver),
+                "components_replaced": sum(c.replacements for c in state.power_units[driver].values()),
+                "team_free_units": free_units(state, driver, self.coeffs),
+                "grid_drop_this_race": state.grid_penalties[driver] if state.race_prepared else None,
+                "published_pace_estimate": round(car_performance(state, driver, self.coeffs)["pace"], 6),
+            }
+            for driver in state.power_units if driver not in CONTROLLED_DRIVERS
+        }
 
         if self._decision_type == COMPONENT_DECISION:
             common["race_progress"] = {"status": "PRE_RACE", "completed_decisions": 0}
             common["action_schema"] = {
                 "type": COMPONENT_DECISION,
                 "decisions": "exactly one USE or REPLACE for each Apex driver/component pair",
+                "free_unit_order": ("free units are consumed in the order Apex A ICE, turbo, energy_store, "
+                                    "then Apex B; replacements beyond the free units cost grid places"),
             }
         else:
             if self._active_race is None:
@@ -162,7 +185,7 @@ class ChampionshipSession:
         return copy.deepcopy(self._trace)
 
     def _submit_component(self, action: Any) -> None:
-        decisions = _validate_public_component_action(self.state, action)
+        decisions = _validate_public_component_action(self.state, action, self.coeffs)
         working = copy.deepcopy(self.state)
         full_decisions = default_component_decisions(working)
         requested = {(item["driver"], item["component"]): item["action"] for item in decisions}
@@ -170,8 +193,14 @@ class ChampionshipSession:
             key = (item["driver"], item["component"])
             if key in requested:
                 item["action"] = requested[key]
-        prepare_race(working, full_decisions)
-        active = start_prepared_race(working, self._base_seed + working.race_index)
+        rivals = {(item["driver"], item["component"]): item["action"]
+                  for item in rival_component_decisions(working, self.coeffs)}
+        for item in full_decisions:
+            key = (item["driver"], item["component"])
+            if key in rivals:
+                item["action"] = rivals[key]
+        prepare_race(working, full_decisions, self.coeffs)
+        active = start_prepared_race(working, self._base_seed + working.race_index, self.coeffs)
         self.state = working
         self._active_race = active
         self._decision_type = RACE_STRATEGY
@@ -188,7 +217,7 @@ class ChampionshipSession:
         engine.step(self._active_race.race_state, clean)
         if not self._active_race.race_state["complete"]:
             return None
-        result = finish_prepared_race(self.state, self._active_race)
+        result = finish_prepared_race(self.state, self._active_race, self.coeffs)
         self._active_race = None
         self._decision_type = (CHAMPIONSHIP_COMPLETE
                                if self.state.race_index == len(self.state.calendar)
@@ -197,7 +226,7 @@ class ChampionshipSession:
 
 
 def _validate_public_component_action(
-    state: ChampionshipState, action: Any,
+    state: ChampionshipState, action: Any, coeffs: dict = coef.DEFAULT,
 ) -> list[dict[str, str]]:
     if not isinstance(action, dict) or set(action) != {"type", "decisions"}:
         raise ValueError("component action must contain only type and decisions")
@@ -217,7 +246,7 @@ def _validate_public_component_action(
             raise ValueError("component decision is not controllable or does not exist")
         if key in seen:
             raise ValueError("duplicate component decision")
-        if item["action"] not in available_component_actions(state, item["driver"])[item["component"]]:
+        if item["action"] not in available_component_actions(state, item["driver"], coeffs)[item["component"]]:
             raise ValueError("component action is not currently legal")
         seen.add(key)
         clean.append(dict(item))
@@ -233,3 +262,14 @@ def _public_race_observation(race_state: dict[str, Any], race_name: str) -> dict
     for entry in value.get("classification", []):
         entry["driver"] = ENGINE_TO_CHAMPIONSHIP_DRIVER[entry["driver"]]
     return value
+
+
+def _track_public(race) -> dict[str, Any]:
+    return {"name": race.name, "archetype": race.archetype,
+            "power_unit_stress": race.power_unit_stress,
+            "overtaking_difficulty": race.overtaking_difficulty,
+            "tyre_degradation": race.tyre_degradation}
+
+
+def _rounded(values: dict[str, float]) -> dict[str, float]:
+    return {key: round(value, 6) for key, value in values.items()}

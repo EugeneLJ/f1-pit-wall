@@ -1,0 +1,110 @@
+"""Track A coefficient model. All values are synthetic placeholders loaded from JSON.
+
+Functions take an explicit coefficient dict so that solvers and tests can run
+ablations (one mechanic switched off) without touching module state.
+"""
+
+from __future__ import annotations
+
+import copy
+import json
+from pathlib import Path
+from typing import Any, Dict, Mapping
+
+COEFFICIENT_FIXTURE = Path(__file__).with_name("fixtures") / "track_a_coefficients.json"
+COMPONENTS = ("ICE", "turbo", "energy_store")
+MECHANICS = (
+    "wear_pace",          # wear slows the car
+    "reliability",        # wear raises retirement probability
+    "allocation_limit",   # free units are scarce (ablation: unlimited)
+    "shared_pool",        # free units are shared by both drivers (ablation: split per driver)
+    "grid_penalty",       # replacements without a free unit cost grid places (ablation: none)
+    "team_profiles",      # track-archetype pace profile per team
+    "overtaking",         # track-dependent overtaking resistance
+    "tyre_degradation",   # track-dependent tyre degradation
+)
+
+
+def load(path: Path = COEFFICIENT_FIXTURE) -> Dict[str, Any]:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if value.get("data_status") != "synthetic_placeholder":
+        raise ValueError("coefficients must be marked synthetic_placeholder")
+    if tuple(value["components"]["names"]) != COMPONENTS:
+        raise ValueError("unexpected component names")
+    return value
+
+
+DEFAULT = load()
+
+
+def ablate(coeffs: Mapping[str, Any], *mechanics: str) -> Dict[str, Any]:
+    """Return a copy with the named mechanics switched off."""
+    out = copy.deepcopy(dict(coeffs))
+    for mechanic in mechanics:
+        if mechanic not in MECHANICS:
+            raise ValueError(f"unknown mechanic {mechanic}")
+        if mechanic == "wear_pace":
+            out["components"]["pace_loss_sec_per_lap"]["k"] = {c: 0.0 for c in COMPONENTS}
+        elif mechanic == "reliability":
+            out["components"]["reliability"]["r"] = {c: 0.0 for c in COMPONENTS}
+        elif mechanic == "allocation_limit":
+            out["allocation"]["free_units_per_team"] = 10_000
+        elif mechanic == "shared_pool":
+            out["allocation"]["free_units_are_shared_between_drivers"] = False
+        elif mechanic == "grid_penalty":
+            out["allocation"]["grid_drop_when_no_free_unit"] = {c: 0 for c in COMPONENTS}
+        elif mechanic == "team_profiles":
+            profiles = out["track_performance"]["team_archetype_pace_offset_sec_per_lap"]
+            for team, table in profiles.items():
+                if team != "note":
+                    profiles[team] = {k: 0.0 for k in table}
+        elif mechanic == "overtaking":
+            # Same racing model, but difficulty no longer varies by track.
+            out["track_performance"]["overtaking"]["fixed_difficulty"] = 0.5
+        elif mechanic == "tyre_degradation":
+            out["track_performance"]["tyre_degradation_multiplier"] = None
+    out.setdefault("ablated", [])
+    out["ablated"] = sorted(set(out["ablated"]) | set(mechanics))
+    return out
+
+
+def pace_loss(wears: Mapping[str, float], stress: float, coeffs: Mapping[str, Any]) -> float:
+    k = coeffs["components"]["pace_loss_sec_per_lap"]["k"]
+    return sum(k[c] * stress * wears[c] ** 2 for c in COMPONENTS)
+
+
+def dnf_probability(wears: Mapping[str, float], stress: float, coeffs: Mapping[str, Any]) -> float:
+    rel = coeffs["components"]["reliability"]
+    risk = rel["base"] + sum(rel["r"][c] * stress * max(0.0, wears[c] - rel["onset"]) ** 2
+                             for c in COMPONENTS)
+    return min(rel["cap"], risk)
+
+
+def degradation_multiplier(tyre_degradation: float, coeffs: Mapping[str, Any]) -> float:
+    # Ablation: every track behaves like the reference degradation 0.5 (multiplier 1.0).
+    return 1.0 if coeffs["track_performance"]["tyre_degradation_multiplier"] is None else 0.5 + tyre_degradation
+
+
+def team_offset(team: str, archetype: str, coeffs: Mapping[str, Any]) -> float:
+    return coeffs["track_performance"]["team_archetype_pace_offset_sec_per_lap"][team][archetype]
+
+
+def overtaking_model(coeffs: Mapping[str, Any]):
+    return coeffs["track_performance"]["overtaking"]
+
+
+def overtaking_difficulty(track_value: float, coeffs: Mapping[str, Any]) -> float:
+    fixed = coeffs["track_performance"]["overtaking"].get("fixed_difficulty")
+    return track_value if fixed is None else fixed
+
+
+def grid_drop(component: str, coeffs: Mapping[str, Any]) -> int:
+    return int(coeffs["allocation"]["grid_drop_when_no_free_unit"][component])
+
+
+def max_wear_for_use(coeffs: Mapping[str, Any]) -> float:
+    return coeffs["components"]["max_wear_for_use"]
+
+
+def wear_increment(component: str, stress: float, coeffs: Mapping[str, Any]) -> float:
+    return stress * coeffs["components"]["wear_per_unit_stress"][component]

@@ -13,7 +13,7 @@ The report keeps three things separate:
 P0 scalar (provisional until P2 adds the reference planner):
   reward = 0                                   if not complete or not intact
   reward = clip((P - D) / (U - D), 0, 1)       otherwise
-where P = Apex points, D = do-nothing policy (all USE, all STAY) on the same
+where P = Apex points, D = do-nothing policy (USE whenever legal, all STAY) on the same
 hidden seed, U = theoretical maximum (P1 + P2 = 43 points in every race).
 U is a true upper bound, not a reference score. Points only accumulate, so
 stopping early can never beat finishing; an unfinished season scores 0.
@@ -59,8 +59,10 @@ def do_nothing_points(base_seed: int) -> int:
     while session.decision_type != "CHAMPIONSHIP_COMPLETE":
         obs = session.observation()
         if session.decision_type == COMPONENT_DECISION:
-            decisions = [{"driver": d, "component": c, "action": "USE"}
-                         for d, state in obs["controlled_drivers"].items() for c in state["components"]]
+            decisions = [{"driver": d, "component": c,
+                          "action": "USE" if "USE" in info["legal_actions"] else "REPLACE"}
+                         for d, state in obs["controlled_drivers"].items()
+                         for c, info in state["components"].items()]
             session.submit({"type": COMPONENT_DECISION, "decisions": decisions})
         else:
             session.submit({"type": RACE_STRATEGY, "driver_a": "STAY", "driver_b": "STAY"})

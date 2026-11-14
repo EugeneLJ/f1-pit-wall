@@ -196,11 +196,13 @@ def default_calendar() -> list[RaceEntry]:
     return load_calendar_fixture()
 
 
-def new_championship_state() -> ChampionshipState:
+def new_championship_state(calendar: "list[RaceEntry] | None" = None,
+                           resource_inventory: "dict[str, dict[str, int]] | None" = None) -> ChampionshipState:
+    """New season. Callers pass the coefficient-derived inventory (see transition.initial_inventory)."""
     drivers = [driver for team_drivers in TEAM_DRIVERS.values() for driver in team_drivers]
     state = ChampionshipState(
         race_index=0,
-        calendar=default_calendar(),
+        calendar=list(calendar) if calendar is not None else default_calendar(),
         driver_points={driver: 0 for driver in drivers},
         team_points={team: 0 for team in TEAM_DRIVERS},
         power_units={driver: {
@@ -209,8 +211,9 @@ def new_championship_state() -> ChampionshipState:
             "energy_store": PowerUnitComponent(),
         } for driver in drivers},
         grid_penalties={driver: 0 for driver in drivers},
-        resource_inventory={team: {"component_spares": 2, "development_units": 100}
-                            for team in TEAM_DRIVERS},
+        resource_inventory=(resource_inventory if resource_inventory is not None else
+                            {team: {"component_spares": 4, "development_units": 100}
+                             for team in TEAM_DRIVERS}),
     )
     state.validate()
     return state

@@ -1,10 +1,12 @@
 # F1 Pit Wall — Championship task (P0: sealed evaluation boundary)
 
 Harbor task in which an agent runs Apex GP through an eight-race constructors'
-championship. **Status: P0.** The evaluation boundary is implemented and
-verified on Harbor 0.26.0; the race mechanics are still the legacy single-race
-engine repeated per round, so this is *not yet* a strategy benchmark (see
-[docs/P0_REPORT.md](docs/P0_REPORT.md)). The legacy single-race task at the
+championship. **Status: P1-C.** The sealed evaluation boundary (P0) is verified
+on Harbor 0.26.0. Track A long-horizon mechanics (component wear, reliability,
+shared free units, grid penalties, track-dependent performance) are implemented
+and analysed with an exact reduced-season solver. See
+[docs/P0_REPORT.md](docs/P0_REPORT.md), [docs/P1_REPORT.md](docs/P1_REPORT.md)
+and the full target scope in [docs/ROADMAP.md](docs/ROADMAP.md). The legacy single-race task at the
 repository root is unchanged and remains the regression baseline.
 
 ## What the agent does

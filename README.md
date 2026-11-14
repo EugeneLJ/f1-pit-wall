@@ -1,14 +1,56 @@
-# F1 Pit Wall — sequential Harbor race strategy
+# F1 Championship Strategy Benchmark
 
-A judge-runnable Harbor task for coupled, sequential F1 strategy decisions. An
-agent controls both Apex GP drivers at laps 8, 12 and 16 of a 20-lap synthetic
-race. Tyres, elapsed time, track position and pit consequences persist.
+An eight-race, deterministic F1 Team Principal and Pit Wall benchmark for
+long-horizon strategy research. The Championship connects race results,
+Constructors' standings, component wear, replacements, grid penalties, and
+limited team resources across a synthetic season.
 
-This version implements the minimal Phases 1–3 research environment: sequential
-decisions, shared-pit-crew coupling, and seeded GREEN/VSC/SC events. It does not
-yet include weather, engineer recommendations, a championship, or FastF1 data.
+The repository also preserves the original judge-runnable Harbor race as the
+`legacy_p0` regression baseline. Its task contract, verifier, and reward remain
+unchanged while Championship development continues independently.
 
-## Agent contract
+## Championship v0.1
+
+The current deterministic Championship supports:
+
+- Eight synthetic tracks across five archetypes.
+- Persistent Driver and Constructors' Championship standings.
+- Persistent ICE, turbo, and energy-store wear and replacement counts.
+- Limited component spares and excess-replacement grid penalties.
+- Actual grid-penalty integration with the existing eight-car race engine.
+- Race-to-race state transfer and deterministic two-race/eight-race execution.
+- A phase-ordered public observation/action contract.
+- Reproducible, JSON-serializable decision traces.
+
+The Chief Strategist currently receives two implemented decision types only:
+
+1. `COMPONENT_DECISION`: `USE` or `REPLACE` for each Apex A/B component.
+2. `RACE_STRATEGY`: sequential `PIT` or `STAY` decisions for both Apex cars.
+
+Observations include current standings, controlled-driver component state,
+spare inventory, remaining calendar, current synthetic track characteristics,
+starting grid, and current race progress. They exclude hidden seeds, future
+event schedules, simulator-internal car state, and privileged oracle data.
+
+Core modules:
+
+- `environment/f1pitwall/championship.py`: persistent state and calendar schema
+- `environment/f1pitwall/championship_transition.py`: component and season state transitions
+- `environment/f1pitwall/championship_adapter.py`: legacy race-engine integration
+- `environment/f1pitwall/championship_contract.py`: observation/action phase machine
+
+The latest local suite covers legacy regression, schema validation,
+race-to-race transitions, adapter integration, contract validation, trace
+reproducibility, and complete two-race/eight-race smoke runs.
+
+## Legacy P0 Harbor task
+
+The preserved Harbor task controls both Apex GP drivers at laps 8, 12 and 16
+of a 20-lap synthetic race. Tyres, elapsed time, track position, and pit
+consequences persist. It implements sequential decisions, shared-pit-crew
+coupling, and seeded GREEN/VSC/SC events.
+
+### Legacy agent contract
 
 Inside the task container:
 
@@ -26,7 +68,7 @@ The agent sees the complete tyre, traffic, pit-loss, double-stack and rival
 policy rules. It sees only the current track status; later seeded events remain
 hidden until their decision points.
 
-## Mechanics
+### Legacy mechanics
 
 - Eight cars: two Apex cars and six deterministic rivals.
 - Actions: `PIT` or `STAY` independently for both Apex drivers.
@@ -43,7 +85,7 @@ hidden until their decision points.
 For seed `20261114`, the observed event history is GREEN, GREEN, SC. It is
 reported only after completion.
 
-## Trusted scoring
+### Legacy trusted scoring
 
 Harbor transfers only `/app/submission/actions.json` to the isolated verifier.
 The verifier does not import agent-visible code or trust a claimed score. It
@@ -71,13 +113,14 @@ sequences. Invalid or incomplete submissions score zero.
 `tests/test.sh` initializes `/logs/verifier/reward.txt` to zero and always
 normalizes it to one finite scalar in `[0, 1]`.
 
-## Run
+## Run and verify
 
 Prerequisites are Python 3.12+, Docker, and Harbor 0.26.0:
 
 ```bash
 uv tool install 'harbor==0.26.0'
 python3 -m unittest discover -s tests -p 'test_local.py' -v
+python3 -m unittest discover -s tests -p 'test_*.py' -v
 harbor lint .
 harbor run -p . -a oracle
 harbor run -p . -a nop
@@ -111,6 +154,13 @@ resistance.
 The first three frontier-agent trials matched the planning reference and did
 not expose a failure. See [`docs/EVALUATION_2026-11-14.md`](docs/EVALUATION_2026-11-14.md)
 for the exact jobs, traces, scores, and proposed next experiment.
+
+Championship v0.1 remains a deterministic integration milestone, not the final
+benchmark. Track and component coefficients are explicitly synthetic
+placeholders. Practice, qualifying, upgrades, team orders, weather expansion,
+Race Engineer agents, a fair reference planner, historical calibration, and a
+Championship verifier/reward are not implemented yet. The existing Harbor
+verifier continues to evaluate only the legacy P0 task.
 
 ## Optional MCP adapter
 

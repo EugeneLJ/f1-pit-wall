@@ -41,9 +41,9 @@ SEED = json.loads((TASK / "tests" / "hidden_seed.json").read_text())["base_seed"
 FUTURES = 48
 
 
-def replay_decisions(entries):
+def replay_decisions(entries, seed=None):
     """Yield (entry, session-before) for every accepted entry, replaying from the hidden seed."""
-    session = ChampionshipSession(base_seed=SEED)
+    session = ChampionshipSession(base_seed=SEED if seed is None else seed)
     for entry in entries:
         if entry["kind"] != "accepted":
             continue
@@ -52,24 +52,56 @@ def replay_decisions(entries):
         yield entry, before, session
 
 
+PUBLIC_CONTEXT_KEYS = ("controlled_drivers", "championship", "resource_inventory", "rivals_public",
+                       "starting_grid", "action_schema", "contract_version")
 CONTINUATION = None  # None -> public baseline; otherwise a callable(race observation) -> action
+
+
+def session_like_observation(node):
+    """Race observation wrapped like the session's, with the public track block rebuilt from
+    the race configuration (agent policies may read obs['current_track'])."""
+    cfg = node["config"]
+    track = cfg.get("_public_track") or {"tyre_degradation": cfg["deg_multiplier"] - 0.5,
+                                         "overtaking_difficulty": cfg["overtaking_difficulty"]}
+    from f1pitwall.championship_contract import _public_race_observation
+    race_progress = _public_race_observation(node, track.get("name", "Harbor Grand Prix"))  # agent-visible names
+    out = {"decision_type": "RACE_STRATEGY", "decision_id": f"d{node['step'] + 1:03d}",
+           "race_progress": race_progress, "current_track": track}
+    for key in PUBLIC_CONTEXT_KEYS:
+        if f"_public_{key}" in cfg:
+            out[key] = cfg[f"_public_{key}"]
+    return out
+
+
+def public_context(config, session_observation):
+    """Attach the race-constant public parts of the agent's observation to a race config copy."""
+    extra = {"_public_track": session_observation["current_track"]}
+    for key in PUBLIC_CONTEXT_KEYS:
+        if key in session_observation:
+            extra[f"_public_{key}"] = session_observation[key]
+    return dict(config, **extra)
 
 
 def continuation(node):
     obs = engine.observation(node)
     if CONTINUATION is None:
         return ts.baseline_race_action(obs)
-    action = CONTINUATION({"race_progress": obs})
+    action = CONTINUATION(session_like_observation(node))
     return {"driver_a": action["driver_a"], "driver_b": action["driver_b"]}
 
 
-def load_agent_policy(path):
-    """The agent's own race policy (e.g. a script it wrote), used as the continuation."""
+def load_agent_policy(spec_text):
+    """The agent's own race policy, 'path' or 'path:function' (default decide_strategy).
+
+    The function must map a session observation dict (with 'race_progress') to a dict
+    with driver_a/driver_b actions; the source is reviewed before it is used."""
     import importlib.util
-    spec = importlib.util.spec_from_file_location("agent_policy", path)
+    from importlib.machinery import SourceFileLoader
+    path, _, func = spec_text.partition(":")
+    spec = importlib.util.spec_from_file_location("agent_policy", path, loader=SourceFileLoader("agent_policy", path))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    return module.decide_strategy
+    return getattr(module, func or "decide_strategy")
 
 
 def q_eval(node, keys, futures):
@@ -136,6 +168,7 @@ def main():
     parser.add_argument("--agent-policy", default=None,
                         help="python file with decide_strategy(obs): use the agent's own policy as continuation")
     parser.add_argument("--decisions-only", action="store_true")
+    parser.add_argument("--seed", type=int, default=None, help="hidden seed of this run (default: task hidden seed)")
     args = parser.parse_args()
     raw = (Path(args.evidence) / "journal.jsonl").read_text()
     entries = parse_journal(raw)
@@ -144,7 +177,7 @@ def main():
 
     races, jobs, components = [], [], []
     current = None
-    for entry, before, after in replay_decisions(entries):
+    for entry, before, after in replay_decisions(entries, args.seed):
         if entry["decision_type"] == "COMPONENT_DECISION":
             obs = before.observation()
             option = tuple((d["driver"], d["component"], d["action"]) for d in entry["action"]["decisions"])
@@ -159,6 +192,7 @@ def main():
             races.append(current)
             continue
         node = ts._copy_race(before._active_race.race_state)
+        node["config"] = public_context(node["config"], before.observation())
         obs = engine.observation(node)
         key = f"{entry['action']['driver_a']}/{entry['action']['driver_b']}"
         status = node["events"][node["step"]]

@@ -5,7 +5,8 @@ Replays the journal with the hidden seed (evaluation only; the agent never had i
   * per race: points, Apex results, events, replacements, grid drops, pit/compound actions
   * per race decision: expected Apex points (exact retirement expectation) of the agent's
     action, of the best public-information alternative and of the baseline's action, each
-    played now with the public baseline afterwards over public futures conditioned only on
+    played now with a fixed continuation afterwards (the public baseline, or with
+    --agent-policy the agent's own written policy) over public futures conditioned only on
     what the agent had observed. The best action is selected on one future set and all
     values are re-estimated on an independent set; a paired standard error is reported.
   * Track A isolation: the agent's component plan vs rule/greedy/do-nothing component plans,
@@ -51,6 +52,26 @@ def replay_decisions(entries):
         yield entry, before, session
 
 
+CONTINUATION = None  # None -> public baseline; otherwise a callable(race observation) -> action
+
+
+def continuation(node):
+    obs = engine.observation(node)
+    if CONTINUATION is None:
+        return ts.baseline_race_action(obs)
+    action = CONTINUATION({"race_progress": obs})
+    return {"driver_a": action["driver_a"], "driver_b": action["driver_b"]}
+
+
+def load_agent_policy(path):
+    """The agent's own race policy (e.g. a script it wrote), used as the continuation."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("agent_policy", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.decide_strategy
+
+
 def q_eval(node, keys, futures):
     out = {}
     for key in keys:
@@ -61,14 +82,16 @@ def q_eval(node, keys, futures):
             engine.step(child, {"driver_a": a, "driver_b": b})
             child["events"][child["step"]:] = future
             while child["step"] < len(child["events"]):
-                engine.step(child, ts.baseline_race_action(engine.observation(child)))
+                engine.step(child, continuation(child))
             vals.append(ts.expected_apex_points_at_finish(child))
         out[key] = vals
     return out
 
 
 def decision_job(args):
-    node, agent_key, meta, futures_n = args
+    node, agent_key, meta, futures_n, policy_path = args
+    global CONTINUATION
+    CONTINUATION = load_agent_policy(policy_path) if policy_path else None
     legal = engine.legal_actions(node)
     keys = [f"{a}/{b}" for a in legal for b in legal]
     select = ts.public_futures(node, futures_n, "select")
@@ -110,6 +133,9 @@ def main():
     parser.add_argument("out")
     parser.add_argument("--futures", type=int, default=FUTURES)
     parser.add_argument("--workers", type=int, default=10)
+    parser.add_argument("--agent-policy", default=None,
+                        help="python file with decide_strategy(obs): use the agent's own policy as continuation")
+    parser.add_argument("--decisions-only", action="store_true")
     args = parser.parse_args()
     raw = (Path(args.evidence) / "journal.jsonl").read_text()
     entries = parse_journal(raw)
@@ -144,7 +170,7 @@ def main():
                             for k, v in obs["drivers"].items()},
                 "latency_since_previous_sec": None}
         current["decisions"].append({"action": key, "status": status, "lap": obs["lap"]})
-        jobs.append((node, key, meta, args.futures))
+        jobs.append((node, key, meta, args.futures, args.agent_policy))
         if after.state.race_index != before.state.race_index:  # race finished with this decision
             last = after.trace()[-1]["state_transition"]
             current["classification"] = last.get("classification")
@@ -157,6 +183,10 @@ def main():
         decisions = pool.map(decision_job, jobs)
 
     from f1pitwall import coefficients as coef
+    if args.decisions_only:
+        Path(args.out).write_text(json.dumps({"continuation": args.agent_policy or "baseline",
+                                              "decisions": decisions}, indent=1, default=str))
+        return
     seasons = {"agent_components": season_with_components(components)}
     for rule in ("always_use", "rival_rule", "greedy"):
         seasons[f"{rule}_components"] = season_with_components([lambda s, sv, r=rule: sv.choose(s, r)] * len(components))

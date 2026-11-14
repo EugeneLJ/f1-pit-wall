@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://f1-pit-wall.local/schemas/pre-race-contract-v1.json",
+  "title": "C5 pre-race public contract",
+  "$defs": {
+    "practiceAction": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "test"],
+          "properties": {
+            "type": {"const": "RUN_TEST"},
+            "test": {"enum": ["QUALIFYING_PACE_RUN", "LONG_RUN_DEGRADATION"]}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "test", "driver"],
+          "properties": {
+            "type": {"const": "RUN_TEST"},
+            "test": {"const": "SETUP_COMPARISON"},
+            "driver": {"enum": ["driver_a", "driver_b"]}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": {"type": {"const": "END_PRACTICE"}}
+        }
+      ]
+    },
+    "qualifyingAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "driver_a", "driver_b"],
+      "properties": {
+        "type": {"const": "SELECT_SETUPS"},
+        "driver_a": {"$ref": "#/$defs/setup"},
+        "driver_b": {"$ref": "#/$defs/setup"}
+      }
+    },
+    "setup": {"enum": ["QUALIFYING_BIASED", "BALANCED", "RACE_BIASED"]},
+    "raceSetupModifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "model_version", "parc_ferme_locked", "driver_modifiers",
+                   "practice_resource_cost", "source_hash", "integration_status"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "model_version": {"const": "c5-synthetic-1"},
+        "parc_ferme_locked": {"const": true},
+        "driver_modifiers": {"type": "object"},
+        "practice_resource_cost": {"type": "number", "minimum": 0},
+        "source_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "integration_status": {"const": "NOT_APPLIED_TO_AUTHORITATIVE_ENGINE"}
+      }
+    },
+    "practiceObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract_version", "model_version", "stage", "track", "information_boundary",
+                   "remaining_testing_budget", "performed_tests", "beliefs", "available_tests", "action_schema"],
+      "properties": {
+        "contract_version": {"const": 1}, "model_version": {"const": "c5-synthetic-1"},
+        "stage": {"const": "PRACTICE"}, "track": {"type": "object"},
+        "information_boundary": {"type": "object"},
+        "remaining_testing_budget": {"type": "integer", "minimum": 0},
+        "performed_tests": {"type": "array", "items": {"type": "object"}},
+        "beliefs": {"type": "object"}, "available_tests": {"type": "array", "items": {"type": "object"}},
+        "action_schema": {"type": "object"}
+      }
+    },
+    "qualifyingObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract_version", "model_version", "stage", "track", "information_boundary",
+                   "practice_summary", "beliefs", "action_schema", "setup_tradeoffs"],
+      "properties": {
+        "contract_version": {"const": 1}, "model_version": {"const": "c5-synthetic-1"},
+        "stage": {"const": "QUALIFYING"}, "track": {"type": "object"},
+        "information_boundary": {"type": "object"}, "practice_summary": {"type": "object"},
+        "beliefs": {"type": "object"}, "action_schema": {"type": "object"},
+        "setup_tradeoffs": {"type": "object"}
+      }
+    }
+  },
+  "oneOf": [
+    {"$ref": "#/$defs/practiceAction"},
+    {"$ref": "#/$defs/qualifyingAction"},
+    {"$ref": "#/$defs/raceSetupModifier"},
+    {"$ref": "#/$defs/practiceObservation"},
+    {"$ref": "#/$defs/qualifyingObservation"}
+  ]
+}

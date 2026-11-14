@@ -1,0 +1,35 @@
+{
+  "fixture_version": 1,
+  "data_status": "synthetic_placeholder_not_FIA_calibrated",
+  "selection_rule": "Seeds scanned in ascending order before any agent output; retain first reversal and first no-change control.",
+  "scenarios": [
+    {
+      "id": "long_run_reversal",
+      "trusted_seed": 2,
+      "track_archetype": "STREET",
+      "test_action": {"type": "RUN_TEST", "test": "LONG_RUN_DEGRADATION"},
+      "expected_class": "DECISION_REVERSAL"
+    },
+    {
+      "id": "long_run_no_change_control",
+      "trusted_seed": 0,
+      "track_archetype": "STREET",
+      "test_action": {"type": "RUN_TEST", "test": "LONG_RUN_DEGRADATION"},
+      "expected_class": "NO_CHANGE_CONTROL"
+    },
+    {
+      "id": "qualifying_pace_reversal",
+      "trusted_seed": 11,
+      "track_archetype": "STREET",
+      "test_action": {"type": "RUN_TEST", "test": "QUALIFYING_PACE_RUN"},
+      "expected_class": "DECISION_REVERSAL"
+    },
+    {
+      "id": "qualifying_pace_no_change_control",
+      "trusted_seed": 0,
+      "track_archetype": "STREET",
+      "test_action": {"type": "RUN_TEST", "test": "QUALIFYING_PACE_RUN"},
+      "expected_class": "NO_CHANGE_CONTROL"
+    }
+  ]
+}

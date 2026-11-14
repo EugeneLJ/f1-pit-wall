@@ -1,0 +1,319 @@
+{
+ "do_nothing (always USE, always STAY)": {
+  "total": 92,
+  "per_race": [
+   10,
+   18,
+   10,
+   10,
+   10,
+   10,
+   14,
+   10
+  ],
+  "replacements": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex B:ICE"
+   ]
+  ],
+  "grid_drops": [
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   }
+  ]
+ },
+ "always_use + baseline race": {
+  "total": 240,
+  "per_race": [
+   43,
+   26,
+   25,
+   28,
+   28,
+   33,
+   30,
+   27
+  ],
+  "replacements": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex B:ICE"
+   ]
+  ],
+  "grid_drops": [
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   }
+  ]
+ },
+ "rival_rule + baseline race": {
+  "total": 247,
+  "per_race": [
+   43,
+   26,
+   25,
+   28,
+   28,
+   40,
+   30,
+   27
+  ],
+  "replacements": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex B:ICE"
+   ],
+   [],
+   [
+    "Apex A:turbo",
+    "Apex B:turbo"
+   ]
+  ],
+  "grid_drops": [
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   }
+  ]
+ },
+ "greedy + baseline race": {
+  "total": 248,
+  "per_race": [
+   43,
+   26,
+   25,
+   37,
+   33,
+   33,
+   30,
+   21
+  ],
+  "replacements": [
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex A:turbo",
+    "Apex B:energy_store"
+   ],
+   [
+    "Apex A:energy_store"
+   ],
+   [],
+   [
+    "Apex A:turbo"
+   ],
+   [
+    "Apex B:turbo"
+   ],
+   [
+    "Apex B:ICE",
+    "Apex B:turbo",
+    "Apex B:energy_store"
+   ]
+  ],
+  "grid_drops": [
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 2,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 2
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 8
+   }
+  ]
+ },
+ "rival_rule + rollout race reference": {
+  "total": 285,
+  "per_race": [
+   43,
+   40,
+   27,
+   33,
+   33,
+   43,
+   33,
+   33
+  ],
+  "replacements": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex B:ICE"
+   ],
+   [],
+   [
+    "Apex A:turbo",
+    "Apex B:turbo"
+   ]
+  ],
+  "grid_drops": [
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   {
+    "Apex A": 0,
+    "Apex B": 0
+   }
+  ]
+ }
+}

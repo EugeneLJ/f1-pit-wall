@@ -1,0 +1,243 @@
+#!/usr/bin/env python3
+"""
+Autonomous Pit Wall Chief Strategist for Apex GP
+Maximizes Apex constructors' points over the 8-race season.
+"""
+
+import json
+import os
+import socket
+import sys
+import time
+
+SOCKET_PATH = os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock")
+
+def request(payload):
+    with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as conn:
+        conn.settimeout(30.0)
+        conn.connect(SOCKET_PATH)
+        conn.sendall((json.dumps(payload) + "\n").encode("utf-8"))
+        chunks = []
+        while True:
+            chunk = conn.recv(65536)
+            if not chunk:
+                break
+            chunks.append(chunk)
+            if chunk.endswith(b"\n"):
+                break
+    return json.loads(b"".join(chunks).decode("utf-8"))
+
+def decide_component(obs):
+    championship = obs["championship"]
+    race_index = championship["race_index"]
+    controlled = obs["controlled_drivers"]
+    
+    # Season strategy:
+    # 4 free units shared across Apex A and Apex B for the whole season.
+    # Total stress across races: R0-R3 = 2.50, R4-R7 = 2.40.
+    # Replacing ICE and Turbo for both cars before Race 4 (Rainland GP)
+    # perfectly consumes all 4 free units with 0 grid penalties,
+    # keeping max wear <= 0.595 and DNF risk <= 2.3% for all races.
+    decisions = []
+    
+    for driver in ["Apex A", "Apex B"]:
+        driver_comps = controlled[driver]["components"]
+        for comp in ["ICE", "turbo", "energy_store"]:
+            wear = driver_comps[comp]["wear"]
+            if race_index == 4 and comp in ["ICE", "turbo"]:
+                action = "REPLACE"
+            elif wear >= 0.85:
+                # Emergency replacement to avoid 0.90 max_wear_for_use limit
+                action = "REPLACE"
+            else:
+                action = "USE"
+            decisions.append({
+                "driver": driver,
+                "component": comp,
+                "action": action
+            })
+            
+    return {
+        "type": "COMPONENT_DECISION",
+        "decisions": decisions
+    }
+
+def choose_compound(used, laps_rem):
+    if laps_rem <= 6:
+        c = "SOFT"
+    elif laps_rem <= 15:
+        c = "MEDIUM"
+    else:
+        c = "HARD"
+    
+    # Satisfy two-compound rule if only one compound used so far
+    if len(used) == 1 and c in used:
+        if c == "HARD":
+            c = "MEDIUM"
+        elif c == "MEDIUM":
+            c = "HARD" if laps_rem > 12 else "SOFT"
+        else:
+            c = "MEDIUM"
+    return c
+
+def decide_strategy(obs):
+    rp = obs["race_progress"]
+    lap = rp["lap"]
+    laps_rem = rp["laps_remaining"]
+    status = rp["track_status"]
+    tyre_life = rp["tyre_life_laps"]
+    serviced_first = rp["pit"]["if_both_pit_serviced_first"]
+    
+    drivers = rp["drivers"]
+    
+    actions = {}
+    
+    for d_key, d_name in [("driver_a", "Apex A"), ("driver_b", "Apex B")]:
+        d = drivers[d_key]
+        comp = d["compound"]
+        age = d["tyre_age"]
+        used = set(d["compounds_used"])
+        life = tyre_life[comp]
+        
+        # Mandatory pit at lap 42 if only 1 compound used
+        if lap == 42 and len(used) < 2:
+            alt_c = "SOFT" if "SOFT" not in used else "MEDIUM"
+            actions[d_key] = f"PIT_{alt_c}"
+            continue
+            
+        # Fresh tyres (< 4 laps old) never pit
+        if age < 4:
+            actions[d_key] = "STAY"
+            continue
+            
+        # Decision under SC or VSC
+        if status in ["SC", "VSC"]:
+            # Pitting under SC/VSC is discounted
+            # If tyre has used substantial life and enough race left:
+            need_stop = (len(used) < 2)
+            worn_threshold = {"SOFT": 5, "MEDIUM": 8, "HARD": 12}[comp]
+            
+            if (age >= worn_threshold or need_stop) and laps_rem >= 6:
+                c = choose_compound(used, laps_rem)
+                actions[d_key] = f"PIT_{c}"
+            else:
+                actions[d_key] = "STAY"
+            continue
+            
+        # Under GREEN:
+        # 1. Severe cliff check: if age >= life
+        if age >= life:
+            if laps_rem <= 3:
+                actions[d_key] = "STAY"
+            else:
+                c = choose_compound(used, laps_rem)
+                actions[d_key] = f"PIT_{c}"
+            continue
+            
+        # 2. SOFT tyres: life 10. Once age >= 9, pit!
+        if comp == "SOFT" and age >= 9:
+            c = choose_compound(used, laps_rem)
+            actions[d_key] = f"PIT_{c}"
+            continue
+            
+        # 3. MEDIUM tyres: life 16.
+        # Optimal 1-stop window: age 15 or 18 (laps 15-18).
+        if comp == "MEDIUM" and age >= 15:
+            # If around mid-race, pit for HARD
+            if laps_rem <= 30:
+                c = choose_compound(used, laps_rem)
+                actions[d_key] = f"PIT_{c}"
+            else:
+                actions[d_key] = "STAY"
+            continue
+            
+        # 4. HARD tyres: life 24.
+        # If on a 2-stop and age >= 18 with >= 15 laps left:
+        if comp == "HARD" and age >= 18 and laps_rem >= 15 and len(used) >= 2:
+            c = choose_compound(used, laps_rem)
+            actions[d_key] = f"PIT_{c}"
+            continue
+            
+        actions[d_key] = "STAY"
+        
+    # Check double-stack under SC/VSC/GREEN:
+    # If both cars want to pit:
+    if actions["driver_a"].startswith("PIT") and actions["driver_b"].startswith("PIT"):
+        # The car arriving second waits double_stack_queue_sec (6.0s)
+        # Under GREEN: NEVER double-stack! The second car stays 1 segment.
+        if status == "GREEN":
+            second_car = "driver_b" if serviced_first == "driver_a" else "driver_a"
+            actions[second_car] = "STAY"
+        elif status == "VSC":
+            # Under VSC, 11s + 6s = 17s (barely cheaper than 20s green), avoid double stack unless critical
+            second_car = "driver_b" if serviced_first == "driver_a" else "driver_a"
+            second_age = drivers[second_car]["tyre_age"]
+            second_life = tyre_life[drivers[second_car]["compound"]]
+            if second_age < second_life:
+                actions[second_car] = "STAY"
+        # Under SC, 6s + 6s = 12s (still 8s cheaper than green 20s), double-stack is acceptable if tyres worn
+        elif status == "SC":
+            second_car = "driver_b" if serviced_first == "driver_a" else "driver_a"
+            second_age = drivers[second_car]["tyre_age"]
+            if second_age < 9:
+                actions[second_car] = "STAY"
+                
+    return {
+        "type": "RACE_STRATEGY",
+        "driver_a": actions["driver_a"],
+        "driver_b": actions["driver_b"]
+    }
+
+def main():
+    print("Apex GP Chief Strategist starting...", flush=True)
+    
+    while True:
+        resp = request({"cmd": "observe"})
+        if not resp.get("ok"):
+            print(f"Observe error: {resp}", flush=True)
+            time.sleep(1.0)
+            continue
+            
+        obs = resp["observation"]
+        dec_id = obs.get("decision_id")
+        dec_type = obs.get("decision_type")
+        
+        if dec_type == "CHAMPIONSHIP_COMPLETE":
+            print("\n==========================================", flush=True)
+            print("CHAMPIONSHIP COMPLETE!", flush=True)
+            print("==========================================", flush=True)
+            standings = obs.get("championship", {}).get("team_standings", [])
+            print(json.dumps(standings, indent=2), flush=True)
+            driver_standings = obs.get("championship", {}).get("driver_standings", [])
+            print(json.dumps(driver_standings, indent=2), flush=True)
+            break
+            
+        if dec_type == "COMPONENT_DECISION":
+            race_idx = obs["championship"]["race_index"]
+            track_name = obs["current_track"]["name"]
+            print(f"\n[Race {race_idx+1}/8: {track_name}] COMPONENT_DECISION ({dec_id})", flush=True)
+            action = decide_component(obs)
+            print(f"Action: {json.dumps(action)}", flush=True)
+            act_resp = request({"cmd": "act", "decision_id": dec_id, "action": action})
+            if not act_resp.get("ok") and not act_resp.get("accepted"):
+                print(f"Act failed: {act_resp}", flush=True)
+                sys.exit(1)
+                
+        elif dec_type == "RACE_STRATEGY":
+            lap = obs["race_progress"]["lap"]
+            status = obs["race_progress"]["track_status"]
+            d_a = obs["race_progress"]["drivers"]["driver_a"]
+            d_b = obs["race_progress"]["drivers"]["driver_b"]
+            print(f"Lap {lap:2d}/45 [{status:5s}] ({dec_id}) | Apex A: P{d_a['position']} {d_a['compound']}(age {d_a['tyre_age']}) | Apex B: P{d_b['position']} {d_b['compound']}(age {d_b['tyre_age']})", flush=True)
+            action = decide_strategy(obs)
+            print(f"  -> {action['driver_a']} / {action['driver_b']}", flush=True)
+            act_resp = request({"cmd": "act", "decision_id": dec_id, "action": action})
+            if not act_resp.get("ok") and not act_resp.get("accepted"):
+                print(f"Act failed: {act_resp}", flush=True)
+                sys.exit(1)
+        else:
+            print(f"Unknown decision type: {dec_type}", flush=True)
+            break
+
+if __name__ == "__main__":
+    main()

@@ -10,9 +10,12 @@ from __future__ import annotations
 import json
 import math
 from dataclasses import asdict, dataclass
+from pathlib import Path
 from typing import Any
 
 SCHEMA_VERSION = 1
+CALENDAR_FIXTURE = Path(__file__).with_name("fixtures") / "championship_calendar.json"
+TRACK_ARCHETYPES = {"street", "high_speed", "high_degradation", "wet_prone", "mixed"}
 
 TEAM_DRIVERS = {
     "Apex": ("Apex A", "Apex B"),
@@ -26,12 +29,24 @@ TEAM_DRIVERS = {
 class RaceEntry:
     name: str
     archetype: str
+    power_unit_stress: float
+    overtaking_difficulty: float
+    tyre_degradation: float
+    synthetic_placeholder: bool
 
     def validate(self) -> None:
         if not isinstance(self.name, str) or not self.name.strip():
             raise ValueError("race name must be a non-empty string")
         if not isinstance(self.archetype, str) or not self.archetype.strip():
             raise ValueError("race archetype must be a non-empty string")
+        if self.archetype not in TRACK_ARCHETYPES:
+            raise ValueError(f"unsupported race archetype: {self.archetype}")
+        for name, value in (("power_unit_stress", self.power_unit_stress),
+                            ("overtaking_difficulty", self.overtaking_difficulty),
+                            ("tyre_degradation", self.tyre_degradation)):
+            _validate_unit_interval(name, value)
+        if self.synthetic_placeholder is not True:
+            raise ValueError("calendar values must be marked as synthetic placeholders")
 
 
 @dataclass
@@ -141,17 +156,35 @@ class ChampionshipState:
         return cls.from_dict(decoded)
 
 
+def load_calendar_fixture(path: Path = CALENDAR_FIXTURE) -> list[RaceEntry]:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"invalid calendar fixture: {path}") from exc
+    required = {"schema_version", "data_status", "scale", "races"}
+    if not isinstance(value, dict) or set(value) != required:
+        raise ValueError("calendar fixture contains missing or unknown fields")
+    if value["schema_version"] != 1:
+        raise ValueError("unsupported calendar fixture schema version")
+    if value["data_status"] != "synthetic_placeholder":
+        raise ValueError("calendar fixture must identify synthetic placeholder data")
+    if value["scale"] != "normalized_0_to_1":
+        raise ValueError("calendar fixture must use the normalized 0-to-1 scale")
+    try:
+        races = [RaceEntry(**race) for race in value["races"]]
+    except (TypeError, AttributeError) as exc:
+        raise ValueError("invalid calendar race structure") from exc
+    if len(races) != 8:
+        raise ValueError("default championship calendar must contain exactly eight races")
+    for race in races:
+        race.validate()
+    if len({race.name for race in races}) != len(races):
+        raise ValueError("calendar race names must be unique")
+    return races
+
+
 def default_calendar() -> list[RaceEntry]:
-    return [
-        RaceEntry("Harbor Grand Prix", "mixed"),
-        RaceEntry("Marina Grand Prix", "street"),
-        RaceEntry("Velocity Grand Prix", "high_speed"),
-        RaceEntry("Granite Grand Prix", "high_degradation"),
-        RaceEntry("Rainland Grand Prix", "wet_prone"),
-        RaceEntry("Metro Grand Prix", "street"),
-        RaceEntry("Summit Grand Prix", "high_speed"),
-        RaceEntry("Finale Grand Prix", "mixed"),
-    ]
+    return load_calendar_fixture()
 
 
 def new_championship_state() -> ChampionshipState:
@@ -182,3 +215,10 @@ def _validate_keys(label: str, value: Any, expected: set[str]) -> None:
 def _validate_nonnegative_int(label: str, value: Any) -> None:
     if isinstance(value, bool) or not isinstance(value, int) or value < 0:
         raise ValueError(f"{label} must be a non-negative integer")
+
+
+def _validate_unit_interval(label: str, value: Any) -> None:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"{label} must be numeric")
+    if not math.isfinite(value) or not 0.0 <= value <= 1.0:
+        raise ValueError(f"{label} must be finite and within [0, 1]")

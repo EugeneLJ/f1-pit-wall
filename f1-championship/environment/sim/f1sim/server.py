@@ -37,7 +37,7 @@ from f1pitwall.journal import (
     seal_entry,
 )
 
-SERVER_VERSION = "b1-1"
+SERVER_VERSION = "b2-1"
 SOCKET_PATH = Path(os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock"))
 STATE_DIR = Path(os.environ.get("F1SIM_STATE_DIR", "/var/lib/f1sim"))
 SEED_PATH = Path(os.environ.get("F1SIM_SEED_PATH", "/opt/f1sim/secret/seed.json"))
@@ -74,7 +74,10 @@ PUBLIC_RULES = {
         "tyres": ("compound offset and linear degradation, scaled by the track's degradation multiplier; "
                   "laps beyond a compound's life add a cliff term; each car must use two compounds per race "
                   "or receive a time penalty; see track_a_model.tyres"),
-        "double_stack": "if both Apex cars pit at the same decision, Apex B queues for DOUBLE_STACK_DELAY seconds",
+        "pit_stops": ("pit-lane loss depends on the track (track_a_model.pit_stops.loss_green_sec_by_archetype) "
+                      "and is multiplied by status_factor under VSC/SC; one crew per team: if two cars of a team "
+                      "pit at the same decision the one arriving second on the road waits double_stack_queue_sec; "
+                      "the first lap on new tyres is slower by out_lap_warmup_sec for that compound"),
         "rival_pits": "rivals follow the public rule in track_a_model.tyres.rival_compound_policy",
     },
     "track_a_model": coef.DEFAULT,

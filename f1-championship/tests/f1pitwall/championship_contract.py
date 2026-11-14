@@ -70,8 +70,8 @@ class ChampionshipSession:
                                    for team, points in team_standings],
                 "driver_standings": [{"driver": driver, "points": points}
                                      for driver, points in driver_standings],
-                "completed_calendar": [_track_public(race) for race in state.calendar[:state.race_index]],
-                "remaining_calendar": [_track_public(race) for race in state.calendar[state.race_index:]],
+                "completed_calendar": [_track_public(race, self.coeffs) for race in state.calendar[:state.race_index]],
+                "remaining_calendar": [_track_public(race, self.coeffs) for race in state.calendar[state.race_index:]],
             },
         }
         if self._decision_type == CHAMPIONSHIP_COMPLETE:
@@ -265,11 +265,12 @@ def _public_race_observation(race_state: dict[str, Any], race_name: str) -> dict
     return value
 
 
-def _track_public(race) -> dict[str, Any]:
+def _track_public(race, coeffs: dict = coef.DEFAULT) -> dict[str, Any]:
     return {"name": race.name, "archetype": race.archetype,
             "power_unit_stress": race.power_unit_stress,
             "overtaking_difficulty": race.overtaking_difficulty,
-            "tyre_degradation": race.tyre_degradation}
+            "tyre_degradation": race.tyre_degradation,
+            "pit_loss_green_sec": coef.pit_model(race.archetype, coeffs)["loss_sec"]["GREEN"]}
 
 
 def _rounded(values: dict[str, float]) -> dict[str, float]:

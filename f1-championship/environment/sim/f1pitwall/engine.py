@@ -96,12 +96,23 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
         "dnf_prob": {name: float(config.get("dnf_prob", {}).get(name, 0.0)) for name in by_name},
         "decision_laps": decision_laps,
         "tyres": config.get("tyres"),
+        "pit": config.get("pit"),
     }
     if clean_config["tyres"] is not None:
         for car in cars:
             car["compounds_used"] = [car["compound"]]
     return {"seed": seed, "step": 0, "cars": [by_name[name] for name in grid], "events": events,
             "actions": [], "complete": False, "config": clean_config}
+
+
+def _pit(state: dict[str, Any]) -> dict[str, Any] | None:
+    return state["config"].get("pit") if "config" in state else None
+
+
+def pit_loss(state: dict[str, Any], status: str) -> float:
+    """Pit-lane time loss at this track under this status (legacy constants without a pit model)."""
+    pit = _pit(state)
+    return PIT_LOSS[status] if pit is None else pit["loss_sec"][status]
 
 
 def _tyres(state: dict[str, Any]) -> dict[str, Any] | None:
@@ -231,6 +242,13 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
            "track_status": state["events"][index], "drivers": apex,
            "classification": classification, "legal_actions": legal_actions(state),
            "future_track_status": "hidden", "submitted_actions": len(state["actions"])}
+    pit = _pit(state)
+    if pit is not None:
+        a, b = (next(c for c in state["cars"] if c["name"] == n) for n in ("Apex A", "Apex B"))
+        first = "driver_a" if (a["elapsed"], a["name"]) <= (b["elapsed"], b["name"]) else "driver_b"
+        out["pit"] = {"loss_sec": dict(pit["loss_sec"]), "double_stack_queue_sec": pit["double_stack_queue_sec"],
+                      "out_lap_warmup_sec": dict(pit["out_lap_warmup_sec"]),
+                      "if_both_pit_serviced_first": first}
     if tyres is not None:
         out["laps_remaining"] = laps_total(state) - laps[index]
         for entry in classification:
@@ -280,14 +298,25 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
     pit_actions = {car["name"]: (apex_actions[car["name"]] if car["team"] == "Apex"
                                  else _rival_action(car, status, index, decision_count, tyres, remaining))
                    for car in state["cars"]}
-    for car in state["cars"]:
+    pit = _pit(state)
+    pitting = [car for car in sorted(state["cars"], key=lambda c: (c["elapsed"], c["name"]))
+               if pit_compound(pit_actions[car["name"]]) is not None]
+    if pit is not None:
+        # Shared crew: the second car of a team to arrive (road order) waits for the first.
+        seen_teams = set()
+        for car in pitting:
+            if car["team"] in seen_teams:
+                car["elapsed"] += pit["double_stack_queue_sec"]
+            seen_teams.add(car["team"])
+    for car in pitting:
         compound = pit_compound(pit_actions[car["name"]])
-        if compound is not None:
-            car["elapsed"] += PIT_LOSS[status]
-            car["compound"], car["tyre_age"] = compound, 0
-            if tyres is not None:
-                car["compounds_used"].append(compound)
-    if pit_compound(clean["driver_a"]) and pit_compound(clean["driver_b"]):
+        car["elapsed"] += pit_loss(state, status)
+        car["compound"], car["tyre_age"] = compound, 0
+        if tyres is not None:
+            car["compounds_used"].append(compound)
+        if pit is not None:
+            car["out_lap"] = True
+    if pit is None and pit_compound(clean["driver_a"]) and pit_compound(clean["driver_b"]):
         next(car for car in state["cars"] if car["name"] == "Apex B")["elapsed"] += DOUBLE_STACK_DELAY
     order = sorted(state["cars"], key=lambda car: (car["elapsed"], car["name"]))
     positions = {car["name"]: index + 1 for index, car in enumerate(order)}
@@ -298,7 +327,9 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
         for index, car in enumerate(order):
             close = index > 0 and car["elapsed"] - order[index - 1]["elapsed"] < model["dirty_air_gap_sec"]
             traffic[car["name"]] = model["dirty_air_loss_sec_per_lap"] if close else 0.0
+    warmup = pit["out_lap_warmup_sec"] if pit is not None else {}
     finish = {car["name"]: car["elapsed"] + _segment_time(car, positions[car["name"]], deg, traffic[car["name"]], tyres)
+              + (warmup.get(car["compound"], 0.0) if car.pop("out_lap", False) else 0.0)
               for car in state["cars"]}
     if config and config["overtaking"] is not None:
         _apply_overtaking(order, finish, config["overtaking"], config["overtaking_difficulty"])

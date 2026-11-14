@@ -63,7 +63,7 @@ The sample is 24 generated calendars × races 1, 4 and 7, with public-rule histo
 
 ## Verification
 
-- **Tests:** `devtests` passes 67/67; the legacy tests pass 35/35, and the legacy files are untouched.
+- **Tests:** `devtests` passes 66/66; the legacy tests pass 35/35, and the legacy files are untouched.
 - **Harbor 0.26.0 on Verda:**
   - `harbor lint` is clean.
   - `b1-oracle-01` reward 0.5198.

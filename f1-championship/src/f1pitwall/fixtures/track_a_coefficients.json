@@ -66,6 +66,14 @@
       "medium_max_laps": 14
     }
   },
+  "pit_stops": {
+    "note": "Track B (B2) pit-stop model; all values are synthetic placeholders.",
+    "loss_green_sec_by_archetype": {"street": 22.0, "high_speed": 19.0, "high_degradation": 20.0, "wet_prone": 21.0, "mixed": 20.0},
+    "status_factor": {"GREEN": 1.0, "VSC": 0.55, "SC": 0.30},
+    "shared_crew": "one crew per team: when two cars of a team pit at the same decision, the car that arrives second (road order) waits double_stack_queue_sec",
+    "double_stack_queue_sec": 6.0,
+    "out_lap_warmup_sec": {"SOFT": 0.3, "MEDIUM": 0.6, "HARD": 1.0}
+  },
   "rival_component_policy": {
     "rule": "before each race, replace any component with wear >= threshold (or above max_wear_for_use), using free units while they last",
     "threshold": 0.65

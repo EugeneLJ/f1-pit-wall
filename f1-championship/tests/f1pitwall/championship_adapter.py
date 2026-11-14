@@ -80,6 +80,7 @@ def race_config(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAU
         "overtaking_difficulty": coef.overtaking_difficulty(track.overtaking_difficulty, coeffs),
         "dnf_prob": {name: values["dnf_probability"] for name, values in perf.items()},
         "tyres": coef.tyre_model(coeffs),
+        "pit": coef.pit_model(track.archetype, coeffs),
         "events": events,
     }
 

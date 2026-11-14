@@ -25,6 +25,9 @@ MECHANICS = (
     "compound_choice",    # B1: PIT chooses a compound (ablation: MEDIUM only)
     "tyre_cliff",         # B1: tyres fall off beyond their life (ablation: linear only)
     "two_compound_rule",  # B1: two compounds per race (ablation: no rule)
+    "pit_loss_by_track",  # B2: pit-lane loss depends on the track (ablation: 20 s everywhere)
+    "double_stack_queue", # B2: shared crew queue for same-team stops (ablation: no queue)
+    "tyre_warmup",        # B2: slower out-lap on new tyres (ablation: none)
 )
 
 
@@ -72,6 +75,14 @@ def ablate(coeffs: Mapping[str, Any], *mechanics: str) -> Dict[str, Any]:
             out["tyres"]["cliff"]["cliff_sec_per_lap_per_lap"] = 0.0
         elif mechanic == "two_compound_rule":
             out["tyres"]["two_compound_rule"]["enabled"] = False
+        elif mechanic == "pit_loss_by_track":
+            table = out["pit_stops"]["loss_green_sec_by_archetype"]
+            mean = sum(table.values()) / len(table)
+            out["pit_stops"]["loss_green_sec_by_archetype"] = {k: mean for k in table}
+        elif mechanic == "double_stack_queue":
+            out["pit_stops"]["double_stack_queue_sec"] = 0.0
+        elif mechanic == "tyre_warmup":
+            out["pit_stops"]["out_lap_warmup_sec"] = {k: 0.0 for k in out["pit_stops"]["out_lap_warmup_sec"]}
     out.setdefault("ablated", [])
     out["ablated"] = sorted(set(out["ablated"]) | set(mechanics))
     return out
@@ -130,4 +141,15 @@ def tyre_model(coeffs: Mapping[str, Any]) -> Dict[str, Any]:
         "two_compound_penalty_sec": float(tyres["two_compound_rule"]["penalty_sec"]),
         "rival_soft_max_laps": int(tyres["rival_compound_policy"]["soft_max_laps"]),
         "rival_medium_max_laps": int(tyres["rival_compound_policy"]["medium_max_laps"]),
+    }
+
+
+def pit_model(archetype: str, coeffs: Mapping[str, Any]) -> Dict[str, Any]:
+    """Race-config pit block (B2) for one track."""
+    pit = coeffs["pit_stops"]
+    green = float(pit["loss_green_sec_by_archetype"][archetype])
+    return {
+        "loss_sec": {status: green * float(f) for status, f in pit["status_factor"].items()},
+        "double_stack_queue_sec": float(pit["double_stack_queue_sec"]),
+        "out_lap_warmup_sec": {k: float(v) for k, v in pit["out_lap_warmup_sec"].items()},
     }

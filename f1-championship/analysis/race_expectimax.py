@@ -35,6 +35,8 @@ import track_a_solver as ts  # noqa: E402
 from f1pitwall import engine  # noqa: E402
 
 RACE_INDICES = (0, 3, 6)
+OUTPUT = "b2_race_value"
+ABLATIONS = ("tyre_cliff", "two_compound_rule", "pit_loss_by_track", "double_stack_queue", "tyre_warmup")
 
 
 def _joint(node, restrict):
@@ -78,7 +80,8 @@ def expectimax(race, restrict=None):
             engine.step(child, action)
             scored.append((value(child), action))
         best = max(scored, key=lambda item: item[0])
-        first[status] = {"action": best[1], "value": best[0]}
+        first[status] = {"action": best[1], "value": best[0],
+                         "table": {f"{a['driver_a']}/{a['driver_b']}": v for v, a in scored}}
         total += prob * best[0]
     return total, first
 
@@ -106,6 +109,8 @@ def race_job(args):
            "apex_start": {k: (v["compound"], v["tyre_age"]) for k, v in engine.observation(race)["drivers"].items()}}
     out["optimal"], first = expectimax(race)
     out["optimal_first"] = {s: f"{v['action']['driver_a']}/{v['action']['driver_b']}" for s, v in first.items()}
+    if mechanic is None:
+        out["first_tables"] = {s: v["table"] for s, v in first.items()}
     out["baseline"] = ts.expected_race_value(race)
     if mechanic is None:
         out["compound_blind"], _ = expectimax(race, compound_blind)
@@ -121,11 +126,11 @@ def main():
     parser.add_argument("--workers", type=int, default=10)
     args = parser.parse_args()
     specs = sc.generate_specs(args.scenarios)
-    jobs = [(s, i, m) for s in specs for i in RACE_INDICES for m in (None, "tyre_cliff", "two_compound_rule")]
+    jobs = [(s, i, m) for s in specs for i in RACE_INDICES for m in (None,) + ABLATIONS]
     started = time.time()
     with mp.Pool(args.workers) as pool:
         results = pool.map(race_job, jobs)
-    path = HERE / "results" / "b1_compound_value.json"
+    path = HERE / "results" / f"{OUTPUT}.json"
     path.write_text(json.dumps({"races": results, "wall_seconds": round(time.time() - started, 1)}, indent=1))
     summarize(results)
 
@@ -145,11 +150,25 @@ def summarize(results):
     print(line("Compound-blind optimal timing − baseline", [r["compound_blind"] - r["baseline"] for r in base]))
     print(line("Optimal − baseline heuristic", [r["optimal"] - r["baseline"] for r in base]))
     print(line("Baseline − always STAY", [r["baseline"] - r["always_stay"] for r in base]))
-    for mech in ("tyre_cliff", "two_compound_rule"):
+    print("\n| Mechanic off | Optimal − baseline (b) | First-decision policy changes (c) | Real-world loss of the ablated first decision: mean / max (c) |")
+    print("|---|---:|---:|---:|")
+    probs = dict(ts.EVENT_PROBS)
+    for mech in ABLATIONS:
         rows = {(r["scenario"], r["race_index"]): r for r in results if r["mechanic"] == mech}
-        print(line(f"Optimal − baseline with {mech} off", [rows[k]["optimal"] - rows[k]["baseline"] for k in rows]))
+        if not rows:
+            continue
+        gap = st.mean(rows[k]["optimal"] - rows[k]["baseline"] for k in rows)
         changed = sum(rows[(r["scenario"], r["race_index"])]["optimal_first"] != r["optimal_first"] for r in base)
-        print(f"  optimal first-decision policy changes with {mech} off: {changed}/{len(base)}")
+        losses = []
+        for r in base:
+            other = rows[(r["scenario"], r["race_index"])]["optimal_first"]
+            losses.append(sum(probs[s] * (max(r["first_tables"][s].values()) - r["first_tables"][s][other[s]])
+                              for s in probs))
+        print(f"| {mech} | {gap:.2f} | {changed}/{len(base)} | {st.mean(losses):.2f} / {max(losses):.2f} |")
+    stacks = Counter((s, a.split("/")[0] != "STAY" and a.split("/")[1] != "STAY")
+                     for r in base for s, a in r["optimal_first"].items())
+    print("Optimal first decision is a double stack, by status:",
+          {s: f"{stacks[(s, True)]}/{stacks[(s, True)] + stacks[(s, False)]}" for s in probs})
     compounds = Counter(a for r in base for a in r["optimal_first"].values())
     print("Optimal first-decision actions (all statuses):", dict(compounds.most_common()))
 

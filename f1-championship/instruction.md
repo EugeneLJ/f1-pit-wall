@@ -41,8 +41,11 @@ Each race has two phases:
    Softer compounds are faster but degrade faster; every compound falls off a
    cliff once it is older than its published life. Each car must race on at least
    two different compounds (the starting compound counts) or it receives a time
-   penalty at the finish. Pit loss is lower under VSC and SC. If both Apex cars pit
-   at the same decision, Apex B queues behind Apex A.
+   penalty at the finish. Pit-lane loss depends on the track and is lower under
+   VSC and SC. Apex has one pit crew: if both cars pit at the same decision, the car
+   that arrives second on the road waits for the first. New tyres are slower on
+   their first lap (more so for harder compounds). The observation shows this
+   track's pit losses and which car would be serviced first.
 
 Future track status (GREEN/VSC/SC) is seeded and hidden until its decision.
 Points from both Apex cars count; the objective is the team's season total,

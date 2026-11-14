@@ -169,7 +169,7 @@ A penalty consistently costs Apex B more than Apex A. Apex B qualifies just insi
 | B | SC/VSC responses | Per-decision i.i.d. status, cheaper pit stops | No SC duration or field compression |
 | B | Weather and forecasts | — | Not started |
 | B | Rival pit strategy, undercut/overcut | Rule-based rival pits | No explicit in/out-lap model |
-| B | Shared pit crew / double stack | Legacy double-stack delay (B queues 6 s) | Not generalized |
+| B | Shared pit crew / double stack | B2: one crew per team, second arrival queues (all teams); track pit loss; out-lap warm-up | No random slow stops |
 | C | Engineer A/B, Chief, simulator-grounded feedback | — | Not started; the decision-type phase machine and journal are generic |
 | C | Conflicting advice, confidence, ablations | — | Not started |
 | Eval | Fair reference playing through `f1ctl` | — | `solution/solve.sh` is still the P0 heuristic |

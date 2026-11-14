@@ -8,6 +8,21 @@ The version is `f1pitwall.version.BENCHMARK_VERSION`. It appears in:
 
 Results are comparable only within one version.
 
+## 2.1.0 — opt-in FIA-2026-based power-unit rules (B8, 2026-11-15; branch feature/strategic-scenarios-b8)
+
+**What it is.** It is 2.0.1 plus `pu_rules.py`, enabled only through `integrated.config.with_version(cfg, "2.1.0")`.
+- **Verified rule structure** (FIA Section B Issue 07): per-driver allocation, 10/5 cumulative penalties, and B2.5.4b grid formation including back of grid.
+- **Synthetic, labelled:** the 8-race allocation scaling (2/2/2), the 8/22 place scaling (4/2, threshold 5), and the team stock (3 per type).
+- **Not modelled:** EXH, PU-CE, MGU-K, ancillaries, and pool rotation.
+
+**Unchanged:** everything else equals 2.0.1. With no replacement beyond allocation, 2.1.0 and 2.0.1 seasons score identically.
+
+## 2.0.1 — action-schema clarification (B7-P0)
+
+**What changed.** `action_schema` now states that component decisions are a list and that `consumed_reports` is a top-level field, and it gives one format example per phase. This is the same for both teams.
+
+**Unchanged:** mechanics, legal actions and scoring.
+
 ## 2.0.0 — integrated modes (B6, 2026-11-14; branch feature/championship-integration)
 
 A separate version for the integrated championship. **1.1.0 is unchanged** and remains the

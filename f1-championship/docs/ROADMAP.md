@@ -83,6 +83,8 @@ Practice, qualifying sessions, upgrades, budget management.
 | Frontier probe 1 | Gemini 3.8 Flash, one full season (B4 task) | Done (`docs/B4_REPORT.md` Part B): complete, 268 pts, reward 0.698; delegated 112/120 decisions to a self-written script |
 | Benchmark 1.1.0 | Interface clarification: rules name base paces by observation names, explicit identifier mapping, version field; analysis pinned to Python 3.12 | Done (`docs/VERSIONS.md`); no mechanics change |
 | Frontier repeats | 3 more Gemini runs on new seeds, delegation and failure analysis | Done (`docs/FRONTIER_REPEAT_REPORT.md`): 4/4 complete and P1, 261.5 ± 8.0 pts; 93–98% delegated; 26 confirmed failures in 5 types |
+| B7-P0 | Live Gemini vs DeepSeek pilot, Layer 1 and 2 (2.0.1), C4 analysis | Done (`docs/B7_P0_REPORT.md`, commit f9b47c4) |
+| B8 | Opt-in 2.1.0 FIA-based PU penalty bundling and circuit-specific timing; held-out family evaluation; C5 contract | Done (`docs/B8_REPORT.md`); C5 not integrated |
 | B6 | Integrated championship: Track B engine + Track C team orders/commitments/Engineers, SOLO_COORDINATION and TWO_TEAM_COMPETITION (2.0.0), journal v2 replay, provider contracts | Done on `feature/championship-integration` (`docs/B6_REPORT.md`); two-team Harbor packaging and live runs pending |
 | B5-P1 | SC/VSC-aware references (green-only/reactive/probability-aware/full), event counterfactual reversals, value of event information, Gemini r0–r3 SC/VSC attribution, opt-in rival strategy variants, two-team interface design | Done (`docs/B5_P1_REPORT.md`); benchmark stays 1.1.0; two-team runtime not implemented |
 

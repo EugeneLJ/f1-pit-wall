@@ -1,0 +1,188 @@
+{
+ "seeds": [
+  300,
+  301,
+  302,
+  303,
+  304,
+  305,
+  306,
+  307,
+  308,
+  309,
+  310,
+  311
+ ],
+ "futures": 12,
+ "states_best_response": 384,
+ "states_orders": 133,
+ "best_response": {
+  "conservative_2stop": {
+   "best_action_changes": 0.167,
+   "mean_loss_if_assume_baseline": 0.107,
+   "share_loss_gt_0_5": 0.065,
+   "no_change_states": 320
+  },
+  "opportunistic": {
+   "best_action_changes": 0.047,
+   "mean_loss_if_assume_baseline": 0.016,
+   "share_loss_gt_0_5": 0.005,
+   "no_change_states": 366
+  },
+  "undercut": {
+   "best_action_changes": 0.104,
+   "mean_loss_if_assume_baseline": 0.065,
+   "share_loss_gt_0_5": 0.047,
+   "no_change_states": 344
+  },
+  "long_stint": {
+   "best_action_changes": 0.135,
+   "mean_loss_if_assume_baseline": 0.121,
+   "share_loss_gt_0_5": 0.083,
+   "no_change_states": 332
+  },
+  "event_aware": {
+   "best_action_changes": 0.078,
+   "mean_loss_if_assume_baseline": 0.041,
+   "share_loss_gt_0_5": 0.026,
+   "no_change_states": 354
+  }
+ },
+ "team_orders": {
+  "best_order_counts": {
+   "RACE": 100,
+   "DEFENSIVE_BUFFER": 17,
+   "SWAP": 13,
+   "HOLD": 3
+  },
+  "vs_RACE": {
+   "HOLD": {
+    "mean": -0.705,
+    "share_gt_0_25": 0.008,
+    "share_lt_minus_0_25": 0.188,
+    "near_tie_share": 0.805
+   },
+   "SWAP": {
+    "mean": -0.112,
+    "share_gt_0_25": 0.068,
+    "share_lt_minus_0_25": 0.211,
+    "near_tie_share": 0.722
+   },
+   "DEFENSIVE_BUFFER": {
+    "mean": -0.096,
+    "share_gt_0_25": 0.068,
+    "share_lt_minus_0_25": 0.15,
+    "near_tie_share": 0.782
+   }
+  }
+ },
+ "give_back": {
+  "states": 14,
+  "mean_team_points_gain": -0.415,
+  "share_gt_0_25": 0,
+  "share_lt_minus_0_25": 0.357,
+  "max": 0.0,
+  "driver_mean_position": [
+   {
+    "KEEP_ORDER": {
+     "driver_a": 4.75,
+     "driver_b": 2.917
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 4.75,
+     "driver_b": 3.083
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 4.833,
+     "driver_b": 2.917
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 4.833,
+     "driver_b": 3
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 5,
+     "driver_b": 2.167
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 5,
+     "driver_b": 2.167
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 4.75,
+     "driver_b": 2.667
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 4.75,
+     "driver_b": 2.75
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 4.75,
+     "driver_b": 2.917
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 4.75,
+     "driver_b": 2.917
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 5.75,
+     "driver_b": 5.5
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 5.75,
+     "driver_b": 5.5
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 4.5,
+     "driver_b": 3.083
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 4.5,
+     "driver_b": 3.167
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 2,
+     "driver_b": 5.5
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 2,
+     "driver_b": 6.167
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 2.25,
+     "driver_b": 4.083
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 2.083,
+     "driver_b": 4.667
+    }
+   },
+   {
+    "KEEP_ORDER": {
+     "driver_a": 4.5,
+     "driver_b": 3
+    },
+    "REQUEST_GIVE_BACK": {
+     "driver_a": 4.5,
+     "driver_b": 3
+    }
+   }
+  ]
+ }
+}

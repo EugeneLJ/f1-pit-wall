@@ -1,0 +1,9896 @@
+{
+ "summary": {
+  "calendars": 60,
+  "decision_states": 52,
+  "natural_frequency": 0.867,
+  "best_plan_counts": {
+   "BUNDLE_NOW": 30,
+   "DISTRIBUTE": 11,
+   "DEFER_BUNDLE": 11,
+   "NO_CHANGE": 0
+  },
+  "bundle_vs_distribute": {
+   "bundle_better_clear": 22,
+   "distribute_better_clear": 9,
+   "near_tie": 14
+  },
+  "timing": {
+   "reversals": 1,
+   "clear_no_change": 21,
+   "unclear": 30
+  },
+  "settings": {
+   "futures": 8,
+   "worn_threshold": 0.45,
+   "rules": "fia2026_scaled",
+   "offset": 0,
+   "generator": "synthetic"
+  }
+ },
+ "rows": [
+  {
+   "scenario": "S00",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.69,
+    "turbo": 0.642,
+    "ICE": 0.53
+   },
+   "elements_used": {
+    "energy_store": 1,
+    "turbo": 1,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G00-R3",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.598,
+     "power_unit_stress": 0.575,
+     "tyre_degradation": 0.631
+    },
+    {
+     "name": "G00-R4",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.541,
+     "power_unit_stress": 0.51,
+     "tyre_degradation": 0.586
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 192.45,
+     "DISTRIBUTE": 186.95,
+     "DEFER_BUNDLE": 192.543,
+     "NO_CHANGE": 172.762
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 5.5,
+     "ci95": [
+      3.762,
+      7.238
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.093,
+     "ci95": [
+      -2.438,
+      2.253
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 19.687,
+     "ci95": [
+      18.634,
+      20.741
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 194.252,
+     "DISTRIBUTE": 186.969,
+     "DEFER_BUNDLE": 191.619,
+     "NO_CHANGE": 172.963
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 7.283,
+     "ci95": [
+      5.582,
+      8.983
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.632,
+     "ci95": [
+      0.885,
+      4.379
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 21.289,
+     "ci95": [
+      20.138,
+      22.44
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S01",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.759,
+    "ICE": 0.655
+   },
+   "elements_used": {
+    "energy_store": 1,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G01-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.563,
+     "power_unit_stress": 0.459,
+     "tyre_degradation": 0.626
+    },
+    {
+     "name": "G01-R6",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.441,
+     "power_unit_stress": 0.604,
+     "tyre_degradation": 0.977
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 114.696,
+     "DISTRIBUTE": 111.383,
+     "DEFER_BUNDLE": 111.186,
+     "NO_CHANGE": 98.773
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 3.312,
+     "ci95": [
+      1.472,
+      5.153
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.51,
+     "ci95": [
+      1.687,
+      5.334
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 15.922,
+     "ci95": [
+      10.58,
+      21.265
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 115.847,
+     "DISTRIBUTE": 108.888,
+     "DEFER_BUNDLE": 110.283,
+     "NO_CHANGE": 98.767
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 6.959,
+     "ci95": [
+      4.528,
+      9.39
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 5.564,
+     "ci95": [
+      2.674,
+      8.455
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 17.08,
+     "ci95": [
+      14.233,
+      19.927
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex A",
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S02",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.762,
+    "energy_store": 0.461
+   },
+   "elements_used": {
+    "turbo": 1,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G02-R3",
+     "archetype": "street",
+     "overtaking_difficulty": 0.924,
+     "power_unit_stress": 0.449,
+     "tyre_degradation": 0.405
+    },
+    {
+     "name": "G02-R4",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.399,
+     "power_unit_stress": 0.657,
+     "tyre_degradation": 0.983
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 195.487,
+     "DISTRIBUTE": 195.117,
+     "DEFER_BUNDLE": 194.803,
+     "NO_CHANGE": 186.844
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.37,
+     "ci95": [
+      -0.308,
+      1.048
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 0.684,
+     "ci95": [
+      -1.34,
+      2.708
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.643,
+     "ci95": [
+      5.21,
+      12.076
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 194.247,
+     "DISTRIBUTE": 189.74,
+     "DEFER_BUNDLE": 189.382,
+     "NO_CHANGE": 184.129
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.507,
+     "ci95": [
+      2.773,
+      6.241
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.865,
+     "ci95": [
+      2.73,
+      7.0
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 10.118,
+     "ci95": [
+      6.976,
+      13.26
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex A",
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S03",
+   "decision_state": false
+  },
+  {
+   "scenario": "S04",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.696,
+    "ICE": 0.659,
+    "energy_store": 0.475
+   },
+   "elements_used": {
+    "turbo": 2,
+    "ICE": 1,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G04-R3",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.519,
+     "power_unit_stress": 0.575,
+     "tyre_degradation": 0.509
+    },
+    {
+     "name": "G04-R4",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.481,
+     "power_unit_stress": 0.523,
+     "tyre_degradation": 0.609
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 171.569,
+     "DISTRIBUTE": 171.159,
+     "DEFER_BUNDLE": 171.064,
+     "NO_CHANGE": 163.772
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.41,
+     "ci95": [
+      -0.949,
+      1.768
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 0.504,
+     "ci95": [
+      -3.393,
+      4.401
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 7.797,
+     "ci95": [
+      2.863,
+      12.73
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 170.005,
+     "DISTRIBUTE": 171.413,
+     "DEFER_BUNDLE": 170.488,
+     "NO_CHANGE": 161.338
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -1.409,
+     "ci95": [
+      -3.65,
+      0.833
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.484,
+     "ci95": [
+      -3.99,
+      3.023
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.667,
+     "ci95": [
+      3.432,
+      13.902
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S05",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.832,
+    "ICE": 0.734
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 2
+   },
+   "tracks": [
+    {
+     "name": "G05-R4",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.535,
+     "power_unit_stress": 0.695,
+     "tyre_degradation": 0.591
+    },
+    {
+     "name": "G05-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.256,
+     "power_unit_stress": 0.824,
+     "tyre_degradation": 0.401
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 136.727,
+     "DISTRIBUTE": 135.137,
+     "DEFER_BUNDLE": 135.107,
+     "NO_CHANGE": 127.924
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.59,
+     "ci95": [
+      -0.105,
+      3.284
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.619,
+     "ci95": [
+      -1.08,
+      4.319
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.803,
+     "ci95": [
+      5.469,
+      12.136
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 137.816,
+     "DISTRIBUTE": 131.302,
+     "DEFER_BUNDLE": 131.83,
+     "NO_CHANGE": 131.83
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 6.514,
+     "ci95": [
+      3.966,
+      9.063
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 5.986,
+     "ci95": [
+      3.078,
+      8.895
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 5.986,
+     "ci95": [
+      3.078,
+      8.895
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S06",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.775,
+    "ICE": 0.731
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 2
+   },
+   "tracks": [
+    {
+     "name": "G06-R5",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.509,
+     "power_unit_stress": 0.595,
+     "tyre_degradation": 0.484
+    },
+    {
+     "name": "G06-R6",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.573,
+     "power_unit_stress": 0.551,
+     "tyre_degradation": 0.48
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 118.382,
+     "DISTRIBUTE": 114.275,
+     "DEFER_BUNDLE": 116.777,
+     "NO_CHANGE": 111.036
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.107,
+     "ci95": [
+      1.695,
+      6.518
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.605,
+     "ci95": [
+      -1.82,
+      5.031
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 7.346,
+     "ci95": [
+      4.622,
+      10.07
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 117.652,
+     "DISTRIBUTE": 113.221,
+     "DEFER_BUNDLE": 116.255,
+     "NO_CHANGE": 110.683
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.432,
+     "ci95": [
+      2.143,
+      6.72
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.397,
+     "ci95": [
+      -1.564,
+      4.358
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 6.969,
+     "ci95": [
+      4.857,
+      9.081
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S07",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.795,
+    "energy_store": 0.687
+   },
+   "elements_used": {
+    "turbo": 2,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G07-R4",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.418,
+     "power_unit_stress": 0.562,
+     "tyre_degradation": 0.902
+    },
+    {
+     "name": "G07-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.636,
+     "power_unit_stress": 0.498,
+     "tyre_degradation": 0.649
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 141.52,
+     "DISTRIBUTE": 138.595,
+     "DEFER_BUNDLE": 139.284,
+     "NO_CHANGE": 126.044
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 2.925,
+     "ci95": [
+      2.139,
+      3.711
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.236,
+     "ci95": [
+      0.56,
+      3.912
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 15.476,
+     "ci95": [
+      12.04,
+      18.913
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 145.869,
+     "DISTRIBUTE": 138.513,
+     "DEFER_BUNDLE": 137.472,
+     "NO_CHANGE": 125.6
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 7.356,
+     "ci95": [
+      3.974,
+      10.739
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 8.397,
+     "ci95": [
+      4.366,
+      12.428
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 20.269,
+     "ci95": [
+      13.493,
+      27.046
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S08",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.71,
+    "turbo": 0.701,
+    "ICE": 0.68
+   },
+   "elements_used": {
+    "energy_store": 1,
+    "turbo": 1,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G08-R3",
+     "archetype": "street",
+     "overtaking_difficulty": 0.923,
+     "power_unit_stress": 0.367,
+     "tyre_degradation": 0.31
+    },
+    {
+     "name": "G08-R4",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.534,
+     "power_unit_stress": 0.595,
+     "tyre_degradation": 0.511
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 180.981,
+     "DISTRIBUTE": 180.717,
+     "DEFER_BUNDLE": 181.575,
+     "NO_CHANGE": 170.74
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 0.264,
+     "ci95": [
+      -2.734,
+      3.261
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.594,
+     "ci95": [
+      -3.114,
+      1.926
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 10.241,
+     "ci95": [
+      6.858,
+      13.624
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 179.762,
+     "DISTRIBUTE": 178.474,
+     "DEFER_BUNDLE": 176.743,
+     "NO_CHANGE": 168.322
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.288,
+     "ci95": [
+      -1.635,
+      4.211
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.019,
+     "ci95": [
+      0.354,
+      5.684
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 11.44,
+     "ci95": [
+      8.51,
+      14.371
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S09",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.646,
+    "energy_store": 0.528
+   },
+   "elements_used": {
+    "ICE": 2,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G09-R5",
+     "archetype": "street",
+     "overtaking_difficulty": 0.809,
+     "power_unit_stress": 0.445,
+     "tyre_degradation": 0.408
+    },
+    {
+     "name": "G09-R6",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.493,
+     "power_unit_stress": 0.695,
+     "tyre_degradation": 0.611
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 125.816,
+     "DISTRIBUTE": 131.297,
+     "DEFER_BUNDLE": 131.477,
+     "NO_CHANGE": 121.732
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": -5.481,
+     "ci95": [
+      -10.173,
+      -0.789
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -5.661,
+     "ci95": [
+      -8.306,
+      -3.016
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 4.083,
+     "ci95": [
+      1.851,
+      6.316
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 124.717,
+     "DISTRIBUTE": 122.037,
+     "DEFER_BUNDLE": 129.356,
+     "NO_CHANGE": 122.709
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 2.68,
+     "ci95": [
+      -0.164,
+      5.524
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -4.64,
+     "ci95": [
+      -8.498,
+      -0.781
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 2.008,
+     "ci95": [
+      -0.029,
+      4.044
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S10",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.533,
+    "energy_store": 0.479
+   },
+   "elements_used": {
+    "turbo": 1,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G10-R4",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.332,
+     "power_unit_stress": 0.872,
+     "tyre_degradation": 0.452
+    },
+    {
+     "name": "G10-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.502,
+     "power_unit_stress": 0.452,
+     "tyre_degradation": 0.676
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 135.397,
+     "DISTRIBUTE": 135.644,
+     "DEFER_BUNDLE": 133.48,
+     "NO_CHANGE": 121.725
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -0.247,
+     "ci95": [
+      -0.701,
+      0.206
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.917,
+     "ci95": [
+      0.581,
+      3.253
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.672,
+     "ci95": [
+      11.634,
+      15.71
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 133.319,
+     "DISTRIBUTE": 133.319,
+     "DEFER_BUNDLE": 133.562,
+     "NO_CHANGE": 123.396
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.243,
+     "ci95": [
+      -0.696,
+      0.211
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.924,
+     "ci95": [
+      7.845,
+      12.002
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S11",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.782,
+    "turbo": 0.697
+   },
+   "elements_used": {
+    "ICE": 2,
+    "turbo": 1
+   },
+   "tracks": [
+    {
+     "name": "G11-R3",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.49,
+     "power_unit_stress": 0.56,
+     "tyre_degradation": 0.916
+    },
+    {
+     "name": "G11-R4",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.29,
+     "power_unit_stress": 0.853,
+     "tyre_degradation": 0.456
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 162.227,
+     "DISTRIBUTE": 161.832,
+     "DEFER_BUNDLE": 162.423,
+     "NO_CHANGE": 158.984
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 0.395,
+     "ci95": [
+      -0.619,
+      1.41
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.196,
+     "ci95": [
+      -2.891,
+      2.5
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 3.244,
+     "ci95": [
+      0.53,
+      5.957
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 162.358,
+     "DISTRIBUTE": 160.995,
+     "DEFER_BUNDLE": 158.038,
+     "NO_CHANGE": 157.809
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.364,
+     "ci95": [
+      -0.228,
+      2.955
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.32,
+     "ci95": [
+      0.689,
+      7.95
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 4.549,
+     "ci95": [
+      0.578,
+      8.52
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S12",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.727,
+    "ICE": 0.517,
+    "energy_store": 0.469
+   },
+   "elements_used": {
+    "turbo": 2,
+    "ICE": 2,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G12-R4",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.28,
+     "power_unit_stress": 0.845,
+     "tyre_degradation": 0.402
+    },
+    {
+     "name": "G12-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.235,
+     "power_unit_stress": 0.881,
+     "tyre_degradation": 0.476
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 159.189,
+     "DISTRIBUTE": 156.675,
+     "DEFER_BUNDLE": 155.973,
+     "NO_CHANGE": 137.232
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 2.514,
+     "ci95": [
+      -0.398,
+      5.426
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.216,
+     "ci95": [
+      1.15,
+      5.281
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 21.957,
+     "ci95": [
+      18.407,
+      25.507
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 160.138,
+     "DISTRIBUTE": 156.883,
+     "DEFER_BUNDLE": 155.841,
+     "NO_CHANGE": 137.236
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 3.254,
+     "ci95": [
+      0.831,
+      5.678
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.297,
+     "ci95": [
+      2.496,
+      6.097
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 22.901,
+     "ci95": [
+      20.23,
+      25.572
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S13",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.656,
+    "turbo": 0.624,
+    "energy_store": 0.462
+   },
+   "elements_used": {
+    "ICE": 1,
+    "turbo": 2,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G13-R5",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.464,
+     "power_unit_stress": 0.609,
+     "tyre_degradation": 0.961
+    },
+    {
+     "name": "G13-R6",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.437,
+     "power_unit_stress": 0.598,
+     "tyre_degradation": 0.962
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 121.945,
+     "DISTRIBUTE": 112.637,
+     "DEFER_BUNDLE": 117.366,
+     "NO_CHANGE": 108.433
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 9.308,
+     "ci95": [
+      5.951,
+      12.665
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.579,
+     "ci95": [
+      2.241,
+      6.917
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.512,
+     "ci95": [
+      10.207,
+      16.817
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 121.945,
+     "DISTRIBUTE": 113.242,
+     "DEFER_BUNDLE": 117.372,
+     "NO_CHANGE": 108.438
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 8.703,
+     "ci95": [
+      6.11,
+      11.296
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.573,
+     "ci95": [
+      2.234,
+      6.912
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.507,
+     "ci95": [
+      10.201,
+      16.813
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S14",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.744,
+    "turbo": 0.744,
+    "energy_store": 0.47
+   },
+   "elements_used": {
+    "ICE": 1,
+    "turbo": 1,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G14-R4",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.505,
+     "power_unit_stress": 0.531,
+     "tyre_degradation": 0.579
+    },
+    {
+     "name": "G14-R5",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.493,
+     "power_unit_stress": 0.605,
+     "tyre_degradation": 0.911
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 153.606,
+     "DISTRIBUTE": 153.094,
+     "DEFER_BUNDLE": 156.733,
+     "NO_CHANGE": 140.677
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 0.513,
+     "ci95": [
+      -1.908,
+      2.934
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -3.127,
+     "ci95": [
+      -6.139,
+      -0.114
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 12.929,
+     "ci95": [
+      9.427,
+      16.431
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 155.047,
+     "DISTRIBUTE": 156.664,
+     "DEFER_BUNDLE": 157.87,
+     "NO_CHANGE": 141.597
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": -1.617,
+     "ci95": [
+      -5.211,
+      1.978
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -2.823,
+     "ci95": [
+      -7.181,
+      1.535
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.45,
+     "ci95": [
+      10.796,
+      16.103
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex A",
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S15",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.755,
+    "ICE": 0.456
+   },
+   "elements_used": {
+    "turbo": 1,
+    "ICE": 2
+   },
+   "tracks": [
+    {
+     "name": "G15-R4",
+     "archetype": "street",
+     "overtaking_difficulty": 0.818,
+     "power_unit_stress": 0.398,
+     "tyre_degradation": 0.316
+    },
+    {
+     "name": "G15-R5",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.384,
+     "power_unit_stress": 0.689,
+     "tyre_degradation": 0.909
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 149.406,
+     "DISTRIBUTE": 154.693,
+     "DEFER_BUNDLE": 153.24,
+     "NO_CHANGE": 144.125
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -5.288,
+     "ci95": [
+      -8.493,
+      -2.082
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -3.835,
+     "ci95": [
+      -7.141,
+      -0.528
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 5.281,
+     "ci95": [
+      1.481,
+      9.081
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 153.364,
+     "DISTRIBUTE": 151.92,
+     "DEFER_BUNDLE": 152.048,
+     "NO_CHANGE": 145.481
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.444,
+     "ci95": [
+      -1.732,
+      4.62
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.316,
+     "ci95": [
+      -3.033,
+      5.665
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 7.883,
+     "ci95": [
+      5.502,
+      10.265
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S16",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.79,
+    "ICE": 0.667,
+    "energy_store": 0.557
+   },
+   "elements_used": {
+    "turbo": 2,
+    "ICE": 1,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G16-R4",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.592,
+     "power_unit_stress": 0.501,
+     "tyre_degradation": 0.553
+    },
+    {
+     "name": "G16-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.213,
+     "power_unit_stress": 0.851,
+     "tyre_degradation": 0.5
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 136.63,
+     "DISTRIBUTE": 137.408,
+     "DEFER_BUNDLE": 134.646,
+     "NO_CHANGE": 127.272
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -0.778,
+     "ci95": [
+      -3.692,
+      2.137
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.984,
+     "ci95": [
+      -1.099,
+      5.068
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.358,
+     "ci95": [
+      6.541,
+      12.174
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Apex A",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 135.097,
+     "DISTRIBUTE": 134.123,
+     "DEFER_BUNDLE": 131.98,
+     "NO_CHANGE": 129.244
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.974,
+     "ci95": [
+      -0.438,
+      2.386
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.117,
+     "ci95": [
+      -0.184,
+      6.418
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 5.853,
+     "ci95": [
+      3.347,
+      8.359
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S17",
+   "decision_state": false
+  },
+  {
+   "scenario": "S18",
+   "decision_state": false
+  },
+  {
+   "scenario": "S19",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.528,
+    "ICE": 0.483
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G19-R4",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.459,
+     "power_unit_stress": 0.651,
+     "tyre_degradation": 0.971
+    },
+    {
+     "name": "G19-R5",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.417,
+     "power_unit_stress": 0.639,
+     "tyre_degradation": 0.878
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 159.004,
+     "DISTRIBUTE": 158.868,
+     "DEFER_BUNDLE": 153.435,
+     "NO_CHANGE": 148.116
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.136,
+     "ci95": [
+      -0.715,
+      0.987
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 5.569,
+     "ci95": [
+      4.057,
+      7.082
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 10.888,
+     "ci95": [
+      8.972,
+      12.804
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 160.211,
+     "DISTRIBUTE": 160.574,
+     "DEFER_BUNDLE": 154.044,
+     "NO_CHANGE": 148.724
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -0.363,
+     "ci95": [
+      -1.307,
+      0.581
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 6.167,
+     "ci95": [
+      3.991,
+      8.344
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 11.487,
+     "ci95": [
+      9.428,
+      13.546
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S20",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.734,
+    "energy_store": 0.564,
+    "ICE": 0.554
+   },
+   "elements_used": {
+    "turbo": 2,
+    "energy_store": 1,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G20-R5",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.4,
+     "power_unit_stress": 0.531,
+     "tyre_degradation": 0.538
+    },
+    {
+     "name": "G20-R6",
+     "archetype": "street",
+     "overtaking_difficulty": 0.924,
+     "power_unit_stress": 0.4,
+     "tyre_degradation": 0.328
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 124.225,
+     "DISTRIBUTE": 123.619,
+     "DEFER_BUNDLE": 125.943,
+     "NO_CHANGE": 116.07
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 0.606,
+     "ci95": [
+      -0.054,
+      1.266
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -1.717,
+     "ci95": [
+      -3.592,
+      0.157
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.156,
+     "ci95": [
+      5.851,
+      10.46
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 121.984,
+     "DISTRIBUTE": 121.761,
+     "DEFER_BUNDLE": 122.235,
+     "NO_CHANGE": 115.066
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 0.223,
+     "ci95": [
+      0.202,
+      0.245
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.251,
+     "ci95": [
+      -3.532,
+      3.031
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 6.918,
+     "ci95": [
+      3.244,
+      10.593
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S21",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.711,
+    "turbo": 0.562,
+    "ICE": 0.531
+   },
+   "elements_used": {
+    "energy_store": 1,
+    "turbo": 2,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G21-R3",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.37,
+     "power_unit_stress": 0.637,
+     "tyre_degradation": 0.873
+    },
+    {
+     "name": "G21-R4",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.441,
+     "power_unit_stress": 0.509,
+     "tyre_degradation": 0.536
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 172.086,
+     "DISTRIBUTE": 166.939,
+     "DEFER_BUNDLE": 166.555,
+     "NO_CHANGE": 156.788
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 5.147,
+     "ci95": [
+      3.416,
+      6.878
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 5.531,
+     "ci95": [
+      3.647,
+      7.415
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 15.299,
+     "ci95": [
+      11.693,
+      18.904
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 170.613,
+     "DISTRIBUTE": 169.031,
+     "DEFER_BUNDLE": 168.803,
+     "NO_CHANGE": 155.475
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.581,
+     "ci95": [
+      -0.605,
+      3.767
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.81,
+     "ci95": [
+      -0.446,
+      4.066
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 15.138,
+     "ci95": [
+      11.936,
+      18.34
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S22",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.712,
+    "turbo": 0.615,
+    "energy_store": 0.506
+   },
+   "elements_used": {
+    "ICE": 1,
+    "turbo": 1,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G22-R5",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.435,
+     "power_unit_stress": 0.594,
+     "tyre_degradation": 0.924
+    },
+    {
+     "name": "G22-R6",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.248,
+     "power_unit_stress": 0.845,
+     "tyre_degradation": 0.536
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 125.694,
+     "DISTRIBUTE": 122.15,
+     "DEFER_BUNDLE": 122.274,
+     "NO_CHANGE": 112.185
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 3.544,
+     "ci95": [
+      1.595,
+      5.493
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.42,
+     "ci95": [
+      1.169,
+      5.671
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.509,
+     "ci95": [
+      11.732,
+      15.286
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex A",
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 126.827,
+     "DISTRIBUTE": 125.015,
+     "DEFER_BUNDLE": 123.669,
+     "NO_CHANGE": 115.014
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.811,
+     "ci95": [
+      0.658,
+      2.965
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.158,
+     "ci95": [
+      1.493,
+      4.823
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 11.813,
+     "ci95": [
+      9.04,
+      14.585
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S23",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.586,
+    "turbo": 0.526
+   },
+   "elements_used": {
+    "ICE": 2,
+    "turbo": 2
+   },
+   "tracks": [
+    {
+     "name": "G23-R3",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.226,
+     "power_unit_stress": 0.924,
+     "tyre_degradation": 0.496
+    },
+    {
+     "name": "G23-R4",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.523,
+     "power_unit_stress": 0.681,
+     "tyre_degradation": 0.582
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 163.401,
+     "DISTRIBUTE": 158.423,
+     "DEFER_BUNDLE": 160.076,
+     "NO_CHANGE": 155.105
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.978,
+     "ci95": [
+      2.229,
+      7.727
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.325,
+     "ci95": [
+      -0.287,
+      6.938
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.296,
+     "ci95": [
+      5.969,
+      10.623
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 162.324,
+     "DISTRIBUTE": 159.044,
+     "DEFER_BUNDLE": 163.457,
+     "NO_CHANGE": 157.482
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 3.28,
+     "ci95": [
+      1.747,
+      4.812
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -1.133,
+     "ci95": [
+      -3.205,
+      0.939
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 4.842,
+     "ci95": [
+      2.183,
+      7.502
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S24",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.822,
+    "turbo": 0.8,
+    "energy_store": 0.59
+   },
+   "elements_used": {
+    "ICE": 1,
+    "turbo": 2,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G24-R3",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.587,
+     "power_unit_stress": 0.479,
+     "tyre_degradation": 0.648
+    },
+    {
+     "name": "G24-R4",
+     "archetype": "street",
+     "overtaking_difficulty": 0.818,
+     "power_unit_stress": 0.425,
+     "tyre_degradation": 0.319
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 192.271,
+     "DISTRIBUTE": 186.958,
+     "DEFER_BUNDLE": 186.296,
+     "NO_CHANGE": 187.333
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 5.313,
+     "ci95": [
+      2.687,
+      7.939
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 5.975,
+     "ci95": [
+      3.701,
+      8.248
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 4.938,
+     "ci95": [
+      -0.427,
+      10.303
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Apex A",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 189.01,
+     "DISTRIBUTE": 190.853,
+     "DEFER_BUNDLE": 191.43,
+     "NO_CHANGE": 185.2
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": -1.842,
+     "ci95": [
+      -6.894,
+      3.21
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -2.419,
+     "ci95": [
+      -7.811,
+      2.973
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 3.811,
+     "ci95": [
+      -3.856,
+      11.477
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S25",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.785,
+    "energy_store": 0.549
+   },
+   "elements_used": {
+    "ICE": 1,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G25-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.253,
+     "power_unit_stress": 0.92,
+     "tyre_degradation": 0.501
+    },
+    {
+     "name": "G25-R6",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.626,
+     "power_unit_stress": 0.498,
+     "tyre_degradation": 0.689
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 103.486,
+     "DISTRIBUTE": 106.939,
+     "DEFER_BUNDLE": 100.885,
+     "NO_CHANGE": 93.871
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -3.453,
+     "ci95": [
+      -4.549,
+      -2.357
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.601,
+     "ci95": [
+      0.118,
+      5.085
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.616,
+     "ci95": [
+      7.864,
+      11.367
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 105.878,
+     "DISTRIBUTE": 105.867,
+     "DEFER_BUNDLE": 102.657,
+     "NO_CHANGE": 91.887
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.011,
+     "ci95": [
+      0.01,
+      0.013
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.221,
+     "ci95": [
+      1.692,
+      4.75
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.99,
+     "ci95": [
+      12.737,
+      15.244
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S26",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.749,
+    "ICE": 0.71,
+    "energy_store": 0.679
+   },
+   "elements_used": {
+    "turbo": 2,
+    "ICE": 2,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G26-R4",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.215,
+     "power_unit_stress": 0.825,
+     "tyre_degradation": 0.408
+    },
+    {
+     "name": "G26-R5",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.445,
+     "power_unit_stress": 0.688,
+     "tyre_degradation": 0.98
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 143.113,
+     "DISTRIBUTE": 128.102,
+     "DEFER_BUNDLE": 134.505,
+     "NO_CHANGE": 120.478
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 15.011,
+     "ci95": [
+      12.291,
+      17.731
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 8.608,
+     "ci95": [
+      5.774,
+      11.442
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 22.635,
+     "ci95": [
+      20.01,
+      25.26
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 12,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 140.71,
+     "DISTRIBUTE": 129.966,
+     "DEFER_BUNDLE": 134.112,
+     "NO_CHANGE": 122.925
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 10.743,
+     "ci95": [
+      8.862,
+      12.624
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 6.598,
+     "ci95": [
+      3.315,
+      9.88
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 17.785,
+     "ci95": [
+      13.366,
+      22.204
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 12,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S27",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.784,
+    "energy_store": 0.517,
+    "turbo": 0.497
+   },
+   "elements_used": {
+    "ICE": 1,
+    "energy_store": 1,
+    "turbo": 1
+   },
+   "tracks": [
+    {
+     "name": "G27-R4",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.422,
+     "power_unit_stress": 0.571,
+     "tyre_degradation": 0.85
+    },
+    {
+     "name": "G27-R5",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.51,
+     "power_unit_stress": 0.519,
+     "tyre_degradation": 0.547
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 160.933,
+     "DISTRIBUTE": 159.791,
+     "DEFER_BUNDLE": 163.712,
+     "NO_CHANGE": 149.58
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 1.142,
+     "ci95": [
+      0.173,
+      2.11
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -2.779,
+     "ci95": [
+      -6.79,
+      1.231
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 11.353,
+     "ci95": [
+      8.82,
+      13.885
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex A",
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 160.17,
+     "DISTRIBUTE": 160.837,
+     "DEFER_BUNDLE": 167.576,
+     "NO_CHANGE": 147.166
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": -0.667,
+     "ci95": [
+      -1.562,
+      0.228
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -7.406,
+     "ci95": [
+      -10.919,
+      -3.893
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.004,
+     "ci95": [
+      8.816,
+      17.192
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S28",
+   "decision_state": false
+  },
+  {
+   "scenario": "S29",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.794,
+    "turbo": 0.685,
+    "ICE": 0.649
+   },
+   "elements_used": {
+    "energy_store": 1,
+    "turbo": 2,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G29-R3",
+     "archetype": "street",
+     "overtaking_difficulty": 0.867,
+     "power_unit_stress": 0.436,
+     "tyre_degradation": 0.355
+    },
+    {
+     "name": "G29-R4",
+     "archetype": "street",
+     "overtaking_difficulty": 0.94,
+     "power_unit_stress": 0.353,
+     "tyre_degradation": 0.304
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 197.549,
+     "DISTRIBUTE": 203.099,
+     "DEFER_BUNDLE": 202.492,
+     "NO_CHANGE": 201.525
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -5.551,
+     "ci95": [
+      -10.121,
+      -0.98
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -4.943,
+     "ci95": [
+      -11.175,
+      1.288
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": -3.976,
+     "ci95": [
+      -8.45,
+      0.499
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 197.678,
+     "DISTRIBUTE": 203.955,
+     "DEFER_BUNDLE": 202.922,
+     "NO_CHANGE": 201.599
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -6.277,
+     "ci95": [
+      -12.636,
+      0.082
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -5.244,
+     "ci95": [
+      -12.179,
+      1.691
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": -3.92,
+     "ci95": [
+      -9.156,
+      1.316
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S30",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.746,
+    "ICE": 0.697,
+    "turbo": 0.515
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 1,
+    "turbo": 2
+   },
+   "tracks": [
+    {
+     "name": "G30-R4",
+     "archetype": "street",
+     "overtaking_difficulty": 0.883,
+     "power_unit_stress": 0.405,
+     "tyre_degradation": 0.392
+    },
+    {
+     "name": "G30-R5",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.42,
+     "power_unit_stress": 0.534,
+     "tyre_degradation": 0.698
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 159.31,
+     "DISTRIBUTE": 156.446,
+     "DEFER_BUNDLE": 162.601,
+     "NO_CHANGE": 144.594
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 2.864,
+     "ci95": [
+      -0.355,
+      6.084
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -3.291,
+     "ci95": [
+      -6.748,
+      0.165
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 14.716,
+     "ci95": [
+      9.819,
+      19.612
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 161.611,
+     "DISTRIBUTE": 157.6,
+     "DEFER_BUNDLE": 158.062,
+     "NO_CHANGE": 144.306
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.011,
+     "ci95": [
+      0.891,
+      7.131
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.55,
+     "ci95": [
+      0.738,
+      6.361
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 17.305,
+     "ci95": [
+      13.466,
+      21.144
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S31",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.797,
+    "turbo": 0.719,
+    "ICE": 0.594
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "turbo": 2,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G31-R4",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.205,
+     "power_unit_stress": 0.857,
+     "tyre_degradation": 0.456
+    },
+    {
+     "name": "G31-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.337,
+     "power_unit_stress": 0.879,
+     "tyre_degradation": 0.543
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 130.94,
+     "DISTRIBUTE": 130.519,
+     "DEFER_BUNDLE": 126.241,
+     "NO_CHANGE": 126.751
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.42,
+     "ci95": [
+      -4.655,
+      5.496
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.699,
+     "ci95": [
+      0.948,
+      8.45
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 4.189,
+     "ci95": [
+      -0.895,
+      9.273
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 131.069,
+     "DISTRIBUTE": 132.217,
+     "DEFER_BUNDLE": 125.979,
+     "NO_CHANGE": 127.811
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -1.147,
+     "ci95": [
+      -6.42,
+      4.126
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 5.09,
+     "ci95": [
+      1.326,
+      8.855
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 3.258,
+     "ci95": [
+      -1.431,
+      7.948
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S32",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.769,
+    "turbo": 0.731
+   },
+   "elements_used": {
+    "ICE": 1,
+    "turbo": 1
+   },
+   "tracks": [
+    {
+     "name": "G32-R3",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.299,
+     "power_unit_stress": 0.934,
+     "tyre_degradation": 0.457
+    },
+    {
+     "name": "G32-R4",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.276,
+     "power_unit_stress": 0.842,
+     "tyre_degradation": 0.425
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 164.643,
+     "DISTRIBUTE": 162.072,
+     "DEFER_BUNDLE": 161.688,
+     "NO_CHANGE": 158.436
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 2.571,
+     "ci95": [
+      1.046,
+      4.096
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.955,
+     "ci95": [
+      0.7,
+      5.21
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 6.208,
+     "ci95": [
+      3.179,
+      9.236
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 164.404,
+     "DISTRIBUTE": 162.091,
+     "DEFER_BUNDLE": 161.365,
+     "NO_CHANGE": 158.002
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 2.313,
+     "ci95": [
+      0.973,
+      3.653
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.039,
+     "ci95": [
+      0.669,
+      5.408
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 6.402,
+     "ci95": [
+      3.397,
+      9.408
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S33",
+   "decision_state": false
+  },
+  {
+   "scenario": "S34",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.606,
+    "ICE": 0.554
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G34-R5",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.411,
+     "power_unit_stress": 0.69,
+     "tyre_degradation": 0.558
+    },
+    {
+     "name": "G34-R6",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.407,
+     "power_unit_stress": 0.675,
+     "tyre_degradation": 0.991
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 110.927,
+     "DISTRIBUTE": 113.631,
+     "DEFER_BUNDLE": 112.17,
+     "NO_CHANGE": 105.237
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -2.703,
+     "ci95": [
+      -4.855,
+      -0.552
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -1.242,
+     "ci95": [
+      -4.369,
+      1.884
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 5.69,
+     "ci95": [
+      2.228,
+      9.153
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 113.051,
+     "DISTRIBUTE": 115.872,
+     "DEFER_BUNDLE": 111.225,
+     "NO_CHANGE": 107.171
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -2.82,
+     "ci95": [
+      -4.89,
+      -0.751
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.827,
+     "ci95": [
+      -1.302,
+      4.955
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 5.88,
+     "ci95": [
+      2.652,
+      9.109
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S35",
+   "decision_state": false
+  },
+  {
+   "scenario": "S36",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.684,
+    "ICE": 0.658,
+    "turbo": 0.653
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 1,
+    "turbo": 2
+   },
+   "tracks": [
+    {
+     "name": "G36-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.563,
+     "power_unit_stress": 0.543,
+     "tyre_degradation": 0.56
+    },
+    {
+     "name": "G36-R6",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.391,
+     "power_unit_stress": 0.581,
+     "tyre_degradation": 0.859
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 118.553,
+     "DISTRIBUTE": 110.872,
+     "DEFER_BUNDLE": 114.193,
+     "NO_CHANGE": 106.061
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 7.681,
+     "ci95": [
+      4.048,
+      11.315
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.361,
+     "ci95": [
+      3.229,
+      5.493
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 12.492,
+     "ci95": [
+      9.732,
+      15.253
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 119.855,
+     "DISTRIBUTE": 110.642,
+     "DEFER_BUNDLE": 115.164,
+     "NO_CHANGE": 104.506
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 9.214,
+     "ci95": [
+      4.981,
+      13.446
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.692,
+     "ci95": [
+      2.694,
+      6.689
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 15.35,
+     "ci95": [
+      11.835,
+      18.864
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S37",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.584,
+    "ICE": 0.496
+   },
+   "elements_used": {
+    "energy_store": 1,
+    "ICE": 2
+   },
+   "tracks": [
+    {
+     "name": "G37-R4",
+     "archetype": "street",
+     "overtaking_difficulty": 0.936,
+     "power_unit_stress": 0.429,
+     "tyre_degradation": 0.394
+    },
+    {
+     "name": "G37-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.216,
+     "power_unit_stress": 0.879,
+     "tyre_degradation": 0.418
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 141.749,
+     "DISTRIBUTE": 143.733,
+     "DEFER_BUNDLE": 144.494,
+     "NO_CHANGE": 137.214
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": -1.984,
+     "ci95": [
+      -4.945,
+      0.977
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -2.745,
+     "ci95": [
+      -5.015,
+      -0.475
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 4.536,
+     "ci95": [
+      1.185,
+      7.887
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 144.317,
+     "DISTRIBUTE": 138.994,
+     "DEFER_BUNDLE": 140.673,
+     "NO_CHANGE": 136.814
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 5.323,
+     "ci95": [
+      1.807,
+      8.84
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.644,
+     "ci95": [
+      -0.289,
+      7.578
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 7.503,
+     "ci95": [
+      3.41,
+      11.596
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S38",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.691,
+    "ICE": 0.687,
+    "energy_store": 0.512
+   },
+   "elements_used": {
+    "turbo": 1,
+    "ICE": 2,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G38-R3",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.252,
+     "power_unit_stress": 0.939,
+     "tyre_degradation": 0.481
+    },
+    {
+     "name": "G38-R4",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.506,
+     "power_unit_stress": 0.451,
+     "tyre_degradation": 0.656
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 161.405,
+     "DISTRIBUTE": 156.247,
+     "DEFER_BUNDLE": 158.773,
+     "NO_CHANGE": 148.234
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 5.157,
+     "ci95": [
+      3.285,
+      7.03
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.631,
+     "ci95": [
+      0.15,
+      5.113
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.17,
+     "ci95": [
+      9.976,
+      16.364
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 161.885,
+     "DISTRIBUTE": 157.482,
+     "DEFER_BUNDLE": 160.299,
+     "NO_CHANGE": 150.14
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.404,
+     "ci95": [
+      2.182,
+      6.625
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.586,
+     "ci95": [
+      -0.51,
+      3.683
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 11.745,
+     "ci95": [
+      8.956,
+      14.533
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S39",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.706,
+    "turbo": 0.545
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "turbo": 2
+   },
+   "tracks": [
+    {
+     "name": "G39-R3",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.524,
+     "power_unit_stress": 0.546,
+     "tyre_degradation": 0.642
+    },
+    {
+     "name": "G39-R4",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.491,
+     "power_unit_stress": 0.605,
+     "tyre_degradation": 0.984
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 168.477,
+     "DISTRIBUTE": 169.653,
+     "DEFER_BUNDLE": 169.063,
+     "NO_CHANGE": 160.324
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -1.176,
+     "ci95": [
+      -2.129,
+      -0.222
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.586,
+     "ci95": [
+      -2.57,
+      1.399
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.153,
+     "ci95": [
+      4.9,
+      11.406
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 171.837,
+     "DISTRIBUTE": 170.971,
+     "DEFER_BUNDLE": 170.581,
+     "NO_CHANGE": 161.045
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.866,
+     "ci95": [
+      -0.178,
+      1.91
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.257,
+     "ci95": [
+      0.551,
+      1.963
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 10.793,
+     "ci95": [
+      6.761,
+      14.824
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S40",
+   "decision_state": false
+  },
+  {
+   "scenario": "S41",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.788,
+    "energy_store": 0.48
+   },
+   "elements_used": {
+    "turbo": 2,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G41-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.637,
+     "power_unit_stress": 0.534,
+     "tyre_degradation": 0.619
+    },
+    {
+     "name": "G41-R6",
+     "archetype": "street",
+     "overtaking_difficulty": 0.923,
+     "power_unit_stress": 0.417,
+     "tyre_degradation": 0.43
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 129.155,
+     "DISTRIBUTE": 129.155,
+     "DEFER_BUNDLE": 124.617,
+     "NO_CHANGE": 119.411
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.538,
+     "ci95": [
+      2.479,
+      6.597
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.745,
+     "ci95": [
+      7.378,
+      12.112
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Apex A",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Apex A",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 127.71,
+     "DISTRIBUTE": 127.341,
+     "DEFER_BUNDLE": 126.641,
+     "NO_CHANGE": 118.295
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.37,
+     "ci95": [
+      -0.308,
+      1.048
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.07,
+     "ci95": [
+      -2.033,
+      4.172
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.415,
+     "ci95": [
+      5.641,
+      13.19
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S42",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.785,
+    "ICE": 0.743,
+    "turbo": 0.617
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 2,
+    "turbo": 2
+   },
+   "tracks": [
+    {
+     "name": "G42-R4",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.517,
+     "power_unit_stress": 0.562,
+     "tyre_degradation": 0.535
+    },
+    {
+     "name": "G42-R5",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.453,
+     "power_unit_stress": 0.557,
+     "tyre_degradation": 0.964
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 143.467,
+     "DISTRIBUTE": 139.274,
+     "DEFER_BUNDLE": 146.401,
+     "NO_CHANGE": 134.3
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 4.193,
+     "ci95": [
+      -0.945,
+      9.331
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -2.935,
+     "ci95": [
+      -7.641,
+      1.771
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.167,
+     "ci95": [
+      5.619,
+      12.715
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 12,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 142.197,
+     "DISTRIBUTE": 138.644,
+     "DEFER_BUNDLE": 143.584,
+     "NO_CHANGE": 134.359
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 3.553,
+     "ci95": [
+      -0.547,
+      7.652
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -1.387,
+     "ci95": [
+      -4.579,
+      1.806
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 7.838,
+     "ci95": [
+      4.98,
+      10.697
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 12,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S43",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.793,
+    "ICE": 0.61
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 2
+   },
+   "tracks": [
+    {
+     "name": "G43-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.235,
+     "power_unit_stress": 0.946,
+     "tyre_degradation": 0.533
+    },
+    {
+     "name": "G43-R6",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.47,
+     "power_unit_stress": 0.588,
+     "tyre_degradation": 0.905
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 109.617,
+     "DISTRIBUTE": 106.219,
+     "DEFER_BUNDLE": 106.829,
+     "NO_CHANGE": 100.122
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 3.398,
+     "ci95": [
+      0.92,
+      5.876
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.788,
+     "ci95": [
+      0.108,
+      5.469
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.495,
+     "ci95": [
+      4.594,
+      14.397
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 109.574,
+     "DISTRIBUTE": 108.194,
+     "DEFER_BUNDLE": 107.486,
+     "NO_CHANGE": 98.984
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.38,
+     "ci95": [
+      -0.355,
+      3.115
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.088,
+     "ci95": [
+      0.568,
+      3.608
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 10.589,
+     "ci95": [
+      8.432,
+      12.747
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S44",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.721,
+    "ICE": 0.472
+   },
+   "elements_used": {
+    "turbo": 2,
+    "ICE": 1
+   },
+   "tracks": [
+    {
+     "name": "G44-R3",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.421,
+     "power_unit_stress": 0.584,
+     "tyre_degradation": 0.607
+    },
+    {
+     "name": "G44-R4",
+     "archetype": "street",
+     "overtaking_difficulty": 0.942,
+     "power_unit_stress": 0.461,
+     "tyre_degradation": 0.425
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 186.694,
+     "DISTRIBUTE": 189.423,
+     "DEFER_BUNDLE": 187.051,
+     "NO_CHANGE": 180.514
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -2.729,
+     "ci95": [
+      -3.75,
+      -1.708
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.358,
+     "ci95": [
+      -3.083,
+      2.368
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 6.18,
+     "ci95": [
+      2.0,
+      10.36
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 186.682,
+     "DISTRIBUTE": 189.373,
+     "DEFER_BUNDLE": 189.095,
+     "NO_CHANGE": 180.957
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -2.691,
+     "ci95": [
+      -3.713,
+      -1.669
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -2.412,
+     "ci95": [
+      -4.833,
+      0.008
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 5.726,
+     "ci95": [
+      1.22,
+      10.231
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S45",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.806,
+    "turbo": 0.56,
+    "energy_store": 0.546
+   },
+   "elements_used": {
+    "ICE": 1,
+    "turbo": 2,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G45-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.321,
+     "power_unit_stress": 0.802,
+     "tyre_degradation": 0.449
+    },
+    {
+     "name": "G45-R6",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.568,
+     "power_unit_stress": 0.501,
+     "tyre_degradation": 0.673
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 118.678,
+     "DISTRIBUTE": 116.627,
+     "DEFER_BUNDLE": 116.875,
+     "NO_CHANGE": 111.205
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 2.051,
+     "ci95": [
+      -1.567,
+      5.67
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.804,
+     "ci95": [
+      -0.631,
+      4.238
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 7.473,
+     "ci95": [
+      6.048,
+      8.899
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 122.441,
+     "DISTRIBUTE": 116.043,
+     "DEFER_BUNDLE": 117.871,
+     "NO_CHANGE": 113.333
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 6.398,
+     "ci95": [
+      2.756,
+      10.04
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.57,
+     "ci95": [
+      3.017,
+      6.124
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.108,
+     "ci95": [
+      5.184,
+      13.031
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S46",
+   "decision_state": false
+  },
+  {
+   "scenario": "S47",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.692,
+    "turbo": 0.508,
+    "energy_store": 0.455
+   },
+   "elements_used": {
+    "ICE": 2,
+    "turbo": 1,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G47-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.616,
+     "power_unit_stress": 0.563,
+     "tyre_degradation": 0.668
+    },
+    {
+     "name": "G47-R6",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.515,
+     "power_unit_stress": 0.454,
+     "tyre_degradation": 0.575
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 114.404,
+     "DISTRIBUTE": 109.407,
+     "DEFER_BUNDLE": 110.476,
+     "NO_CHANGE": 100.795
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.997,
+     "ci95": [
+      1.83,
+      8.163
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.928,
+     "ci95": [
+      2.046,
+      5.809
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.608,
+     "ci95": [
+      9.567,
+      17.65
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Apex A",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 116.792,
+     "DISTRIBUTE": 110.995,
+     "DEFER_BUNDLE": 110.06,
+     "NO_CHANGE": 101.477
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 5.797,
+     "ci95": [
+      1.381,
+      10.214
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 6.732,
+     "ci95": [
+      2.887,
+      10.578
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 15.315,
+     "ci95": [
+      9.514,
+      21.115
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Apex A",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S48",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.536,
+    "turbo": 0.499
+   },
+   "elements_used": {
+    "ICE": 1,
+    "turbo": 1
+   },
+   "tracks": [
+    {
+     "name": "G48-R3",
+     "archetype": "street",
+     "overtaking_difficulty": 0.828,
+     "power_unit_stress": 0.491,
+     "tyre_degradation": 0.353
+    },
+    {
+     "name": "G48-R4",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.511,
+     "power_unit_stress": 0.584,
+     "tyre_degradation": 0.645
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 206.622,
+     "DISTRIBUTE": 207.363,
+     "DEFER_BUNDLE": 207.357,
+     "NO_CHANGE": 194.962
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -0.74,
+     "ci95": [
+      -1.403,
+      -0.078
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.735,
+     "ci95": [
+      -1.396,
+      -0.073
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 11.66,
+     "ci95": [
+      9.93,
+      13.39
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 209.518,
+     "DISTRIBUTE": 208.447,
+     "DEFER_BUNDLE": 207.477,
+     "NO_CHANGE": 200.173
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.071,
+     "ci95": [
+      0.365,
+      1.778
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.041,
+     "ci95": [
+      0.811,
+      3.271
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.345,
+     "ci95": [
+      7.247,
+      11.443
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "NOW",
+    "reversal": true,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S49",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.835,
+    "turbo": 0.734,
+    "energy_store": 0.456
+   },
+   "elements_used": {
+    "ICE": 1,
+    "turbo": 2,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G49-R4",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.209,
+     "power_unit_stress": 0.816,
+     "tyre_degradation": 0.539
+    },
+    {
+     "name": "G49-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.247,
+     "power_unit_stress": 0.83,
+     "tyre_degradation": 0.424
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 131.134,
+     "DISTRIBUTE": 131.381,
+     "DEFER_BUNDLE": 128.126,
+     "NO_CHANGE": 120.807
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -0.247,
+     "ci95": [
+      -2.93,
+      2.436
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.008,
+     "ci95": [
+      0.958,
+      5.058
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 10.327,
+     "ci95": [
+      7.979,
+      12.676
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 129.714,
+     "DISTRIBUTE": 129.491,
+     "DEFER_BUNDLE": 126.087,
+     "NO_CHANGE": 120.352
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.223,
+     "ci95": [
+      -2.973,
+      3.419
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.627,
+     "ci95": [
+      1.522,
+      5.731
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 9.362,
+     "ci95": [
+      7.249,
+      11.474
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Apex A",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S50",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.684,
+    "energy_store": 0.638
+   },
+   "elements_used": {
+    "ICE": 1,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G50-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.609,
+     "power_unit_stress": 0.462,
+     "tyre_degradation": 0.574
+    },
+    {
+     "name": "G50-R6",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.289,
+     "power_unit_stress": 0.84,
+     "tyre_degradation": 0.417
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 117.283,
+     "DISTRIBUTE": 115.772,
+     "DEFER_BUNDLE": 113.172,
+     "NO_CHANGE": 108.697
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.511,
+     "ci95": [
+      -0.491,
+      3.513
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.111,
+     "ci95": [
+      1.93,
+      6.292
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.587,
+     "ci95": [
+      6.22,
+      10.953
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 114.931,
+     "DISTRIBUTE": 114.81,
+     "DEFER_BUNDLE": 110.591,
+     "NO_CHANGE": 105.979
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.12,
+     "ci95": [
+      0.112,
+      0.129
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.34,
+     "ci95": [
+      3.442,
+      5.239
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.951,
+     "ci95": [
+      6.609,
+      11.294
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 0,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S51",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.747,
+    "energy_store": 0.73,
+    "ICE": 0.597
+   },
+   "elements_used": {
+    "turbo": 1,
+    "energy_store": 2,
+    "ICE": 2
+   },
+   "tracks": [
+    {
+     "name": "G51-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.589,
+     "power_unit_stress": 0.456,
+     "tyre_degradation": 0.636
+    },
+    {
+     "name": "G51-R6",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.369,
+     "power_unit_stress": 0.577,
+     "tyre_degradation": 0.961
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 123.457,
+     "DISTRIBUTE": 117.819,
+     "DEFER_BUNDLE": 124.178,
+     "NO_CHANGE": 111.229
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 5.637,
+     "ci95": [
+      1.708,
+      9.567
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.721,
+     "ci95": [
+      -4.274,
+      2.832
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 12.228,
+     "ci95": [
+      9.065,
+      15.391
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 122.04,
+     "DISTRIBUTE": 118.476,
+     "DEFER_BUNDLE": 124.667,
+     "NO_CHANGE": 113.14
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 3.565,
+     "ci95": [
+      -0.841,
+      7.97
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -2.627,
+     "ci95": [
+      -5.812,
+      0.558
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 8.9,
+     "ci95": [
+      6.112,
+      11.689
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S52",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.77,
+    "energy_store": 0.608
+   },
+   "elements_used": {
+    "ICE": 1,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G52-R5",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.298,
+     "power_unit_stress": 0.92,
+     "tyre_degradation": 0.413
+    },
+    {
+     "name": "G52-R6",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.507,
+     "power_unit_stress": 0.586,
+     "tyre_degradation": 0.689
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 122.162,
+     "DISTRIBUTE": 120.848,
+     "DEFER_BUNDLE": 115.466,
+     "NO_CHANGE": 112.003
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.314,
+     "ci95": [
+      0.023,
+      2.606
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 6.696,
+     "ci95": [
+      4.555,
+      8.838
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 10.159,
+     "ci95": [
+      7.465,
+      12.854
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 121.818,
+     "DISTRIBUTE": 118.912,
+     "DEFER_BUNDLE": 112.973,
+     "NO_CHANGE": 105.513
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 2.907,
+     "ci95": [
+      1.335,
+      4.478
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 8.845,
+     "ci95": [
+      4.575,
+      13.115
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 16.305,
+     "ci95": [
+      13.168,
+      19.442
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Apex A",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S53",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "turbo": 0.727,
+    "ICE": 0.709,
+    "energy_store": 0.466
+   },
+   "elements_used": {
+    "turbo": 2,
+    "ICE": 1,
+    "energy_store": 2
+   },
+   "tracks": [
+    {
+     "name": "G53-R4",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.531,
+     "power_unit_stress": 0.51,
+     "tyre_degradation": 0.659
+    },
+    {
+     "name": "G53-R5",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.568,
+     "power_unit_stress": 0.559,
+     "tyre_degradation": 0.475
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 146.058,
+     "DISTRIBUTE": 141.831,
+     "DEFER_BUNDLE": 138.179,
+     "NO_CHANGE": 132.078
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.227,
+     "ci95": [
+      0.881,
+      7.572
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 7.879,
+     "ci95": [
+      5.888,
+      9.871
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.98,
+     "ci95": [
+      10.915,
+      17.044
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 146.412,
+     "DISTRIBUTE": 141.772,
+     "DEFER_BUNDLE": 141.218,
+     "NO_CHANGE": 134.875
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 4.64,
+     "ci95": [
+      1.433,
+      7.847
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 5.193,
+     "ci95": [
+      1.84,
+      8.547
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 11.536,
+     "ci95": [
+      7.522,
+      15.551
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S54",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.691,
+    "turbo": 0.517
+   },
+   "elements_used": {
+    "energy_store": 1,
+    "turbo": 2
+   },
+   "tracks": [
+    {
+     "name": "G54-R3",
+     "archetype": "street",
+     "overtaking_difficulty": 0.937,
+     "power_unit_stress": 0.439,
+     "tyre_degradation": 0.423
+    },
+    {
+     "name": "G54-R4",
+     "archetype": "high_speed",
+     "overtaking_difficulty": 0.219,
+     "power_unit_stress": 0.871,
+     "tyre_degradation": 0.527
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 185.058,
+     "DISTRIBUTE": 191.599,
+     "DEFER_BUNDLE": 191.444,
+     "NO_CHANGE": 181.129
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -6.541,
+     "ci95": [
+      -8.575,
+      -4.507
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -6.386,
+     "ci95": [
+      -8.062,
+      -4.711
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 3.928,
+     "ci95": [
+      0.235,
+      7.621
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 187.478,
+     "DISTRIBUTE": 189.539,
+     "DEFER_BUNDLE": 188.676,
+     "NO_CHANGE": 180.974
+    },
+    "best": "DISTRIBUTE",
+    "bundle_minus_distribute": {
+     "mean": -2.06,
+     "ci95": [
+      -3.816,
+      -0.305
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -1.198,
+     "ci95": [
+      -3.135,
+      0.738
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 6.504,
+     "ci95": [
+      2.727,
+      10.281
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Orion B",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "DEFER",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S55",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.818,
+    "ICE": 0.622,
+    "turbo": 0.604
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 2,
+    "turbo": 1
+   },
+   "tracks": [
+    {
+     "name": "G55-R4",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.511,
+     "power_unit_stress": 0.519,
+     "tyre_degradation": 0.626
+    },
+    {
+     "name": "G55-R5",
+     "archetype": "wet_prone",
+     "overtaking_difficulty": 0.528,
+     "power_unit_stress": 0.479,
+     "tyre_degradation": 0.605
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 159.268,
+     "DISTRIBUTE": 155.814,
+     "DEFER_BUNDLE": 156.024,
+     "NO_CHANGE": 140.391
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 3.454,
+     "ci95": [
+      2.343,
+      4.565
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.244,
+     "ci95": [
+      1.467,
+      5.02
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 18.877,
+     "ci95": [
+      14.433,
+      23.322
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 159.995,
+     "DISTRIBUTE": 156.531,
+     "DEFER_BUNDLE": 155.927,
+     "NO_CHANGE": 140.922
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 3.464,
+     "ci95": [
+      2.346,
+      4.582
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 4.069,
+     "ci95": [
+      2.022,
+      6.115
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 19.073,
+     "ci95": [
+      15.61,
+      22.536
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Apex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Vertex A",
+      "Orion B",
+      "Nova B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S56",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.721,
+    "energy_store": 0.504
+   },
+   "elements_used": {
+    "ICE": 2,
+    "energy_store": 1
+   },
+   "tracks": [
+    {
+     "name": "G56-R4",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.526,
+     "power_unit_stress": 0.62,
+     "tyre_degradation": 0.66
+    },
+    {
+     "name": "G56-R5",
+     "archetype": "street",
+     "overtaking_difficulty": 0.939,
+     "power_unit_stress": 0.356,
+     "tyre_degradation": 0.427
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 158.062,
+     "DISTRIBUTE": 157.815,
+     "DEFER_BUNDLE": 154.851,
+     "NO_CHANGE": 154.534
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.247,
+     "ci95": [
+      -0.206,
+      0.7
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.211,
+     "ci95": [
+      -0.366,
+      6.788
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 3.528,
+     "ci95": [
+      0.75,
+      6.307
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 157.908,
+     "DISTRIBUTE": 157.908,
+     "DEFER_BUNDLE": 155.632,
+     "NO_CHANGE": 153.544
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.276,
+     "ci95": [
+      -3.202,
+      7.754
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 4.364,
+     "ci95": [
+      -0.042,
+      8.77
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S57",
+   "decision_state": true,
+   "race_index": 3,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.63,
+    "ICE": 0.581,
+    "turbo": 0.574
+   },
+   "elements_used": {
+    "energy_store": 1,
+    "ICE": 1,
+    "turbo": 2
+   },
+   "tracks": [
+    {
+     "name": "G57-R4",
+     "archetype": "street",
+     "overtaking_difficulty": 0.863,
+     "power_unit_stress": 0.437,
+     "tyre_degradation": 0.339
+    },
+    {
+     "name": "G57-R5",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.51,
+     "power_unit_stress": 0.57,
+     "tyre_degradation": 0.651
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 166.574,
+     "DISTRIBUTE": 164.575,
+     "DEFER_BUNDLE": 164.797,
+     "NO_CHANGE": 153.17
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 1.999,
+     "ci95": [
+      -3.134,
+      7.132
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 1.776,
+     "ci95": [
+      -3.753,
+      7.306
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 13.404,
+     "ci95": [
+      8.443,
+      18.364
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Apex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Apex A",
+      "Apex B",
+      "Orion A",
+      "Nova A",
+      "Vertex A",
+      "Nova B",
+      "Orion B",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 166.286,
+     "DISTRIBUTE": 165.511,
+     "DEFER_BUNDLE": 166.84,
+     "NO_CHANGE": 154.589
+    },
+    "best": "DEFER_BUNDLE",
+    "bundle_minus_distribute": {
+     "mean": 0.775,
+     "ci95": [
+      -2.615,
+      4.166
+     ]
+    },
+    "now_minus_defer": {
+     "mean": -0.554,
+     "ci95": [
+      -3.569,
+      2.46
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 11.697,
+     "ci95": [
+      7.534,
+      15.861
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "DEFER",
+    "reversal": false,
+    "both_clear": false
+   }
+  },
+  {
+   "scenario": "S58",
+   "decision_state": true,
+   "race_index": 2,
+   "driver": "Apex A",
+   "worn": {
+    "energy_store": 0.823,
+    "ICE": 0.541,
+    "turbo": 0.494
+   },
+   "elements_used": {
+    "energy_store": 2,
+    "ICE": 2,
+    "turbo": 1
+   },
+   "tracks": [
+    {
+     "name": "G58-R3",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.529,
+     "power_unit_stress": 0.576,
+     "tyre_degradation": 0.461
+    },
+    {
+     "name": "G58-R4",
+     "archetype": "mixed",
+     "overtaking_difficulty": 0.433,
+     "power_unit_stress": 0.541,
+     "tyre_degradation": 0.485
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 180.894,
+     "DISTRIBUTE": 176.927,
+     "DEFER_BUNDLE": 178.446,
+     "NO_CHANGE": 163.089
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 3.967,
+     "ci95": [
+      1.593,
+      6.342
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.449,
+     "ci95": [
+      0.384,
+      4.513
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 17.805,
+     "ci95": [
+      14.94,
+      20.67
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 182.35,
+     "DISTRIBUTE": 176.326,
+     "DEFER_BUNDLE": 178.943,
+     "NO_CHANGE": 162.226
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 6.024,
+     "ci95": [
+      4.581,
+      7.467
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.407,
+     "ci95": [
+      1.234,
+      5.58
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 20.124,
+     "ci95": [
+      16.068,
+      24.18
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B",
+      "Apex A"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Apex A",
+      "Nova A",
+      "Orion B",
+      "Apex B",
+      "Nova B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 8,
+     "DISTRIBUTE": 4
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  },
+  {
+   "scenario": "S59",
+   "decision_state": true,
+   "race_index": 4,
+   "driver": "Apex A",
+   "worn": {
+    "ICE": 0.727,
+    "energy_store": 0.68,
+    "turbo": 0.524
+   },
+   "elements_used": {
+    "ICE": 1,
+    "energy_store": 1,
+    "turbo": 2
+   },
+   "tracks": [
+    {
+     "name": "G59-R5",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.46,
+     "power_unit_stress": 0.7,
+     "tyre_degradation": 0.89
+    },
+    {
+     "name": "G59-R6",
+     "archetype": "high_degradation",
+     "overtaking_difficulty": 0.376,
+     "power_unit_stress": 0.686,
+     "tyre_degradation": 0.879
+    }
+   ],
+   "original_order": {
+    "values": {
+     "BUNDLE_NOW": 123.276,
+     "DISTRIBUTE": 116.177,
+     "DEFER_BUNDLE": 120.755,
+     "NO_CHANGE": 108.59
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 7.098,
+     "ci95": [
+      3.404,
+      10.793
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 2.52,
+     "ci95": [
+      0.344,
+      4.697
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 14.685,
+     "ci95": [
+      12.2,
+      17.171
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "swapped_order": {
+    "values": {
+     "BUNDLE_NOW": 123.151,
+     "DISTRIBUTE": 117.37,
+     "DEFER_BUNDLE": 119.81,
+     "NO_CHANGE": 108.303
+    },
+    "best": "BUNDLE_NOW",
+    "bundle_minus_distribute": {
+     "mean": 5.781,
+     "ci95": [
+      2.49,
+      9.072
+     ]
+    },
+    "now_minus_defer": {
+     "mean": 3.341,
+     "ci95": [
+      1.131,
+      5.551
+     ]
+    },
+    "bundle_minus_no_change": {
+     "mean": 14.849,
+     "ci95": [
+      12.337,
+      17.36
+     ]
+    },
+    "first_race_grid_by_plan": {
+     "BUNDLE_NOW": [
+      "Orion A",
+      "Nova A",
+      "Apex B",
+      "Nova B",
+      "Apex A",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DISTRIBUTE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "DEFER_BUNDLE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ],
+     "NO_CHANGE": [
+      "Orion A",
+      "Nova A",
+      "Apex A",
+      "Apex B",
+      "Nova B",
+      "Orion B",
+      "Vertex A",
+      "Vertex B"
+     ]
+    },
+    "penalty_places_now": {
+     "BUNDLE_NOW": 4,
+     "DISTRIBUTE": 0
+    }
+   },
+   "timing_preference": {
+    "original": "NOW",
+    "swapped": "NOW",
+    "reversal": false,
+    "both_clear": true
+   }
+  }
+ ]
+}

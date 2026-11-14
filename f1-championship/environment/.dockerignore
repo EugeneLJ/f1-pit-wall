@@ -1,0 +1,2 @@
+# The agent image build context must never include simulator code or secrets.
+sim

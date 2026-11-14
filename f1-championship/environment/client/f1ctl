@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+"""Thin client for the F1 championship simulator. Holds no game state or seeds."""
+
+import argparse
+import json
+import os
+import socket
+import sys
+import time
+
+SOCKET_PATH = os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock")
+CONNECT_WAIT_SEC = 15.0
+
+
+def request(payload):
+    deadline = time.monotonic() + CONNECT_WAIT_SEC
+    while True:
+        try:
+            with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as conn:
+                conn.settimeout(30.0)
+                conn.connect(SOCKET_PATH)
+                conn.sendall((json.dumps(payload) + "\n").encode("utf-8"))
+                chunks = []
+                while True:
+                    chunk = conn.recv(65536)
+                    if not chunk:
+                        break
+                    chunks.append(chunk)
+                    if chunk.endswith(b"\n"):
+                        break
+            return json.loads(b"".join(chunks).decode("utf-8"))
+        except (FileNotFoundError, ConnectionRefusedError):
+            if time.monotonic() > deadline:
+                return {"ok": False, "error_code": "simulator_unavailable",
+                        "message": f"cannot reach simulator at {SOCKET_PATH}"}
+            time.sleep(0.5)
+        except (OSError, ValueError) as exc:
+            return {"ok": False, "error_code": "connection_error",
+                    "message": f"simulator connection failed: {exc.__class__.__name__}"}
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(prog="f1ctl", description="F1 championship pit wall client")
+    sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser("rules", help="print the public rules")
+    sub.add_parser("observe", help="print the current observation, including decision_id")
+    act = sub.add_parser("act", help="submit the action for the current decision")
+    act.add_argument("decision_id", help="decision_id from the latest observation, e.g. d001")
+    act.add_argument("action", help="action JSON for the current decision_type")
+    args = parser.parse_args(argv)
+
+    if args.command == "act":
+        try:
+            action = json.loads(args.action)
+        except json.JSONDecodeError as exc:
+            print(json.dumps({"ok": False, "error_code": "malformed_action",
+                              "message": f"action is not JSON: {exc}"}, indent=2))
+            return 2
+        response = request({"cmd": "act", "decision_id": args.decision_id, "action": action})
+    else:
+        response = request({"cmd": args.command})
+    print(json.dumps(response, indent=2, sort_keys=True))
+    return 0 if response.get("ok") else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

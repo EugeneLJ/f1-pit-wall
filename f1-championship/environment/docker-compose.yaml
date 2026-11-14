@@ -1,0 +1,19 @@
+# The agent (main) and the authoritative simulator (sim) share ONLY a volume
+# holding the Unix socket. Seeds, state and the journal stay in sim's own
+# filesystem. sim has no network at all.
+services:
+  main:
+    volumes:
+      - f1sock:/run/f1sim
+    depends_on:
+      sim:
+        condition: service_healthy
+  sim:
+    build:
+      context: ./sim
+    network_mode: none
+    volumes:
+      - f1sock:/run/f1sim
+
+volumes:
+  f1sock: {}

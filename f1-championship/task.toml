@@ -1,0 +1,45 @@
+schema_version = "1.4"
+
+# Evidence is collected ONLY from the sim sidecar's private filesystem.
+[[artifacts]]
+source = "/evidence/f1sim"
+service = "sim"
+
+[task]
+name = "EugeneLJ/f1-championship"
+version = "0.1.0"
+description = "Run an eight-race F1 constructors' championship for two coupled drivers through a sealed simulator sidecar."
+keywords = ["f1", "strategy", "planning", "multi-agent-coordination", "custom-verifier"]
+
+[[task.authors]]
+name = "EugeneLJ"
+
+[metadata]
+difficulty = "hard"
+category = "reasoning"
+tags = ["python", "f1", "strategy", "sidecar", "custom-verifier"]
+
+[verifier]
+timeout_sec = 120.0
+environment_mode = "separate"
+
+# Runs in the sim service after the agent container has been stopped.
+[[verifier.collect]]
+command = "python3 -m f1sim.export"
+service = "sim"
+timeout_sec = 60.0
+
+[verifier.env]
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 600.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

@@ -1,0 +1,21 @@
+import json, subprocess, copy
+
+def run():
+    obs = json.loads(subprocess.check_output(['f1ctl', 'observe']))['observation']
+    print("Decision ID:", obs['decision_id'])
+    print("Lap:", obs['race_progress']['lap'])
+    
+    track_arch = obs['current_track']['archetype']
+    track_deg = obs['current_track']['tyre_degradation']
+    deg_mult = 0.5 + track_deg
+    overtaking_diff = obs['current_track']['overtaking_difficulty']
+    pit_loss_green = obs['race_progress']['pit']['loss_sec']['GREEN']
+    track_status = obs['race_progress']['track_status']
+    
+    print(f"Track: {obs['current_track']['name']} ({track_arch}), deg_mult={deg_mult:.2f}, pit_loss={pit_loss_green}")
+    
+    print("\nDrivers:")
+    for d in obs['race_progress']['classification']:
+        print(f"  P{d['position']}: {d['driver']:8s} ({d['team']}) - comp: {d['compound']}, age: {d['tyre_age']}, elapsed: {d['elapsed']:.2f}")
+
+run()

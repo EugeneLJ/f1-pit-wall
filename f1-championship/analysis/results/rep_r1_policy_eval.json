@@ -1,0 +1,14210 @@
+{
+ "seeds": 100,
+ "rollout_seeds": 30,
+ "component_plans": {
+  "gemini": [
+   [],
+   [],
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex A:turbo",
+    "Apex B:ICE",
+    "Apex B:turbo"
+   ],
+   [],
+   [],
+   []
+  ],
+  "baseline": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex B:ICE"
+   ]
+  ],
+  "rule": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex B:ICE"
+   ],
+   [],
+   [
+    "Apex A:turbo",
+    "Apex B:turbo"
+   ]
+  ],
+  "greedy": [
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex A:turbo",
+    "Apex B:energy_store"
+   ],
+   [
+    "Apex A:energy_store"
+   ],
+   [],
+   [
+    "Apex A:turbo"
+   ],
+   [
+    "Apex B:turbo"
+   ],
+   [
+    "Apex B:ICE",
+    "Apex B:turbo",
+    "Apex B:energy_store"
+   ]
+  ],
+  "always_use": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    "Apex A:ICE",
+    "Apex B:ICE"
+   ]
+  ]
+ },
+ "rows": [
+  {
+   "policy": "gemini",
+   "seed": 374019424539152092,
+   "points": 223,
+   "per_race": [
+    26,
+    33,
+    30,
+    25,
+    28,
+    33,
+    25,
+    23
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 251130478150851826,
+   "points": 246,
+   "per_race": [
+    26,
+    35,
+    33,
+    33,
+    28,
+    33,
+    25,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 2103662818095565891,
+   "points": 230,
+   "per_race": [
+    20,
+    33,
+    25,
+    43,
+    0,
+    43,
+    26,
+    40
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 2072397682455863027,
+   "points": 231,
+   "per_race": [
+    21,
+    33,
+    25,
+    33,
+    33,
+    33,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 727892592370975939,
+   "points": 227,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    12,
+    33,
+    30,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2654741156609127566,
+   "points": 225,
+   "per_race": [
+    26,
+    33,
+    24,
+    33,
+    28,
+    43,
+    12,
+    26
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 401401212390937745,
+   "points": 259,
+   "per_race": [
+    20,
+    43,
+    33,
+    40,
+    25,
+    37,
+    33,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 786906000113452442,
+   "points": 246,
+   "per_race": [
+    26,
+    29,
+    33,
+    37,
+    33,
+    33,
+    27,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 2820153334737964677,
+   "points": 244,
+   "per_race": [
+    26,
+    33,
+    28,
+    33,
+    28,
+    33,
+    33,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 4256428538116894830,
+   "points": 301,
+   "per_race": [
+    37,
+    43,
+    37,
+    33,
+    28,
+    43,
+    40,
+    40
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 1188626246370922205,
+   "points": 215,
+   "per_race": [
+    0,
+    33,
+    25,
+    28,
+    30,
+    33,
+    33,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini",
+   "seed": 1284320100189848898,
+   "points": 267,
+   "per_race": [
+    33,
+    40,
+    28,
+    28,
+    40,
+    37,
+    28,
+    33
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 3291307466328138605,
+   "points": 223,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    28,
+    18,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 355314618159473844,
+   "points": 258,
+   "per_race": [
+    33,
+    33,
+    18,
+    33,
+    37,
+    43,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 3838115603910980347,
+   "points": 250,
+   "per_race": [
+    33,
+    33,
+    25,
+    33,
+    28,
+    43,
+    15,
+    40
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 3149162477414737452,
+   "points": 259,
+   "per_race": [
+    22,
+    43,
+    27,
+    35,
+    28,
+    43,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 2904472841679886275,
+   "points": 239,
+   "per_race": [
+    26,
+    43,
+    25,
+    27,
+    28,
+    37,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 242641492267117608,
+   "points": 227,
+   "per_race": [
+    24,
+    40,
+    25,
+    22,
+    20,
+    43,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini",
+   "seed": 3860786553926563157,
+   "points": 244,
+   "per_race": [
+    30,
+    43,
+    25,
+    33,
+    30,
+    43,
+    10,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2574973029453448697,
+   "points": 248,
+   "per_race": [
+    30,
+    40,
+    27,
+    25,
+    28,
+    43,
+    25,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 4312876803966337520,
+   "points": 243,
+   "per_race": [
+    35,
+    43,
+    30,
+    18,
+    18,
+    33,
+    33,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 1345418888979850348,
+   "points": 261,
+   "per_race": [
+    26,
+    37,
+    31,
+    43,
+    28,
+    43,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini",
+   "seed": 2719889568465568624,
+   "points": 245,
+   "per_race": [
+    24,
+    33,
+    33,
+    43,
+    26,
+    33,
+    23,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 2193029828827396449,
+   "points": 257,
+   "per_race": [
+    35,
+    33,
+    25,
+    40,
+    28,
+    43,
+    25,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1571532965851867985,
+   "points": 229,
+   "per_race": [
+    24,
+    25,
+    33,
+    33,
+    28,
+    33,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 4199236363286547939,
+   "points": 248,
+   "per_race": [
+    27,
+    43,
+    28,
+    40,
+    30,
+    33,
+    14,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 3986970382286560154,
+   "points": 246,
+   "per_race": [
+    26,
+    33,
+    33,
+    33,
+    28,
+    33,
+    30,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 3295718992609273873,
+   "points": 256,
+   "per_race": [
+    24,
+    40,
+    30,
+    33,
+    33,
+    40,
+    23,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1583094124078142709,
+   "points": 231,
+   "per_race": [
+    33,
+    33,
+    30,
+    30,
+    15,
+    30,
+    27,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 531597119130040852,
+   "points": 257,
+   "per_race": [
+    26,
+    40,
+    30,
+    33,
+    20,
+    40,
+    40,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 908388963605659265,
+   "points": 279,
+   "per_race": [
+    33,
+    33,
+    33,
+    40,
+    37,
+    33,
+    37,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 4218332278751267149,
+   "points": 241,
+   "per_race": [
+    33,
+    33,
+    10,
+    33,
+    37,
+    37,
+    25,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 3834584292397130521,
+   "points": 250,
+   "per_race": [
+    18,
+    33,
+    33,
+    37,
+    33,
+    43,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 3107560573341497582,
+   "points": 260,
+   "per_race": [
+    40,
+    43,
+    25,
+    33,
+    28,
+    33,
+    25,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 34039300642980646,
+   "points": 246,
+   "per_race": [
+    26,
+    40,
+    28,
+    40,
+    19,
+    40,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1720602368373950384,
+   "points": 264,
+   "per_race": [
+    26,
+    37,
+    30,
+    40,
+    30,
+    35,
+    33,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 1123670838949080729,
+   "points": 227,
+   "per_race": [
+    24,
+    33,
+    22,
+    27,
+    28,
+    40,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 1673344744927317268,
+   "points": 240,
+   "per_race": [
+    26,
+    30,
+    25,
+    30,
+    28,
+    43,
+    30,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 636166821641420280,
+   "points": 256,
+   "per_race": [
+    37,
+    37,
+    30,
+    28,
+    28,
+    43,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 762114577149877767,
+   "points": 274,
+   "per_race": [
+    33,
+    40,
+    33,
+    37,
+    30,
+    33,
+    25,
+    43
+   ],
+   "stops": 31,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini",
+   "seed": 2963084108705603747,
+   "points": 249,
+   "per_race": [
+    26,
+    40,
+    33,
+    33,
+    28,
+    33,
+    28,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1536567749773832409,
+   "points": 274,
+   "per_race": [
+    26,
+    35,
+    25,
+    33,
+    40,
+    40,
+    40,
+    35
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1016247499498311078,
+   "points": 234,
+   "per_race": [
+    25,
+    35,
+    25,
+    35,
+    18,
+    40,
+    28,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 223141604319452094,
+   "points": 265,
+   "per_race": [
+    26,
+    33,
+    25,
+    37,
+    33,
+    43,
+    25,
+    43
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2587021605526661137,
+   "points": 256,
+   "per_race": [
+    33,
+    43,
+    27,
+    43,
+    33,
+    35,
+    12,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1227225533850466163,
+   "points": 247,
+   "per_race": [
+    30,
+    33,
+    25,
+    33,
+    28,
+    40,
+    30,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini",
+   "seed": 3056533147418793907,
+   "points": 267,
+   "per_race": [
+    26,
+    43,
+    37,
+    37,
+    37,
+    33,
+    26,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2539480128652976639,
+   "points": 236,
+   "per_race": [
+    26,
+    33,
+    18,
+    33,
+    28,
+    40,
+    33,
+    25
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2013615879534167008,
+   "points": 239,
+   "per_race": [
+    26,
+    33,
+    28,
+    28,
+    28,
+    40,
+    28,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2975211969900266432,
+   "points": 237,
+   "per_race": [
+    26,
+    33,
+    25,
+    35,
+    27,
+    33,
+    25,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 3667347773348205558,
+   "points": 234,
+   "per_race": [
+    28,
+    33,
+    26,
+    33,
+    28,
+    18,
+    25,
+    43
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 609928391891701702,
+   "points": 254,
+   "per_race": [
+    33,
+    33,
+    40,
+    40,
+    18,
+    33,
+    27,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 4105216574779234065,
+   "points": 257,
+   "per_race": [
+    26,
+    43,
+    18,
+    43,
+    28,
+    43,
+    23,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 3349798117012512128,
+   "points": 259,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    40,
+    40,
+    27,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1424363223774789712,
+   "points": 249,
+   "per_race": [
+    24,
+    43,
+    28,
+    33,
+    28,
+    40,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 361008846308015171,
+   "points": 241,
+   "per_race": [
+    33,
+    43,
+    28,
+    33,
+    22,
+    27,
+    25,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2734068351411384581,
+   "points": 276,
+   "per_race": [
+    33,
+    43,
+    27,
+    30,
+    37,
+    33,
+    33,
+    40
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 164970513909073283,
+   "points": 258,
+   "per_race": [
+    26,
+    40,
+    28,
+    30,
+    40,
+    33,
+    28,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 959055157614182154,
+   "points": 257,
+   "per_race": [
+    40,
+    43,
+    27,
+    33,
+    28,
+    33,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 3678690831697512679,
+   "points": 265,
+   "per_race": [
+    33,
+    33,
+    25,
+    40,
+    33,
+    33,
+    25,
+    43
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 860155248286073948,
+   "points": 256,
+   "per_race": [
+    33,
+    33,
+    26,
+    37,
+    33,
+    33,
+    33,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 3062939786995903328,
+   "points": 274,
+   "per_race": [
+    35,
+    33,
+    25,
+    40,
+    33,
+    40,
+    25,
+    43
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1192711044529598021,
+   "points": 235,
+   "per_race": [
+    33,
+    35,
+    25,
+    23,
+    33,
+    33,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 309733664799385648,
+   "points": 278,
+   "per_race": [
+    28,
+    35,
+    30,
+    37,
+    35,
+    40,
+    40,
+    33
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 3035570910816762536,
+   "points": 251,
+   "per_race": [
+    26,
+    33,
+    33,
+    40,
+    28,
+    40,
+    23,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1508087378551452327,
+   "points": 258,
+   "per_race": [
+    26,
+    43,
+    25,
+    40,
+    28,
+    33,
+    30,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1913276852294642377,
+   "points": 212,
+   "per_race": [
+    18,
+    15,
+    25,
+    30,
+    33,
+    33,
+    25,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 759408174198901217,
+   "points": 232,
+   "per_race": [
+    22,
+    43,
+    25,
+    40,
+    28,
+    33,
+    23,
+    18
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 2409527044812449992,
+   "points": 257,
+   "per_race": [
+    33,
+    43,
+    25,
+    33,
+    30,
+    33,
+    30,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2282921961512491461,
+   "points": 261,
+   "per_race": [
+    40,
+    30,
+    27,
+    43,
+    28,
+    43,
+    25,
+    25
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 3706423478497447062,
+   "points": 262,
+   "per_race": [
+    30,
+    33,
+    27,
+    43,
+    26,
+    40,
+    35,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1479935717018715538,
+   "points": 260,
+   "per_race": [
+    30,
+    33,
+    27,
+    33,
+    33,
+    43,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 4363025172381172792,
+   "points": 259,
+   "per_race": [
+    26,
+    40,
+    28,
+    40,
+    26,
+    37,
+    25,
+    37
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1852805479497024468,
+   "points": 247,
+   "per_race": [
+    30,
+    33,
+    21,
+    37,
+    33,
+    33,
+    27,
+    33
+   ],
+   "stops": 30,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 4220838007755475199,
+   "points": 239,
+   "per_race": [
+    27,
+    25,
+    33,
+    33,
+    28,
+    33,
+    27,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1435617951633245949,
+   "points": 264,
+   "per_race": [
+    43,
+    35,
+    25,
+    33,
+    28,
+    33,
+    27,
+    40
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 4496827097582629212,
+   "points": 260,
+   "per_race": [
+    26,
+    27,
+    25,
+    43,
+    33,
+    43,
+    26,
+    37
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1192399820908052634,
+   "points": 244,
+   "per_race": [
+    28,
+    33,
+    25,
+    33,
+    28,
+    40,
+    27,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 71333447282663000,
+   "points": 233,
+   "per_race": [
+    40,
+    25,
+    30,
+    33,
+    22,
+    22,
+    33,
+    28
+   ],
+   "stops": 31,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1194949857105319050,
+   "points": 236,
+   "per_race": [
+    30,
+    40,
+    25,
+    30,
+    20,
+    33,
+    30,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 2259944717137988018,
+   "points": 223,
+   "per_race": [
+    24,
+    37,
+    23,
+    33,
+    18,
+    33,
+    27,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 4460908169994616615,
+   "points": 237,
+   "per_race": [
+    30,
+    33,
+    15,
+    33,
+    30,
+    43,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 94123634109980713,
+   "points": 254,
+   "per_race": [
+    26,
+    33,
+    25,
+    33,
+    28,
+    43,
+    33,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 1858815896435764272,
+   "points": 251,
+   "per_race": [
+    26,
+    40,
+    33,
+    31,
+    28,
+    40,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1195211447950438680,
+   "points": 258,
+   "per_race": [
+    26,
+    40,
+    27,
+    33,
+    28,
+    43,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 4149000000727585113,
+   "points": 263,
+   "per_race": [
+    26,
+    33,
+    18,
+    43,
+    33,
+    43,
+    37,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2060468231551080784,
+   "points": 270,
+   "per_race": [
+    26,
+    43,
+    30,
+    40,
+    33,
+    43,
+    27,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2335263915496870285,
+   "points": 272,
+   "per_race": [
+    40,
+    43,
+    30,
+    33,
+    33,
+    40,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2749366157996969959,
+   "points": 216,
+   "per_race": [
+    26,
+    18,
+    33,
+    43,
+    12,
+    33,
+    25,
+    26
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 3979479251605374307,
+   "points": 252,
+   "per_race": [
+    33,
+    33,
+    25,
+    40,
+    22,
+    43,
+    33,
+    23
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 836324642362078690,
+   "points": 229,
+   "per_race": [
+    33,
+    25,
+    27,
+    27,
+    28,
+    43,
+    18,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1394293377646364422,
+   "points": 240,
+   "per_race": [
+    30,
+    37,
+    27,
+    33,
+    28,
+    33,
+    28,
+    24
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 1804251478574263226,
+   "points": 255,
+   "per_race": [
+    33,
+    43,
+    30,
+    40,
+    30,
+    33,
+    18,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 1275016899242972643,
+   "points": 266,
+   "per_race": [
+    33,
+    43,
+    33,
+    33,
+    28,
+    33,
+    30,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini",
+   "seed": 3684922021268713935,
+   "points": 253,
+   "per_race": [
+    33,
+    33,
+    25,
+    33,
+    43,
+    33,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 728820048660416505,
+   "points": 250,
+   "per_race": [
+    27,
+    43,
+    27,
+    30,
+    28,
+    40,
+    25,
+    30
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 3291082159756272050,
+   "points": 220,
+   "per_race": [
+    15,
+    33,
+    22,
+    33,
+    28,
+    33,
+    28,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 4530215984777710054,
+   "points": 243,
+   "per_race": [
+    28,
+    43,
+    25,
+    33,
+    28,
+    33,
+    25,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini",
+   "seed": 2966643466001493797,
+   "points": 258,
+   "per_race": [
+    28,
+    43,
+    25,
+    33,
+    30,
+    40,
+    33,
+    26
+   ],
+   "stops": 30,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini",
+   "seed": 1628631555545907509,
+   "points": 269,
+   "per_race": [
+    35,
+    37,
+    25,
+    43,
+    28,
+    40,
+    18,
+    43
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 374019424539152092,
+   "points": 227,
+   "per_race": [
+    30,
+    40,
+    28,
+    27,
+    28,
+    28,
+    16,
+    30
+   ],
+   "stops": 21,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 251130478150851826,
+   "points": 224,
+   "per_race": [
+    30,
+    33,
+    30,
+    28,
+    28,
+    33,
+    18,
+    24
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 2103662818095565891,
+   "points": 201,
+   "per_race": [
+    22,
+    40,
+    27,
+    43,
+    0,
+    29,
+    10,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 2072397682455863027,
+   "points": 226,
+   "per_race": [
+    30,
+    40,
+    22,
+    28,
+    28,
+    33,
+    18,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 727892592370975939,
+   "points": 227,
+   "per_race": [
+    30,
+    43,
+    27,
+    28,
+    18,
+    33,
+    21,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2654741156609127566,
+   "points": 234,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    28,
+    43,
+    12,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 401401212390937745,
+   "points": 225,
+   "per_race": [
+    22,
+    40,
+    33,
+    25,
+    28,
+    30,
+    20,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 786906000113452442,
+   "points": 231,
+   "per_race": [
+    30,
+    33,
+    28,
+    37,
+    27,
+    33,
+    16,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 2820153334737964677,
+   "points": 236,
+   "per_race": [
+    30,
+    40,
+    26,
+    27,
+    28,
+    33,
+    33,
+    19
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 4256428538116894830,
+   "points": 270,
+   "per_race": [
+    40,
+    43,
+    30,
+    28,
+    25,
+    43,
+    31,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1188626246370922205,
+   "points": 192,
+   "per_race": [
+    0,
+    40,
+    27,
+    28,
+    19,
+    28,
+    24,
+    26
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1284320100189848898,
+   "points": 240,
+   "per_race": [
+    33,
+    40,
+    30,
+    24,
+    30,
+    33,
+    20,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 3291307466328138605,
+   "points": 222,
+   "per_race": [
+    30,
+    43,
+    27,
+    28,
+    31,
+    18,
+    18,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 355314618159473844,
+   "points": 238,
+   "per_race": [
+    30,
+    40,
+    18,
+    25,
+    37,
+    43,
+    18,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 3838115603910980347,
+   "points": 231,
+   "per_race": [
+    33,
+    40,
+    27,
+    28,
+    28,
+    37,
+    8,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 3149162477414737452,
+   "points": 246,
+   "per_race": [
+    27,
+    43,
+    25,
+    40,
+    28,
+    37,
+    24,
+    22
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2904472841679886275,
+   "points": 223,
+   "per_race": [
+    30,
+    28,
+    27,
+    30,
+    28,
+    35,
+    18,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 242641492267117608,
+   "points": 222,
+   "per_race": [
+    30,
+    40,
+    27,
+    25,
+    22,
+    33,
+    18,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 3860786553926563157,
+   "points": 225,
+   "per_race": [
+    28,
+    37,
+    27,
+    28,
+    33,
+    37,
+    10,
+    25
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 2574973029453448697,
+   "points": 236,
+   "per_race": [
+    27,
+    43,
+    25,
+    28,
+    28,
+    40,
+    18,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 4312876803966337520,
+   "points": 204,
+   "per_race": [
+    30,
+    43,
+    27,
+    8,
+    23,
+    33,
+    15,
+    25
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1345418888979850348,
+   "points": 233,
+   "per_race": [
+    30,
+    27,
+    24,
+    28,
+    28,
+    35,
+    33,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2719889568465568624,
+   "points": 227,
+   "per_race": [
+    30,
+    40,
+    33,
+    18,
+    30,
+    33,
+    16,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 2193029828827396449,
+   "points": 248,
+   "per_race": [
+    37,
+    40,
+    27,
+    28,
+    28,
+    43,
+    18,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1571532965851867985,
+   "points": 216,
+   "per_race": [
+    24,
+    25,
+    33,
+    28,
+    28,
+    33,
+    18,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 4199236363286547939,
+   "points": 213,
+   "per_race": [
+    20,
+    37,
+    25,
+    25,
+    28,
+    33,
+    26,
+    19
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 3986970382286560154,
+   "points": 219,
+   "per_race": [
+    30,
+    40,
+    33,
+    28,
+    25,
+    28,
+    14,
+    21
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 3295718992609273873,
+   "points": 221,
+   "per_race": [
+    22,
+    40,
+    33,
+    28,
+    30,
+    22,
+    16,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1583094124078142709,
+   "points": 230,
+   "per_race": [
+    28,
+    40,
+    30,
+    30,
+    18,
+    35,
+    16,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 531597119130040852,
+   "points": 242,
+   "per_race": [
+    30,
+    40,
+    28,
+    28,
+    18,
+    43,
+    28,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 908388963605659265,
+   "points": 243,
+   "per_race": [
+    30,
+    40,
+    33,
+    25,
+    30,
+    33,
+    22,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 4218332278751267149,
+   "points": 236,
+   "per_race": [
+    28,
+    40,
+    18,
+    30,
+    33,
+    43,
+    20,
+    24
+   ],
+   "stops": 22,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3834584292397130521,
+   "points": 236,
+   "per_race": [
+    18,
+    40,
+    26,
+    28,
+    30,
+    43,
+    18,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3107560573341497582,
+   "points": 238,
+   "per_race": [
+    43,
+    37,
+    27,
+    28,
+    28,
+    33,
+    18,
+    24
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 34039300642980646,
+   "points": 217,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    16,
+    33,
+    18,
+    27
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1720602368373950384,
+   "points": 256,
+   "per_race": [
+    30,
+    43,
+    33,
+    33,
+    26,
+    33,
+    25,
+    33
+   ],
+   "stops": 21,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1123670838949080729,
+   "points": 226,
+   "per_race": [
+    18,
+    40,
+    28,
+    26,
+    28,
+    40,
+    18,
+    28
+   ],
+   "stops": 23,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1673344744927317268,
+   "points": 227,
+   "per_race": [
+    30,
+    29,
+    27,
+    37,
+    28,
+    40,
+    21,
+    15
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 636166821641420280,
+   "points": 219,
+   "per_race": [
+    30,
+    43,
+    30,
+    14,
+    28,
+    29,
+    18,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 762114577149877767,
+   "points": 224,
+   "per_race": [
+    33,
+    40,
+    28,
+    29,
+    28,
+    33,
+    18,
+    15
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2963084108705603747,
+   "points": 235,
+   "per_race": [
+    30,
+    40,
+    33,
+    28,
+    24,
+    33,
+    20,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1536567749773832409,
+   "points": 237,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    30,
+    33,
+    23,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1016247499498311078,
+   "points": 228,
+   "per_race": [
+    15,
+    43,
+    27,
+    40,
+    23,
+    33,
+    20,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 223141604319452094,
+   "points": 227,
+   "per_race": [
+    28,
+    40,
+    27,
+    28,
+    30,
+    19,
+    18,
+    37
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2587021605526661137,
+   "points": 225,
+   "per_race": [
+    30,
+    29,
+    27,
+    40,
+    33,
+    29,
+    12,
+    25
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1227225533850466163,
+   "points": 252,
+   "per_race": [
+    33,
+    43,
+    27,
+    28,
+    28,
+    33,
+    33,
+    27
+   ],
+   "stops": 21,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3056533147418793907,
+   "points": 245,
+   "per_race": [
+    30,
+    43,
+    27,
+    27,
+    37,
+    33,
+    18,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 2539480128652976639,
+   "points": 223,
+   "per_race": [
+    26,
+    43,
+    19,
+    28,
+    24,
+    33,
+    23,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 3
+  },
+  {
+   "policy": "baseline",
+   "seed": 2013615879534167008,
+   "points": 220,
+   "per_race": [
+    30,
+    40,
+    27,
+    19,
+    28,
+    33,
+    16,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2975211969900266432,
+   "points": 241,
+   "per_race": [
+    30,
+    40,
+    27,
+    37,
+    26,
+    33,
+    18,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3667347773348205558,
+   "points": 209,
+   "per_race": [
+    19,
+    40,
+    19,
+    28,
+    24,
+    18,
+    18,
+    43
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 609928391891701702,
+   "points": 240,
+   "per_race": [
+    37,
+    40,
+    33,
+    27,
+    18,
+    33,
+    22,
+    30
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 4105216574779234065,
+   "points": 237,
+   "per_race": [
+    30,
+    43,
+    15,
+    37,
+    25,
+    43,
+    16,
+    28
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 3349798117012512128,
+   "points": 228,
+   "per_race": [
+    30,
+    40,
+    27,
+    26,
+    33,
+    33,
+    12,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1424363223774789712,
+   "points": 236,
+   "per_race": [
+    30,
+    29,
+    28,
+    33,
+    28,
+    43,
+    18,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 361008846308015171,
+   "points": 229,
+   "per_race": [
+    30,
+    43,
+    30,
+    28,
+    22,
+    31,
+    18,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2734068351411384581,
+   "points": 246,
+   "per_race": [
+    30,
+    19,
+    27,
+    37,
+    37,
+    33,
+    33,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 164970513909073283,
+   "points": 234,
+   "per_race": [
+    30,
+    40,
+    25,
+    21,
+    40,
+    33,
+    20,
+    25
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 959055157614182154,
+   "points": 240,
+   "per_race": [
+    33,
+    37,
+    27,
+    28,
+    33,
+    33,
+    22,
+    27
+   ],
+   "stops": 29,
+   "late_stops": 3
+  },
+  {
+   "policy": "baseline",
+   "seed": 3678690831697512679,
+   "points": 255,
+   "per_race": [
+    30,
+    40,
+    27,
+    40,
+    30,
+    33,
+    18,
+    37
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 860155248286073948,
+   "points": 234,
+   "per_race": [
+    33,
+    40,
+    22,
+    29,
+    26,
+    33,
+    23,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3062939786995903328,
+   "points": 257,
+   "per_race": [
+    40,
+    40,
+    27,
+    27,
+    28,
+    43,
+    12,
+    40
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1192711044529598021,
+   "points": 232,
+   "per_race": [
+    26,
+    40,
+    27,
+    28,
+    33,
+    33,
+    18,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 309733664799385648,
+   "points": 255,
+   "per_race": [
+    33,
+    24,
+    28,
+    30,
+    37,
+    43,
+    30,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3035570910816762536,
+   "points": 232,
+   "per_race": [
+    30,
+    40,
+    33,
+    25,
+    28,
+    33,
+    16,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1508087378551452327,
+   "points": 237,
+   "per_race": [
+    33,
+    43,
+    27,
+    28,
+    28,
+    33,
+    21,
+    24
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 1913276852294642377,
+   "points": 188,
+   "per_race": [
+    18,
+    10,
+    27,
+    21,
+    24,
+    33,
+    18,
+    37
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 759408174198901217,
+   "points": 213,
+   "per_race": [
+    22,
+    43,
+    27,
+    30,
+    30,
+    28,
+    18,
+    15
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 2409527044812449992,
+   "points": 211,
+   "per_race": [
+    30,
+    22,
+    27,
+    28,
+    30,
+    33,
+    14,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 2282921961512491461,
+   "points": 231,
+   "per_race": [
+    30,
+    37,
+    27,
+    33,
+    25,
+    43,
+    18,
+    18
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 3706423478497447062,
+   "points": 231,
+   "per_race": [
+    33,
+    40,
+    25,
+    27,
+    30,
+    33,
+    16,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1479935717018715538,
+   "points": 246,
+   "per_race": [
+    33,
+    40,
+    26,
+    30,
+    30,
+    37,
+    23,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 4363025172381172792,
+   "points": 234,
+   "per_race": [
+    30,
+    43,
+    30,
+    25,
+    20,
+    40,
+    18,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1852805479497024468,
+   "points": 247,
+   "per_race": [
+    33,
+    40,
+    23,
+    27,
+    28,
+    40,
+    23,
+    33
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 4220838007755475199,
+   "points": 217,
+   "per_race": [
+    33,
+    25,
+    25,
+    33,
+    24,
+    33,
+    20,
+    24
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1435617951633245949,
+   "points": 248,
+   "per_race": [
+    40,
+    40,
+    27,
+    28,
+    28,
+    33,
+    22,
+    30
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 4496827097582629212,
+   "points": 255,
+   "per_race": [
+    30,
+    43,
+    27,
+    37,
+    23,
+    43,
+    15,
+    37
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1192399820908052634,
+   "points": 249,
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    28,
+    33,
+    22,
+    33
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 71333447282663000,
+   "points": 219,
+   "per_race": [
+    33,
+    25,
+    30,
+    28,
+    22,
+    35,
+    19,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1194949857105319050,
+   "points": 212,
+   "per_race": [
+    33,
+    40,
+    27,
+    21,
+    22,
+    33,
+    8,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 2259944717137988018,
+   "points": 192,
+   "per_race": [
+    24,
+    43,
+    10,
+    30,
+    15,
+    33,
+    10,
+    27
+   ],
+   "stops": 28,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 4460908169994616615,
+   "points": 232,
+   "per_race": [
+    33,
+    40,
+    15,
+    28,
+    28,
+    43,
+    18,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 94123634109980713,
+   "points": 249,
+   "per_race": [
+    28,
+    40,
+    27,
+    33,
+    28,
+    37,
+    23,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1858815896435764272,
+   "points": 237,
+   "per_race": [
+    27,
+    40,
+    23,
+    40,
+    28,
+    40,
+    12,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1195211447950438680,
+   "points": 247,
+   "per_race": [
+    30,
+    43,
+    25,
+    28,
+    28,
+    43,
+    23,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 4149000000727585113,
+   "points": 232,
+   "per_race": [
+    30,
+    40,
+    15,
+    37,
+    30,
+    37,
+    18,
+    25
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 2060468231551080784,
+   "points": 249,
+   "per_race": [
+    30,
+    43,
+    33,
+    37,
+    40,
+    37,
+    14,
+    15
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 2335263915496870285,
+   "points": 246,
+   "per_race": [
+    37,
+    43,
+    27,
+    33,
+    30,
+    33,
+    18,
+    25
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2749366157996969959,
+   "points": 210,
+   "per_race": [
+    30,
+    25,
+    33,
+    27,
+    18,
+    33,
+    18,
+    26
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3979479251605374307,
+   "points": 252,
+   "per_race": [
+    30,
+    40,
+    27,
+    33,
+    22,
+    40,
+    30,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 836324642362078690,
+   "points": 221,
+   "per_race": [
+    33,
+    25,
+    27,
+    22,
+    28,
+    43,
+    16,
+    27
+   ],
+   "stops": 22,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1394293377646364422,
+   "points": 233,
+   "per_race": [
+    27,
+    43,
+    27,
+    28,
+    25,
+    33,
+    22,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 1804251478574263226,
+   "points": 242,
+   "per_race": [
+    33,
+    43,
+    28,
+    21,
+    30,
+    33,
+    26,
+    28
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 1275016899242972643,
+   "points": 226,
+   "per_race": [
+    30,
+    33,
+    33,
+    28,
+    28,
+    28,
+    22,
+    24
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3684922021268713935,
+   "points": 252,
+   "per_race": [
+    33,
+    43,
+    27,
+    26,
+    43,
+    33,
+    20,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 728820048660416505,
+   "points": 226,
+   "per_race": [
+    33,
+    43,
+    27,
+    19,
+    28,
+    33,
+    18,
+    25
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 3291082159756272050,
+   "points": 220,
+   "per_race": [
+    18,
+    40,
+    19,
+    28,
+    33,
+    33,
+    22,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "baseline",
+   "seed": 4530215984777710054,
+   "points": 229,
+   "per_race": [
+    28,
+    40,
+    27,
+    28,
+    28,
+    33,
+    18,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "baseline",
+   "seed": 2966643466001493797,
+   "points": 222,
+   "per_race": [
+    27,
+    43,
+    27,
+    28,
+    20,
+    40,
+    21,
+    16
+   ],
+   "stops": 25,
+   "late_stops": 2
+  },
+  {
+   "policy": "baseline",
+   "seed": 1628631555545907509,
+   "points": 260,
+   "per_race": [
+    30,
+    43,
+    27,
+    43,
+    28,
+    33,
+    16,
+    40
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 374019424539152092,
+   "points": 234,
+   "per_race": [
+    30,
+    40,
+    28,
+    27,
+    30,
+    30,
+    19,
+    30
+   ],
+   "stops": 21,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 251130478150851826,
+   "points": 242,
+   "per_race": [
+    30,
+    33,
+    30,
+    28,
+    30,
+    40,
+    27,
+    24
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2103662818095565891,
+   "points": 210,
+   "per_race": [
+    22,
+    40,
+    27,
+    43,
+    0,
+    29,
+    23,
+    26
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2072397682455863027,
+   "points": 242,
+   "per_race": [
+    30,
+    40,
+    22,
+    28,
+    28,
+    40,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 727892592370975939,
+   "points": 243,
+   "per_race": [
+    30,
+    43,
+    27,
+    28,
+    18,
+    40,
+    30,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2654741156609127566,
+   "points": 239,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    30,
+    43,
+    15,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 401401212390937745,
+   "points": 240,
+   "per_race": [
+    22,
+    40,
+    33,
+    25,
+    28,
+    37,
+    28,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 786906000113452442,
+   "points": 251,
+   "per_race": [
+    30,
+    33,
+    28,
+    37,
+    33,
+    40,
+    23,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2820153334737964677,
+   "points": 248,
+   "per_race": [
+    30,
+    40,
+    26,
+    27,
+    30,
+    40,
+    33,
+    22
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4256428538116894830,
+   "points": 277,
+   "per_race": [
+    40,
+    43,
+    30,
+    28,
+    28,
+    43,
+    35,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1188626246370922205,
+   "points": 207,
+   "per_race": [
+    0,
+    40,
+    27,
+    28,
+    19,
+    30,
+    37,
+    26
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1284320100189848898,
+   "points": 253,
+   "per_race": [
+    33,
+    40,
+    30,
+    24,
+    30,
+    33,
+    30,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3291307466328138605,
+   "points": 231,
+   "per_race": [
+    30,
+    43,
+    27,
+    28,
+    31,
+    18,
+    27,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 355314618159473844,
+   "points": 248,
+   "per_race": [
+    30,
+    40,
+    18,
+    25,
+    37,
+    43,
+    28,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3838115603910980347,
+   "points": 236,
+   "per_race": [
+    33,
+    40,
+    27,
+    28,
+    30,
+    37,
+    15,
+    26
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3149162477414737452,
+   "points": 267,
+   "per_race": [
+    27,
+    43,
+    25,
+    40,
+    30,
+    43,
+    37,
+    22
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2904472841679886275,
+   "points": 234,
+   "per_race": [
+    30,
+    28,
+    27,
+    30,
+    30,
+    35,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 242641492267117608,
+   "points": 233,
+   "per_race": [
+    30,
+    40,
+    27,
+    25,
+    22,
+    35,
+    27,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3860786553926563157,
+   "points": 235,
+   "per_race": [
+    28,
+    37,
+    27,
+    28,
+    33,
+    40,
+    15,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2574973029453448697,
+   "points": 250,
+   "per_race": [
+    27,
+    43,
+    25,
+    28,
+    30,
+    43,
+    27,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4312876803966337520,
+   "points": 235,
+   "per_race": [
+    30,
+    43,
+    27,
+    8,
+    26,
+    40,
+    33,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1345418888979850348,
+   "points": 237,
+   "per_race": [
+    30,
+    27,
+    24,
+    28,
+    30,
+    35,
+    33,
+    30
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2719889568465568624,
+   "points": 241,
+   "per_race": [
+    30,
+    40,
+    33,
+    18,
+    33,
+    40,
+    20,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2193029828827396449,
+   "points": 259,
+   "per_race": [
+    37,
+    40,
+    27,
+    28,
+    30,
+    43,
+    27,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1571532965851867985,
+   "points": 234,
+   "per_race": [
+    24,
+    25,
+    33,
+    28,
+    30,
+    40,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4199236363286547939,
+   "points": 227,
+   "per_race": [
+    20,
+    37,
+    25,
+    25,
+    30,
+    40,
+    28,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3986970382286560154,
+   "points": 241,
+   "per_race": [
+    30,
+    40,
+    33,
+    28,
+    28,
+    30,
+    27,
+    25
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3295718992609273873,
+   "points": 244,
+   "per_race": [
+    22,
+    40,
+    33,
+    28,
+    33,
+    33,
+    25,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1583094124078142709,
+   "points": 234,
+   "per_race": [
+    28,
+    40,
+    30,
+    30,
+    18,
+    37,
+    18,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 531597119130040852,
+   "points": 251,
+   "per_race": [
+    30,
+    40,
+    28,
+    28,
+    22,
+    43,
+    33,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 908388963605659265,
+   "points": 264,
+   "per_race": [
+    30,
+    40,
+    33,
+    25,
+    37,
+    40,
+    29,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4218332278751267149,
+   "points": 243,
+   "per_race": [
+    28,
+    40,
+    18,
+    30,
+    33,
+    43,
+    27,
+    24
+   ],
+   "stops": 22,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3834584292397130521,
+   "points": 248,
+   "per_race": [
+    18,
+    40,
+    26,
+    28,
+    33,
+    43,
+    27,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3107560573341497582,
+   "points": 256,
+   "per_race": [
+    43,
+    37,
+    27,
+    28,
+    30,
+    40,
+    27,
+    24
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 34039300642980646,
+   "points": 236,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    16,
+    43,
+    27,
+    27
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1720602368373950384,
+   "points": 272,
+   "per_race": [
+    30,
+    43,
+    33,
+    33,
+    30,
+    40,
+    30,
+    33
+   ],
+   "stops": 21,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1123670838949080729,
+   "points": 239,
+   "per_race": [
+    18,
+    40,
+    28,
+    26,
+    30,
+    40,
+    27,
+    30
+   ],
+   "stops": 23,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1673344744927317268,
+   "points": 253,
+   "per_race": [
+    30,
+    29,
+    27,
+    37,
+    30,
+    43,
+    30,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 636166821641420280,
+   "points": 230,
+   "per_race": [
+    30,
+    43,
+    30,
+    14,
+    30,
+    29,
+    27,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 762114577149877767,
+   "points": 254,
+   "per_race": [
+    33,
+    40,
+    28,
+    29,
+    30,
+    40,
+    27,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2963084108705603747,
+   "points": 254,
+   "per_race": [
+    30,
+    40,
+    33,
+    28,
+    26,
+    40,
+    30,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1536567749773832409,
+   "points": 251,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    30,
+    40,
+    30,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1016247499498311078,
+   "points": 248,
+   "per_race": [
+    15,
+    43,
+    27,
+    40,
+    26,
+    40,
+    30,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 223141604319452094,
+   "points": 236,
+   "per_race": [
+    28,
+    40,
+    27,
+    28,
+    30,
+    19,
+    27,
+    37
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2587021605526661137,
+   "points": 228,
+   "per_race": [
+    30,
+    29,
+    27,
+    40,
+    33,
+    29,
+    15,
+    25
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1227225533850466163,
+   "points": 268,
+   "per_race": [
+    33,
+    43,
+    27,
+    28,
+    30,
+    40,
+    40,
+    27
+   ],
+   "stops": 21,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3056533147418793907,
+   "points": 264,
+   "per_race": [
+    30,
+    43,
+    27,
+    27,
+    40,
+    40,
+    27,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2539480128652976639,
+   "points": 240,
+   "per_race": [
+    26,
+    43,
+    19,
+    28,
+    26,
+    43,
+    28,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 3
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2013615879534167008,
+   "points": 232,
+   "per_race": [
+    30,
+    40,
+    27,
+    19,
+    30,
+    40,
+    19,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2975211969900266432,
+   "points": 257,
+   "per_race": [
+    30,
+    40,
+    27,
+    37,
+    26,
+    40,
+    27,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3667347773348205558,
+   "points": 227,
+   "per_race": [
+    19,
+    40,
+    19,
+    28,
+    26,
+    25,
+    27,
+    43
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 609928391891701702,
+   "points": 252,
+   "per_race": [
+    37,
+    40,
+    33,
+    27,
+    18,
+    40,
+    27,
+    30
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4105216574779234065,
+   "points": 243,
+   "per_race": [
+    30,
+    43,
+    15,
+    37,
+    28,
+    43,
+    19,
+    28
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3349798117012512128,
+   "points": 257,
+   "per_race": [
+    30,
+    40,
+    27,
+    26,
+    40,
+    40,
+    27,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1424363223774789712,
+   "points": 247,
+   "per_race": [
+    30,
+    29,
+    28,
+    33,
+    30,
+    43,
+    27,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 361008846308015171,
+   "points": 238,
+   "per_race": [
+    30,
+    43,
+    30,
+    28,
+    22,
+    31,
+    27,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2734068351411384581,
+   "points": 252,
+   "per_race": [
+    30,
+    19,
+    27,
+    37,
+    40,
+    40,
+    33,
+    26
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 164970513909073283,
+   "points": 256,
+   "per_race": [
+    30,
+    40,
+    25,
+    21,
+    40,
+    43,
+    27,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 959055157614182154,
+   "points": 252,
+   "per_race": [
+    33,
+    37,
+    27,
+    28,
+    33,
+    40,
+    27,
+    27
+   ],
+   "stops": 29,
+   "late_stops": 3
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3678690831697512679,
+   "points": 274,
+   "per_race": [
+    30,
+    40,
+    27,
+    40,
+    33,
+    40,
+    27,
+    37
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 860155248286073948,
+   "points": 255,
+   "per_race": [
+    33,
+    40,
+    22,
+    29,
+    30,
+    40,
+    33,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3062939786995903328,
+   "points": 271,
+   "per_race": [
+    40,
+    40,
+    27,
+    27,
+    30,
+    40,
+    27,
+    40
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1192711044529598021,
+   "points": 248,
+   "per_race": [
+    26,
+    40,
+    27,
+    28,
+    33,
+    40,
+    27,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 309733664799385648,
+   "points": 262,
+   "per_race": [
+    33,
+    24,
+    28,
+    30,
+    37,
+    43,
+    37,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3035570910816762536,
+   "points": 250,
+   "per_race": [
+    30,
+    40,
+    33,
+    25,
+    30,
+    40,
+    25,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1508087378551452327,
+   "points": 255,
+   "per_race": [
+    33,
+    43,
+    27,
+    28,
+    30,
+    40,
+    30,
+    24
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1913276852294642377,
+   "points": 209,
+   "per_race": [
+    18,
+    10,
+    27,
+    21,
+    26,
+    43,
+    27,
+    37
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 759408174198901217,
+   "points": 223,
+   "per_race": [
+    22,
+    43,
+    27,
+    30,
+    33,
+    30,
+    23,
+    15
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2409527044812449992,
+   "points": 234,
+   "per_race": [
+    30,
+    22,
+    27,
+    28,
+    30,
+    40,
+    30,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2282921961512491461,
+   "points": 255,
+   "per_race": [
+    30,
+    37,
+    27,
+    33,
+    28,
+    43,
+    27,
+    30
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3706423478497447062,
+   "points": 247,
+   "per_race": [
+    33,
+    40,
+    25,
+    27,
+    33,
+    43,
+    19,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1479935717018715538,
+   "points": 262,
+   "per_race": [
+    33,
+    40,
+    26,
+    30,
+    30,
+    43,
+    33,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4363025172381172792,
+   "points": 248,
+   "per_race": [
+    30,
+    43,
+    30,
+    25,
+    22,
+    43,
+    27,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1852805479497024468,
+   "points": 254,
+   "per_race": [
+    33,
+    40,
+    23,
+    27,
+    28,
+    43,
+    27,
+    33
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4220838007755475199,
+   "points": 233,
+   "per_race": [
+    33,
+    25,
+    25,
+    33,
+    26,
+    40,
+    27,
+    24
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1435617951633245949,
+   "points": 258,
+   "per_race": [
+    40,
+    40,
+    27,
+    28,
+    30,
+    40,
+    27,
+    26
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4496827097582629212,
+   "points": 266,
+   "per_race": [
+    30,
+    43,
+    27,
+    37,
+    23,
+    43,
+    26,
+    37
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1192399820908052634,
+   "points": 263,
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    30,
+    40,
+    27,
+    33
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 71333447282663000,
+   "points": 230,
+   "per_race": [
+    33,
+    25,
+    30,
+    28,
+    22,
+    35,
+    30,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1194949857105319050,
+   "points": 238,
+   "per_race": [
+    33,
+    40,
+    27,
+    21,
+    22,
+    40,
+    27,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2259944717137988018,
+   "points": 219,
+   "per_race": [
+    24,
+    43,
+    10,
+    30,
+    18,
+    40,
+    27,
+    27
+   ],
+   "stops": 28,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4460908169994616615,
+   "points": 237,
+   "per_race": [
+    33,
+    40,
+    15,
+    28,
+    30,
+    43,
+    21,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 94123634109980713,
+   "points": 262,
+   "per_race": [
+    28,
+    40,
+    27,
+    33,
+    30,
+    43,
+    28,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1858815896435764272,
+   "points": 257,
+   "per_race": [
+    27,
+    40,
+    23,
+    40,
+    30,
+    43,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1195211447950438680,
+   "points": 251,
+   "per_race": [
+    30,
+    43,
+    25,
+    28,
+    30,
+    40,
+    28,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4149000000727585113,
+   "points": 244,
+   "per_race": [
+    30,
+    40,
+    15,
+    37,
+    30,
+    40,
+    25,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2060468231551080784,
+   "points": 269,
+   "per_race": [
+    30,
+    43,
+    33,
+    37,
+    40,
+    37,
+    22,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2335263915496870285,
+   "points": 268,
+   "per_race": [
+    37,
+    43,
+    27,
+    33,
+    33,
+    40,
+    27,
+    28
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2749366157996969959,
+   "points": 226,
+   "per_race": [
+    30,
+    25,
+    33,
+    27,
+    18,
+    40,
+    27,
+    26
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3979479251605374307,
+   "points": 258,
+   "per_race": [
+    30,
+    40,
+    27,
+    33,
+    22,
+    43,
+    33,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 836324642362078690,
+   "points": 235,
+   "per_race": [
+    33,
+    25,
+    27,
+    22,
+    30,
+    43,
+    28,
+    27
+   ],
+   "stops": 22,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1394293377646364422,
+   "points": 248,
+   "per_race": [
+    27,
+    43,
+    27,
+    28,
+    28,
+    40,
+    27,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1804251478574263226,
+   "points": 253,
+   "per_race": [
+    33,
+    43,
+    28,
+    21,
+    30,
+    40,
+    28,
+    30
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1275016899242972643,
+   "points": 235,
+   "per_race": [
+    30,
+    33,
+    33,
+    28,
+    30,
+    30,
+    27,
+    24
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3684922021268713935,
+   "points": 266,
+   "per_race": [
+    33,
+    43,
+    27,
+    26,
+    43,
+    40,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 728820048660416505,
+   "points": 247,
+   "per_race": [
+    33,
+    43,
+    27,
+    19,
+    30,
+    40,
+    27,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 3291082159756272050,
+   "points": 232,
+   "per_race": [
+    18,
+    40,
+    19,
+    28,
+    33,
+    40,
+    27,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 4530215984777710054,
+   "points": 247,
+   "per_race": [
+    28,
+    40,
+    27,
+    28,
+    30,
+    40,
+    27,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 2966643466001493797,
+   "points": 230,
+   "per_race": [
+    27,
+    43,
+    27,
+    28,
+    20,
+    43,
+    26,
+    16
+   ],
+   "stops": 25,
+   "late_stops": 2
+  },
+  {
+   "policy": "gemini_comp+base_race",
+   "seed": 1628631555545907509,
+   "points": 281,
+   "per_race": [
+    30,
+    43,
+    27,
+    43,
+    30,
+    40,
+    28,
+    40
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 374019424539152092,
+   "points": 209,
+   "per_race": [
+    26,
+    33,
+    30,
+    25,
+    28,
+    26,
+    18,
+    23
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 251130478150851826,
+   "points": 240,
+   "per_race": [
+    26,
+    35,
+    33,
+    33,
+    28,
+    33,
+    19,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2103662818095565891,
+   "points": 202,
+   "per_race": [
+    20,
+    33,
+    25,
+    43,
+    0,
+    40,
+    8,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2072397682455863027,
+   "points": 225,
+   "per_race": [
+    21,
+    33,
+    25,
+    33,
+    33,
+    33,
+    19,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 727892592370975939,
+   "points": 218,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    12,
+    33,
+    21,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2654741156609127566,
+   "points": 219,
+   "per_race": [
+    26,
+    33,
+    24,
+    33,
+    28,
+    43,
+    6,
+    26
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 401401212390937745,
+   "points": 241,
+   "per_race": [
+    20,
+    43,
+    33,
+    40,
+    25,
+    30,
+    22,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 786906000113452442,
+   "points": 242,
+   "per_race": [
+    26,
+    29,
+    33,
+    37,
+    33,
+    33,
+    23,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2820153334737964677,
+   "points": 242,
+   "per_race": [
+    26,
+    33,
+    28,
+    33,
+    28,
+    33,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4256428538116894830,
+   "points": 285,
+   "per_race": [
+    37,
+    43,
+    37,
+    33,
+    28,
+    37,
+    37,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1188626246370922205,
+   "points": 202,
+   "per_race": [
+    0,
+    33,
+    25,
+    28,
+    30,
+    26,
+    27,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1284320100189848898,
+   "points": 258,
+   "per_race": [
+    33,
+    40,
+    28,
+    28,
+    37,
+    37,
+    22,
+    33
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3291307466328138605,
+   "points": 224,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    35,
+    18,
+    19,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 355314618159473844,
+   "points": 233,
+   "per_race": [
+    33,
+    33,
+    18,
+    33,
+    37,
+    33,
+    18,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3838115603910980347,
+   "points": 228,
+   "per_race": [
+    33,
+    33,
+    25,
+    33,
+    28,
+    37,
+    6,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3149162477414737452,
+   "points": 247,
+   "per_race": [
+    22,
+    43,
+    27,
+    35,
+    28,
+    40,
+    27,
+    25
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2904472841679886275,
+   "points": 233,
+   "per_race": [
+    26,
+    43,
+    25,
+    27,
+    28,
+    37,
+    19,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 242641492267117608,
+   "points": 221,
+   "per_race": [
+    24,
+    40,
+    25,
+    22,
+    20,
+    43,
+    19,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 2
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3860786553926563157,
+   "points": 239,
+   "per_race": [
+    30,
+    43,
+    25,
+    33,
+    27,
+    43,
+    8,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2574973029453448697,
+   "points": 239,
+   "per_race": [
+    30,
+    40,
+    27,
+    25,
+    28,
+    40,
+    19,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4312876803966337520,
+   "points": 221,
+   "per_race": [
+    35,
+    43,
+    30,
+    18,
+    16,
+    33,
+    18,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1345418888979850348,
+   "points": 253,
+   "per_race": [
+    26,
+    37,
+    31,
+    43,
+    28,
+    40,
+    20,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 2
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2719889568465568624,
+   "points": 234,
+   "per_race": [
+    24,
+    33,
+    33,
+    43,
+    22,
+    33,
+    18,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2193029828827396449,
+   "points": 248,
+   "per_race": [
+    35,
+    33,
+    25,
+    40,
+    28,
+    40,
+    19,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1571532965851867985,
+   "points": 223,
+   "per_race": [
+    24,
+    25,
+    33,
+    33,
+    28,
+    33,
+    19,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4199236363286547939,
+   "points": 239,
+   "per_race": [
+    27,
+    43,
+    28,
+    40,
+    28,
+    33,
+    12,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3986970382286560154,
+   "points": 230,
+   "per_race": [
+    26,
+    33,
+    33,
+    33,
+    28,
+    26,
+    21,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3295718992609273873,
+   "points": 236,
+   "per_race": [
+    24,
+    40,
+    30,
+    33,
+    33,
+    30,
+    16,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1583094124078142709,
+   "points": 220,
+   "per_race": [
+    33,
+    33,
+    30,
+    30,
+    15,
+    28,
+    18,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 531597119130040852,
+   "points": 242,
+   "per_race": [
+    26,
+    40,
+    30,
+    33,
+    12,
+    40,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 908388963605659265,
+   "points": 268,
+   "per_race": [
+    33,
+    33,
+    33,
+    40,
+    35,
+    33,
+    28,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4218332278751267149,
+   "points": 231,
+   "per_race": [
+    33,
+    33,
+    10,
+    33,
+    40,
+    28,
+    21,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3834584292397130521,
+   "points": 236,
+   "per_race": [
+    18,
+    33,
+    33,
+    37,
+    33,
+    37,
+    19,
+    26
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3107560573341497582,
+   "points": 254,
+   "per_race": [
+    40,
+    43,
+    25,
+    33,
+    28,
+    33,
+    19,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 34039300642980646,
+   "points": 233,
+   "per_race": [
+    26,
+    40,
+    28,
+    40,
+    19,
+    33,
+    19,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1720602368373950384,
+   "points": 251,
+   "per_race": [
+    26,
+    37,
+    30,
+    40,
+    30,
+    28,
+    27,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1123670838949080729,
+   "points": 214,
+   "per_race": [
+    24,
+    33,
+    22,
+    27,
+    28,
+    33,
+    19,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1673344744927317268,
+   "points": 205,
+   "per_race": [
+    26,
+    30,
+    25,
+    30,
+    28,
+    33,
+    21,
+    12
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 636166821641420280,
+   "points": 240,
+   "per_race": [
+    37,
+    37,
+    30,
+    28,
+    28,
+    33,
+    19,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 762114577149877767,
+   "points": 248,
+   "per_race": [
+    33,
+    40,
+    33,
+    37,
+    28,
+    33,
+    19,
+    25
+   ],
+   "stops": 31,
+   "late_stops": 2
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2963084108705603747,
+   "points": 243,
+   "per_race": [
+    26,
+    40,
+    33,
+    33,
+    28,
+    33,
+    22,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1536567749773832409,
+   "points": 252,
+   "per_race": [
+    26,
+    35,
+    25,
+    33,
+    37,
+    33,
+    28,
+    35
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1016247499498311078,
+   "points": 221,
+   "per_race": [
+    25,
+    35,
+    25,
+    35,
+    18,
+    33,
+    22,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 223141604319452094,
+   "points": 256,
+   "per_race": [
+    26,
+    33,
+    25,
+    37,
+    33,
+    43,
+    19,
+    40
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2587021605526661137,
+   "points": 250,
+   "per_race": [
+    33,
+    43,
+    27,
+    43,
+    33,
+    35,
+    8,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1227225533850466163,
+   "points": 230,
+   "per_race": [
+    30,
+    33,
+    25,
+    33,
+    28,
+    33,
+    20,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3056533147418793907,
+   "points": 262,
+   "per_race": [
+    26,
+    43,
+    37,
+    37,
+    37,
+    33,
+    21,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2539480128652976639,
+   "points": 221,
+   "per_race": [
+    26,
+    33,
+    18,
+    33,
+    28,
+    33,
+    25,
+    25
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2013615879534167008,
+   "points": 227,
+   "per_race": [
+    26,
+    33,
+    28,
+    28,
+    28,
+    33,
+    23,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2975211969900266432,
+   "points": 224,
+   "per_race": [
+    26,
+    33,
+    25,
+    35,
+    23,
+    33,
+    19,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3667347773348205558,
+   "points": 230,
+   "per_race": [
+    28,
+    33,
+    26,
+    33,
+    28,
+    18,
+    21,
+    43
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 609928391891701702,
+   "points": 245,
+   "per_race": [
+    33,
+    33,
+    40,
+    40,
+    18,
+    33,
+    18,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4105216574779234065,
+   "points": 242,
+   "per_race": [
+    26,
+    43,
+    18,
+    43,
+    28,
+    33,
+    18,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3349798117012512128,
+   "points": 241,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    40,
+    30,
+    19,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1424363223774789712,
+   "points": 233,
+   "per_race": [
+    24,
+    43,
+    28,
+    33,
+    28,
+    30,
+    19,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 361008846308015171,
+   "points": 232,
+   "per_race": [
+    33,
+    43,
+    28,
+    33,
+    22,
+    27,
+    19,
+    27
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2734068351411384581,
+   "points": 263,
+   "per_race": [
+    33,
+    43,
+    27,
+    30,
+    37,
+    33,
+    27,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 164970513909073283,
+   "points": 256,
+   "per_race": [
+    26,
+    40,
+    28,
+    30,
+    40,
+    33,
+    26,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 959055157614182154,
+   "points": 250,
+   "per_race": [
+    40,
+    43,
+    27,
+    33,
+    26,
+    33,
+    20,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3678690831697512679,
+   "points": 259,
+   "per_race": [
+    33,
+    33,
+    25,
+    40,
+    33,
+    33,
+    19,
+    43
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 860155248286073948,
+   "points": 243,
+   "per_race": [
+    33,
+    33,
+    26,
+    37,
+    33,
+    33,
+    26,
+    22
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3062939786995903328,
+   "points": 255,
+   "per_race": [
+    35,
+    33,
+    25,
+    40,
+    33,
+    40,
+    6,
+    43
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1192711044529598021,
+   "points": 229,
+   "per_race": [
+    33,
+    35,
+    25,
+    23,
+    33,
+    33,
+    19,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 309733664799385648,
+   "points": 265,
+   "per_race": [
+    28,
+    35,
+    30,
+    37,
+    35,
+    40,
+    30,
+    30
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3035570910816762536,
+   "points": 234,
+   "per_race": [
+    26,
+    33,
+    33,
+    40,
+    28,
+    30,
+    16,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1508087378551452327,
+   "points": 249,
+   "per_race": [
+    26,
+    43,
+    25,
+    40,
+    28,
+    33,
+    21,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1913276852294642377,
+   "points": 199,
+   "per_race": [
+    18,
+    15,
+    25,
+    30,
+    29,
+    33,
+    19,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 759408174198901217,
+   "points": 220,
+   "per_race": [
+    22,
+    43,
+    25,
+    40,
+    28,
+    26,
+    18,
+    18
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2409527044812449992,
+   "points": 248,
+   "per_race": [
+    33,
+    43,
+    25,
+    33,
+    30,
+    33,
+    21,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2282921961512491461,
+   "points": 242,
+   "per_race": [
+    40,
+    30,
+    27,
+    43,
+    28,
+    40,
+    19,
+    15
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3706423478497447062,
+   "points": 248,
+   "per_race": [
+    30,
+    33,
+    27,
+    43,
+    26,
+    33,
+    28,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1479935717018715538,
+   "points": 250,
+   "per_race": [
+    30,
+    33,
+    27,
+    33,
+    33,
+    40,
+    26,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4363025172381172792,
+   "points": 251,
+   "per_race": [
+    26,
+    40,
+    28,
+    40,
+    24,
+    37,
+    19,
+    37
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1852805479497024468,
+   "points": 241,
+   "per_race": [
+    30,
+    33,
+    21,
+    37,
+    33,
+    33,
+    21,
+    33
+   ],
+   "stops": 30,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4220838007755475199,
+   "points": 235,
+   "per_race": [
+    27,
+    25,
+    33,
+    33,
+    28,
+    33,
+    23,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1435617951633245949,
+   "points": 248,
+   "per_race": [
+    43,
+    35,
+    25,
+    33,
+    28,
+    33,
+    18,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4496827097582629212,
+   "points": 243,
+   "per_race": [
+    26,
+    27,
+    25,
+    43,
+    33,
+    40,
+    12,
+    37
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1192399820908052634,
+   "points": 228,
+   "per_race": [
+    28,
+    33,
+    25,
+    33,
+    28,
+    33,
+    18,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 71333447282663000,
+   "points": 218,
+   "per_race": [
+    40,
+    25,
+    30,
+    33,
+    22,
+    22,
+    18,
+    28
+   ],
+   "stops": 31,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1194949857105319050,
+   "points": 208,
+   "per_race": [
+    30,
+    40,
+    25,
+    30,
+    20,
+    33,
+    8,
+    22
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2259944717137988018,
+   "points": 211,
+   "per_race": [
+    24,
+    37,
+    23,
+    33,
+    18,
+    33,
+    15,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4460908169994616615,
+   "points": 225,
+   "per_race": [
+    30,
+    33,
+    15,
+    33,
+    28,
+    40,
+    18,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 94123634109980713,
+   "points": 246,
+   "per_race": [
+    26,
+    33,
+    25,
+    33,
+    28,
+    43,
+    25,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1858815896435764272,
+   "points": 231,
+   "per_race": [
+    26,
+    40,
+    33,
+    31,
+    28,
+    37,
+    8,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1195211447950438680,
+   "points": 244,
+   "per_race": [
+    26,
+    40,
+    27,
+    33,
+    28,
+    40,
+    22,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4149000000727585113,
+   "points": 248,
+   "per_race": [
+    26,
+    33,
+    18,
+    43,
+    30,
+    43,
+    25,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2060468231551080784,
+   "points": 237,
+   "per_race": [
+    26,
+    43,
+    30,
+    40,
+    33,
+    35,
+    18,
+    12
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2335263915496870285,
+   "points": 259,
+   "per_race": [
+    40,
+    43,
+    30,
+    33,
+    33,
+    33,
+    19,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2749366157996969959,
+   "points": 210,
+   "per_race": [
+    26,
+    18,
+    33,
+    43,
+    12,
+    33,
+    19,
+    26
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3979479251605374307,
+   "points": 237,
+   "per_race": [
+    33,
+    33,
+    25,
+    40,
+    22,
+    43,
+    18,
+    23
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 836324642362078690,
+   "points": 224,
+   "per_race": [
+    33,
+    25,
+    27,
+    27,
+    28,
+    40,
+    16,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1394293377646364422,
+   "points": 231,
+   "per_race": [
+    30,
+    37,
+    27,
+    33,
+    28,
+    33,
+    19,
+    24
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1804251478574263226,
+   "points": 255,
+   "per_race": [
+    33,
+    43,
+    30,
+    40,
+    30,
+    33,
+    18,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1275016899242972643,
+   "points": 252,
+   "per_race": [
+    33,
+    43,
+    33,
+    33,
+    28,
+    26,
+    23,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3684922021268713935,
+   "points": 249,
+   "per_race": [
+    33,
+    33,
+    25,
+    33,
+    43,
+    33,
+    21,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 728820048660416505,
+   "points": 242,
+   "per_race": [
+    27,
+    43,
+    27,
+    30,
+    28,
+    40,
+    19,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 3291082159756272050,
+   "points": 211,
+   "per_race": [
+    15,
+    33,
+    22,
+    33,
+    28,
+    33,
+    19,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 4530215984777710054,
+   "points": 237,
+   "per_race": [
+    28,
+    43,
+    25,
+    33,
+    28,
+    33,
+    19,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 2966643466001493797,
+   "points": 248,
+   "per_race": [
+    28,
+    43,
+    25,
+    33,
+    26,
+    37,
+    30,
+    26
+   ],
+   "stops": 30,
+   "late_stops": 2
+  },
+  {
+   "policy": "base_comp+gemini_race",
+   "seed": 1628631555545907509,
+   "points": 260,
+   "per_race": [
+    35,
+    37,
+    25,
+    43,
+    28,
+    33,
+    16,
+    43
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 374019424539152092,
+   "points": 232,
+   "per_race": [
+    30,
+    40,
+    28,
+    27,
+    28,
+    30,
+    19,
+    30
+   ],
+   "stops": 21,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 251130478150851826,
+   "points": 240,
+   "per_race": [
+    30,
+    33,
+    30,
+    28,
+    28,
+    40,
+    27,
+    24
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2103662818095565891,
+   "points": 210,
+   "per_race": [
+    22,
+    40,
+    27,
+    43,
+    0,
+    29,
+    23,
+    26
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2072397682455863027,
+   "points": 242,
+   "per_race": [
+    30,
+    40,
+    22,
+    28,
+    28,
+    40,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 727892592370975939,
+   "points": 243,
+   "per_race": [
+    30,
+    43,
+    27,
+    28,
+    18,
+    40,
+    30,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2654741156609127566,
+   "points": 239,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    28,
+    43,
+    15,
+    30
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 401401212390937745,
+   "points": 240,
+   "per_race": [
+    22,
+    40,
+    33,
+    25,
+    28,
+    37,
+    28,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 786906000113452442,
+   "points": 245,
+   "per_race": [
+    30,
+    33,
+    28,
+    37,
+    27,
+    40,
+    23,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2820153334737964677,
+   "points": 246,
+   "per_race": [
+    30,
+    40,
+    26,
+    27,
+    28,
+    40,
+    33,
+    22
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4256428538116894830,
+   "points": 270,
+   "per_race": [
+    40,
+    43,
+    30,
+    28,
+    25,
+    43,
+    31,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1188626246370922205,
+   "points": 207,
+   "per_race": [
+    0,
+    40,
+    27,
+    28,
+    19,
+    30,
+    37,
+    26
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1284320100189848898,
+   "points": 248,
+   "per_race": [
+    33,
+    40,
+    30,
+    24,
+    30,
+    33,
+    25,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3291307466328138605,
+   "points": 231,
+   "per_race": [
+    30,
+    43,
+    27,
+    28,
+    31,
+    18,
+    27,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 355314618159473844,
+   "points": 248,
+   "per_race": [
+    30,
+    40,
+    18,
+    25,
+    37,
+    43,
+    28,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3838115603910980347,
+   "points": 234,
+   "per_race": [
+    33,
+    40,
+    27,
+    28,
+    28,
+    37,
+    15,
+    26
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3149162477414737452,
+   "points": 265,
+   "per_race": [
+    27,
+    43,
+    25,
+    40,
+    28,
+    43,
+    37,
+    22
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2904472841679886275,
+   "points": 232,
+   "per_race": [
+    30,
+    28,
+    27,
+    30,
+    28,
+    35,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 242641492267117608,
+   "points": 233,
+   "per_race": [
+    30,
+    40,
+    27,
+    25,
+    22,
+    35,
+    27,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3860786553926563157,
+   "points": 235,
+   "per_race": [
+    28,
+    37,
+    27,
+    28,
+    33,
+    40,
+    15,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2574973029453448697,
+   "points": 248,
+   "per_race": [
+    27,
+    43,
+    25,
+    28,
+    28,
+    43,
+    27,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4312876803966337520,
+   "points": 232,
+   "per_race": [
+    30,
+    43,
+    27,
+    8,
+    23,
+    40,
+    33,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1345418888979850348,
+   "points": 238,
+   "per_race": [
+    30,
+    27,
+    24,
+    28,
+    28,
+    35,
+    33,
+    33
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2719889568465568624,
+   "points": 238,
+   "per_race": [
+    30,
+    40,
+    33,
+    18,
+    30,
+    40,
+    20,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2193029828827396449,
+   "points": 257,
+   "per_race": [
+    37,
+    40,
+    27,
+    28,
+    28,
+    43,
+    27,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1571532965851867985,
+   "points": 232,
+   "per_race": [
+    24,
+    25,
+    33,
+    28,
+    28,
+    40,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4199236363286547939,
+   "points": 227,
+   "per_race": [
+    20,
+    37,
+    25,
+    25,
+    28,
+    40,
+    30,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3986970382286560154,
+   "points": 240,
+   "per_race": [
+    30,
+    40,
+    33,
+    28,
+    25,
+    30,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3295718992609273873,
+   "points": 237,
+   "per_race": [
+    22,
+    40,
+    33,
+    28,
+    30,
+    31,
+    23,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1583094124078142709,
+   "points": 232,
+   "per_race": [
+    28,
+    40,
+    30,
+    30,
+    18,
+    37,
+    16,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 531597119130040852,
+   "points": 247,
+   "per_race": [
+    30,
+    40,
+    28,
+    28,
+    18,
+    43,
+    33,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 908388963605659265,
+   "points": 257,
+   "per_race": [
+    30,
+    40,
+    33,
+    25,
+    30,
+    40,
+    29,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4218332278751267149,
+   "points": 243,
+   "per_race": [
+    28,
+    40,
+    18,
+    30,
+    33,
+    43,
+    27,
+    24
+   ],
+   "stops": 22,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3834584292397130521,
+   "points": 245,
+   "per_race": [
+    18,
+    40,
+    26,
+    28,
+    30,
+    43,
+    27,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3107560573341497582,
+   "points": 254,
+   "per_race": [
+    43,
+    37,
+    27,
+    28,
+    28,
+    40,
+    27,
+    24
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 34039300642980646,
+   "points": 236,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    16,
+    43,
+    27,
+    27
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1720602368373950384,
+   "points": 268,
+   "per_race": [
+    30,
+    43,
+    33,
+    33,
+    26,
+    40,
+    30,
+    33
+   ],
+   "stops": 21,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1123670838949080729,
+   "points": 240,
+   "per_race": [
+    18,
+    40,
+    28,
+    26,
+    28,
+    40,
+    27,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1673344744927317268,
+   "points": 251,
+   "per_race": [
+    30,
+    29,
+    27,
+    37,
+    28,
+    43,
+    30,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 636166821641420280,
+   "points": 228,
+   "per_race": [
+    30,
+    43,
+    30,
+    14,
+    28,
+    29,
+    27,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 762114577149877767,
+   "points": 252,
+   "per_race": [
+    33,
+    40,
+    28,
+    29,
+    28,
+    40,
+    27,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2963084108705603747,
+   "points": 247,
+   "per_race": [
+    30,
+    40,
+    33,
+    28,
+    24,
+    40,
+    25,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1536567749773832409,
+   "points": 251,
+   "per_race": [
+    30,
+    40,
+    25,
+    28,
+    30,
+    40,
+    30,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1016247499498311078,
+   "points": 240,
+   "per_race": [
+    15,
+    43,
+    27,
+    40,
+    23,
+    40,
+    25,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 223141604319452094,
+   "points": 236,
+   "per_race": [
+    28,
+    40,
+    27,
+    28,
+    30,
+    19,
+    27,
+    37
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2587021605526661137,
+   "points": 228,
+   "per_race": [
+    30,
+    29,
+    27,
+    40,
+    33,
+    29,
+    15,
+    25
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1227225533850466163,
+   "points": 266,
+   "per_race": [
+    33,
+    43,
+    27,
+    28,
+    28,
+    40,
+    40,
+    27
+   ],
+   "stops": 21,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3056533147418793907,
+   "points": 261,
+   "per_race": [
+    30,
+    43,
+    27,
+    27,
+    37,
+    40,
+    27,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2539480128652976639,
+   "points": 238,
+   "per_race": [
+    26,
+    43,
+    19,
+    28,
+    24,
+    43,
+    28,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 3
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2013615879534167008,
+   "points": 230,
+   "per_race": [
+    30,
+    40,
+    27,
+    19,
+    28,
+    40,
+    19,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2975211969900266432,
+   "points": 257,
+   "per_race": [
+    30,
+    40,
+    27,
+    37,
+    26,
+    40,
+    27,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3667347773348205558,
+   "points": 225,
+   "per_race": [
+    19,
+    40,
+    19,
+    28,
+    24,
+    25,
+    27,
+    43
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 609928391891701702,
+   "points": 255,
+   "per_race": [
+    37,
+    40,
+    33,
+    27,
+    18,
+    40,
+    27,
+    33
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4105216574779234065,
+   "points": 237,
+   "per_race": [
+    30,
+    43,
+    15,
+    37,
+    25,
+    43,
+    16,
+    28
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3349798117012512128,
+   "points": 250,
+   "per_race": [
+    30,
+    40,
+    27,
+    26,
+    33,
+    40,
+    27,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1424363223774789712,
+   "points": 245,
+   "per_race": [
+    30,
+    29,
+    28,
+    33,
+    28,
+    43,
+    27,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 361008846308015171,
+   "points": 238,
+   "per_race": [
+    30,
+    43,
+    30,
+    28,
+    22,
+    31,
+    27,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2734068351411384581,
+   "points": 249,
+   "per_race": [
+    30,
+    19,
+    27,
+    37,
+    37,
+    40,
+    33,
+    26
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 164970513909073283,
+   "points": 256,
+   "per_race": [
+    30,
+    40,
+    25,
+    21,
+    40,
+    43,
+    27,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 959055157614182154,
+   "points": 252,
+   "per_race": [
+    33,
+    37,
+    27,
+    28,
+    33,
+    40,
+    27,
+    27
+   ],
+   "stops": 29,
+   "late_stops": 3
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3678690831697512679,
+   "points": 271,
+   "per_race": [
+    30,
+    40,
+    27,
+    40,
+    30,
+    40,
+    27,
+    37
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 860155248286073948,
+   "points": 248,
+   "per_race": [
+    33,
+    40,
+    22,
+    29,
+    26,
+    40,
+    30,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3062939786995903328,
+   "points": 275,
+   "per_race": [
+    40,
+    40,
+    27,
+    27,
+    28,
+    43,
+    27,
+    43
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1192711044529598021,
+   "points": 248,
+   "per_race": [
+    26,
+    40,
+    27,
+    28,
+    33,
+    40,
+    27,
+    27
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 309733664799385648,
+   "points": 262,
+   "per_race": [
+    33,
+    24,
+    28,
+    30,
+    37,
+    43,
+    37,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3035570910816762536,
+   "points": 246,
+   "per_race": [
+    30,
+    40,
+    33,
+    25,
+    28,
+    40,
+    23,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1508087378551452327,
+   "points": 253,
+   "per_race": [
+    33,
+    43,
+    27,
+    28,
+    28,
+    40,
+    30,
+    24
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1913276852294642377,
+   "points": 207,
+   "per_race": [
+    18,
+    10,
+    27,
+    21,
+    24,
+    43,
+    27,
+    37
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 759408174198901217,
+   "points": 217,
+   "per_race": [
+    22,
+    43,
+    27,
+    30,
+    30,
+    30,
+    20,
+    15
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2409527044812449992,
+   "points": 231,
+   "per_race": [
+    30,
+    22,
+    27,
+    28,
+    30,
+    40,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2282921961512491461,
+   "points": 255,
+   "per_race": [
+    30,
+    37,
+    27,
+    33,
+    25,
+    43,
+    27,
+    33
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3706423478497447062,
+   "points": 244,
+   "per_race": [
+    33,
+    40,
+    25,
+    27,
+    30,
+    43,
+    19,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1479935717018715538,
+   "points": 259,
+   "per_race": [
+    33,
+    40,
+    26,
+    30,
+    30,
+    43,
+    30,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4363025172381172792,
+   "points": 246,
+   "per_race": [
+    30,
+    43,
+    30,
+    25,
+    20,
+    43,
+    27,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1852805479497024468,
+   "points": 254,
+   "per_race": [
+    33,
+    40,
+    23,
+    27,
+    28,
+    43,
+    27,
+    33
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4220838007755475199,
+   "points": 231,
+   "per_race": [
+    33,
+    25,
+    25,
+    33,
+    24,
+    40,
+    27,
+    24
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1435617951633245949,
+   "points": 256,
+   "per_race": [
+    40,
+    40,
+    27,
+    28,
+    28,
+    40,
+    27,
+    26
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4496827097582629212,
+   "points": 266,
+   "per_race": [
+    30,
+    43,
+    27,
+    37,
+    23,
+    43,
+    26,
+    37
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1192399820908052634,
+   "points": 261,
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    28,
+    40,
+    27,
+    33
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 71333447282663000,
+   "points": 224,
+   "per_race": [
+    33,
+    25,
+    30,
+    28,
+    22,
+    35,
+    24,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1194949857105319050,
+   "points": 238,
+   "per_race": [
+    33,
+    40,
+    27,
+    21,
+    22,
+    40,
+    27,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2259944717137988018,
+   "points": 204,
+   "per_race": [
+    24,
+    43,
+    10,
+    30,
+    15,
+    40,
+    15,
+    27
+   ],
+   "stops": 28,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4460908169994616615,
+   "points": 235,
+   "per_race": [
+    33,
+    40,
+    15,
+    28,
+    28,
+    43,
+    21,
+    27
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 94123634109980713,
+   "points": 260,
+   "per_race": [
+    28,
+    40,
+    27,
+    33,
+    28,
+    43,
+    28,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1858815896435764272,
+   "points": 243,
+   "per_race": [
+    27,
+    40,
+    23,
+    40,
+    28,
+    43,
+    15,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1195211447950438680,
+   "points": 249,
+   "per_race": [
+    30,
+    43,
+    25,
+    28,
+    28,
+    40,
+    28,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4149000000727585113,
+   "points": 244,
+   "per_race": [
+    30,
+    40,
+    15,
+    37,
+    30,
+    40,
+    25,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2060468231551080784,
+   "points": 267,
+   "per_race": [
+    30,
+    43,
+    33,
+    37,
+    40,
+    37,
+    20,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2335263915496870285,
+   "points": 265,
+   "per_race": [
+    37,
+    43,
+    27,
+    33,
+    30,
+    40,
+    27,
+    28
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2749366157996969959,
+   "points": 226,
+   "per_race": [
+    30,
+    25,
+    33,
+    27,
+    18,
+    40,
+    27,
+    26
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3979479251605374307,
+   "points": 258,
+   "per_race": [
+    30,
+    40,
+    27,
+    33,
+    22,
+    43,
+    33,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 836324642362078690,
+   "points": 233,
+   "per_race": [
+    33,
+    25,
+    27,
+    22,
+    28,
+    43,
+    28,
+    27
+   ],
+   "stops": 22,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1394293377646364422,
+   "points": 243,
+   "per_race": [
+    27,
+    43,
+    27,
+    28,
+    25,
+    40,
+    25,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1804251478574263226,
+   "points": 254,
+   "per_race": [
+    33,
+    43,
+    28,
+    21,
+    30,
+    40,
+    26,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1275016899242972643,
+   "points": 233,
+   "per_race": [
+    30,
+    33,
+    33,
+    28,
+    28,
+    30,
+    27,
+    24
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3684922021268713935,
+   "points": 266,
+   "per_race": [
+    33,
+    43,
+    27,
+    26,
+    43,
+    40,
+    27,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 728820048660416505,
+   "points": 245,
+   "per_race": [
+    33,
+    43,
+    27,
+    19,
+    28,
+    40,
+    27,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 3291082159756272050,
+   "points": 230,
+   "per_race": [
+    18,
+    40,
+    19,
+    28,
+    33,
+    40,
+    25,
+    27
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 4530215984777710054,
+   "points": 245,
+   "per_race": [
+    28,
+    40,
+    27,
+    28,
+    28,
+    40,
+    27,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 2966643466001493797,
+   "points": 230,
+   "per_race": [
+    27,
+    43,
+    27,
+    28,
+    20,
+    43,
+    26,
+    16
+   ],
+   "stops": 25,
+   "late_stops": 2
+  },
+  {
+   "policy": "rule+base_race",
+   "seed": 1628631555545907509,
+   "points": 279,
+   "per_race": [
+    30,
+    43,
+    27,
+    43,
+    28,
+    40,
+    28,
+    40
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 374019424539152092,
+   "points": 235,
+   "per_race": [
+    30,
+    40,
+    28,
+    30,
+    33,
+    28,
+    19,
+    27
+   ],
+   "stops": 21,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 251130478150851826,
+   "points": 239,
+   "per_race": [
+    30,
+    33,
+    30,
+    33,
+    33,
+    33,
+    25,
+    22
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2103662818095565891,
+   "points": 213,
+   "per_race": [
+    22,
+    40,
+    27,
+    43,
+    0,
+    29,
+    26,
+    26
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2072397682455863027,
+   "points": 233,
+   "per_race": [
+    30,
+    40,
+    22,
+    33,
+    28,
+    33,
+    25,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 727892592370975939,
+   "points": 233,
+   "per_race": [
+    30,
+    43,
+    27,
+    33,
+    18,
+    33,
+    27,
+    22
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2654741156609127566,
+   "points": 232,
+   "per_race": [
+    30,
+    40,
+    25,
+    33,
+    33,
+    43,
+    12,
+    16
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 401401212390937745,
+   "points": 236,
+   "per_race": [
+    22,
+    40,
+    33,
+    35,
+    28,
+    30,
+    26,
+    22
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 786906000113452442,
+   "points": 240,
+   "per_race": [
+    30,
+    33,
+    35,
+    37,
+    27,
+    33,
+    23,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2820153334737964677,
+   "points": 251,
+   "per_race": [
+    30,
+    40,
+    26,
+    37,
+    33,
+    33,
+    33,
+    19
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4256428538116894830,
+   "points": 275,
+   "per_race": [
+    40,
+    43,
+    30,
+    33,
+    25,
+    43,
+    31,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1188626246370922205,
+   "points": 208,
+   "per_race": [
+    0,
+    40,
+    27,
+    35,
+    19,
+    28,
+    33,
+    26
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1284320100189848898,
+   "points": 245,
+   "per_race": [
+    33,
+    40,
+    30,
+    31,
+    30,
+    33,
+    23,
+    25
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3291307466328138605,
+   "points": 229,
+   "per_race": [
+    30,
+    43,
+    27,
+    33,
+    31,
+    18,
+    25,
+    22
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 355314618159473844,
+   "points": 241,
+   "per_race": [
+    30,
+    40,
+    18,
+    25,
+    37,
+    43,
+    26,
+    22
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3838115603910980347,
+   "points": 241,
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    33,
+    37,
+    12,
+    26
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3149162477414737452,
+   "points": 257,
+   "per_race": [
+    27,
+    43,
+    25,
+    37,
+    33,
+    40,
+    33,
+    19
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2904472841679886275,
+   "points": 230,
+   "per_race": [
+    30,
+    28,
+    27,
+    30,
+    33,
+    35,
+    25,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 242641492267117608,
+   "points": 224,
+   "per_race": [
+    30,
+    40,
+    27,
+    25,
+    22,
+    33,
+    25,
+    22
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3860786553926563157,
+   "points": 225,
+   "per_race": [
+    28,
+    37,
+    27,
+    33,
+    33,
+    37,
+    10,
+    20
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2574973029453448697,
+   "points": 246,
+   "per_race": [
+    27,
+    43,
+    25,
+    37,
+    33,
+    37,
+    25,
+    19
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4312876803966337520,
+   "points": 200,
+   "per_race": [
+    30,
+    43,
+    27,
+    8,
+    23,
+    33,
+    15,
+    21
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1345418888979850348,
+   "points": 238,
+   "per_race": [
+    30,
+    27,
+    24,
+    30,
+    33,
+    35,
+    33,
+    26
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2719889568465568624,
+   "points": 237,
+   "per_race": [
+    30,
+    40,
+    33,
+    23,
+    33,
+    33,
+    20,
+    25
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2193029828827396449,
+   "points": 257,
+   "per_race": [
+    37,
+    40,
+    27,
+    30,
+    33,
+    43,
+    25,
+    22
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1571532965851867985,
+   "points": 228,
+   "per_race": [
+    24,
+    25,
+    33,
+    33,
+    33,
+    33,
+    25,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4199236363286547939,
+   "points": 230,
+   "per_race": [
+    20,
+    37,
+    25,
+    35,
+    33,
+    33,
+    28,
+    19
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3986970382286560154,
+   "points": 233,
+   "per_race": [
+    30,
+    40,
+    33,
+    33,
+    25,
+    28,
+    23,
+    21
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3295718992609273873,
+   "points": 228,
+   "per_race": [
+    22,
+    40,
+    33,
+    33,
+    33,
+    24,
+    18,
+    25
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1583094124078142709,
+   "points": 237,
+   "per_race": [
+    28,
+    40,
+    33,
+    37,
+    18,
+    37,
+    16,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 531597119130040852,
+   "points": 244,
+   "per_race": [
+    30,
+    40,
+    28,
+    33,
+    18,
+    43,
+    30,
+    22
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 908388963605659265,
+   "points": 260,
+   "per_race": [
+    30,
+    40,
+    33,
+    35,
+    30,
+    33,
+    29,
+    30
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4218332278751267149,
+   "points": 233,
+   "per_race": [
+    28,
+    40,
+    18,
+    30,
+    30,
+    40,
+    25,
+    22
+   ],
+   "stops": 22,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3834584292397130521,
+   "points": 247,
+   "per_race": [
+    18,
+    40,
+    26,
+    37,
+    30,
+    43,
+    25,
+    28
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3107560573341497582,
+   "points": 253,
+   "per_race": [
+    43,
+    37,
+    27,
+    33,
+    33,
+    33,
+    25,
+    22
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 34039300642980646,
+   "points": 228,
+   "per_race": [
+    30,
+    40,
+    25,
+    33,
+    16,
+    40,
+    25,
+    19
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1720602368373950384,
+   "points": 256,
+   "per_race": [
+    30,
+    43,
+    33,
+    33,
+    28,
+    33,
+    28,
+    28
+   ],
+   "stops": 21,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1123670838949080729,
+   "points": 245,
+   "per_race": [
+    18,
+    40,
+    30,
+    35,
+    33,
+    40,
+    25,
+    24
+   ],
+   "stops": 23,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1673344744927317268,
+   "points": 238,
+   "per_race": [
+    30,
+    29,
+    27,
+    40,
+    33,
+    40,
+    27,
+    12
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 636166821641420280,
+   "points": 228,
+   "per_race": [
+    30,
+    43,
+    30,
+    16,
+    33,
+    29,
+    25,
+    22
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 762114577149877767,
+   "points": 243,
+   "per_race": [
+    33,
+    40,
+    35,
+    29,
+    33,
+    33,
+    25,
+    15
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2963084108705603747,
+   "points": 240,
+   "per_race": [
+    30,
+    40,
+    33,
+    33,
+    26,
+    33,
+    23,
+    22
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1536567749773832409,
+   "points": 243,
+   "per_race": [
+    30,
+    40,
+    27,
+    33,
+    30,
+    33,
+    26,
+    24
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1016247499498311078,
+   "points": 223,
+   "per_race": [
+    15,
+    43,
+    27,
+    37,
+    23,
+    33,
+    23,
+    22
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 223141604319452094,
+   "points": 235,
+   "per_race": [
+    28,
+    40,
+    27,
+    35,
+    30,
+    19,
+    25,
+    31
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2587021605526661137,
+   "points": 223,
+   "per_race": [
+    30,
+    29,
+    27,
+    40,
+    33,
+    29,
+    12,
+    23
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1227225533850466163,
+   "points": 257,
+   "per_race": [
+    33,
+    43,
+    27,
+    33,
+    33,
+    33,
+    33,
+    22
+   ],
+   "stops": 21,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3056533147418793907,
+   "points": 269,
+   "per_race": [
+    30,
+    43,
+    27,
+    37,
+    43,
+    33,
+    23,
+    33
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2539480128652976639,
+   "points": 230,
+   "per_race": [
+    26,
+    43,
+    19,
+    33,
+    26,
+    33,
+    25,
+    25
+   ],
+   "stops": 25,
+   "late_stops": 3
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2013615879534167008,
+   "points": 225,
+   "per_race": [
+    30,
+    40,
+    27,
+    21,
+    33,
+    33,
+    19,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2975211969900266432,
+   "points": 241,
+   "per_race": [
+    30,
+    40,
+    27,
+    35,
+    26,
+    33,
+    25,
+    25
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3667347773348205558,
+   "points": 223,
+   "per_race": [
+    19,
+    40,
+    19,
+    33,
+    26,
+    18,
+    25,
+    43
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 609928391891701702,
+   "points": 254,
+   "per_race": [
+    37,
+    40,
+    33,
+    40,
+    18,
+    33,
+    25,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4105216574779234065,
+   "points": 240,
+   "per_race": [
+    30,
+    43,
+    15,
+    43,
+    25,
+    43,
+    16,
+    25
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3349798117012512128,
+   "points": 247,
+   "per_race": [
+    30,
+    40,
+    27,
+    30,
+    40,
+    33,
+    25,
+    22
+   ],
+   "stops": 23,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1424363223774789712,
+   "points": 243,
+   "per_race": [
+    30,
+    29,
+    28,
+    33,
+    33,
+    43,
+    25,
+    22
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 361008846308015171,
+   "points": 228,
+   "per_race": [
+    30,
+    43,
+    30,
+    33,
+    22,
+    24,
+    25,
+    21
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2734068351411384581,
+   "points": 251,
+   "per_race": [
+    30,
+    19,
+    27,
+    40,
+    43,
+    33,
+    33,
+    26
+   ],
+   "stops": 24,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 164970513909073283,
+   "points": 252,
+   "per_race": [
+    30,
+    40,
+    25,
+    37,
+    40,
+    33,
+    25,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 959055157614182154,
+   "points": 243,
+   "per_race": [
+    33,
+    37,
+    27,
+    33,
+    33,
+    33,
+    25,
+    22
+   ],
+   "stops": 29,
+   "late_stops": 3
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3678690831697512679,
+   "points": 259,
+   "per_race": [
+    30,
+    40,
+    27,
+    43,
+    33,
+    33,
+    25,
+    28
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 860155248286073948,
+   "points": 234,
+   "per_race": [
+    33,
+    40,
+    22,
+    29,
+    26,
+    33,
+    26,
+    25
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3062939786995903328,
+   "points": 272,
+   "per_race": [
+    40,
+    40,
+    27,
+    37,
+    33,
+    37,
+    25,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1192711044529598021,
+   "points": 240,
+   "per_race": [
+    26,
+    40,
+    27,
+    37,
+    33,
+    33,
+    25,
+    19
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 309733664799385648,
+   "points": 257,
+   "per_race": [
+    33,
+    24,
+    28,
+    30,
+    37,
+    43,
+    37,
+    25
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3035570910816762536,
+   "points": 242,
+   "per_race": [
+    30,
+    40,
+    33,
+    33,
+    33,
+    33,
+    18,
+    22
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1508087378551452327,
+   "points": 251,
+   "per_race": [
+    33,
+    43,
+    27,
+    33,
+    33,
+    33,
+    27,
+    22
+   ],
+   "stops": 27,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1913276852294642377,
+   "points": 198,
+   "per_race": [
+    18,
+    10,
+    27,
+    31,
+    24,
+    33,
+    25,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 759408174198901217,
+   "points": 225,
+   "per_race": [
+    22,
+    43,
+    27,
+    43,
+    30,
+    28,
+    20,
+    12
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2409527044812449992,
+   "points": 223,
+   "per_race": [
+    30,
+    22,
+    27,
+    33,
+    33,
+    33,
+    26,
+    19
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2282921961512491461,
+   "points": 238,
+   "per_race": [
+    30,
+    37,
+    27,
+    33,
+    25,
+    43,
+    25,
+    18
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3706423478497447062,
+   "points": 246,
+   "per_race": [
+    33,
+    40,
+    25,
+    37,
+    30,
+    40,
+    19,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1479935717018715538,
+   "points": 260,
+   "per_race": [
+    33,
+    40,
+    26,
+    43,
+    30,
+    40,
+    26,
+    22
+   ],
+   "stops": 25,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4363025172381172792,
+   "points": 250,
+   "per_race": [
+    30,
+    43,
+    30,
+    35,
+    22,
+    40,
+    25,
+    25
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1852805479497024468,
+   "points": 261,
+   "per_race": [
+    33,
+    40,
+    23,
+    37,
+    28,
+    40,
+    27,
+    33
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4220838007755475199,
+   "points": 220,
+   "per_race": [
+    33,
+    25,
+    25,
+    33,
+    26,
+    33,
+    23,
+    22
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1435617951633245949,
+   "points": 264,
+   "per_race": [
+    40,
+    40,
+    27,
+    40,
+    33,
+    33,
+    25,
+    26
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4496827097582629212,
+   "points": 256,
+   "per_race": [
+    30,
+    43,
+    27,
+    37,
+    23,
+    43,
+    18,
+    35
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1192399820908052634,
+   "points": 251,
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    33,
+    33,
+    25,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 71333447282663000,
+   "points": 210,
+   "per_race": [
+    33,
+    25,
+    30,
+    33,
+    22,
+    26,
+    19,
+    22
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1194949857105319050,
+   "points": 240,
+   "per_race": [
+    33,
+    40,
+    27,
+    37,
+    22,
+    33,
+    23,
+    25
+   ],
+   "stops": 24,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2259944717137988018,
+   "points": 195,
+   "per_race": [
+    24,
+    43,
+    10,
+    33,
+    15,
+    33,
+    15,
+    22
+   ],
+   "stops": 28,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4460908169994616615,
+   "points": 240,
+   "per_race": [
+    33,
+    40,
+    15,
+    33,
+    33,
+    43,
+    21,
+    22
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 94123634109980713,
+   "points": 259,
+   "per_race": [
+    28,
+    40,
+    27,
+    33,
+    33,
+    40,
+    25,
+    33
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1858815896435764272,
+   "points": 245,
+   "per_race": [
+    27,
+    40,
+    23,
+    35,
+    33,
+    40,
+    25,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1195211447950438680,
+   "points": 249,
+   "per_race": [
+    30,
+    43,
+    25,
+    33,
+    33,
+    37,
+    26,
+    22
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4149000000727585113,
+   "points": 239,
+   "per_race": [
+    30,
+    40,
+    15,
+    43,
+    30,
+    40,
+    21,
+    20
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2060468231551080784,
+   "points": 255,
+   "per_race": [
+    30,
+    43,
+    33,
+    37,
+    40,
+    40,
+    20,
+    12
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2335263915496870285,
+   "points": 268,
+   "per_race": [
+    37,
+    43,
+    27,
+    43,
+    33,
+    33,
+    25,
+    27
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2749366157996969959,
+   "points": 227,
+   "per_race": [
+    30,
+    25,
+    33,
+    37,
+    18,
+    33,
+    25,
+    26
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3979479251605374307,
+   "points": 259,
+   "per_race": [
+    30,
+    40,
+    27,
+    40,
+    22,
+    40,
+    33,
+    27
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 836324642362078690,
+   "points": 242,
+   "per_race": [
+    33,
+    25,
+    27,
+    37,
+    33,
+    43,
+    22,
+    22
+   ],
+   "stops": 22,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1394293377646364422,
+   "points": 241,
+   "per_race": [
+    27,
+    43,
+    27,
+    33,
+    25,
+    33,
+    25,
+    28
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1804251478574263226,
+   "points": 253,
+   "per_race": [
+    33,
+    43,
+    28,
+    31,
+    33,
+    33,
+    28,
+    24
+   ],
+   "stops": 23,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1275016899242972643,
+   "points": 237,
+   "per_race": [
+    30,
+    33,
+    33,
+    33,
+    33,
+    28,
+    25,
+    22
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3684922021268713935,
+   "points": 256,
+   "per_race": [
+    33,
+    43,
+    27,
+    30,
+    43,
+    33,
+    25,
+    22
+   ],
+   "stops": 26,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 728820048660416505,
+   "points": 244,
+   "per_race": [
+    33,
+    43,
+    27,
+    31,
+    33,
+    33,
+    25,
+    19
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 3291082159756272050,
+   "points": 223,
+   "per_race": [
+    18,
+    40,
+    19,
+    33,
+    33,
+    33,
+    25,
+    22
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 4530215984777710054,
+   "points": 241,
+   "per_race": [
+    28,
+    40,
+    27,
+    33,
+    33,
+    33,
+    25,
+    22
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 2966643466001493797,
+   "points": 228,
+   "per_race": [
+    27,
+    43,
+    27,
+    33,
+    20,
+    40,
+    24,
+    14
+   ],
+   "stops": 25,
+   "late_stops": 2
+  },
+  {
+   "policy": "greedy+base_race",
+   "seed": 1628631555545907509,
+   "points": 271,
+   "per_race": [
+    30,
+    43,
+    27,
+    43,
+    33,
+    33,
+    22,
+    40
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 374019424539152092,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 251130478150851826,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2103662818095565891,
+   "points": 66,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    0,
+    10,
+    6,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2072397682455863027,
+   "points": 84,
+   "per_race": [
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 727892592370975939,
+   "points": 76,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    6,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2654741156609127566,
+   "points": 88,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    10,
+    18,
+    6,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 401401212390937745,
+   "points": 88,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 786906000113452442,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2820153334737964677,
+   "points": 84,
+   "per_race": [
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4256428538116894830,
+   "points": 92,
+   "per_race": [
+    14,
+    10,
+    14,
+    14,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1188626246370922205,
+   "points": 74,
+   "per_race": [
+    0,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1284320100189848898,
+   "points": 84,
+   "per_race": [
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3291307466328138605,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    14,
+    6,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 355314618159473844,
+   "points": 82,
+   "per_race": [
+    10,
+    10,
+    6,
+    10,
+    18,
+    10,
+    8,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3838115603910980347,
+   "points": 84,
+   "per_race": [
+    18,
+    10,
+    10,
+    10,
+    10,
+    10,
+    6,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3149162477414737452,
+   "points": 84,
+   "per_race": [
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2904472841679886275,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 242641492267117608,
+   "points": 92,
+   "per_race": [
+    10,
+    18,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3860786553926563157,
+   "points": 76,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    6,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2574973029453448697,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4312876803966337520,
+   "points": 72,
+   "per_race": [
+    10,
+    10,
+    10,
+    6,
+    10,
+    10,
+    6,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1345418888979850348,
+   "points": 96,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    14,
+    14,
+    14,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2719889568465568624,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2193029828827396449,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1571532965851867985,
+   "points": 76,
+   "per_race": [
+    10,
+    6,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4199236363286547939,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3986970382286560154,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3295718992609273873,
+   "points": 88,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1583094124078142709,
+   "points": 76,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    6,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 531597119130040852,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    6,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 908388963605659265,
+   "points": 88,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4218332278751267149,
+   "points": 86,
+   "per_race": [
+    10,
+    14,
+    8,
+    10,
+    10,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3834584292397130521,
+   "points": 76,
+   "per_race": [
+    6,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3107560573341497582,
+   "points": 96,
+   "per_race": [
+    18,
+    14,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 34039300642980646,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1720602368373950384,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1123670838949080729,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1673344744927317268,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    6
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 636166821641420280,
+   "points": 88,
+   "per_race": [
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 762114577149877767,
+   "points": 78,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    8
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2963084108705603747,
+   "points": 88,
+   "per_race": [
+    14,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1536567749773832409,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1016247499498311078,
+   "points": 76,
+   "per_race": [
+    6,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 223141604319452094,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2587021605526661137,
+   "points": 82,
+   "per_race": [
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    8,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1227225533850466163,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3056533147418793907,
+   "points": 88,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2539480128652976639,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2013615879534167008,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2975211969900266432,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3667347773348205558,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    6,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 609928391891701702,
+   "points": 88,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    6,
+    10,
+    10,
+    18
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4105216574779234065,
+   "points": 88,
+   "per_race": [
+    10,
+    14,
+    6,
+    14,
+    14,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3349798117012512128,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1424363223774789712,
+   "points": 88,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 361008846308015171,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2734068351411384581,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 164970513909073283,
+   "points": 84,
+   "per_race": [
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 959055157614182154,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3678690831697512679,
+   "points": 88,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    14,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 860155248286073948,
+   "points": 84,
+   "per_race": [
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3062939786995903328,
+   "points": 84,
+   "per_race": [
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    6,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1192711044529598021,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 309733664799385648,
+   "points": 84,
+   "per_race": [
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3035570910816762536,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1508087378551452327,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1913276852294642377,
+   "points": 74,
+   "per_race": [
+    8,
+    6,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 759408174198901217,
+   "points": 84,
+   "per_race": [
+    10,
+    14,
+    10,
+    10,
+    14,
+    10,
+    10,
+    6
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2409527044812449992,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2282921961512491461,
+   "points": 76,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    6
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3706423478497447062,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1479935717018715538,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4363025172381172792,
+   "points": 92,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    14,
+    10,
+    10,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1852805479497024468,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4220838007755475199,
+   "points": 80,
+   "per_race": [
+    10,
+    6,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1435617951633245949,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4496827097582629212,
+   "points": 80,
+   "per_race": [
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    6,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1192399820908052634,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 71333447282663000,
+   "points": 76,
+   "per_race": [
+    10,
+    6,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1194949857105319050,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    6,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2259944717137988018,
+   "points": 82,
+   "per_race": [
+    10,
+    10,
+    10,
+    14,
+    6,
+    14,
+    8,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4460908169994616615,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    6,
+    10,
+    10,
+    10,
+    14,
+    14
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 94123634109980713,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1858815896435764272,
+   "points": 78,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    8,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1195211447950438680,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4149000000727585113,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    6,
+    14,
+    14,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2060468231551080784,
+   "points": 82,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    8
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2335263915496870285,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2749366157996969959,
+   "points": 76,
+   "per_race": [
+    10,
+    6,
+    10,
+    14,
+    6,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3979479251605374307,
+   "points": 84,
+   "per_race": [
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 836324642362078690,
+   "points": 76,
+   "per_race": [
+    10,
+    6,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1394293377646364422,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    14,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1804251478574263226,
+   "points": 88,
+   "per_race": [
+    14,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1275016899242972643,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3684922021268713935,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    14,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 728820048660416505,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3291082159756272050,
+   "points": 78,
+   "per_race": [
+    8,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 4530215984777710054,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 2966643466001493797,
+   "points": 80,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1628631555545907509,
+   "points": 84,
+   "per_race": [
+    10,
+    10,
+    10,
+    10,
+    14,
+    10,
+    10,
+    10
+   ],
+   "stops": 0,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 374019424539152092,
+   "points": 223,
+   "per_race": [
+    26,
+    33,
+    30,
+    25,
+    28,
+    33,
+    25,
+    23
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 251130478150851826,
+   "points": 246,
+   "per_race": [
+    26,
+    35,
+    33,
+    33,
+    28,
+    33,
+    25,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2103662818095565891,
+   "points": 230,
+   "per_race": [
+    20,
+    33,
+    25,
+    43,
+    0,
+    43,
+    26,
+    40
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2072397682455863027,
+   "points": 231,
+   "per_race": [
+    21,
+    33,
+    25,
+    33,
+    33,
+    33,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 727892592370975939,
+   "points": 227,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    12,
+    33,
+    30,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2654741156609127566,
+   "points": 229,
+   "per_race": [
+    26,
+    33,
+    24,
+    33,
+    28,
+    43,
+    12,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 401401212390937745,
+   "points": 259,
+   "per_race": [
+    20,
+    43,
+    33,
+    40,
+    25,
+    37,
+    33,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 786906000113452442,
+   "points": 246,
+   "per_race": [
+    26,
+    29,
+    33,
+    37,
+    33,
+    33,
+    27,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2820153334737964677,
+   "points": 244,
+   "per_race": [
+    26,
+    33,
+    28,
+    33,
+    28,
+    33,
+    33,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4256428538116894830,
+   "points": 306,
+   "per_race": [
+    37,
+    43,
+    37,
+    33,
+    33,
+    43,
+    40,
+    40
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1188626246370922205,
+   "points": 220,
+   "per_race": [
+    0,
+    33,
+    25,
+    33,
+    30,
+    33,
+    33,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1284320100189848898,
+   "points": 267,
+   "per_race": [
+    33,
+    40,
+    28,
+    28,
+    40,
+    37,
+    28,
+    33
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3291307466328138605,
+   "points": 223,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    28,
+    18,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 355314618159473844,
+   "points": 258,
+   "per_race": [
+    33,
+    33,
+    18,
+    33,
+    37,
+    43,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3838115603910980347,
+   "points": 250,
+   "per_race": [
+    33,
+    33,
+    25,
+    33,
+    28,
+    43,
+    15,
+    40
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3149162477414737452,
+   "points": 259,
+   "per_race": [
+    22,
+    43,
+    27,
+    35,
+    28,
+    43,
+    33,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2904472841679886275,
+   "points": 242,
+   "per_race": [
+    26,
+    43,
+    25,
+    30,
+    28,
+    37,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 242641492267117608,
+   "points": 234,
+   "per_race": [
+    28,
+    40,
+    25,
+    25,
+    20,
+    43,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3860786553926563157,
+   "points": 244,
+   "per_race": [
+    30,
+    43,
+    25,
+    33,
+    30,
+    43,
+    10,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2574973029453448697,
+   "points": 251,
+   "per_race": [
+    30,
+    40,
+    27,
+    28,
+    28,
+    43,
+    25,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4312876803966337520,
+   "points": 251,
+   "per_race": [
+    35,
+    43,
+    30,
+    18,
+    26,
+    33,
+    33,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1345418888979850348,
+   "points": 269,
+   "per_race": [
+    26,
+    37,
+    31,
+    43,
+    28,
+    43,
+    33,
+    28
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2719889568465568624,
+   "points": 251,
+   "per_race": [
+    30,
+    33,
+    33,
+    43,
+    26,
+    33,
+    23,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2193029828827396449,
+   "points": 257,
+   "per_race": [
+    35,
+    33,
+    25,
+    40,
+    28,
+    43,
+    25,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1571532965851867985,
+   "points": 229,
+   "per_race": [
+    24,
+    25,
+    33,
+    33,
+    28,
+    33,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4199236363286547939,
+   "points": 252,
+   "per_race": [
+    27,
+    43,
+    28,
+    40,
+    30,
+    33,
+    18,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3986970382286560154,
+   "points": 251,
+   "per_race": [
+    26,
+    33,
+    33,
+    33,
+    33,
+    33,
+    30,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3295718992609273873,
+   "points": 256,
+   "per_race": [
+    24,
+    40,
+    30,
+    33,
+    33,
+    40,
+    23,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1583094124078142709,
+   "points": 231,
+   "per_race": [
+    33,
+    33,
+    30,
+    30,
+    15,
+    30,
+    27,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 531597119130040852,
+   "points": 257,
+   "per_race": [
+    26,
+    40,
+    30,
+    33,
+    20,
+    40,
+    40,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 908388963605659265,
+   "points": 279,
+   "per_race": [
+    33,
+    33,
+    33,
+    40,
+    37,
+    33,
+    37,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4218332278751267149,
+   "points": 241,
+   "per_race": [
+    33,
+    33,
+    10,
+    33,
+    37,
+    37,
+    25,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3834584292397130521,
+   "points": 250,
+   "per_race": [
+    18,
+    33,
+    33,
+    37,
+    33,
+    43,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3107560573341497582,
+   "points": 260,
+   "per_race": [
+    40,
+    43,
+    25,
+    33,
+    28,
+    33,
+    25,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 34039300642980646,
+   "points": 246,
+   "per_race": [
+    26,
+    40,
+    28,
+    40,
+    19,
+    40,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1720602368373950384,
+   "points": 264,
+   "per_race": [
+    26,
+    37,
+    30,
+    40,
+    30,
+    35,
+    33,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1123670838949080729,
+   "points": 227,
+   "per_race": [
+    24,
+    33,
+    22,
+    27,
+    28,
+    40,
+    25,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1673344744927317268,
+   "points": 240,
+   "per_race": [
+    26,
+    30,
+    25,
+    30,
+    28,
+    43,
+    30,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 636166821641420280,
+   "points": 256,
+   "per_race": [
+    37,
+    37,
+    30,
+    28,
+    28,
+    43,
+    25,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 762114577149877767,
+   "points": 274,
+   "per_race": [
+    33,
+    40,
+    33,
+    37,
+    30,
+    33,
+    25,
+    43
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2963084108705603747,
+   "points": 249,
+   "per_race": [
+    26,
+    40,
+    33,
+    33,
+    28,
+    33,
+    28,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1536567749773832409,
+   "points": 274,
+   "per_race": [
+    26,
+    35,
+    25,
+    33,
+    40,
+    40,
+    40,
+    35
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1016247499498311078,
+   "points": 242,
+   "per_race": [
+    25,
+    35,
+    25,
+    35,
+    26,
+    40,
+    28,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 223141604319452094,
+   "points": 265,
+   "per_race": [
+    26,
+    33,
+    25,
+    37,
+    33,
+    43,
+    25,
+    43
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2587021605526661137,
+   "points": 256,
+   "per_race": [
+    33,
+    43,
+    27,
+    43,
+    33,
+    35,
+    12,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1227225533850466163,
+   "points": 247,
+   "per_race": [
+    30,
+    33,
+    25,
+    33,
+    28,
+    40,
+    30,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3056533147418793907,
+   "points": 267,
+   "per_race": [
+    26,
+    43,
+    37,
+    37,
+    37,
+    33,
+    26,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2539480128652976639,
+   "points": 236,
+   "per_race": [
+    26,
+    33,
+    18,
+    33,
+    28,
+    40,
+    33,
+    25
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2013615879534167008,
+   "points": 239,
+   "per_race": [
+    26,
+    33,
+    28,
+    28,
+    28,
+    40,
+    28,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2975211969900266432,
+   "points": 240,
+   "per_race": [
+    26,
+    33,
+    25,
+    35,
+    30,
+    33,
+    25,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3667347773348205558,
+   "points": 234,
+   "per_race": [
+    28,
+    33,
+    26,
+    33,
+    28,
+    18,
+    25,
+    43
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 609928391891701702,
+   "points": 261,
+   "per_race": [
+    40,
+    33,
+    40,
+    40,
+    18,
+    33,
+    27,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4105216574779234065,
+   "points": 262,
+   "per_race": [
+    26,
+    43,
+    18,
+    43,
+    33,
+    43,
+    23,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3349798117012512128,
+   "points": 259,
+   "per_race": [
+    26,
+    40,
+    25,
+    33,
+    40,
+    40,
+    27,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1424363223774789712,
+   "points": 255,
+   "per_race": [
+    30,
+    43,
+    28,
+    33,
+    28,
+    40,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 361008846308015171,
+   "points": 241,
+   "per_race": [
+    33,
+    43,
+    28,
+    33,
+    22,
+    27,
+    25,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2734068351411384581,
+   "points": 276,
+   "per_race": [
+    33,
+    43,
+    27,
+    30,
+    37,
+    33,
+    33,
+    40
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 164970513909073283,
+   "points": 258,
+   "per_race": [
+    26,
+    40,
+    28,
+    30,
+    40,
+    33,
+    28,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 959055157614182154,
+   "points": 257,
+   "per_race": [
+    40,
+    43,
+    27,
+    33,
+    28,
+    33,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3678690831697512679,
+   "points": 265,
+   "per_race": [
+    33,
+    33,
+    25,
+    40,
+    33,
+    33,
+    25,
+    43
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 860155248286073948,
+   "points": 256,
+   "per_race": [
+    33,
+    33,
+    26,
+    37,
+    33,
+    33,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3062939786995903328,
+   "points": 274,
+   "per_race": [
+    35,
+    33,
+    25,
+    40,
+    33,
+    40,
+    25,
+    43
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1192711044529598021,
+   "points": 235,
+   "per_race": [
+    33,
+    35,
+    25,
+    23,
+    33,
+    33,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 309733664799385648,
+   "points": 278,
+   "per_race": [
+    28,
+    35,
+    30,
+    37,
+    35,
+    40,
+    40,
+    33
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3035570910816762536,
+   "points": 251,
+   "per_race": [
+    26,
+    33,
+    33,
+    40,
+    28,
+    40,
+    23,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1508087378551452327,
+   "points": 258,
+   "per_race": [
+    26,
+    43,
+    25,
+    40,
+    28,
+    33,
+    30,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1913276852294642377,
+   "points": 212,
+   "per_race": [
+    18,
+    15,
+    25,
+    30,
+    33,
+    33,
+    25,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 759408174198901217,
+   "points": 235,
+   "per_race": [
+    22,
+    43,
+    25,
+    40,
+    28,
+    33,
+    26,
+    18
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2409527044812449992,
+   "points": 257,
+   "per_race": [
+    33,
+    43,
+    25,
+    33,
+    30,
+    33,
+    30,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2282921961512491461,
+   "points": 266,
+   "per_race": [
+    40,
+    30,
+    27,
+    43,
+    33,
+    43,
+    25,
+    25
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3706423478497447062,
+   "points": 262,
+   "per_race": [
+    30,
+    33,
+    27,
+    43,
+    26,
+    40,
+    35,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1479935717018715538,
+   "points": 263,
+   "per_race": [
+    30,
+    33,
+    30,
+    33,
+    33,
+    43,
+    33,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4363025172381172792,
+   "points": 259,
+   "per_race": [
+    26,
+    40,
+    28,
+    40,
+    26,
+    37,
+    25,
+    37
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1852805479497024468,
+   "points": 251,
+   "per_race": [
+    30,
+    33,
+    25,
+    37,
+    33,
+    33,
+    27,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4220838007755475199,
+   "points": 239,
+   "per_race": [
+    27,
+    25,
+    33,
+    33,
+    28,
+    33,
+    27,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1435617951633245949,
+   "points": 264,
+   "per_race": [
+    43,
+    35,
+    25,
+    33,
+    28,
+    33,
+    27,
+    40
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4496827097582629212,
+   "points": 260,
+   "per_race": [
+    26,
+    27,
+    25,
+    43,
+    33,
+    43,
+    26,
+    37
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1192399820908052634,
+   "points": 244,
+   "per_race": [
+    28,
+    33,
+    25,
+    33,
+    28,
+    40,
+    27,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 71333447282663000,
+   "points": 233,
+   "per_race": [
+    40,
+    25,
+    30,
+    33,
+    22,
+    22,
+    33,
+    28
+   ],
+   "stops": 31,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1194949857105319050,
+   "points": 236,
+   "per_race": [
+    30,
+    40,
+    25,
+    30,
+    20,
+    33,
+    30,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2259944717137988018,
+   "points": 223,
+   "per_race": [
+    24,
+    37,
+    23,
+    33,
+    18,
+    33,
+    27,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4460908169994616615,
+   "points": 237,
+   "per_race": [
+    30,
+    33,
+    15,
+    33,
+    30,
+    43,
+    25,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 94123634109980713,
+   "points": 254,
+   "per_race": [
+    26,
+    33,
+    25,
+    33,
+    28,
+    43,
+    33,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1858815896435764272,
+   "points": 251,
+   "per_race": [
+    26,
+    40,
+    33,
+    31,
+    28,
+    40,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1195211447950438680,
+   "points": 258,
+   "per_race": [
+    26,
+    40,
+    27,
+    33,
+    28,
+    43,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4149000000727585113,
+   "points": 263,
+   "per_race": [
+    26,
+    33,
+    18,
+    43,
+    33,
+    43,
+    37,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2060468231551080784,
+   "points": 270,
+   "per_race": [
+    26,
+    43,
+    30,
+    40,
+    33,
+    43,
+    27,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2335263915496870285,
+   "points": 272,
+   "per_race": [
+    40,
+    43,
+    30,
+    33,
+    33,
+    40,
+    25,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2749366157996969959,
+   "points": 216,
+   "per_race": [
+    26,
+    18,
+    33,
+    43,
+    12,
+    33,
+    25,
+    26
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3979479251605374307,
+   "points": 252,
+   "per_race": [
+    33,
+    33,
+    25,
+    40,
+    22,
+    43,
+    33,
+    23
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 836324642362078690,
+   "points": 229,
+   "per_race": [
+    33,
+    25,
+    27,
+    27,
+    28,
+    43,
+    18,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1394293377646364422,
+   "points": 238,
+   "per_race": [
+    30,
+    37,
+    27,
+    33,
+    26,
+    33,
+    28,
+    24
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1804251478574263226,
+   "points": 255,
+   "per_race": [
+    33,
+    43,
+    30,
+    40,
+    30,
+    33,
+    18,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1275016899242972643,
+   "points": 266,
+   "per_race": [
+    33,
+    43,
+    33,
+    33,
+    28,
+    33,
+    30,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3684922021268713935,
+   "points": 253,
+   "per_race": [
+    33,
+    33,
+    25,
+    33,
+    43,
+    33,
+    25,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 728820048660416505,
+   "points": 250,
+   "per_race": [
+    27,
+    43,
+    27,
+    30,
+    28,
+    40,
+    25,
+    30
+   ],
+   "stops": 30,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 3291082159756272050,
+   "points": 220,
+   "per_race": [
+    15,
+    33,
+    22,
+    33,
+    28,
+    33,
+    28,
+    28
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 4530215984777710054,
+   "points": 243,
+   "per_race": [
+    28,
+    43,
+    25,
+    33,
+    28,
+    33,
+    25,
+    28
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 2966643466001493797,
+   "points": 245,
+   "per_race": [
+    28,
+    43,
+    25,
+    33,
+    23,
+    40,
+    33,
+    20
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_patched_late_stops",
+   "seed": 1628631555545907509,
+   "points": 269,
+   "per_race": [
+    35,
+    37,
+    25,
+    43,
+    28,
+    40,
+    18,
+    43
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 374019424539152092,
+   "points": 267,
+   "per_race": [
+    33,
+    40,
+    30,
+    33,
+    33,
+    40,
+    25,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 251130478150851826,
+   "points": 278,
+   "per_race": [
+    33,
+    43,
+    33,
+    33,
+    33,
+    43,
+    30,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 2103662818095565891,
+   "points": 256,
+   "per_race": [
+    33,
+    40,
+    27,
+    43,
+    0,
+    43,
+    33,
+    37
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 2072397682455863027,
+   "points": 259,
+   "per_race": [
+    23,
+    40,
+    25,
+    40,
+    28,
+    43,
+    30,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 727892592370975939,
+   "points": 267,
+   "per_race": [
+    33,
+    43,
+    27,
+    40,
+    18,
+    43,
+    33,
+    30
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 2654741156609127566,
+   "points": 265,
+   "per_race": [
+    33,
+    40,
+    28,
+    40,
+    33,
+    43,
+    15,
+    33
+   ],
+   "stops": 25,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 401401212390937745,
+   "points": 274,
+   "per_race": [
+    33,
+    40,
+    33,
+    37,
+    33,
+    40,
+    28,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 786906000113452442,
+   "points": 271,
+   "per_race": [
+    33,
+    35,
+    33,
+    37,
+    33,
+    43,
+    27,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 2820153334737964677,
+   "points": 286,
+   "per_race": [
+    33,
+    40,
+    33,
+    43,
+    33,
+    43,
+    33,
+    28
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 4256428538116894830,
+   "points": 306,
+   "per_race": [
+    43,
+    43,
+    30,
+    40,
+    33,
+    43,
+    37,
+    37
+   ],
+   "stops": 34,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 1188626246370922205,
+   "points": 247,
+   "per_race": [
+    0,
+    40,
+    27,
+    33,
+    37,
+    40,
+    40,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 1284320100189848898,
+   "points": 271,
+   "per_race": [
+    40,
+    40,
+    30,
+    30,
+    33,
+    35,
+    30,
+    33
+   ],
+   "stops": 31,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 3291307466328138605,
+   "points": 255,
+   "per_race": [
+    33,
+    43,
+    27,
+    40,
+    27,
+    25,
+    30,
+    30
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 355314618159473844,
+   "points": 264,
+   "per_race": [
+    26,
+    40,
+    18,
+    40,
+    37,
+    40,
+    33,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 3838115603910980347,
+   "points": 268,
+   "per_race": [
+    33,
+    40,
+    27,
+    40,
+    33,
+    43,
+    15,
+    37
+   ],
+   "stops": 25,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 3149162477414737452,
+   "points": 281,
+   "per_race": [
+    30,
+    43,
+    27,
+    35,
+    33,
+    43,
+    40,
+    30
+   ],
+   "stops": 29,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 2904472841679886275,
+   "points": 266,
+   "per_race": [
+    33,
+    43,
+    27,
+    33,
+    33,
+    37,
+    30,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 242641492267117608,
+   "points": 263,
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    30,
+    40,
+    30,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 3860786553926563157,
+   "points": 252,
+   "per_race": [
+    24,
+    43,
+    27,
+    40,
+    33,
+    40,
+    15,
+    30
+   ],
+   "stops": 28,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 2574973029453448697,
+   "points": 275,
+   "per_race": [
+    33,
+    43,
+    27,
+    33,
+    33,
+    43,
+    30,
+    33
+   ],
+   "stops": 24,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 4312876803966337520,
+   "points": 262,
+   "per_race": [
+    30,
+    43,
+    30,
+    25,
+    30,
+    43,
+    33,
+    28
+   ],
+   "stops": 30,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 1345418888979850348,
+   "points": 279,
+   "per_race": [
+    33,
+    40,
+    30,
+    40,
+    33,
+    37,
+    33,
+    33
+   ],
+   "stops": 28,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 2719889568465568624,
+   "points": 291,
+   "per_race": [
+    33,
+    40,
+    33,
+    43,
+    40,
+    43,
+    26,
+    33
+   ],
+   "stops": 29,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 2193029828827396449,
+   "points": 283,
+   "per_race": [
+    40,
+    40,
+    27,
+    40,
+    33,
+    43,
+    30,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 1571532965851867985,
+   "points": 264,
+   "per_race": [
+    30,
+    25,
+    33,
+    40,
+    33,
+    43,
+    30,
+    30
+   ],
+   "stops": 26,
+   "late_stops": 0
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 4199236363286547939,
+   "points": 267,
+   "per_race": [
+    27,
+    43,
+    25,
+    37,
+    33,
+    43,
+    33,
+    26
+   ],
+   "stops": 30,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 3986970382286560154,
+   "points": 276,
+   "per_race": [
+    33,
+    40,
+    27,
+    40,
+    33,
+    40,
+    33,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 3295718992609273873,
+   "points": 285,
+   "per_race": [
+    33,
+    43,
+    33,
+    40,
+    33,
+    43,
+    27,
+    33
+   ],
+   "stops": 27,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 1583094124078142709,
+   "points": 270,
+   "per_race": [
+    33,
+    40,
+    33,
+    40,
+    18,
+    43,
+    30,
+    33
+   ],
+   "stops": 32,
+   "late_stops": 1
+  },
+  {
+   "policy": "gemini_comp+rollout_race",
+   "seed": 531597119130040852,
+   "points": 282,
+   "per_race": [
+    33,
+    40,
+    26,
+    40,
+    30,
+    43,
+    40,
+    30
+   ],
+   "stops": 27,
+   "late_stops": 0
+  }
+ ],
+ "hidden_seed_check": {
+  "gemini": 267,
+  "baseline": 239,
+  "gemini_comp+base_race": 262,
+  "base_comp+gemini_race": 262,
+  "rule+base_race": 260,
+  "greedy+base_race": 256,
+  "do_nothing": 84,
+  "gemini_patched_late_stops": 267
+ },
+ "wall_seconds": 405.4
+}

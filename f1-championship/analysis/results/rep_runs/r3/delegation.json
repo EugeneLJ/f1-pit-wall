@@ -1,0 +1,160 @@
+{
+ "secrets_found": [],
+ "agent_steps": 54,
+ "accepted": 120,
+ "rejected": 0,
+ "manual_decisions": 8,
+ "manual_decision_ids": [
+  "d001",
+  "d002",
+  "d003",
+  "d004",
+  "d005",
+  "d006",
+  "d007",
+  "d008"
+ ],
+ "script_assisted_manual_ids": [
+  "d005",
+  "d006",
+  "d007",
+  "d008"
+ ],
+ "automated_decisions": 112,
+ "automation_started_at_decision": "d009",
+ "automation_started_unix": 1794679087.30846,
+ "first_step_unix": 1794678505.708,
+ "last_step_unix": 1794679107.656,
+ "scripts": {
+  "/app/strategy_engine.py": {
+   "versions": 1,
+   "edits": 0,
+   "first_written": "2026-11-14T17:54:36.573000+00:00",
+   "runs": 1,
+   "first_run": "2026-11-14T17:54:36.573000+00:00",
+   "saved_as": "scripts/app_strategy_engine.py.txt",
+   "lines": 176,
+   "acts_on_simulator": true
+  },
+  "/app/run_championship.py": {
+   "versions": 2,
+   "edits": 0,
+   "first_written": "2026-11-14T17:56:14.545000+00:00",
+   "runs": 1,
+   "first_run": "2026-11-14T17:58:07.115000+00:00",
+   "saved_as": "scripts/app_run_championship.py.txt",
+   "lines": 466,
+   "acts_on_simulator": true
+  }
+ },
+ "timeline": [
+  [
+   "2026-11-14T17:49:41.590000+00:00",
+   "act [1]"
+  ],
+  [
+   "2026-11-14T17:52:07.679000+00:00",
+   "act [2]"
+  ],
+  [
+   "2026-11-14T17:54:03.479000+00:00",
+   "act [3]"
+  ],
+  [
+   "2026-11-14T17:54:12.312000+00:00",
+   "act [4]"
+  ],
+  [
+   "2026-11-14T17:54:36.573000+00:00",
+   "heredoc /app/strategy_engine.py"
+  ],
+  [
+   "2026-11-14T17:54:36.573000+00:00",
+   "consult strategy_engine"
+  ],
+  [
+   "2026-11-14T17:54:36.573000+00:00",
+   "act []"
+  ],
+  [
+   "2026-11-14T17:54:36.573000+00:00",
+   "run /app/strategy_engine.py"
+  ],
+  [
+   "2026-11-14T17:55:02.239000+00:00",
+   "consult strategy_engine"
+  ],
+  [
+   "2026-11-14T17:55:05.507000+00:00",
+   "act [5]"
+  ],
+  [
+   "2026-11-14T17:55:08.859000+00:00",
+   "consult strategy_engine"
+  ],
+  [
+   "2026-11-14T17:55:15.033000+00:00",
+   "act [6]"
+  ],
+  [
+   "2026-11-14T17:55:19.440000+00:00",
+   "consult strategy_engine"
+  ],
+  [
+   "2026-11-14T17:55:24.342000+00:00",
+   "act [7]"
+  ],
+  [
+   "2026-11-14T17:55:27.353000+00:00",
+   "consult strategy_engine"
+  ],
+  [
+   "2026-11-14T17:56:14.545000+00:00",
+   "heredoc /app/run_championship.py"
+  ],
+  [
+   "2026-11-14T17:56:14.545000+00:00",
+   "consult run_championship"
+  ],
+  [
+   "2026-11-14T17:56:14.545000+00:00",
+   "act []"
+  ],
+  [
+   "2026-11-14T17:56:51.837000+00:00",
+   "consult run_championship"
+  ],
+  [
+   "2026-11-14T17:57:14.909000+00:00",
+   "act [8]"
+  ],
+  [
+   "2026-11-14T17:57:18.323000+00:00",
+   "consult run_championship"
+  ],
+  [
+   "2026-11-14T17:57:21.225000+00:00",
+   "heredoc /app/run_championship.py"
+  ],
+  [
+   "2026-11-14T17:57:21.225000+00:00",
+   "consult run_championship"
+  ],
+  [
+   "2026-11-14T17:57:21.225000+00:00",
+   "act []"
+  ],
+  [
+   "2026-11-14T17:58:07.115000+00:00",
+   "run /app/run_championship.py"
+  ]
+ ],
+ "final_message": "The eight-race championship has concluded with **Apex GP winning the Constructors' Championship**.\n\n### Final Standings\n\n**Constructors' Championship:**\n1. **Apex GP** \u2014 263 pts\n2. **Orion** \u2014 232 pts\n3. **Nova** \u2014 171 pts\n4. **Vertex** \u2014 114 pts\n\n**Driver Standings:**\n1. Orion A \u2014 166 pts\n2. **Apex A** \u2014 146 pts\n3. **Apex B** \u2014 117 pts\n4. Nova A \u2014 94 pts\n5. Nova B \u2014 77 pts\n6. Orion B \u2014 66 pts\n7. Vertex A \u2014 66 pts\n8. Vertex B \u2014 48 pts\n\n### Strategy Execution Summary\n- **Power Unit Management:** Kept initial power unit components through Races 1\u20134, utilizing all 4 free replacement units at Race 5 (Rainland) to reset ICE and turbo wear at the exact 50% cumulative stress midpoint. Zero grid penalties were incurred across the season while keeping wear well below the reliability onset threshold.\n- **Race Strategy:** Executed compound management tailored to each track archetype and starting compound, avoiding double-stacking bottlenecks, taking advantage of VSC/SC neutralization windows for low-loss stops, and ensuring compliance with the mandatory two-compound rule in every race.",
+ "metrics": {
+  "total_prompt_tokens": 4081701,
+  "total_completion_tokens": 24752,
+  "total_cached_tokens": 3863858,
+  "total_cost_usd": 0.72808785,
+  "total_steps": 55
+ }
+}

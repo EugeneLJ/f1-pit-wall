@@ -1,0 +1,223 @@
+import json, subprocess, copy
+
+TRACK_PACE_OFFSETS = {
+    'mixed': {'Apex': 0.05, 'Nova': 0.10, 'Orion': -0.05, 'Vertex': 0.10},
+    'street': {'Apex': -0.15, 'Nova': 0.05, 'Orion': 0.15, 'Vertex': -0.05},
+    'high_speed': {'Apex': 0.10, 'Nova': 0.05, 'Orion': -0.15, 'Vertex': 0.0},
+    'high_degradation': {'Apex': -0.05, 'Nova': -0.15, 'Orion': 0.05, 'Vertex': 0.10},
+    'wet_prone': {'Apex': 0.05, 'Nova': -0.05, 'Orion': 0.0, 'Vertex': -0.15},
+}
+
+BASE_PACES = {
+    'Apex A': 89.65, 'Apex B': 89.85,
+    'Nova A': 89.75, 'Nova B': 90.00,
+    'Orion A': 89.55, 'Orion B': 89.90,
+    'Vertex A': 90.05, 'Vertex B': 90.15,
+}
+
+TEAMS = {
+    'Apex A': 'Apex', 'Apex B': 'Apex',
+    'Nova A': 'Nova', 'Nova B': 'Nova',
+    'Orion A': 'Orion', 'Orion B': 'Orion',
+    'Vertex A': 'Vertex', 'Vertex B': 'Vertex',
+}
+
+COMPOUNDS = {
+    'HARD': {'offset': 0.28, 'deg': 0.055, 'life': 24, 'warmup': 1.0},
+    'MEDIUM': {'offset': 0.0, 'deg': 0.14, 'life': 16, 'warmup': 0.6},
+    'SOFT': {'offset': -0.55, 'deg': 0.35, 'life': 10, 'warmup': 0.3},
+}
+
+POINTS = [25, 18, 15, 12, 10, 8, 6, 4]
+
+def simulate_segment(cars, track_status, deg_mult, overtaking_diff, pit_loss_green, serviced_first='Apex A'):
+    status_factor = {'GREEN': 1.0, 'SC': 0.3, 'VSC': 0.55}[track_status]
+    pit_loss = pit_loss_green * status_factor
+    age_increment = {'GREEN': 3, 'SC': 1, 'VSC': 2}[track_status]
+    time_factor = {'GREEN': 1.0, 'SC': 1.4, 'VSC': 1.3}[track_status]
+    pass_thresh = 0.2 + overtaking_diff * 2.0
+    
+    # 1. Process pit stops
+    for c in cars:
+        act = c.get('action', 'STAY')
+        if act.startswith('PIT_'):
+            new_comp = act.split('_')[1]
+            c['compound'] = new_comp
+            if new_comp not in c['compounds_used']:
+                c['compounds_used'].append(new_comp)
+            c['tyre_age'] = 0
+            c['elapsed'] += pit_loss
+            c['just_pitted'] = True
+        else:
+            c['just_pitted'] = False
+
+    # Double stack penalty
+    apex_pitters = [c for c in cars if c['driver'].startswith('Apex') and c['just_pitted']]
+    if len(apex_pitters) == 2:
+        for c in apex_pitters:
+            if c['driver'] != serviced_first:
+                c['elapsed'] += 6.0
+
+    # 2. Compute raw segment elapsed addition for each car
+    configs = COMPOUNDS
+    for c in cars:
+        cfg = configs[c['compound']]
+        raw_time = 0.0
+        cur_age = c['tyre_age']
+        for lap_idx in range(3):
+            lap_loss = cfg['offset'] + deg_mult * cfg['deg'] * cur_age
+            if cur_age > cfg['life']:
+                lap_loss += 0.25 * deg_mult * (cur_age - cfg['life'])
+            if lap_idx == 0 and c['just_pitted']:
+                lap_loss += cfg['warmup']
+            lap_time = (c['base_pace'] + lap_loss) * time_factor
+            raw_time += lap_time
+            if track_status == 'GREEN':
+                cur_age += 1
+            elif track_status == 'VSC':
+                if lap_idx < 2: cur_age += 1
+            elif track_status == 'SC':
+                if lap_idx == 0: cur_age += 1
+        c['tyre_age'] += age_increment
+        c['segment_raw'] = raw_time
+
+    # 3. Apply dirty air based on order at START of segment
+    cars_start_order = sorted(cars, key=lambda x: x['elapsed'])
+    for i in range(1, len(cars_start_order)):
+        gap = cars_start_order[i]['elapsed'] - cars_start_order[i-1]['elapsed']
+        if gap < 1.0:
+            cars_start_order[i]['segment_raw'] += 0.45 * time_factor
+
+    for c in cars:
+        c['projected_elapsed'] = c['elapsed'] + c['segment_raw']
+
+    if track_status == 'SC':
+        base = cars_start_order[0]['projected_elapsed']
+        for i, c in enumerate(cars_start_order):
+            c['elapsed'] = base + i * 0.8
+    else:
+        changed = True
+        while changed:
+            changed = False
+            for i in range(len(cars_start_order)):
+                for j in range(i + 1, len(cars_start_order)):
+                    ahead_orig = cars_start_order[i]
+                    behind_orig = cars_start_order[j]
+                    delta = ahead_orig['projected_elapsed'] - behind_orig['projected_elapsed']
+                    if delta > 0:
+                        if delta < pass_thresh:
+                            behind_orig['projected_elapsed'] = ahead_orig['projected_elapsed'] + 0.3
+                            changed = True
+                    elif delta > -0.3:
+                        if behind_orig['projected_elapsed'] < ahead_orig['projected_elapsed'] + 0.3:
+                            behind_orig['projected_elapsed'] = ahead_orig['projected_elapsed'] + 0.3
+                            changed = True
+        for c in cars:
+            c['elapsed'] = c['projected_elapsed']
+
+    cars.sort(key=lambda x: x['elapsed'])
+    for idx, c in enumerate(cars):
+        c['position'] = idx + 1
+    return cars
+
+def rival_action(car, laps_remaining, is_last_decision=False):
+    # Rivals pit if tyre_age >= life or (is_last_decision and len(compounds_used) < 2)
+    life = COMPOUNDS[car['compound']]['life']
+    needs_pit = (car['tyre_age'] >= life) or (is_last_decision and len(car['compounds_used']) < 2)
+    if not needs_pit:
+        return 'STAY'
+    # Choose compound
+    # soft if <= 6, medium if <= 14, else hard
+    if laps_remaining <= 6:
+        chosen = 'SOFT'
+    elif laps_remaining <= 14:
+        chosen = 'MEDIUM'
+    else:
+        chosen = 'HARD'
+    
+    if len(car['compounds_used']) == 1 and chosen in car['compounds_used']:
+        # Next option that satisfies two-compound rule
+        for alt in ['SOFT', 'MEDIUM', 'HARD']:
+            if alt not in car['compounds_used']:
+                chosen = alt
+                break
+    return f'PIT_{chosen}'
+
+def forward_simulate_to_end(initial_cars, start_lap, deg_mult, overtaking_diff, pit_loss_green, apex_future_policy):
+    # apex_future_policy is a function: (driver, lap, tyre_age, compound, compounds_used) -> action
+    cars = copy.deepcopy(initial_cars)
+    for lap in range(start_lap, 45, 3):
+        laps_remaining = 45 - lap
+        is_last = (lap == 42)
+        # Assign actions
+        for c in cars:
+            if c['driver'].startswith('Apex'):
+                c['action'] = apex_future_policy(c['driver'], lap, c['tyre_age'], c['compound'], c['compounds_used'])
+            else:
+                c['action'] = rival_action(c, laps_remaining, is_last)
+        simulate_segment(cars, 'GREEN', deg_mult, overtaking_diff, pit_loss_green)
+    
+    # Check two-compound penalty
+    for c in cars:
+        if len(c['compounds_used']) < 2:
+            c['elapsed'] += 20.0
+    cars.sort(key=lambda x: x['elapsed'])
+    for idx, c in enumerate(cars):
+        c['position'] = idx + 1
+    return cars
+
+obs = json.loads(subprocess.check_output(['f1ctl', 'observe']))['observation']
+deg_mult = 0.5 + obs['current_track']['tyre_degradation']
+overtaking_diff = obs['current_track']['overtaking_difficulty']
+pit_loss_green = obs['race_progress']['pit']['loss_sec']['GREEN']
+cur_lap = obs['race_progress']['lap']
+
+initial_cars = []
+for d in obs['race_progress']['classification']:
+    initial_cars.append({
+        'driver': d['driver'],
+        'base_pace': BASE_PACES[d['driver']] + TRACK_PACE_OFFSETS['mixed'][TEAMS[d['driver']]],
+        'compound': d['compound'],
+        'compounds_used': list(d['compounds_used']),
+        'tyre_age': d['tyre_age'],
+        'elapsed': d['elapsed'],
+        'action': 'STAY'
+    })
+
+print(f"Testing candidate actions at Lap {cur_lap}:")
+# Candidate actions for lap 9:
+# Apex A: PIT_HARD or PIT_MEDIUM or STAY
+# Apex B: STAY
+candidates = [
+    ('PIT_HARD', 'STAY'),
+    ('PIT_MEDIUM', 'STAY'),
+    ('STAY', 'STAY'),
+    ('PIT_HARD', 'PIT_HARD'),
+]
+
+for act_a, act_b in candidates:
+    def policy(driver, lap, tyre_age, compound, compounds_used):
+        if lap == cur_lap:
+            return act_a if driver == 'Apex A' else act_b
+        # Future policy:
+        # If Apex A took HARD at 9: pit at lap 30 (age 21) for MEDIUM
+        # If Apex A took MEDIUM at 9: pit at lap 24 (age 15) for HARD
+        # If Apex B on MEDIUM: pit at lap 18 for HARD, stay to end
+        if driver == 'Apex A':
+            if act_a == 'PIT_HARD':
+                if lap == 30: return 'PIT_MEDIUM'
+            elif act_a == 'PIT_MEDIUM':
+                if lap == 24: return 'PIT_HARD'
+            elif act_a == 'STAY':
+                if lap == 12: return 'PIT_HARD'
+                if lap == 30: return 'PIT_MEDIUM'
+        elif driver == 'Apex B':
+            if lap == 18:
+                return 'PIT_HARD'
+        return 'STAY'
+
+    res = forward_simulate_to_end(initial_cars, cur_lap, deg_mult, overtaking_diff, pit_loss_green, policy)
+    pos_a = [c['position'] for c in res if c['driver'] == 'Apex A'][0]
+    pos_b = [c['position'] for c in res if c['driver'] == 'Apex B'][0]
+    pts = POINTS[pos_a-1] + POINTS[pos_b-1]
+    print(f"Action: Apex A={act_a:10s}, Apex B={act_b:10s} -> Apex A: P{pos_a}, Apex B: P{pos_b} -> TOTAL POINTS = {pts}")

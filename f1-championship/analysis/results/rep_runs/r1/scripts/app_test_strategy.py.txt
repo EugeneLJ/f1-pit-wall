@@ -1,0 +1,191 @@
+#!/usr/bin/env python3
+import json
+import socket
+import sys
+
+SOCKET_PATH = "/run/f1sim/sim.sock"
+
+OFFSETS = {'SOFT': -0.55, 'MEDIUM': 0.0, 'HARD': 0.28}
+DEGS = {'SOFT': 0.35, 'MEDIUM': 0.14, 'HARD': 0.055}
+LIFES = {'SOFT': 10, 'MEDIUM': 16, 'HARD': 24}
+WARMUPS = {'SOFT': 0.3, 'MEDIUM': 0.6, 'HARD': 1.0}
+
+
+def request(payload):
+    with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as conn:
+        conn.connect(SOCKET_PATH)
+        conn.sendall((json.dumps(payload) + "\n").encode("utf-8"))
+        chunks = []
+        while True:
+            chunk = conn.recv(65536)
+            if not chunk:
+                break
+            chunks.append(chunk)
+            if chunk.endswith(b"\n"):
+                break
+    return json.loads(b"".join(chunks).decode("utf-8"))
+
+
+def solve_driver(start_lap, comp, age, used, mult, pit_loss_green, cur_status, is_pitting_now, next_comp_if_pit, is_second_stack, first_serviced_loss):
+    curr_cost = 0.0
+    seg_aging = 1 if cur_status == 'SC' else (2 if cur_status == 'VSC' else 3)
+    
+    if is_pitting_now:
+        pit_cost = first_serviced_loss + (6.0 if is_second_stack else 0.0)
+        curr_cost += pit_cost + WARMUPS[next_comp_if_pit]
+        comp_after = next_comp_if_pit
+        age_after = seg_aging
+        used_after = tuple(sorted(set(used) | {next_comp_if_pit}))
+        for lap_idx in range(1, seg_aging + 1):
+            curr_cost += OFFSETS[comp_after] + DEGS[comp_after] * mult * lap_idx
+    else:
+        comp_after = comp
+        age_after = age + seg_aging
+        used_after = tuple(sorted(set(used)))
+        for lap_idx in range(age + 1, age_after + 1):
+            curr_cost += OFFSETS[comp_after] + DEGS[comp_after] * mult * lap_idx
+            if lap_idx > LIFES[comp_after]:
+                curr_cost += 0.25 * mult * (lap_idx - LIFES[comp_after])
+                
+    next_lap = start_lap + 3
+    if next_lap > 45:
+        if len(used_after) < 2:
+            curr_cost += 20.0
+        return curr_cost
+        
+    decision_laps = [lap for lap in range(next_lap, 43, 3)]
+    best_future = float('inf')
+    
+    # 0 future stops
+    laps_rem = 45 - next_lap + 3
+    cost0 = 0.0
+    for lap_idx in range(age_after + 1, age_after + laps_rem + 1):
+        cost0 += OFFSETS[comp_after] + DEGS[comp_after] * mult * lap_idx
+        if lap_idx > LIFES[comp_after]:
+            cost0 += 0.25 * mult * (lap_idx - LIFES[comp_after])
+    if len(used_after) < 2:
+        cost0 += 20.0
+    if cost0 < best_future:
+        best_future = cost0
+    
+    # 1 future stop
+    for p1 in decision_laps:
+        for c1 in ['SOFT', 'MEDIUM', 'HARD']:
+            u = set(used_after) | {c1}
+            cost1 = 0.0
+            laps_s1 = p1 - next_lap
+            for lap_idx in range(age_after + 1, age_after + laps_s1 + 1):
+                cost1 += OFFSETS[comp_after] + DEGS[comp_after] * mult * lap_idx
+                if lap_idx > LIFES[comp_after]:
+                    cost1 += 0.25 * mult * (lap_idx - LIFES[comp_after])
+            cost1 += pit_loss_green + WARMUPS[c1]
+            laps_s2 = 45 - p1
+            for lap_idx in range(1, laps_s2 + 1):
+                cost1 += OFFSETS[c1] + DEGS[c1] * mult * lap_idx
+                if lap_idx > LIFES[c1]:
+                    cost1 += 0.25 * mult * (lap_idx - LIFES[c1])
+            if len(u) < 2:
+                cost1 += 20.0
+            if cost1 < best_future:
+                best_future = cost1
+            
+    # 2 future stops
+    if next_lap <= 27:
+        for i, p1 in enumerate(decision_laps):
+            for p2 in decision_laps[i+1:]:
+                for c1 in ['SOFT', 'MEDIUM', 'HARD']:
+                    for c2 in ['SOFT', 'MEDIUM', 'HARD']:
+                        u = set(used_after) | {c1, c2}
+                        cost2 = 0.0
+                        laps_s1 = p1 - next_lap
+                        for lap_idx in range(age_after + 1, age_after + laps_s1 + 1):
+                            cost2 += OFFSETS[comp_after] + DEGS[comp_after] * mult * lap_idx
+                            if lap_idx > LIFES[comp_after]:
+                                cost2 += 0.25 * mult * (lap_idx - LIFES[comp_after])
+                        cost2 += pit_loss_green + WARMUPS[c1]
+                        laps_s2 = p2 - p1
+                        for lap_idx in range(1, laps_s2 + 1):
+                            cost2 += OFFSETS[c1] + DEGS[c1] * mult * lap_idx
+                            if lap_idx > LIFES[c1]:
+                                cost2 += 0.25 * mult * (lap_idx - LIFES[c1])
+                        cost2 += pit_loss_green + WARMUPS[c2]
+                        laps_s3 = 45 - p2
+                        for lap_idx in range(1, laps_s3 + 1):
+                            cost2 += OFFSETS[c2] + DEGS[c2] * mult * lap_idx
+                            if lap_idx > LIFES[c2]:
+                                cost2 += 0.25 * mult * (lap_idx - LIFES[c2])
+                        if len(u) < 2:
+                            cost2 += 20.0
+                        if cost2 < best_future:
+                            best_future = cost2
+                        
+    return curr_cost + best_future
+
+
+def evaluate_traffic(driver_elapsed, pit_loss, warmup, classification, own_team, overtaking_diff):
+    rejoin_elapsed = driver_elapsed + pit_loss + warmup
+    ahead_cars = [c for c in classification if c['team'] != own_team and c['elapsed'] < rejoin_elapsed]
+    if not ahead_cars:
+        return 0.0
+    car_ahead = max(ahead_cars, key=lambda c: c['elapsed'])
+    gap = rejoin_elapsed - car_ahead['elapsed']
+    if gap < 1.5:
+        # Penalty if stuck behind slower car on hard-to-overtake track
+        pass_delta = 0.2 + 2.0 * overtaking_diff
+        traffic_penalty = max(0.0, (overtaking_diff - 0.4) * 2.0)
+        return traffic_penalty
+    return 0.0
+
+
+def choose_best_strategy(obs):
+    rp = obs['race_progress']
+    track = obs['current_track']
+    mult = 0.5 + track['tyre_degradation']
+    pit_loss_green = rp['pit']['loss_sec']['GREEN']
+    status = rp['neutralization']['status']
+    first_loss = rp['pit']['loss_sec'][status]
+    first_serviced = rp['pit']['if_both_pit_serviced_first']
+    da = rp['drivers']['driver_a']
+    db = rp['drivers']['driver_b']
+    cls = rp['classification']
+    diff = track['overtaking_difficulty']
+
+    actions = ['STAY', 'PIT_SOFT', 'PIT_MEDIUM', 'PIT_HARD']
+    best_score = float('inf')
+    best_action = ('STAY', 'STAY')
+
+    for act_a in actions:
+        is_pit_a = act_a.startswith('PIT_')
+        c_a = act_a.replace('PIT_', '') if is_pit_a else None
+        
+        for act_b in actions:
+            is_pit_b = act_b.startswith('PIT_')
+            c_b = act_b.replace('PIT_', '') if is_pit_b else None
+            
+            stack_b = (is_pit_a and is_pit_b and first_serviced == 'driver_a')
+            stack_a = (is_pit_a and is_pit_b and first_serviced == 'driver_b')
+            
+            cost_a = solve_driver(rp['lap'], da['compound'], da['tyre_age'], da['compounds_used'], mult, pit_loss_green, status, is_pit_a, c_a, stack_a, first_loss)
+            cost_b = solve_driver(rp['lap'], db['compound'], db['tyre_age'], db['compounds_used'], mult, pit_loss_green, status, is_pit_b, c_b, stack_b, first_loss)
+            
+            if is_pit_a:
+                pit_loss_a = first_loss + (6.0 if stack_a else 0.0)
+                cost_a += evaluate_traffic(da['elapsed'], pit_loss_a, WARMUPS[c_a], cls, 'Apex', diff)
+            if is_pit_b:
+                pit_loss_b = first_loss + (6.0 if stack_b else 0.0)
+                cost_b += evaluate_traffic(db['elapsed'], pit_loss_b, WARMUPS[c_b], cls, 'Apex', diff)
+                
+            tot = cost_a + cost_b
+            if tot < best_score:
+                best_score = tot
+                best_action = (act_a, act_b)
+
+    return best_action
+
+
+if __name__ == '__main__':
+    obs = request({'cmd': 'observe'})['observation']
+    print('Testing choose_best_strategy on current observation:')
+    act = choose_best_strategy(obs)
+    dec_id = obs['decision_id']
+    print(f'Decision ID: {dec_id}, Recommended Action: {act}')

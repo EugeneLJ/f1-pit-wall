@@ -1,0 +1,1491 @@
+{
+ "runs": [
+  {
+   "name": "r0 (first probe, task seed)",
+   "seed_label": "task hidden seed",
+   "points": 268,
+   "rank": 1,
+   "standings": [
+    [
+     "Apex",
+     268
+    ],
+    [
+     "Orion",
+     248
+    ],
+    [
+     "Nova",
+     154
+    ],
+    [
+     "Vertex",
+     100
+    ]
+   ],
+   "reward": 0.6984126984126984,
+   "complete": true,
+   "accepted": 120,
+   "rejected": 0,
+   "intact": true,
+   "wall_clock_sec": 541.0,
+   "tokens": {
+    "n_input_tokens": 2729672,
+    "n_cache_tokens": 2548658,
+    "n_output_tokens": 13488,
+    "cost_usd": 0.5364036
+   },
+   "agent_steps": 45,
+   "delegation": {
+    "manual": 8,
+    "script_assisted": 0,
+    "automated": 112,
+    "automation_started_at": "d009",
+    "scripts": {
+     "/app/pitwall_bot.py": {
+      "versions": 1,
+      "edits": 0,
+      "runs": 1,
+      "lines": 244,
+      "acts_on_simulator": true
+     }
+    }
+   },
+   "races": [
+    {
+     "race": 1,
+     "track": "mixed",
+     "points": 43,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 2
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       21,
+       "SC",
+       "PIT_HARD/STAY"
+      ],
+      [
+       24,
+       "SC",
+       "STAY/STAY"
+      ],
+      [
+       42,
+       "VSC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 2,
+     "track": "street",
+     "points": 33,
+     "apex_positions": {
+      "Apex B": 1,
+      "Apex A": 6
+     },
+     "replacements": [],
+     "stops": 5,
+     "compounds_fitted": [
+      "HARD",
+      "MEDIUM",
+      "SOFT"
+     ],
+     "sc_vsc_decisions": [
+      [
+       12,
+       "SC",
+       "STAY/PIT_HARD"
+      ],
+      [
+       36,
+       "VSC",
+       "STAY/PIT_MEDIUM"
+      ],
+      [
+       39,
+       "VSC",
+       "PIT_SOFT/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 3,
+     "track": "high_speed",
+     "points": 27,
+     "apex_positions": {
+      "Apex A": 3,
+      "Apex B": 4
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD",
+      "MEDIUM"
+     ],
+     "sc_vsc_decisions": [
+      [
+       33,
+       "VSC",
+       "STAY/PIT_MEDIUM"
+      ],
+      [
+       36,
+       "VSC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 4,
+     "track": "high_degradation",
+     "points": 33,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 3
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       15,
+       "VSC",
+       "STAY/PIT_HARD"
+      ],
+      [
+       24,
+       "VSC",
+       "PIT_HARD/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 5,
+     "track": "wet_prone",
+     "points": 26,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 6
+     },
+     "replacements": [
+      "Apex A:ICE",
+      "Apex A:turbo",
+      "Apex B:ICE",
+      "Apex B:turbo"
+     ],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD",
+      "SOFT"
+     ],
+     "sc_vsc_decisions": []
+    },
+    {
+     "race": 6,
+     "track": "street",
+     "points": 40,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 3
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD",
+      "SOFT"
+     ],
+     "sc_vsc_decisions": []
+    },
+    {
+     "race": 7,
+     "track": "high_speed",
+     "points": 33,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 3
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD",
+      "SOFT"
+     ],
+     "sc_vsc_decisions": [
+      [
+       9,
+       "SC",
+       "PIT_HARD/PIT_HARD"
+      ],
+      [
+       12,
+       "SC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 8,
+     "track": "mixed",
+     "points": 33,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 3
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD",
+      "SOFT"
+     ],
+     "sc_vsc_decisions": [
+      [
+       39,
+       "VSC",
+       "STAY/PIT_SOFT"
+      ]
+     ]
+    }
+   ],
+   "losses": {
+    "manual_or_assisted": {
+     "n": 7,
+     "mean_loss_baseline_cont": 0.9915039476095489,
+     "candidates": 2,
+     "confirmed": 0
+    },
+    "automated": {
+     "n": 105,
+     "mean_loss_baseline_cont": 0.659226215139153,
+     "candidates": 20,
+     "confirmed": 7
+    },
+    "in_race": {
+     "n": 91,
+     "mean_loss_baseline_cont": 0.6315439538858199,
+     "candidates": 18,
+     "confirmed": 6
+    },
+    "replanning": {
+     "n": 21,
+     "mean_loss_baseline_cont": 0.889941924727062,
+     "candidates": 4,
+     "confirmed": 1
+    }
+   },
+   "confirmed_failures": [
+    {
+     "race_index": 1,
+     "decision": 7,
+     "lap": 21,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 1.7673799466324984,
+     "loss_own_continuation": 1.294646056774144,
+     "se_own_continuation": 0.6310929496462905,
+     "source": "automated"
+    },
+    {
+     "race_index": 1,
+     "decision": 8,
+     "lap": 24,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 2.7386759566715604,
+     "loss_own_continuation": 2.417860317566402,
+     "se_own_continuation": 0.28137597635129047,
+     "source": "automated"
+    },
+    {
+     "race_index": 1,
+     "decision": 9,
+     "lap": 27,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 1.6141868146715612,
+     "loss_own_continuation": 1.9783272766715605,
+     "se_own_continuation": 0.40994681325196425,
+     "source": "automated"
+    },
+    {
+     "race_index": 1,
+     "decision": 13,
+     "lap": 39,
+     "status": "VSC",
+     "category": "replanning",
+     "agent": "PIT_SOFT/STAY",
+     "best": "STAY/STAY",
+     "loss_baseline_continuation": 10.624767935882595,
+     "loss_own_continuation": 10.624767935882595,
+     "se_own_continuation": 0.0,
+     "source": "automated"
+    },
+    {
+     "race_index": 4,
+     "decision": 13,
+     "lap": 39,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/PIT_SOFT",
+     "best": "STAY/STAY",
+     "loss_baseline_continuation": 6.694648294019229,
+     "loss_own_continuation": 6.7758442287941065,
+     "se_own_continuation": 0.0,
+     "source": "automated"
+    },
+    {
+     "race_index": 5,
+     "decision": 13,
+     "lap": 39,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/PIT_SOFT",
+     "best": "STAY/STAY",
+     "loss_baseline_continuation": 2.8948931087999963,
+     "loss_own_continuation": 2.9564865791999964,
+     "se_own_continuation": 0.0,
+     "source": "automated"
+    },
+    {
+     "race_index": 6,
+     "decision": 2,
+     "lap": 6,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 2.3682971276454627,
+     "loss_own_continuation": 1.5589579106055147,
+     "se_own_continuation": 0.612557153419603,
+     "source": "automated"
+    }
+   ],
+   "track_a_expected": 247.8854796733591
+  },
+  {
+   "name": "r1",
+   "seed_label": "repeat seed 1",
+   "points": 267,
+   "rank": 1,
+   "standings": [
+    [
+     "Apex",
+     267
+    ],
+    [
+     "Orion",
+     205
+    ],
+    [
+     "Nova",
+     178
+    ],
+    [
+     "Vertex",
+     122
+    ]
+   ],
+   "reward": 0.7038461538461539,
+   "complete": true,
+   "accepted": 120,
+   "rejected": 0,
+   "intact": true,
+   "wall_clock_sec": 629.0,
+   "tokens": {
+    "n_input_tokens": 4042191,
+    "n_cache_tokens": 3840348,
+    "n_output_tokens": 25164,
+    "cost_usd": 0.6951170999999998
+   },
+   "agent_steps": 54,
+   "delegation": {
+    "manual": 3,
+    "script_assisted": 0,
+    "automated": 117,
+    "automation_started_at": "d004",
+    "scripts": {
+     "/app/test_strategy.py": {
+      "versions": 2,
+      "edits": 1,
+      "runs": 2,
+      "lines": 192,
+      "acts_on_simulator": false
+     },
+     "/app/champion.py": {
+      "versions": 1,
+      "edits": 0,
+      "runs": 1,
+      "lines": 297,
+      "acts_on_simulator": true
+     }
+    }
+   },
+   "races": [
+    {
+     "race": 1,
+     "track": "mixed",
+     "points": 35,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 5
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       6,
+       "VSC",
+       "PIT_HARD/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 2,
+     "track": "street",
+     "points": 18,
+     "apex_positions": {
+      "Apex B": 2,
+      "Apex A": 8
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       36,
+       "SC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 3,
+     "track": "high_speed",
+     "points": 43,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 2
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       21,
+       "SC",
+       "PIT_HARD/PIT_HARD"
+      ],
+      [
+       24,
+       "SC",
+       "STAY/STAY"
+      ],
+      [
+       27,
+       "SC",
+       "STAY/STAY"
+      ],
+      [
+       42,
+       "VSC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 4,
+     "track": "high_degradation",
+     "points": 43,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 2
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": []
+    },
+    {
+     "race": 5,
+     "track": "wet_prone",
+     "points": 30,
+     "apex_positions": {
+      "Apex B": 2,
+      "Apex A": 4
+     },
+     "replacements": [
+      "Apex A:ICE",
+      "Apex A:turbo",
+      "Apex B:ICE",
+      "Apex B:turbo"
+     ],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       18,
+       "VSC",
+       "STAY/PIT_HARD"
+      ]
+     ]
+    },
+    {
+     "race": 6,
+     "track": "street",
+     "points": 40,
+     "apex_positions": {
+      "Apex B": 1,
+      "Apex A": 3
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       36,
+       "VSC",
+       "STAY/STAY"
+      ],
+      [
+       39,
+       "VSC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 7,
+     "track": "high_speed",
+     "points": 30,
+     "apex_positions": {
+      "Apex B": 2,
+      "Apex A": 4
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       6,
+       "SC",
+       "PIT_HARD/PIT_HARD"
+      ],
+      [
+       9,
+       "SC",
+       "STAY/STAY"
+      ],
+      [
+       24,
+       "VSC",
+       "STAY/PIT_HARD"
+      ]
+     ]
+    },
+    {
+     "race": 8,
+     "track": "mixed",
+     "points": 28,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 5
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       18,
+       "VSC",
+       "STAY/STAY"
+      ],
+      [
+       21,
+       "VSC",
+       "PIT_HARD/STAY"
+      ]
+     ]
+    }
+   ],
+   "losses": {
+    "manual_or_assisted": {
+     "n": 2,
+     "mean_loss_baseline_cont": 0.7915221525790203,
+     "candidates": 1,
+     "confirmed": 0
+    },
+    "automated": {
+     "n": 110,
+     "mean_loss_baseline_cont": 0.3944267698955442,
+     "candidates": 15,
+     "confirmed": 6
+    },
+    "in_race": {
+     "n": 90,
+     "mean_loss_baseline_cont": 0.41206506650425323,
+     "candidates": 13,
+     "confirmed": 5
+    },
+    "replanning": {
+     "n": 22,
+     "mean_loss_baseline_cont": 0.3583696821947778,
+     "candidates": 3,
+     "confirmed": 1
+    }
+   },
+   "confirmed_failures": [
+    {
+     "race_index": 0,
+     "decision": 6,
+     "lap": 18,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "STAY/PIT_HARD",
+     "loss_baseline_continuation": 4.04356452308746,
+     "loss_own_continuation": 2.722360346776002,
+     "se_own_continuation": 0.5436230809306765,
+     "source": "automated"
+    },
+    {
+     "race_index": 1,
+     "decision": 6,
+     "lap": 18,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "STAY/PIT_HARD",
+     "loss_baseline_continuation": 5.1097369703333335,
+     "loss_own_continuation": 3.95838464,
+     "se_own_continuation": 0.7637668902813864,
+     "source": "automated"
+    },
+    {
+     "race_index": 2,
+     "decision": 6,
+     "lap": 18,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "STAY/PIT_HARD",
+     "loss_baseline_continuation": 2.3827831011144815,
+     "loss_own_continuation": 1.6346100752307489,
+     "se_own_continuation": 0.42516824673410925,
+     "source": "automated"
+    },
+    {
+     "race_index": 5,
+     "decision": 6,
+     "lap": 18,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "STAY/PIT_HARD",
+     "loss_baseline_continuation": 5.5292032008995164,
+     "loss_own_continuation": 3.522695277915344,
+     "se_own_continuation": 0.7783667059127176,
+     "source": "automated"
+    },
+    {
+     "race_index": 6,
+     "decision": 8,
+     "lap": 24,
+     "status": "VSC",
+     "category": "replanning",
+     "agent": "STAY/PIT_HARD",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 2.9163845177762466,
+     "loss_own_continuation": 2.9671658810893513,
+     "se_own_continuation": 0.5186099126040714,
+     "source": "automated"
+    },
+    {
+     "race_index": 7,
+     "decision": 3,
+     "lap": 9,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/PIT_HARD",
+     "best": "STAY/STAY",
+     "loss_baseline_continuation": 1.4790806120707927,
+     "loss_own_continuation": 1.4683692255152065,
+     "se_own_continuation": 0.4272652759997276,
+     "source": "automated"
+    }
+   ],
+   "track_a_expected": 247.8854796733591
+  },
+  {
+   "name": "r2",
+   "seed_label": "repeat seed 2",
+   "points": 248,
+   "rank": 1,
+   "standings": [
+    [
+     "Apex",
+     248
+    ],
+    [
+     "Orion",
+     242
+    ],
+    [
+     "Nova",
+     157
+    ],
+    [
+     "Vertex",
+     123
+    ]
+   ],
+   "reward": 0.6307692307692307,
+   "complete": true,
+   "accepted": 120,
+   "rejected": 0,
+   "intact": true,
+   "wall_clock_sec": 628.0,
+   "tokens": {
+    "n_input_tokens": 3670694,
+    "n_cache_tokens": 3483486,
+    "n_output_tokens": 28625,
+    "cost_usd": 0.6617262000000002
+   },
+   "agent_steps": 53,
+   "delegation": {
+    "manual": 3,
+    "script_assisted": 0,
+    "automated": 117,
+    "automation_started_at": "d004",
+    "scripts": {
+     "/tmp/eval_d004.py": {
+      "versions": 2,
+      "edits": 0,
+      "runs": 2,
+      "lines": 21,
+      "acts_on_simulator": true
+     },
+     "/tmp/test_forward.py": {
+      "versions": 1,
+      "edits": 0,
+      "runs": 1,
+      "lines": 223,
+      "acts_on_simulator": true
+     },
+     "/app/run_championship.py": {
+      "versions": 3,
+      "edits": 1,
+      "runs": 2,
+      "lines": 455,
+      "acts_on_simulator": true
+     }
+    }
+   },
+   "races": [
+    {
+     "race": 1,
+     "track": "mixed",
+     "points": 43,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 2
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       21,
+       "VSC",
+       "PIT_HARD/STAY"
+      ],
+      [
+       24,
+       "VSC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 2,
+     "track": "street",
+     "points": 18,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 8
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": []
+    },
+    {
+     "race": 3,
+     "track": "high_speed",
+     "points": 27,
+     "apex_positions": {
+      "Apex A": 3,
+      "Apex B": 4
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": []
+    },
+    {
+     "race": 4,
+     "track": "high_degradation",
+     "points": 43,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 2
+     },
+     "replacements": [],
+     "stops": 5,
+     "compounds_fitted": [
+      "HARD",
+      "MEDIUM"
+     ],
+     "sc_vsc_decisions": [
+      [
+       3,
+       "SC",
+       "STAY/PIT_HARD"
+      ],
+      [
+       6,
+       "SC",
+       "PIT_HARD/PIT_MEDIUM"
+      ]
+     ]
+    },
+    {
+     "race": 5,
+     "track": "wet_prone",
+     "points": 19,
+     "apex_positions": {
+      "Apex A": 3,
+      "Apex B": 8
+     },
+     "replacements": [
+      "Apex A:ICE",
+      "Apex A:turbo",
+      "Apex B:ICE",
+      "Apex B:turbo"
+     ],
+     "stops": 5,
+     "compounds_fitted": [
+      "HARD",
+      "MEDIUM",
+      "SOFT"
+     ],
+     "sc_vsc_decisions": [
+      [
+       39,
+       "SC",
+       "STAY/PIT_SOFT"
+      ],
+      [
+       42,
+       "SC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 6,
+     "track": "street",
+     "points": 40,
+     "apex_positions": {
+      "Apex B": 1,
+      "Apex A": 3
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": []
+    },
+    {
+     "race": 7,
+     "track": "high_speed",
+     "points": 28,
+     "apex_positions": {
+      "Apex B": 2,
+      "Apex A": 5
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       15,
+       "SC",
+       "PIT_HARD/PIT_HARD"
+      ],
+      [
+       18,
+       "SC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 8,
+     "track": "mixed",
+     "points": 30,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 4
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": []
+    }
+   ],
+   "losses": {
+    "manual_or_assisted": {
+     "n": 2,
+     "mean_loss_baseline_cont": 1.0206839388491307,
+     "candidates": 1,
+     "confirmed": 0
+    },
+    "automated": {
+     "n": 110,
+     "mean_loss_baseline_cont": 0.3371500342954815,
+     "candidates": 11,
+     "confirmed": 5
+    },
+    "in_race": {
+     "n": 101,
+     "mean_loss_baseline_cont": 0.22833602063312322,
+     "candidates": 8,
+     "confirmed": 4
+    },
+    "replanning": {
+     "n": 11,
+     "mean_loss_baseline_cont": 1.4605394151141617,
+     "candidates": 4,
+     "confirmed": 1
+    }
+   },
+   "confirmed_failures": [
+    {
+     "race_index": 4,
+     "decision": 1,
+     "lap": 3,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 1.7266427537538542,
+     "loss_own_continuation": 5.3207900271775115,
+     "se_own_continuation": 1.2879294735928644,
+     "source": "automated"
+    },
+    {
+     "race_index": 4,
+     "decision": 2,
+     "lap": 6,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/PIT_MEDIUM",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 7.412401137835524,
+     "loss_own_continuation": 3.808512058438594,
+     "se_own_continuation": 0.5293805145713584,
+     "source": "automated"
+    },
+    {
+     "race_index": 4,
+     "decision": 6,
+     "lap": 18,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "STAY/PIT_HARD",
+     "loss_baseline_continuation": 1.138563154667614,
+     "loss_own_continuation": 1.079713809777013,
+     "se_own_continuation": 0.38305354580219575,
+     "source": "automated"
+    },
+    {
+     "race_index": 4,
+     "decision": 7,
+     "lap": 21,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "STAY/PIT_HARD",
+     "loss_baseline_continuation": 1.8011350683508907,
+     "loss_own_continuation": 2.207114285762435,
+     "se_own_continuation": 0.4098792864996059,
+     "source": "automated"
+    },
+    {
+     "race_index": 4,
+     "decision": 13,
+     "lap": 39,
+     "status": "SC",
+     "category": "replanning",
+     "agent": "STAY/PIT_SOFT",
+     "best": "STAY/STAY",
+     "loss_baseline_continuation": 4.0772850870666035,
+     "loss_own_continuation": 4.317125386305816,
+     "se_own_continuation": 0.5087781059815727,
+     "source": "automated"
+    }
+   ],
+   "track_a_expected": 247.8854796733591
+  },
+  {
+   "name": "r3",
+   "seed_label": "repeat seed 3",
+   "points": 263,
+   "rank": 1,
+   "standings": [
+    [
+     "Apex",
+     263
+    ],
+    [
+     "Orion",
+     232
+    ],
+    [
+     "Nova",
+     171
+    ],
+    [
+     "Vertex",
+     114
+    ]
+   ],
+   "reward": 0.6884615384615385,
+   "complete": true,
+   "accepted": 120,
+   "rejected": 0,
+   "intact": true,
+   "wall_clock_sec": 665.0,
+   "tokens": {
+    "n_input_tokens": 4081701,
+    "n_cache_tokens": 3863858,
+    "n_output_tokens": 24752,
+    "cost_usd": 0.72808785
+   },
+   "agent_steps": 54,
+   "delegation": {
+    "manual": 4,
+    "script_assisted": 4,
+    "automated": 112,
+    "automation_started_at": "d009",
+    "scripts": {
+     "/app/strategy_engine.py": {
+      "versions": 1,
+      "edits": 0,
+      "runs": 1,
+      "lines": 176,
+      "acts_on_simulator": true
+     },
+     "/app/run_championship.py": {
+      "versions": 2,
+      "edits": 0,
+      "runs": 1,
+      "lines": 466,
+      "acts_on_simulator": true
+     }
+    }
+   },
+   "races": [
+    {
+     "race": 1,
+     "track": "mixed",
+     "points": 30,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 4
+     },
+     "replacements": [],
+     "stops": 3,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       27,
+       "VSC",
+       "PIT_HARD/STAY"
+      ],
+      [
+       30,
+       "VSC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 2,
+     "track": "street",
+     "points": 43,
+     "apex_positions": {
+      "Apex B": 1,
+      "Apex A": 2
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD",
+      "SOFT"
+     ],
+     "sc_vsc_decisions": [
+      [
+       36,
+       "VSC",
+       "STAY/PIT_SOFT"
+      ]
+     ]
+    },
+    {
+     "race": 3,
+     "track": "high_speed",
+     "points": 24,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 7
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD",
+      "MEDIUM"
+     ],
+     "sc_vsc_decisions": [
+      [
+       6,
+       "VSC",
+       "PIT_HARD/PIT_MEDIUM"
+      ]
+     ]
+    },
+    {
+     "race": 4,
+     "track": "high_degradation",
+     "points": 31,
+     "apex_positions": {
+      "Apex B": 1,
+      "Apex A": 7
+     },
+     "replacements": [],
+     "stops": 5,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       36,
+       "SC",
+       "PIT_HARD/PIT_HARD"
+      ],
+      [
+       39,
+       "SC",
+       "STAY/STAY"
+      ],
+      [
+       42,
+       "SC",
+       "STAY/STAY"
+      ]
+     ]
+    },
+    {
+     "race": 5,
+     "track": "wet_prone",
+     "points": 30,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 4
+     },
+     "replacements": [
+      "Apex A:ICE",
+      "Apex A:turbo",
+      "Apex B:ICE",
+      "Apex B:turbo"
+     ],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": []
+    },
+    {
+     "race": 6,
+     "track": "street",
+     "points": 40,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 3
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": []
+    },
+    {
+     "race": 7,
+     "track": "high_speed",
+     "points": 30,
+     "apex_positions": {
+      "Apex A": 2,
+      "Apex B": 4
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD"
+     ],
+     "sc_vsc_decisions": [
+      [
+       27,
+       "VSC",
+       "PIT_HARD/PIT_HARD"
+      ]
+     ]
+    },
+    {
+     "race": 8,
+     "track": "mixed",
+     "points": 35,
+     "apex_positions": {
+      "Apex A": 1,
+      "Apex B": 5
+     },
+     "replacements": [],
+     "stops": 4,
+     "compounds_fitted": [
+      "HARD",
+      "MEDIUM"
+     ],
+     "sc_vsc_decisions": [
+      [
+       6,
+       "VSC",
+       "PIT_HARD/PIT_MEDIUM"
+      ],
+      [
+       30,
+       "VSC",
+       "PIT_HARD/STAY"
+      ],
+      [
+       42,
+       "SC",
+       "STAY/STAY"
+      ]
+     ]
+    }
+   ],
+   "losses": {
+    "manual_or_assisted": {
+     "n": 7,
+     "mean_loss_baseline_cont": 0.9915039476095489,
+     "candidates": 2,
+     "confirmed": 1
+    },
+    "automated": {
+     "n": 105,
+     "mean_loss_baseline_cont": 0.5244801709428064,
+     "candidates": 20,
+     "confirmed": 7
+    },
+    "in_race": {
+     "n": 95,
+     "mean_loss_baseline_cont": 0.5008231941699371,
+     "candidates": 16,
+     "confirmed": 7
+    },
+    "replanning": {
+     "n": 17,
+     "mean_loss_baseline_cont": 0.8489848315363232,
+     "candidates": 6,
+     "confirmed": 1
+    }
+   },
+   "confirmed_failures": [
+    {
+     "race_index": 0,
+     "decision": 1,
+     "lap": 3,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 1.5830443051580405,
+     "loss_own_continuation": 1.5496428074160924,
+     "se_own_continuation": 0.512359046372339,
+     "source": "manual"
+    },
+    {
+     "race_index": 2,
+     "decision": 2,
+     "lap": 6,
+     "status": "VSC",
+     "category": "replanning",
+     "agent": "PIT_HARD/PIT_MEDIUM",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 4.8407217074261615,
+     "loss_own_continuation": 3.0502843162311,
+     "se_own_continuation": 0.4147727350421166,
+     "source": "automated"
+    },
+    {
+     "race_index": 3,
+     "decision": 1,
+     "lap": 3,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 3.8812977613647996,
+     "loss_own_continuation": 4.534060291508892,
+     "se_own_continuation": 0.7461243200765317,
+     "source": "automated"
+    },
+    {
+     "race_index": 3,
+     "decision": 2,
+     "lap": 6,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 4.988917524744533,
+     "loss_own_continuation": 3.250249706666668,
+     "se_own_continuation": 0.44540550887717145,
+     "source": "automated"
+    },
+    {
+     "race_index": 4,
+     "decision": 1,
+     "lap": 3,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 1.7266427537538542,
+     "loss_own_continuation": 2.0878762425438766,
+     "se_own_continuation": 0.6291650069003425,
+     "source": "automated"
+    },
+    {
+     "race_index": 6,
+     "decision": 1,
+     "lap": 3,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 1.4169565230946024,
+     "loss_own_continuation": 1.4148567142835848,
+     "se_own_continuation": 0.4326595505613429,
+     "source": "automated"
+    },
+    {
+     "race_index": 6,
+     "decision": 2,
+     "lap": 6,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 2.3682971276454627,
+     "loss_own_continuation": 1.7706611510709134,
+     "se_own_continuation": 0.32410467124964665,
+     "source": "automated"
+    },
+    {
+     "race_index": 6,
+     "decision": 8,
+     "lap": 24,
+     "status": "GREEN",
+     "category": "in_race",
+     "agent": "STAY/STAY",
+     "best": "PIT_HARD/STAY",
+     "loss_baseline_continuation": 1.2375773043737486,
+     "loss_own_continuation": 1.4884398626132944,
+     "se_own_continuation": 0.4748087524081497,
+     "source": "automated"
+    }
+   ],
+   "track_a_expected": 247.8854796733591
+  }
+ ],
+ "aggregate": {
+  "points": {
+   "mean": 261.5,
+   "sd": 8.0156097709407,
+   "min": 248,
+   "max": 268
+  },
+  "reward": {
+   "mean": 0.6803724053724054,
+   "sd": 0.029164953476883825,
+   "min": 0.6307692307692307,
+   "max": 0.7038461538461539
+  },
+  "wall_clock_sec": {
+   "mean": 615.75,
+   "sd": 45.65837820159626,
+   "min": 541.0,
+   "max": 665.0
+  },
+  "cost_usd": {
+   "total": 2.62133475
+  }
+ }
+}

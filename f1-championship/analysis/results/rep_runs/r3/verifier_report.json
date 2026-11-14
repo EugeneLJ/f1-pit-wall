@@ -1,0 +1,76 @@
+{
+  "completion": {
+    "accepted_decisions": 120,
+    "complete": true,
+    "races_completed": 8,
+    "races_total": 8
+  },
+  "evidence": {
+    "journal_sha256": "76092673931d7c0dad4fb3b4f33e5d256e4ea4e70cee1ae7ef161c61eb4a54d9",
+    "manifest": {
+      "head_hash": "5ccc589920542ab7b0408ac4a87f1cad3c1e773ebe7808ab9e84cc9279eceb21",
+      "journal_entries": 120,
+      "journal_sha256": "76092673931d7c0dad4fb3b4f33e5d256e4ea4e70cee1ae7ef161c61eb4a54d9",
+      "request_stats": {
+        "act_accepted": 120,
+        "act_rejected": 0,
+        "observe": 122,
+        "ping": 562,
+        "protocol_errors": 1,
+        "rejections_not_logged": 0,
+        "rules": 3
+      },
+      "sealed_at": 1794679122.745089,
+      "server_version": "b4-1"
+    }
+  },
+  "integrity": {
+    "error": null,
+    "intact": true,
+    "rejected_requests_logged": 0,
+    "request_stats": {
+      "act_accepted": 120,
+      "act_rejected": 0,
+      "observe": 122,
+      "ping": 562,
+      "protocol_errors": 1,
+      "rejections_not_logged": 0,
+      "rules": 3
+    }
+  },
+  "normalization": {
+    "D_do_nothing_points_same_seed": 84,
+    "P_apex_points": 263,
+    "U_theoretical_max_points": 344,
+    "formula": "complete and intact ? clip((P - D) / (U - D), 0, 1) : 0",
+    "note": "provisional P0 scale; P2 adds reference-relative regret without treating the reference as max"
+  },
+  "performance": {
+    "apex_constructors_points": 263,
+    "apex_driver_points": {
+      "Apex A": 146,
+      "Apex B": 117
+    },
+    "championship_rank": 1,
+    "margin_to_best_rival": 31,
+    "reference_points": null,
+    "regret_vs_reference": null,
+    "team_points": {
+      "Apex": 263,
+      "Nova": 171,
+      "Orion": 232,
+      "Vertex": 114
+    }
+  },
+  "reward": 0.6884615384615385,
+  "scalar_version": "p0-provisional",
+  "timing": {
+    "accepted_decisions": 120,
+    "decision_span_sec": 496.964,
+    "first_decision_at": 1794678593.685655,
+    "last_decision_at": 1794679090.650146,
+    "max_gap_between_decisions_sec": 187.734,
+    "max_server_latency_sec": 0.053752,
+    "mean_gap_between_decisions_sec": 4.156
+  }
+}

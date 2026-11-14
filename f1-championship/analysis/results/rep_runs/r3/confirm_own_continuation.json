@@ -1,0 +1,847 @@
+[
+ {
+  "race_index": 0,
+  "decision": 1,
+  "lap": 3,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "SOFT",
+    3,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    5,
+    "MEDIUM",
+    3,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.5830443051580405,
+  "se_baseline_continuation": 0.60378680773936,
+  "loss_own_continuation": 1.5496428074160924,
+  "se_own_continuation": 0.512359046372339,
+  "q_own": {
+   "PIT_HARD/STAY": 30.06028418059369,
+   "STAY/STAY": 28.5106413731776
+  },
+  "confirmed": true
+ },
+ {
+  "race_index": 0,
+  "decision": 5,
+  "lap": 15,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "STAY/PIT_HARD",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    7,
+    "HARD",
+    6,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    3,
+    "MEDIUM",
+    15,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 4.420848978658933,
+  "se_baseline_continuation": 0.48084655775537843,
+  "loss_own_continuation": -0.21194217710026683,
+  "se_own_continuation": 0.4255711754914125,
+  "q_own": {
+   "STAY/PIT_HARD": 27.5277321134256,
+   "STAY/STAY": 27.739674290525866
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 0,
+  "decision": 8,
+  "lap": 24,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    3,
+    "HARD",
+    15,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    6,
+    "HARD",
+    6,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.1535932619097764,
+  "se_baseline_continuation": 0.4209572914107069,
+  "loss_own_continuation": -0.7731220000000004,
+  "se_own_continuation": 0.3381183380091291,
+  "q_own": {
+   "PIT_HARD/STAY": 27.22023609080533,
+   "STAY/STAY": 27.99335809080533
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 0,
+  "decision": 9,
+  "lap": 27,
+  "status": "VSC",
+  "category": "replanning",
+  "agent": "PIT_HARD/STAY",
+  "best": "PIT_MEDIUM/STAY",
+  "baseline": "PIT_HARD/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "HARD",
+    18,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    5,
+    "HARD",
+    9,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.401479706666665,
+  "se_baseline_continuation": 0.3151263780072771,
+  "loss_own_continuation": 0.36079026666666564,
+  "se_own_continuation": 0.6117565699135686,
+  "q_own": {
+   "PIT_HARD/STAY": 31.072163579333335,
+   "PIT_MEDIUM/STAY": 31.432953846,
+   "STAY/STAY": 28.25780902
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 1,
+  "decision": 12,
+  "lap": 36,
+  "status": "VSC",
+  "category": "replanning",
+  "agent": "STAY/PIT_SOFT",
+  "best": "STAY/STAY",
+  "baseline": "STAY/PIT_MEDIUM",
+  "drivers": {
+   "driver_a": [
+    5,
+    "HARD",
+    6,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    1,
+    "HARD",
+    21,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 2.280272917999999,
+  "se_baseline_continuation": 0.5129105726774031,
+  "loss_own_continuation": -3.89384576,
+  "se_own_continuation": 0.5620282244297209,
+  "q_own": {
+   "STAY/PIT_MEDIUM": 42.2772,
+   "STAY/PIT_SOFT": 42.2772,
+   "STAY/STAY": 38.38335424
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 2,
+  "decision": 2,
+  "lap": 6,
+  "status": "VSC",
+  "category": "replanning",
+  "agent": "PIT_HARD/PIT_MEDIUM",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "SOFT",
+    6,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    5,
+    "MEDIUM",
+    6,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 4.8407217074261615,
+  "se_baseline_continuation": 0.39440051884704397,
+  "loss_own_continuation": 3.0502843162311,
+  "se_own_continuation": 0.4147727350421166,
+  "q_own": {
+   "PIT_HARD/PIT_MEDIUM": 23.790197362103484,
+   "PIT_HARD/STAY": 26.840481678334584,
+   "STAY/STAY": 24.08904512277824
+  },
+  "confirmed": true
+ },
+ {
+  "race_index": 2,
+  "decision": 9,
+  "lap": 27,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "HARD",
+    20,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    8,
+    "HARD",
+    3,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.6903024002117786,
+  "se_baseline_continuation": 0.36314200145759107,
+  "loss_own_continuation": -0.15686533333333333,
+  "se_own_continuation": 0.3043533433026184,
+  "q_own": {
+   "PIT_HARD/STAY": 24.693037946785598,
+   "STAY/STAY": 24.849903280118934
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 3,
+  "decision": 1,
+  "lap": 3,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    3,
+    "SOFT",
+    3,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    4,
+    "MEDIUM",
+    3,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 3.8812977613647996,
+  "se_baseline_continuation": 0.6505001651234218,
+  "loss_own_continuation": 4.534060291508892,
+  "se_own_continuation": 0.7461243200765317,
+  "q_own": {
+   "PIT_HARD/STAY": 37.234647243586224,
+   "STAY/STAY": 32.70058695207733
+  },
+  "confirmed": true
+ },
+ {
+  "race_index": 3,
+  "decision": 2,
+  "lap": 6,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    5,
+    "SOFT",
+    6,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    2,
+    "MEDIUM",
+    6,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 4.988917524744533,
+  "se_baseline_continuation": 0.5295445063631861,
+  "loss_own_continuation": 3.250249706666668,
+  "se_own_continuation": 0.44540550887717145,
+  "q_own": {
+   "PIT_HARD/STAY": 35.627595515829334,
+   "STAY/STAY": 32.37734580916266
+  },
+  "confirmed": true
+ },
+ {
+  "race_index": 3,
+  "decision": 8,
+  "lap": 24,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    3,
+    "HARD",
+    15,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    4,
+    "HARD",
+    9,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 4.567552544325866,
+  "se_baseline_continuation": 0.5147046160002865,
+  "loss_own_continuation": 0.32277662432586646,
+  "se_own_continuation": 0.3300691781247411,
+  "q_own": {
+   "PIT_HARD/STAY": 35.283695253333335,
+   "STAY/STAY": 34.960918629007466
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 3,
+  "decision": 9,
+  "lap": 27,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    1,
+    "HARD",
+    18,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    2,
+    "HARD",
+    12,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 5.1609228412168,
+  "se_baseline_continuation": 0.4759628925141089,
+  "loss_own_continuation": -0.0031373066666668947,
+  "se_own_continuation": 0.17209840341592889,
+  "q_own": {
+   "PIT_HARD/STAY": 34.56032197333333,
+   "STAY/STAY": 34.56345928
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 3,
+  "decision": 12,
+  "lap": 36,
+  "status": "SC",
+  "category": "replanning",
+  "agent": "PIT_HARD/PIT_HARD",
+  "best": "STAY/PIT_MEDIUM",
+  "baseline": "STAY/PIT_MEDIUM",
+  "drivers": {
+   "driver_a": [
+    6,
+    "HARD",
+    6,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    1,
+    "HARD",
+    21,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.0222585798218746,
+  "se_baseline_continuation": 0.29264595339845445,
+  "loss_own_continuation": 0.6431016656489001,
+  "se_own_continuation": 0.4604909111582828,
+  "q_own": {
+   "PIT_HARD/PIT_HARD": 31.827958351141866,
+   "STAY/PIT_MEDIUM": 32.471060016790766,
+   "STAY/STAY": 23.092068032820116
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 4,
+  "decision": 1,
+  "lap": 3,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "SOFT",
+    3,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    4,
+    "MEDIUM",
+    3,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.7266427537538542,
+  "se_baseline_continuation": 0.7010313641276744,
+  "loss_own_continuation": 2.0878762425438766,
+  "se_own_continuation": 0.6291650069003425,
+  "q_own": {
+   "PIT_HARD/STAY": 32.40818243788801,
+   "STAY/STAY": 30.32030619534413
+  },
+  "confirmed": true
+ },
+ {
+  "race_index": 4,
+  "decision": 2,
+  "lap": 6,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "SOFT",
+    6,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    4,
+    "MEDIUM",
+    6,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 2.2225364966039014,
+  "se_baseline_continuation": 0.4042504089899071,
+  "loss_own_continuation": 0.08084551960024555,
+  "se_own_continuation": 0.27538269714809716,
+  "q_own": {
+   "PIT_HARD/STAY": 30.522682877405174,
+   "STAY/STAY": 30.44183735780493
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 4,
+  "decision": 12,
+  "lap": 36,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/PIT_HARD",
+  "best": "STAY/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    7,
+    "HARD",
+    6,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    2,
+    "HARD",
+    21,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 3.0104235266008397,
+  "se_baseline_continuation": 0.23863645214386678,
+  "loss_own_continuation": -3.81249107672793,
+  "se_own_continuation": 0.05748690925654132,
+  "q_own": {
+   "STAY/PIT_HARD": 29.97261618703333,
+   "STAY/STAY": 26.1601251103054
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 5,
+  "decision": 9,
+  "lap": 27,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    1,
+    "HARD",
+    18,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    2,
+    "HARD",
+    12,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 2.136547688653389,
+  "se_baseline_continuation": 0.3418609365085053,
+  "loss_own_continuation": 0.24323985224232972,
+  "se_own_continuation": 0.23811843967638763,
+  "q_own": {
+   "PIT_HARD/STAY": 40.059835065600005,
+   "STAY/STAY": 39.81659521335767
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 5,
+  "decision": 12,
+  "lap": 36,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/PIT_HARD",
+  "best": "STAY/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    5,
+    "HARD",
+    6,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    1,
+    "HARD",
+    21,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 3.494927955963491,
+  "se_baseline_continuation": 0.3431730077939698,
+  "loss_own_continuation": 0.0,
+  "se_own_continuation": 0.0,
+  "q_own": {
+   "STAY/PIT_HARD": 39.567087302400004,
+   "STAY/STAY": 39.567087302400004
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 6,
+  "decision": 1,
+  "lap": 3,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "SOFT",
+    3,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    5,
+    "MEDIUM",
+    3,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.4169565230946024,
+  "se_baseline_continuation": 0.48265175590157394,
+  "loss_own_continuation": 1.4148567142835848,
+  "se_own_continuation": 0.4326595505613429,
+  "q_own": {
+   "PIT_HARD/STAY": 28.523839794618706,
+   "STAY/STAY": 27.108983080335122
+  },
+  "confirmed": true
+ },
+ {
+  "race_index": 6,
+  "decision": 2,
+  "lap": 6,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "SOFT",
+    6,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    5,
+    "MEDIUM",
+    6,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 2.3682971276454627,
+  "se_baseline_continuation": 0.22724178898691968,
+  "loss_own_continuation": 1.7706611510709134,
+  "se_own_continuation": 0.32410467124964665,
+  "q_own": {
+   "PIT_HARD/STAY": 29.28085478813795,
+   "STAY/STAY": 27.51019363706704
+  },
+  "confirmed": true
+ },
+ {
+  "race_index": 6,
+  "decision": 8,
+  "lap": 24,
+  "status": "GREEN",
+  "category": "in_race",
+  "agent": "STAY/STAY",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    4,
+    "HARD",
+    15,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    5,
+    "HARD",
+    9,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.2375773043737486,
+  "se_baseline_continuation": 0.4168616690972194,
+  "loss_own_continuation": 1.4884398626132944,
+  "se_own_continuation": 0.4748087524081497,
+  "q_own": {
+   "PIT_HARD/STAY": 29.281050978383,
+   "STAY/STAY": 27.792611115769706
+  },
+  "confirmed": true
+ },
+ {
+  "race_index": 6,
+  "decision": 9,
+  "lap": 27,
+  "status": "VSC",
+  "category": "replanning",
+  "agent": "PIT_HARD/PIT_HARD",
+  "best": "PIT_HARD/STAY",
+  "baseline": "PIT_HARD/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "HARD",
+    18,
+    [
+     "HARD",
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    4,
+    "HARD",
+    12,
+    [
+     "HARD",
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 1.9236102223647913,
+  "se_baseline_continuation": 0.2462347149808711,
+  "loss_own_continuation": -0.17319590857383815,
+  "se_own_continuation": 0.4713955563991021,
+  "q_own": {
+   "PIT_HARD/PIT_HARD": 28.133245173845555,
+   "PIT_HARD/STAY": 27.960049265271717,
+   "STAY/STAY": 25.489408754633395
+  },
+  "confirmed": false
+ },
+ {
+  "race_index": 7,
+  "decision": 2,
+  "lap": 6,
+  "status": "VSC",
+  "category": "replanning",
+  "agent": "PIT_HARD/PIT_MEDIUM",
+  "best": "PIT_HARD/STAY",
+  "baseline": "STAY/STAY",
+  "drivers": {
+   "driver_a": [
+    2,
+    "SOFT",
+    6,
+    [
+     "SOFT"
+    ]
+   ],
+   "driver_b": [
+    5,
+    "MEDIUM",
+    6,
+    [
+     "MEDIUM"
+    ]
+   ]
+  },
+  "loss_baseline_continuation": 2.9643990018380033,
+  "se_baseline_continuation": 0.393779955258364,
+  "loss_own_continuation": 1.7282518194462766,
+  "se_own_continuation": 1.064734932772839,
+  "q_own": {
+   "PIT_HARD/PIT_MEDIUM": 26.696096868491082,
+   "PIT_HARD/STAY": 28.42434868793736,
+   "STAY/STAY": 23.623529162248637
+  },
+  "confirmed": false
+ }
+]

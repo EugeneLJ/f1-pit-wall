@@ -1,0 +1,30 @@
+[
+ {
+  "name": "r0 (first probe, task seed)",
+  "dir": "/private/tmp/claude-502/-Users-jungy3-Projects-f1-pit-wall/6b0bda6a-515c-4344-8032-144d03790a3f/scratchpad/b4-gemini",
+  "seed_label": "task hidden seed",
+  "started": "2026-11-14T16:59:02Z",
+  "ended": "2026-11-14T17:08:03Z"
+ },
+ {
+  "name": "r1",
+  "dir": "/private/tmp/claude-502/-Users-jungy3-Projects-f1-pit-wall/6b0bda6a-515c-4344-8032-144d03790a3f/scratchpad/rep/r1",
+  "seed_label": "repeat seed 1",
+  "started": "2026-11-14T17:27:10Z",
+  "ended": "2026-11-14T17:37:39Z"
+ },
+ {
+  "name": "r2",
+  "dir": "/private/tmp/claude-502/-Users-jungy3-Projects-f1-pit-wall/6b0bda6a-515c-4344-8032-144d03790a3f/scratchpad/rep/r2",
+  "seed_label": "repeat seed 2",
+  "started": "2026-11-14T17:37:39Z",
+  "ended": "2026-11-14T17:48:07Z"
+ },
+ {
+  "name": "r3",
+  "dir": "/private/tmp/claude-502/-Users-jungy3-Projects-f1-pit-wall/6b0bda6a-515c-4344-8032-144d03790a3f/scratchpad/rep/r3",
+  "seed_label": "repeat seed 3",
+  "started": "2026-11-14T17:48:07Z",
+  "ended": "2026-11-14T17:59:12Z"
+ }
+]

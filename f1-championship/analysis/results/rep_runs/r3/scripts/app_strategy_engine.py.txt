@@ -1,0 +1,176 @@
+#!/usr/bin/env python3
+import json
+import socket
+import sys
+import time
+
+SOCKET_PATH = "/run/f1sim/sim.sock"
+
+def request(payload):
+    with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as conn:
+        conn.settimeout(30.0)
+        conn.connect(SOCKET_PATH)
+        conn.sendall((json.dumps(payload) + "\n").encode("utf-8"))
+        chunks = []
+        while True:
+            chunk = conn.recv(65536)
+            if not chunk:
+                break
+            chunks.append(chunk)
+            if chunk.endswith(b"\n"):
+                break
+    return json.loads(b"".join(chunks).decode("utf-8"))
+
+def observe():
+    return request({"cmd": "observe"})
+
+def act(decision_id, action):
+    return request({"cmd": "act", "decision_id": decision_id, "action": action})
+
+def choose_compound(laps_remaining, compounds_used, track_deg):
+    # Determine the best compound to fit
+    # compounds_used is a list/set of compounds used so far
+    # Need to satisfy 2-compound rule
+    has_two = len(set(compounds_used)) >= 2
+    
+    # Options: SOFT (life 10), MEDIUM (life 16), HARD (life 24)
+    # If high degradation (track_deg > 0.7), tyres degrade faster
+    if laps_remaining <= 6:
+        cand = "SOFT"
+        if not has_two and cand in compounds_used:
+            cand = "MEDIUM"
+        return cand
+    elif laps_remaining <= 14:
+        cand = "MEDIUM"
+        if not has_two and cand in compounds_used:
+            cand = "HARD" if laps_remaining > 9 else "SOFT"
+        return cand
+    else:
+        cand = "HARD"
+        if not has_two and cand in compounds_used:
+            cand = "MEDIUM"
+        return cand
+
+def decide_component(obs):
+    # Component decision phase
+    # Check race index and remaining calendar
+    champ = obs["championship"]
+    race_idx = champ["race_index"]
+    free_units = obs["controlled_drivers"]["Apex A"]["free_units_available"]
+    track = obs["current_track"]
+    stress = track["power_unit_stress"]
+    
+    decisions = []
+    # Optimal plan:
+    # Race 0, 1, 2, 3: USE all
+    # Race 4: REPLACE Apex A ICE, Apex A turbo, Apex B ICE, Apex B turbo (4 free units)
+    # Race 5, 6, 7: USE all
+    # But safety check: if wear + stress * rate >= 0.88, REPLACE
+    wear_rates = {"ICE": 0.22, "turbo": 0.18, "energy_store": 0.14}
+    
+    for driver in ["Apex A", "Apex B"]:
+        driver_obs = obs["controlled_drivers"][driver]
+        for comp in ["ICE", "turbo", "energy_store"]:
+            cur_wear = driver_obs["components"][comp]["wear"]
+            projected_wear = cur_wear + stress * wear_rates[comp]
+            
+            action = "USE"
+            if projected_wear >= 0.88:
+                action = "REPLACE"
+            elif race_idx == 4 and comp in ["ICE", "turbo"] and free_units > 0:
+                action = "REPLACE"
+            
+            decisions.append({
+                "driver": driver,
+                "component": comp,
+                "action": action
+            })
+    return {"type": "COMPONENT_DECISION", "decisions": decisions}
+
+def decide_race_strategy(obs):
+    rp = obs["race_progress"]
+    lap = rp["lap"]
+    laps_rem = rp["laps_remaining"]
+    track_status = rp.get("track_status", "GREEN")
+    drivers = rp["drivers"]
+    classification = rp["classification"]
+    pit_info = rp["pit"]
+    track = obs["current_track"]
+    track_deg = track["tyre_degradation"]
+    first_pit = pit_info.get("if_both_pit_serviced_first", "driver_a")
+    
+    driver_a = drivers["driver_a"]
+    driver_b = drivers["driver_b"]
+    
+    # Helper to check if driver should pit
+    def eval_driver_pit(driver_data, other_driver_data, is_first_in_stack):
+        compound = driver_data["compound"]
+        age = driver_data["tyre_age"]
+        used = driver_data["compounds_used"]
+        life = rp["tyre_life_laps"][compound]
+        
+        # 1. Last decision rule: must satisfy 2-compound rule
+        if laps_rem <= 3 and len(set(used)) < 2:
+            comp = choose_compound(laps_rem, used, track_deg)
+            return f"PIT_{comp}"
+        
+        # 2. SC / VSC opportunity
+        if track_status in ["SC", "VSC"]:
+            # Pit loss is 6s (SC) or 11s (VSC)
+            # If tyre has age >= 6, pitting under SC/VSC saves huge time!
+            # If not first in stack and other driver also pits:
+            # Under SC, queue penalty is 6s -> total 12s, still cheaper than 20s green!
+            # Under VSC, queue penalty is 6s -> total 17s, maybe wait unless age >= 9
+            if age >= 6:
+                comp = choose_compound(laps_rem, used, track_deg)
+                return f"PIT_{comp}"
+        
+        # 3. Green running
+        # Cliff occurs when age > life
+        # For SOFT (life 10): definitely pit at age >= 9
+        if compound == "SOFT":
+            if age >= 9:
+                comp = choose_compound(laps_rem, used, track_deg)
+                return f"PIT_{comp}"
+        elif compound == "MEDIUM":
+            # For MEDIUM (life 16):
+            # If 1-stop strategy: pit at lap 18 or 21 (when laps_rem <= 27, ideally 24)
+            # If laps_rem <= 24: HARD can cover the rest of the race perfectly!
+            if laps_rem <= 24 and age >= 12:
+                comp = choose_compound(laps_rem, used, track_deg)
+                return f"PIT_{comp}"
+            elif age >= 18:
+                comp = choose_compound(laps_rem, used, track_deg)
+                return f"PIT_{comp}"
+        elif compound == "HARD":
+            # For HARD (life 24):
+            # If age >= 21 and laps_rem > 3:
+            if age >= 21 and laps_rem >= 6:
+                comp = choose_compound(laps_rem, used, track_deg)
+                return f"PIT_{comp}"
+            elif age >= 24:
+                comp = choose_compound(laps_rem, used, track_deg)
+                return f"PIT_{comp}"
+        
+        return "STAY"
+
+    act_a = eval_driver_pit(driver_a, driver_b, first_pit == "driver_a")
+    act_b = eval_driver_pit(driver_b, driver_a, first_pit == "driver_b")
+    
+    # Check double stacking under GREEN
+    if track_status == "GREEN" and act_a.startswith("PIT") and act_b.startswith("PIT"):
+        # Don't double stack under green!
+        # The car serviced second should wait 1 decision (3 laps) unless it's in severe cliff
+        if first_pit == "driver_a":
+            # Driver B waits unless driver B tyre age is much worse than driver A
+            act_b = "STAY"
+        else:
+            act_a = "STAY"
+            
+    return {
+        "type": "RACE_STRATEGY",
+        "driver_a": act_a,
+        "driver_b": act_b
+    }
+
+print("Strategy module loaded successfully")

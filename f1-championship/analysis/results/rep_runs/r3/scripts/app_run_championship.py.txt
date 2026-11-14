@@ -1,0 +1,466 @@
+#!/usr/bin/env python3
+"""
+Autonomous Championship Strategist for Apex GP.
+Maximizes Constructors' Championship points across all 8 races.
+"""
+
+import copy
+import json
+import socket
+import sys
+import time
+
+SOCKET_PATH = "/run/f1sim/sim.sock"
+
+BASE_PACE = {
+    "Apex A": 89.65,
+    "Apex B": 89.85,
+    "Orion A": 89.55,
+    "Orion B": 89.75,
+    "Nova A": 89.90,
+    "Nova B": 90.00,
+    "Vertex A": 90.05,
+    "Vertex B": 90.15,
+}
+
+TRACK_OFFSETS = {
+    "Apex": {"high_degradation": -0.05, "high_speed": 0.1, "mixed": 0.05, "street": -0.15, "wet_prone": 0.05},
+    "Nova": {"high_degradation": -0.15, "high_speed": 0.05, "mixed": 0.1, "street": 0.05, "wet_prone": -0.05},
+    "Orion": {"high_degradation": 0.05, "high_speed": -0.15, "mixed": -0.05, "street": 0.15, "wet_prone": 0.0},
+    "Vertex": {"high_degradation": 0.1, "high_speed": 0.0, "mixed": 0.1, "street": -0.05, "wet_prone": -0.15},
+}
+
+COMPOUNDS = {
+    "SOFT": {"offset": -0.55, "deg": 0.35, "life": 10, "warmup": 0.3},
+    "MEDIUM": {"offset": 0.0, "deg": 0.14, "life": 16, "warmup": 0.6},
+    "HARD": {"offset": 0.28, "deg": 0.055, "life": 24, "warmup": 1.0},
+}
+
+POINTS = [25, 18, 15, 12, 10, 8, 6, 4]
+
+
+def request(payload):
+    deadline = time.monotonic() + 30.0
+    while True:
+        try:
+            with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as conn:
+                conn.settimeout(30.0)
+                conn.connect(SOCKET_PATH)
+                conn.sendall((json.dumps(payload) + "\n").encode("utf-8"))
+                chunks = []
+                while True:
+                    chunk = conn.recv(65536)
+                    if not chunk:
+                        break
+                    chunks.append(chunk)
+                    if chunk.endswith(b"\n"):
+                        break
+            return json.loads(b"".join(chunks).decode("utf-8"))
+        except (FileNotFoundError, ConnectionRefusedError):
+            if time.monotonic() > deadline:
+                raise RuntimeError(f"Cannot reach simulator at {SOCKET_PATH}")
+            time.sleep(0.5)
+        except (OSError, ValueError) as exc:
+            raise RuntimeError(f"Simulator connection error: {exc}")
+
+
+def observe():
+    res = request({"cmd": "observe"})
+    if not res.get("ok"):
+        raise RuntimeError(f"Observe failed: {res}")
+    return res["observation"]
+
+
+def act(decision_id, action):
+    res = request({"cmd": "act", "decision_id": decision_id, "action": action})
+    if not res.get("ok"):
+        raise RuntimeError(f"Act failed for {decision_id}: {res}")
+    return res
+
+
+def decide_component(obs):
+    champ = obs["championship"]
+    race_idx = champ["race_index"]
+    track = obs["current_track"]
+    stress = track["power_unit_stress"]
+    free_units = obs["controlled_drivers"]["Apex A"]["free_units_available"]
+    
+    wear_rates = {"ICE": 0.22, "turbo": 0.18, "energy_store": 0.14}
+    decisions = []
+    
+    print(f"\n=======================================================")
+    print(f"RACE {race_idx + 1}/8: {track['name']} ({track['archetype']})")
+    print(f"Stress: {stress} | Tyre Deg: {track['tyre_degradation']} | Free Units: {free_units}")
+    print(f"=======================================================")
+    
+    # Standings summary
+    team_standings = sorted(champ.get("team_standings", []), key=lambda x: x["points"], reverse=True)
+    print("Current Team Standings: " + ", ".join([f"{ts['team']}: {ts['points']}" for ts in team_standings]))
+    
+    for driver in ["Apex A", "Apex B"]:
+        driver_obs = obs["controlled_drivers"][driver]
+        for comp in ["ICE", "turbo", "energy_store"]:
+            cur_wear = driver_obs["components"][comp]["wear"]
+            projected_wear = cur_wear + stress * wear_rates[comp]
+            
+            action = "USE"
+            # Critical threshold check: must not exceed 0.88 (max wear is 0.90)
+            if projected_wear >= 0.88:
+                action = "REPLACE"
+                print(f"CRITICAL: {driver} {comp} wear {cur_wear:.3f} -> REPLACE")
+            # Planned optimal replacement before Race 4 (Rainland):
+            # Race 4 is the exact 50% split of power unit stress (2.50 vs 2.40)
+            elif race_idx == 4 and comp in ["ICE", "turbo"] and free_units > 0:
+                action = "REPLACE"
+                print(f"PLANNED REFRESH: {driver} {comp} wear {cur_wear:.3f} -> REPLACE")
+            else:
+                print(f"  {driver} {comp}: wear={cur_wear:.3f}, proj={projected_wear:.3f} -> USE")
+            
+            decisions.append({
+                "driver": driver,
+                "component": comp,
+                "action": action
+            })
+    return {"type": "COMPONENT_DECISION", "decisions": decisions}
+
+
+def forward_simulate(initial_cars, candidate_a, candidate_b, current_lap, laps_remaining,
+                     track_archetype, track_deg, overtaking_difficulty, pit_loss_now, pit_loss_green, current_track_status):
+    """
+    Forward simulates race to lap 45 given current decision actions.
+    Returns (apex_points, apex_a_elapsed, apex_b_elapsed, apex_a_pos, apex_b_pos).
+    """
+    track_deg_mult = 0.5 + track_deg
+    pass_margin = 0.2 + overtaking_difficulty * 2.0
+    min_gap = 0.3
+
+    cars = copy.deepcopy(initial_cars)
+    for c in cars:
+        c["used"] = set(c["used"])
+
+    for lap in range(current_lap, 45, 3):
+        laps_rem = 45 - lap
+        is_cur_lap = (lap == current_lap)
+        cur_status = current_track_status if is_cur_lap else "GREEN"
+        cars.sort(key=lambda c: c["elapsed"])
+
+        # Decide actions for all cars
+        pitting = {}
+        for c in cars:
+            d = c["driver"]
+            if d == "Apex A":
+                if is_cur_lap:
+                    pitting[d] = candidate_a[4:] if candidate_a.startswith("PIT_") else None
+                else:
+                    pitting[d] = default_pit_policy(c, laps_rem, track_deg)
+            elif d == "Apex B":
+                if is_cur_lap:
+                    pitting[d] = candidate_b[4:] if candidate_b.startswith("PIT_") else None
+                else:
+                    pitting[d] = default_pit_policy(c, laps_rem, track_deg)
+            else:
+                # Rival deterministic policy
+                life = COMPOUNDS[c["compound"]]["life"]
+                must_pit = (lap == 42 and len(c["used"]) < 2)
+                if c["tyre_age"] >= life or must_pit:
+                    if laps_rem <= 6:
+                        cand = "SOFT"
+                    elif laps_rem <= 14:
+                        cand = "MEDIUM"
+                    else:
+                        cand = "HARD"
+                    if len(c["used"]) < 2 and cand in c["used"]:
+                        for alt in ["SOFT", "MEDIUM", "HARD"]:
+                            if alt not in c["used"]:
+                                cand = alt
+                                break
+                    pitting[d] = cand
+                else:
+                    pitting[d] = None
+
+        # Check double-stacking
+        team_pitting = {}
+        for c in cars:
+            d = c["driver"]
+            team = c["team"]
+            if pitting[d]:
+                team_pitting.setdefault(team, []).append(d)
+
+        # Apply pit stops
+        for c in cars:
+            d = c["driver"]
+            comp_new = pitting[d]
+            if comp_new:
+                base_loss = pit_loss_now if is_cur_lap else pit_loss_green
+                loss = base_loss + COMPOUNDS[comp_new]["warmup"]
+                team = c["team"]
+                if len(team_pitting[team]) > 1 and team_pitting[team][1] == d:
+                    loss += 6.0  # double stack queue
+                c["elapsed"] += loss
+                c["compound"] = comp_new
+                c["tyre_age"] = 0
+                c["used"].add(comp_new)
+
+        # Check dirty air at segment start
+        dirty = {}
+        for i in range(len(cars)):
+            d = cars[i]["driver"]
+            if i > 0 and (cars[i]["elapsed"] - cars[i - 1]["elapsed"]) <= 1.0:
+                dirty[d] = True
+            else:
+                dirty[d] = False
+
+        # Segment lap running
+        raw = {}
+        for c in cars:
+            d = c["driver"]
+            team = c["team"]
+            base = BASE_PACE[d] + TRACK_OFFSETS[team][track_archetype]
+            comp = COMPOUNDS[c["compound"]]
+            age = c["tyre_age"]
+            t_seg = 0.0
+            
+            # Age increment per segment
+            if cur_status == "SC":
+                age_inc = 1
+                mult_factor = 1.4
+            elif cur_status == "VSC":
+                age_inc = 2
+                mult_factor = 1.3
+            else:
+                age_inc = 3
+                mult_factor = 1.0
+
+            for lo in range(3):
+                cur_age = age + lo * (age_inc / 3.0)
+                deg = comp["deg"] * track_deg_mult * cur_age
+                cliff = 0.25 * track_deg_mult * max(0, cur_age - comp["life"])
+                lap_t = (base + comp["offset"] + deg + cliff) * mult_factor
+                t_seg += lap_t
+                
+            if dirty[d] and cur_status == "GREEN":
+                t_seg += 0.45
+                
+            raw[d] = c["elapsed"] + t_seg
+            c["tyre_age"] += age_inc
+
+        # Assign raw times
+        for c in cars:
+            c["elapsed"] = raw[c["driver"]]
+
+        if cur_status == "SC":
+            # Gaps compress to 0.8s
+            leader_time = min(c["elapsed"] for c in cars)
+            sorted_cars = sorted(cars, key=lambda c: c["elapsed"])
+            for rank, c in enumerate(sorted_cars):
+                c["elapsed"] = leader_time + rank * 0.8
+        else:
+            cars.sort(key=lambda c: c["elapsed"])
+
+    # Two-compound rule penalty
+    for c in cars:
+        if len(c["used"]) < 2:
+            c["elapsed"] += 20.0
+
+    cars.sort(key=lambda c: c["elapsed"])
+    apex_pts = 0
+    a_pos = b_pos = None
+    a_elapsed = b_elapsed = None
+    for pos, c in enumerate(cars):
+        pts = POINTS[pos]
+        if c["driver"] == "Apex A":
+            apex_pts += pts
+            a_pos = pos + 1
+            a_elapsed = c["elapsed"]
+        elif c["driver"] == "Apex B":
+            apex_pts += pts
+            b_pos = pos + 1
+            b_elapsed = c["elapsed"]
+
+    return apex_pts, a_elapsed, b_elapsed, a_pos, b_pos
+
+
+def default_pit_policy(car, laps_remaining, track_deg):
+    compound = car["compound"]
+    age = car["tyre_age"]
+    used = car["used"]
+    life = COMPOUNDS[compound]["life"]
+    
+    if laps_remaining <= 3 and len(used) < 2:
+        return choose_compound_simple(laps_remaining, used)
+    
+    if age >= life:
+        return choose_compound_simple(laps_remaining, used)
+    
+    return None
+
+
+def choose_compound_simple(laps_remaining, used):
+    has_two = len(used) >= 2
+    if laps_remaining <= 6:
+        cand = "SOFT"
+        if not has_two and cand in used:
+            cand = "MEDIUM"
+        return cand
+    elif laps_remaining <= 14:
+        cand = "MEDIUM"
+        if not has_two and cand in used:
+            cand = "HARD" if laps_remaining > 9 else "SOFT"
+        return cand
+    else:
+        cand = "HARD"
+        if not has_two and cand in used:
+            cand = "MEDIUM"
+        return cand
+
+
+def decide_race_strategy(obs):
+    rp = obs["race_progress"]
+    lap = rp["lap"]
+    laps_rem = rp["laps_remaining"]
+    track_status = rp.get("track_status", "GREEN")
+    classification = rp["classification"]
+    pit_info = rp["pit"]
+    track = obs["current_track"]
+    track_archetype = track["archetype"]
+    track_deg = track["tyre_degradation"]
+    overtaking_diff = track["overtaking_difficulty"]
+    pit_loss_green = pit_info["loss_sec"]["GREEN"]
+    pit_loss_now = pit_info["loss_sec"].get(track_status, pit_loss_green)
+    first_pit = pit_info.get("if_both_pit_serviced_first", "driver_a")
+
+    cars_sim = []
+    for entry in classification:
+        cars_sim.append({
+            "driver": entry["driver"],
+            "team": entry["team"],
+            "elapsed": entry["elapsed"],
+            "compound": entry["compound"],
+            "tyre_age": entry["tyre_age"],
+            "used": set(entry["compounds_used"])
+        })
+
+    driver_a = next(c for c in cars_sim if c["driver"] == "Apex A")
+    driver_b = next(c for c in cars_sim if c["driver"] == "Apex B")
+
+    print(f"\n[Lap {lap:2d} | Remaining: {laps_rem:2d} | Track: {track_status}]")
+    print(f"  Apex A: P{next(e['position'] for e in classification if e['driver'] == 'Apex A')} | {driver_a['compound']} (age {driver_a['tyre_age']}) | used={list(driver_a['used'])}")
+    print(f"  Apex B: P{next(e['position'] for e in classification if e['driver'] == 'Apex B')} | {driver_b['compound']} (age {driver_b['tyre_age']}) | used={list(driver_b['used'])}")
+
+    def legal_candidates(driver_data):
+        compound = driver_data["compound"]
+        age = driver_data["tyre_age"]
+        used = driver_data["used"]
+        life = COMPOUNDS[compound]["life"]
+
+        # Last decision mandatory pit
+        if laps_rem <= 3 and len(used) < 2:
+            cands = []
+            for comp in ["SOFT", "MEDIUM", "HARD"]:
+                if comp not in used:
+                    cands.append(f"PIT_{comp}")
+            return cands
+
+        cands = ["STAY"]
+        # Pit candidates
+        # Under SC or VSC
+        if track_status in ["SC", "VSC"]:
+            if age >= 6 or (age >= 3 and len(used) < 2):
+                for comp in ["SOFT", "MEDIUM", "HARD"]:
+                    cands.append(f"PIT_{comp}")
+        else:
+            # Under GREEN
+            # If tyre has age >= 9 for SOFT, or >= 15 for MEDIUM, or >= 21 for HARD, or near end
+            if (compound == "SOFT" and age >= 9) or \
+               (compound == "MEDIUM" and age >= 15) or \
+               (compound == "HARD" and age >= 21) or \
+               (laps_rem <= 6 and len(used) < 2):
+                for comp in ["SOFT", "MEDIUM", "HARD"]:
+                    if comp == "SOFT" and laps_rem > 10:
+                        continue
+                    if comp == "MEDIUM" and laps_rem > 20 and not (laps_rem <= 16):
+                        continue
+                    cands.append(f"PIT_{comp}")
+
+        return cands
+
+    cands_a = legal_candidates(driver_a)
+    cands_b = legal_candidates(driver_b)
+
+    # Evaluate candidate pairs
+    best_score = -1e9
+    best_pair = ("STAY", "STAY")
+    scored_candidates = []
+
+    for ca in cands_a:
+        for cb in cands_b:
+            # Under green, avoid double-stacking
+            if track_status == "GREEN" and ca.startswith("PIT") and cb.startswith("PIT"):
+                continue
+
+            pts, a_el, b_el, a_pos, b_pos = forward_simulate(
+                cars_sim, ca, cb, lap, laps_rem, track_archetype, track_deg, overtaking_diff,
+                pit_loss_now, pit_loss_green, track_status
+            )
+
+            score = pts * 1000.0 - (a_el + b_el) * 0.1
+            scored_candidates.append((score, pts, ca, cb, a_pos, b_pos))
+
+            if score > best_score:
+                best_score = score
+                best_pair = (ca, cb)
+
+    scored_candidates.sort(reverse=True)
+    top = scored_candidates[0]
+    print(f"  Chosen: A={top[2]}, B={top[3]} -> Exp Pts: {top[1]} (A: P{top[4]}, B: P{top[5]})")
+
+    return {
+        "type": "RACE_STRATEGY",
+        "driver_a": best_pair[0],
+        "driver_b": best_pair[1]
+    }
+
+
+def main():
+    print("=== Apex GP Chief Strategist Online ===")
+    decision_counter = 0
+
+    while True:
+        obs = observe()
+        decision_type = obs.get("decision_type")
+        decision_id = obs.get("decision_id")
+
+        if decision_type == "CHAMPIONSHIP_COMPLETE":
+            print("\n==========================================")
+            print("CHAMPIONSHIP COMPLETE!")
+            print("==========================================")
+            champ = obs.get("championship", {})
+            print("Final Team Standings:")
+            for ts in champ.get("team_standings", []):
+                print(f"  {ts.get('team')}: {ts.get('points')} pts")
+            print("Final Driver Standings:")
+            for ds in champ.get("driver_standings", []):
+                print(f"  {ds.get('driver')}: {ds.get('points')} pts")
+            break
+
+        decision_counter += 1
+        if decision_type == "COMPONENT_DECISION":
+            action = decide_component(obs)
+            print(f"\n[Decision {decision_id}] Submitting COMPONENT_DECISION...")
+            res = act(decision_id, action)
+            if not res.get("ok"):
+                print(f"Error submitting action: {res}")
+                break
+        elif decision_type == "RACE_STRATEGY":
+            action = decide_race_strategy(obs)
+            res = act(decision_id, action)
+            if not res.get("ok"):
+                print(f"Error submitting action: {res}")
+                break
+        else:
+            print(f"Unknown decision type: {decision_type}")
+            break
+
+
+if __name__ == "__main__":
+    main()

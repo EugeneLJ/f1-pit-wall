@@ -1,0 +1,20 @@
+[
+ {
+  "name": "r2_run_championship",
+  "policy": "/private/tmp/claude-502/-Users-jungy3-Projects-f1-pit-wall/6b0bda6a-515c-4344-8032-144d03790a3f/scratchpad/rep/r2/deleg/scripts/app_run_championship.py.txt",
+  "component_fn": "evaluate_component_decision",
+  "race_fn": "evaluate_best_race_action"
+ },
+ {
+  "name": "r3_run_championship",
+  "policy": "/private/tmp/claude-502/-Users-jungy3-Projects-f1-pit-wall/6b0bda6a-515c-4344-8032-144d03790a3f/scratchpad/rep/r3/deleg/scripts/app_run_championship.py.txt",
+  "component_fn": "decide_component",
+  "race_fn": "decide_race_strategy"
+ },
+ {
+  "name": "r0_pitwall_bot",
+  "policy": "/private/tmp/claude-502/-Users-jungy3-Projects-f1-pit-wall/6b0bda6a-515c-4344-8032-144d03790a3f/scratchpad/b4-gemini/pitwall_bot.py",
+  "component_fn": "decide_component",
+  "race_fn": "decide_strategy"
+ }
+]

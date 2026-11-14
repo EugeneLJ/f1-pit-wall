@@ -81,6 +81,7 @@ Practice, qualifying sessions, upgrades, budget management.
 | Track B | Adaptive race strategy | B1 (compound choice, tyre model), B2 (track pit loss, shared crew, out-lap warm-up) B3 (14 decisions per race, about 6 meaningful) and B4 (SC/VSC durations, compression, adaptive replanning) done on `feature/track-b` (`docs/B1_REPORT.md`–`docs/B4_REPORT.md`); B5–B6 pending |
 | Track C | Engineers / coordination | Not started |
 | Frontier probe 1 | Gemini 3.8 Flash, one full season (B4 task) | Done (`docs/B4_REPORT.md` Part B): complete, 268 pts, reward 0.698; delegated 112/120 decisions to a self-written script |
+| Frontier repeats | 3 more Gemini runs on new seeds, delegation and failure analysis | Done (`docs/FRONTIER_REPEAT_REPORT.md`): 4/4 complete and P1, 261.5 ± 8.0 pts; 93–98% delegated; 26 confirmed failures in 5 types |
 
 ## Gap table (current implementation vs final requirements)
 

@@ -1,0 +1,3845 @@
+{
+ "seeds": 40,
+ "rows": [
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 374019424539152092,
+   "points": 248
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 251130478150851826,
+   "points": 239
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 2103662818095565891,
+   "points": 241
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 2072397682455863027,
+   "points": 253
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 727892592370975939,
+   "points": 247
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 2654741156609127566,
+   "points": 246
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 401401212390937745,
+   "points": 256
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 786906000113452442,
+   "points": 251
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 2820153334737964677,
+   "points": 261
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 4256428538116894830,
+   "points": 272
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 1188626246370922205,
+   "points": 213
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 1284320100189848898,
+   "points": 238
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 3291307466328138605,
+   "points": 241
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 355314618159473844,
+   "points": 266
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 3838115603910980347,
+   "points": 237
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 3149162477414737452,
+   "points": 261
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 2904472841679886275,
+   "points": 240
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 242641492267117608,
+   "points": 234
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 3860786553926563157,
+   "points": 227
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 2574973029453448697,
+   "points": 248
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 4312876803966337520,
+   "points": 247
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 1345418888979850348,
+   "points": 264
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 2719889568465568624,
+   "points": 281
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 2193029828827396449,
+   "points": 264
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 1571532965851867985,
+   "points": 245
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 4199236363286547939,
+   "points": 256
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 3986970382286560154,
+   "points": 258
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 3295718992609273873,
+   "points": 262
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 1583094124078142709,
+   "points": 256
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 531597119130040852,
+   "points": 260
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 908388963605659265,
+   "points": 249
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 4218332278751267149,
+   "points": 248
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 3834584292397130521,
+   "points": 254
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 3107560573341497582,
+   "points": 260
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 34039300642980646,
+   "points": 252
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 1720602368373950384,
+   "points": 272
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 1123670838949080729,
+   "points": 243
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 1673344744927317268,
+   "points": 254
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 636166821641420280,
+   "points": 250
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "public",
+   "seed": 762114577149877767,
+   "points": 269
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 374019424539152092,
+   "points": 284
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 251130478150851826,
+   "points": 240
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2103662818095565891,
+   "points": 238
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2072397682455863027,
+   "points": 262
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 727892592370975939,
+   "points": 257
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2654741156609127566,
+   "points": 252
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 401401212390937745,
+   "points": 251
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 786906000113452442,
+   "points": 269
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2820153334737964677,
+   "points": 267
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 4256428538116894830,
+   "points": 224
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1188626246370922205,
+   "points": 225
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1284320100189848898,
+   "points": 206
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3291307466328138605,
+   "points": 257
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 355314618159473844,
+   "points": 255
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3838115603910980347,
+   "points": 235
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3149162477414737452,
+   "points": 279
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2904472841679886275,
+   "points": 258
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 242641492267117608,
+   "points": 254
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3860786553926563157,
+   "points": 201
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2574973029453448697,
+   "points": 284
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 4312876803966337520,
+   "points": 240
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1345418888979850348,
+   "points": 268
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2719889568465568624,
+   "points": 285
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2193029828827396449,
+   "points": 262
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1571532965851867985,
+   "points": 248
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 4199236363286547939,
+   "points": 282
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3986970382286560154,
+   "points": 287
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3295718992609273873,
+   "points": 289
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1583094124078142709,
+   "points": 256
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 531597119130040852,
+   "points": 268
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 908388963605659265,
+   "points": 282
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 4218332278751267149,
+   "points": 245
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3834584292397130521,
+   "points": 248
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3107560573341497582,
+   "points": 268
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 34039300642980646,
+   "points": 254
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1720602368373950384,
+   "points": 275
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1123670838949080729,
+   "points": 271
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1673344744927317268,
+   "points": 254
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 636166821641420280,
+   "points": 242
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "early_stoppers",
+   "seed": 762114577149877767,
+   "points": 284
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 374019424539152092,
+   "points": 251
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 251130478150851826,
+   "points": 260
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2103662818095565891,
+   "points": 242
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2072397682455863027,
+   "points": 249
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 727892592370975939,
+   "points": 245
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2654741156609127566,
+   "points": 246
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 401401212390937745,
+   "points": 241
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 786906000113452442,
+   "points": 251
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2820153334737964677,
+   "points": 242
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 4256428538116894830,
+   "points": 273
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1188626246370922205,
+   "points": 240
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1284320100189848898,
+   "points": 260
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3291307466328138605,
+   "points": 220
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 355314618159473844,
+   "points": 254
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3838115603910980347,
+   "points": 226
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3149162477414737452,
+   "points": 271
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2904472841679886275,
+   "points": 245
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 242641492267117608,
+   "points": 232
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3860786553926563157,
+   "points": 231
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2574973029453448697,
+   "points": 258
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 4312876803966337520,
+   "points": 244
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1345418888979850348,
+   "points": 261
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2719889568465568624,
+   "points": 277
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2193029828827396449,
+   "points": 247
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1571532965851867985,
+   "points": 220
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 4199236363286547939,
+   "points": 263
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3986970382286560154,
+   "points": 261
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3295718992609273873,
+   "points": 243
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1583094124078142709,
+   "points": 252
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 531597119130040852,
+   "points": 251
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 908388963605659265,
+   "points": 279
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 4218332278751267149,
+   "points": 249
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3834584292397130521,
+   "points": 268
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3107560573341497582,
+   "points": 258
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 34039300642980646,
+   "points": 249
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1720602368373950384,
+   "points": 276
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1123670838949080729,
+   "points": 237
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1673344744927317268,
+   "points": 258
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 636166821641420280,
+   "points": 245
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "late_stoppers",
+   "seed": 762114577149877767,
+   "points": 286
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 374019424539152092,
+   "points": 248
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 251130478150851826,
+   "points": 234
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2103662818095565891,
+   "points": 237
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2072397682455863027,
+   "points": 250
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 727892592370975939,
+   "points": 247
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2654741156609127566,
+   "points": 246
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 401401212390937745,
+   "points": 250
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 786906000113452442,
+   "points": 260
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2820153334737964677,
+   "points": 261
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 4256428538116894830,
+   "points": 256
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1188626246370922205,
+   "points": 203
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1284320100189848898,
+   "points": 245
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3291307466328138605,
+   "points": 254
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 355314618159473844,
+   "points": 266
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3838115603910980347,
+   "points": 238
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3149162477414737452,
+   "points": 277
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2904472841679886275,
+   "points": 242
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 242641492267117608,
+   "points": 242
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3860786553926563157,
+   "points": 228
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2574973029453448697,
+   "points": 256
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 4312876803966337520,
+   "points": 250
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1345418888979850348,
+   "points": 252
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2719889568465568624,
+   "points": 289
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2193029828827396449,
+   "points": 265
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1571532965851867985,
+   "points": 245
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 4199236363286547939,
+   "points": 262
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3986970382286560154,
+   "points": 265
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3295718992609273873,
+   "points": 265
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1583094124078142709,
+   "points": 263
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 531597119130040852,
+   "points": 263
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 908388963605659265,
+   "points": 259
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 4218332278751267149,
+   "points": 252
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3834584292397130521,
+   "points": 249
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3107560573341497582,
+   "points": 255
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 34039300642980646,
+   "points": 260
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1720602368373950384,
+   "points": 289
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1123670838949080729,
+   "points": 250
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1673344744927317268,
+   "points": 254
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 636166821641420280,
+   "points": 267
+  },
+  {
+   "policy": "r2_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 762114577149877767,
+   "points": 276
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 374019424539152092,
+   "points": 201
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 251130478150851826,
+   "points": 251
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 2103662818095565891,
+   "points": 200
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 2072397682455863027,
+   "points": 236
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 727892592370975939,
+   "points": 239
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 2654741156609127566,
+   "points": 240
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 401401212390937745,
+   "points": 271
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 786906000113452442,
+   "points": 242
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 2820153334737964677,
+   "points": 255
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 4256428538116894830,
+   "points": 262
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 1188626246370922205,
+   "points": 189
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 1284320100189848898,
+   "points": 263
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 3291307466328138605,
+   "points": 217
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 355314618159473844,
+   "points": 228
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 3838115603910980347,
+   "points": 234
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 3149162477414737452,
+   "points": 253
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 2904472841679886275,
+   "points": 245
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 242641492267117608,
+   "points": 243
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 3860786553926563157,
+   "points": 226
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 2574973029453448697,
+   "points": 251
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 4312876803966337520,
+   "points": 224
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 1345418888979850348,
+   "points": 261
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 2719889568465568624,
+   "points": 263
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 2193029828827396449,
+   "points": 259
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 1571532965851867985,
+   "points": 246
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 4199236363286547939,
+   "points": 245
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 3986970382286560154,
+   "points": 211
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 3295718992609273873,
+   "points": 250
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 1583094124078142709,
+   "points": 236
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 531597119130040852,
+   "points": 252
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 908388963605659265,
+   "points": 254
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 4218332278751267149,
+   "points": 220
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 3834584292397130521,
+   "points": 245
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 3107560573341497582,
+   "points": 271
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 34039300642980646,
+   "points": 241
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 1720602368373950384,
+   "points": 239
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 1123670838949080729,
+   "points": 226
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 1673344744927317268,
+   "points": 260
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 636166821641420280,
+   "points": 217
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "public",
+   "seed": 762114577149877767,
+   "points": 273
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 374019424539152092,
+   "points": 253
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 251130478150851826,
+   "points": 261
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2103662818095565891,
+   "points": 229
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2072397682455863027,
+   "points": 243
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 727892592370975939,
+   "points": 246
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2654741156609127566,
+   "points": 245
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 401401212390937745,
+   "points": 272
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 786906000113452442,
+   "points": 261
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2820153334737964677,
+   "points": 259
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 4256428538116894830,
+   "points": 255
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1188626246370922205,
+   "points": 213
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1284320100189848898,
+   "points": 246
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3291307466328138605,
+   "points": 231
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 355314618159473844,
+   "points": 253
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3838115603910980347,
+   "points": 241
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3149162477414737452,
+   "points": 251
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2904472841679886275,
+   "points": 266
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 242641492267117608,
+   "points": 244
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3860786553926563157,
+   "points": 231
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2574973029453448697,
+   "points": 284
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 4312876803966337520,
+   "points": 243
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1345418888979850348,
+   "points": 267
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2719889568465568624,
+   "points": 285
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 2193029828827396449,
+   "points": 259
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1571532965851867985,
+   "points": 248
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 4199236363286547939,
+   "points": 269
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3986970382286560154,
+   "points": 265
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3295718992609273873,
+   "points": 269
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1583094124078142709,
+   "points": 236
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 531597119130040852,
+   "points": 252
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 908388963605659265,
+   "points": 273
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 4218332278751267149,
+   "points": 234
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3834584292397130521,
+   "points": 262
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 3107560573341497582,
+   "points": 271
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 34039300642980646,
+   "points": 257
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1720602368373950384,
+   "points": 244
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1123670838949080729,
+   "points": 244
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 1673344744927317268,
+   "points": 257
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 636166821641420280,
+   "points": 225
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "early_stoppers",
+   "seed": 762114577149877767,
+   "points": 273
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 374019424539152092,
+   "points": 214
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 251130478150851826,
+   "points": 246
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2103662818095565891,
+   "points": 216
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2072397682455863027,
+   "points": 240
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 727892592370975939,
+   "points": 243
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2654741156609127566,
+   "points": 232
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 401401212390937745,
+   "points": 270
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 786906000113452442,
+   "points": 237
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2820153334737964677,
+   "points": 251
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 4256428538116894830,
+   "points": 263
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1188626246370922205,
+   "points": 219
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1284320100189848898,
+   "points": 258
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3291307466328138605,
+   "points": 216
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 355314618159473844,
+   "points": 244
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3838115603910980347,
+   "points": 229
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3149162477414737452,
+   "points": 236
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2904472841679886275,
+   "points": 247
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 242641492267117608,
+   "points": 240
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3860786553926563157,
+   "points": 232
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2574973029453448697,
+   "points": 243
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 4312876803966337520,
+   "points": 248
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1345418888979850348,
+   "points": 246
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2719889568465568624,
+   "points": 271
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 2193029828827396449,
+   "points": 254
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1571532965851867985,
+   "points": 226
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 4199236363286547939,
+   "points": 236
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3986970382286560154,
+   "points": 220
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3295718992609273873,
+   "points": 237
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1583094124078142709,
+   "points": 241
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 531597119130040852,
+   "points": 245
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 908388963605659265,
+   "points": 271
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 4218332278751267149,
+   "points": 227
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3834584292397130521,
+   "points": 255
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 3107560573341497582,
+   "points": 260
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 34039300642980646,
+   "points": 236
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1720602368373950384,
+   "points": 239
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1123670838949080729,
+   "points": 219
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 1673344744927317268,
+   "points": 258
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 636166821641420280,
+   "points": 220
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "late_stoppers",
+   "seed": 762114577149877767,
+   "points": 258
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 374019424539152092,
+   "points": 201
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 251130478150851826,
+   "points": 239
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2103662818095565891,
+   "points": 195
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2072397682455863027,
+   "points": 235
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 727892592370975939,
+   "points": 236
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2654741156609127566,
+   "points": 234
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 401401212390937745,
+   "points": 275
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 786906000113452442,
+   "points": 244
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2820153334737964677,
+   "points": 255
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 4256428538116894830,
+   "points": 267
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1188626246370922205,
+   "points": 178
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1284320100189848898,
+   "points": 249
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3291307466328138605,
+   "points": 233
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 355314618159473844,
+   "points": 253
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3838115603910980347,
+   "points": 232
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3149162477414737452,
+   "points": 270
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2904472841679886275,
+   "points": 243
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 242641492267117608,
+   "points": 252
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3860786553926563157,
+   "points": 226
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2574973029453448697,
+   "points": 248
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 4312876803966337520,
+   "points": 218
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1345418888979850348,
+   "points": 250
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2719889568465568624,
+   "points": 269
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 2193029828827396449,
+   "points": 250
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1571532965851867985,
+   "points": 243
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 4199236363286547939,
+   "points": 245
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3986970382286560154,
+   "points": 216
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3295718992609273873,
+   "points": 259
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1583094124078142709,
+   "points": 240
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 531597119130040852,
+   "points": 250
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 908388963605659265,
+   "points": 263
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 4218332278751267149,
+   "points": 231
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3834584292397130521,
+   "points": 227
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 3107560573341497582,
+   "points": 266
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 34039300642980646,
+   "points": 256
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1720602368373950384,
+   "points": 248
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1123670838949080729,
+   "points": 237
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 1673344744927317268,
+   "points": 260
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 636166821641420280,
+   "points": 230
+  },
+  {
+   "policy": "r3_run_championship",
+   "variant": "sc_opportunists",
+   "seed": 762114577149877767,
+   "points": 261
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 374019424539152092,
+   "points": 225
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 251130478150851826,
+   "points": 236
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 2103662818095565891,
+   "points": 231
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 2072397682455863027,
+   "points": 241
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 727892592370975939,
+   "points": 237
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 2654741156609127566,
+   "points": 228
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 401401212390937745,
+   "points": 267
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 786906000113452442,
+   "points": 221
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 2820153334737964677,
+   "points": 259
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 4256428538116894830,
+   "points": 269
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 1188626246370922205,
+   "points": 193
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 1284320100189848898,
+   "points": 250
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 3291307466328138605,
+   "points": 239
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 355314618159473844,
+   "points": 231
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 3838115603910980347,
+   "points": 244
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 3149162477414737452,
+   "points": 240
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 2904472841679886275,
+   "points": 228
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 242641492267117608,
+   "points": 240
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 3860786553926563157,
+   "points": 246
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 2574973029453448697,
+   "points": 244
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 4312876803966337520,
+   "points": 246
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 1345418888979850348,
+   "points": 230
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 2719889568465568624,
+   "points": 259
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 2193029828827396449,
+   "points": 237
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 1571532965851867985,
+   "points": 234
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 4199236363286547939,
+   "points": 254
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 3986970382286560154,
+   "points": 244
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 3295718992609273873,
+   "points": 260
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 1583094124078142709,
+   "points": 251
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 531597119130040852,
+   "points": 257
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 908388963605659265,
+   "points": 275
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 4218332278751267149,
+   "points": 225
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 3834584292397130521,
+   "points": 234
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 3107560573341497582,
+   "points": 256
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 34039300642980646,
+   "points": 247
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 1720602368373950384,
+   "points": 252
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 1123670838949080729,
+   "points": 229
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 1673344744927317268,
+   "points": 249
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 636166821641420280,
+   "points": 227
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "public",
+   "seed": 762114577149877767,
+   "points": 276
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 374019424539152092,
+   "points": 268
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 251130478150851826,
+   "points": 244
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 2103662818095565891,
+   "points": 236
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 2072397682455863027,
+   "points": 242
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 727892592370975939,
+   "points": 248
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 2654741156609127566,
+   "points": 242
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 401401212390937745,
+   "points": 267
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 786906000113452442,
+   "points": 233
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 2820153334737964677,
+   "points": 268
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 4256428538116894830,
+   "points": 241
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 1188626246370922205,
+   "points": 200
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 1284320100189848898,
+   "points": 240
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 3291307466328138605,
+   "points": 249
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 355314618159473844,
+   "points": 225
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 3838115603910980347,
+   "points": 246
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 3149162477414737452,
+   "points": 252
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 2904472841679886275,
+   "points": 257
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 242641492267117608,
+   "points": 246
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 3860786553926563157,
+   "points": 251
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 2574973029453448697,
+   "points": 275
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 4312876803966337520,
+   "points": 251
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 1345418888979850348,
+   "points": 249
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 2719889568465568624,
+   "points": 279
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 2193029828827396449,
+   "points": 250
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 1571532965851867985,
+   "points": 243
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 4199236363286547939,
+   "points": 256
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 3986970382286560154,
+   "points": 275
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 3295718992609273873,
+   "points": 281
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 1583094124078142709,
+   "points": 254
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 531597119130040852,
+   "points": 263
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 908388963605659265,
+   "points": 269
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 4218332278751267149,
+   "points": 229
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 3834584292397130521,
+   "points": 227
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 3107560573341497582,
+   "points": 262
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 34039300642980646,
+   "points": 252
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 1720602368373950384,
+   "points": 264
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 1123670838949080729,
+   "points": 242
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 1673344744927317268,
+   "points": 259
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 636166821641420280,
+   "points": 229
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "early_stoppers",
+   "seed": 762114577149877767,
+   "points": 261
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 374019424539152092,
+   "points": 225
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 251130478150851826,
+   "points": 231
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 2103662818095565891,
+   "points": 236
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 2072397682455863027,
+   "points": 231
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 727892592370975939,
+   "points": 225
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 2654741156609127566,
+   "points": 216
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 401401212390937745,
+   "points": 269
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 786906000113452442,
+   "points": 225
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 2820153334737964677,
+   "points": 254
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 4256428538116894830,
+   "points": 265
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 1188626246370922205,
+   "points": 200
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 1284320100189848898,
+   "points": 247
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 3291307466328138605,
+   "points": 242
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 355314618159473844,
+   "points": 213
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 3838115603910980347,
+   "points": 237
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 3149162477414737452,
+   "points": 228
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 2904472841679886275,
+   "points": 228
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 242641492267117608,
+   "points": 234
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 3860786553926563157,
+   "points": 241
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 2574973029453448697,
+   "points": 241
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 4312876803966337520,
+   "points": 264
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 1345418888979850348,
+   "points": 222
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 2719889568465568624,
+   "points": 266
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 2193029828827396449,
+   "points": 234
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 1571532965851867985,
+   "points": 208
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 4199236363286547939,
+   "points": 261
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 3986970382286560154,
+   "points": 239
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 3295718992609273873,
+   "points": 247
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 1583094124078142709,
+   "points": 250
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 531597119130040852,
+   "points": 252
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 908388963605659265,
+   "points": 288
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 4218332278751267149,
+   "points": 223
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 3834584292397130521,
+   "points": 223
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 3107560573341497582,
+   "points": 239
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 34039300642980646,
+   "points": 244
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 1720602368373950384,
+   "points": 247
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 1123670838949080729,
+   "points": 215
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 1673344744927317268,
+   "points": 241
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 636166821641420280,
+   "points": 230
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "late_stoppers",
+   "seed": 762114577149877767,
+   "points": 281
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 374019424539152092,
+   "points": 225
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 251130478150851826,
+   "points": 233
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 2103662818095565891,
+   "points": 229
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 2072397682455863027,
+   "points": 241
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 727892592370975939,
+   "points": 237
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 2654741156609127566,
+   "points": 234
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 401401212390937745,
+   "points": 271
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 786906000113452442,
+   "points": 222
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 2820153334737964677,
+   "points": 259
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 4256428538116894830,
+   "points": 245
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 1188626246370922205,
+   "points": 187
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 1284320100189848898,
+   "points": 235
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 3291307466328138605,
+   "points": 249
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 355314618159473844,
+   "points": 226
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 3838115603910980347,
+   "points": 242
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 3149162477414737452,
+   "points": 260
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 2904472841679886275,
+   "points": 222
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 242641492267117608,
+   "points": 252
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 3860786553926563157,
+   "points": 247
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 2574973029453448697,
+   "points": 241
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 4312876803966337520,
+   "points": 242
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 1345418888979850348,
+   "points": 231
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 2719889568465568624,
+   "points": 271
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 2193029828827396449,
+   "points": 240
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 1571532965851867985,
+   "points": 234
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 4199236363286547939,
+   "points": 268
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 3986970382286560154,
+   "points": 247
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 3295718992609273873,
+   "points": 260
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 1583094124078142709,
+   "points": 243
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 531597119130040852,
+   "points": 264
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 908388963605659265,
+   "points": 274
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 4218332278751267149,
+   "points": 227
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 3834584292397130521,
+   "points": 211
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 3107560573341497582,
+   "points": 253
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 34039300642980646,
+   "points": 257
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 1720602368373950384,
+   "points": 264
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 1123670838949080729,
+   "points": 230
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 1673344744927317268,
+   "points": 249
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 636166821641420280,
+   "points": 254
+  },
+  {
+   "policy": "r0_pitwall_bot",
+   "variant": "sc_opportunists",
+   "seed": 762114577149877767,
+   "points": 277
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 374019424539152092,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 251130478150851826,
+   "points": 224
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 2103662818095565891,
+   "points": 201
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 2072397682455863027,
+   "points": 226
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 727892592370975939,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 2654741156609127566,
+   "points": 234
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 401401212390937745,
+   "points": 225
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 786906000113452442,
+   "points": 231
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 2820153334737964677,
+   "points": 236
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 4256428538116894830,
+   "points": 270
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 1188626246370922205,
+   "points": 192
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 1284320100189848898,
+   "points": 240
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 3291307466328138605,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 355314618159473844,
+   "points": 238
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 3838115603910980347,
+   "points": 231
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 3149162477414737452,
+   "points": 246
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 2904472841679886275,
+   "points": 223
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 242641492267117608,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 3860786553926563157,
+   "points": 225
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 2574973029453448697,
+   "points": 236
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 4312876803966337520,
+   "points": 204
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 1345418888979850348,
+   "points": 233
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 2719889568465568624,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 2193029828827396449,
+   "points": 248
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 1571532965851867985,
+   "points": 216
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 4199236363286547939,
+   "points": 213
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 3986970382286560154,
+   "points": 219
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 3295718992609273873,
+   "points": 221
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 1583094124078142709,
+   "points": 230
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 531597119130040852,
+   "points": 242
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 908388963605659265,
+   "points": 243
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 4218332278751267149,
+   "points": 236
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 3834584292397130521,
+   "points": 236
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 3107560573341497582,
+   "points": 238
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 34039300642980646,
+   "points": 217
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 1720602368373950384,
+   "points": 256
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 1123670838949080729,
+   "points": 226
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 1673344744927317268,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 636166821641420280,
+   "points": 219
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "public",
+   "seed": 762114577149877767,
+   "points": 224
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 374019424539152092,
+   "points": 254
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 251130478150851826,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 2103662818095565891,
+   "points": 204
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 2072397682455863027,
+   "points": 223
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 727892592370975939,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 2654741156609127566,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 401401212390937745,
+   "points": 230
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 786906000113452442,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 2820153334737964677,
+   "points": 243
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 4256428538116894830,
+   "points": 231
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 1188626246370922205,
+   "points": 189
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 1284320100189848898,
+   "points": 225
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 3291307466328138605,
+   "points": 209
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 355314618159473844,
+   "points": 213
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 3838115603910980347,
+   "points": 199
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 3149162477414737452,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 2904472841679886275,
+   "points": 212
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 242641492267117608,
+   "points": 204
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 3860786553926563157,
+   "points": 190
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 2574973029453448697,
+   "points": 236
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 4312876803966337520,
+   "points": 203
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 1345418888979850348,
+   "points": 223
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 2719889568465568624,
+   "points": 256
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 2193029828827396449,
+   "points": 225
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 1571532965851867985,
+   "points": 212
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 4199236363286547939,
+   "points": 233
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 3986970382286560154,
+   "points": 238
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 3295718992609273873,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 1583094124078142709,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 531597119130040852,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 908388963605659265,
+   "points": 251
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 4218332278751267149,
+   "points": 215
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 3834584292397130521,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 3107560573341497582,
+   "points": 210
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 34039300642980646,
+   "points": 224
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 1720602368373950384,
+   "points": 252
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 1123670838949080729,
+   "points": 235
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 1673344744927317268,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 636166821641420280,
+   "points": 204
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "early_stoppers",
+   "seed": 762114577149877767,
+   "points": 218
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 374019424539152092,
+   "points": 220
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 251130478150851826,
+   "points": 215
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 2103662818095565891,
+   "points": 201
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 2072397682455863027,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 727892592370975939,
+   "points": 226
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 2654741156609127566,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 401401212390937745,
+   "points": 221
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 786906000113452442,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 2820153334737964677,
+   "points": 221
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 4256428538116894830,
+   "points": 264
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 1188626246370922205,
+   "points": 211
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 1284320100189848898,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 3291307466328138605,
+   "points": 210
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 355314618159473844,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 3838115603910980347,
+   "points": 218
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 3149162477414737452,
+   "points": 218
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 2904472841679886275,
+   "points": 217
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 242641492267117608,
+   "points": 210
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 3860786553926563157,
+   "points": 213
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 2574973029453448697,
+   "points": 229
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 4312876803966337520,
+   "points": 204
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 1345418888979850348,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 2719889568465568624,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 2193029828827396449,
+   "points": 228
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 1571532965851867985,
+   "points": 197
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 4199236363286547939,
+   "points": 208
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 3986970382286560154,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 3295718992609273873,
+   "points": 213
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 1583094124078142709,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 531597119130040852,
+   "points": 240
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 908388963605659265,
+   "points": 249
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 4218332278751267149,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 3834584292397130521,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 3107560573341497582,
+   "points": 223
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 34039300642980646,
+   "points": 214
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 1720602368373950384,
+   "points": 251
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 1123670838949080729,
+   "points": 205
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 1673344744927317268,
+   "points": 213
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 636166821641420280,
+   "points": 205
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "late_stoppers",
+   "seed": 762114577149877767,
+   "points": 216
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 374019424539152092,
+   "points": 225
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 251130478150851826,
+   "points": 221
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 2103662818095565891,
+   "points": 193
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 2072397682455863027,
+   "points": 215
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 727892592370975939,
+   "points": 224
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 2654741156609127566,
+   "points": 236
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 401401212390937745,
+   "points": 216
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 786906000113452442,
+   "points": 229
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 2820153334737964677,
+   "points": 236
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 4256428538116894830,
+   "points": 247
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 1188626246370922205,
+   "points": 188
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 1284320100189848898,
+   "points": 232
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 3291307466328138605,
+   "points": 215
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 355314618159473844,
+   "points": 223
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 3838115603910980347,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 3149162477414737452,
+   "points": 256
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 2904472841679886275,
+   "points": 217
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 242641492267117608,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 3860786553926563157,
+   "points": 211
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 2574973029453448697,
+   "points": 234
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 4312876803966337520,
+   "points": 182
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 1345418888979850348,
+   "points": 226
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 2719889568465568624,
+   "points": 246
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 2193029828827396449,
+   "points": 234
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 1571532965851867985,
+   "points": 214
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 4199236363286547939,
+   "points": 211
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 3986970382286560154,
+   "points": 221
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 3295718992609273873,
+   "points": 234
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 1583094124078142709,
+   "points": 234
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 531597119130040852,
+   "points": 247
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 908388963605659265,
+   "points": 252
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 4218332278751267149,
+   "points": 234
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 3834584292397130521,
+   "points": 213
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 3107560573341497582,
+   "points": 222
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 34039300642980646,
+   "points": 228
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 1720602368373950384,
+   "points": 257
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 1123670838949080729,
+   "points": 229
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 1673344744927317268,
+   "points": 227
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 636166821641420280,
+   "points": 242
+  },
+  {
+   "policy": "public_baseline",
+   "variant": "sc_opportunists",
+   "seed": 762114577149877767,
+   "points": 210
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_placeholder",
+  "scenarios": [
+    {
+      "id": "allocate_for_immediate_a_points",
+      "pair_id": "resource_horizon_pair",
+      "resource": "fresh_power_unit",
+      "inventory": 1,
+      "public_expected_team_gain": {"driver_a": 4.0, "driver_b": 2.5, "HOLD": 1.0}
+    },
+    {
+      "id": "allocate_for_future_b_stress",
+      "pair_id": "resource_horizon_pair",
+      "resource": "fresh_power_unit",
+      "inventory": 1,
+      "public_expected_team_gain": {"driver_a": 2.0, "driver_b": 5.5, "HOLD": 1.5}
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_placeholder",
+  "scenarios": [
+    {
+      "id": "swap_for_faster_teammate",
+      "description": "Future integration fixture: exchange positions for the locally faster car.",
+      "public_state": {
+        "driver_a_position": 4,
+        "driver_b_position": 5,
+        "driver_b_pace_advantage_seconds_per_lap": 0.6
+      },
+      "proposed_action": {
+        "type": "TEAM_ORDER",
+        "order": "SWAP",
+        "favored_driver": "driver_b",
+        "give_back": null
+      }
+    },
+    {
+      "id": "conditional_swap_with_give_back",
+      "description": "Future integration fixture: swap now and restore order if no position is gained.",
+      "public_state": {
+        "driver_a_position": 6,
+        "driver_b_position": 7,
+        "target_rival_position": 5
+      },
+      "proposed_action": {
+        "type": "TEAM_ORDER",
+        "order": "SWAP",
+        "favored_driver": "driver_b",
+        "give_back": {
+          "condition": "IF_NO_POSITION_GAIN",
+          "deadline_lap": 40
+        }
+      }
+    }
+  ]
+}

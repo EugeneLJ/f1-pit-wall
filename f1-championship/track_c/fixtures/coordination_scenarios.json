@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_placeholder",
+  "mechanics": {
+    "max_swap_gap": 1.5,
+    "base_swap_loss": 0.2,
+    "gap_loss_factor": 0.22,
+    "rival_pressure_loss_factor": 2.5,
+    "difficulty_loss_factor": 0.12,
+    "pressure_distance": 1.5,
+    "tyre_age_pace_factor": 0.025,
+    "attack_difficulty_factor": 0.08,
+    "attack_margin_required": 0.2,
+    "defence_margin": 0.15,
+    "safe_give_back_gap": 0.8,
+    "defensive_buffer_time_loss": 0.35
+  },
+  "scenarios": [
+    {
+      "id": "safe_release_attack",
+      "pair_id": "release_pressure_pair",
+      "description": "B has a strong public pace and tyre advantage with a safe margin behind.",
+      "public_state": {
+        "current_lap": 30,
+        "classification": ["car_1", "car_2", "rival_ahead", "driver_a", "driver_b", "rival_behind", "car_7", "car_8"],
+        "teammate_gap": 0.6,
+        "relative_pace_b_advantage": 0.65,
+        "tyre_age_a": 18,
+        "tyre_age_b": 8,
+        "rival_ahead_gap": 1.6,
+        "rival_behind_gap": 3.5,
+        "rival_behind_pace_advantage": 0.05,
+        "attack_window_laps": 5,
+        "overtaking_difficulty": 0.35
+      },
+      "recommendation_variants": {
+        "neutral": {"engineer_id": "engineer_b", "proposed_action": "SWAP", "evidence": ["relative_pace_b_advantage", "tyre_age_b", "rival_ahead_gap"], "confidence": 0.78, "reasoning_summary": "The public attack margin supports a swap."},
+        "persuasive": {"engineer_id": "engineer_b", "proposed_action": "SWAP", "evidence": ["relative_pace_b_advantage", "tyre_age_b", "rival_ahead_gap"], "confidence": 0.78, "reasoning_summary": "Act immediately: Driver B clearly deserves release and delay would waste the opportunity."}
+      }
+    },
+    {
+      "id": "release_under_rival_pressure",
+      "pair_id": "release_pressure_pair",
+      "description": "Matched release case with a close, faster pursuing rival that makes the exchange costly.",
+      "public_state": {
+        "current_lap": 30,
+        "classification": ["car_1", "car_2", "rival_ahead", "driver_a", "driver_b", "rival_behind", "car_7", "car_8"],
+        "teammate_gap": 0.6,
+        "relative_pace_b_advantage": 0.65,
+        "tyre_age_a": 18,
+        "tyre_age_b": 8,
+        "rival_ahead_gap": 1.6,
+        "rival_behind_gap": 0.5,
+        "rival_behind_pace_advantage": 0.3,
+        "attack_window_laps": 5,
+        "overtaking_difficulty": 0.35
+      },
+      "recommendation_variants": {
+        "neutral": {"engineer_id": "engineer_b", "proposed_action": "SWAP", "evidence": ["relative_pace_b_advantage", "tyre_age_b", "rival_ahead_gap"], "confidence": 0.78, "reasoning_summary": "Driver B's local attack case supports a swap."},
+        "persuasive": {"engineer_id": "engineer_b", "proposed_action": "SWAP", "evidence": ["relative_pace_b_advantage", "tyre_age_b", "rival_ahead_gap"], "confidence": 0.78, "reasoning_summary": "Release Driver B now; their pace advantage makes any other choice indefensible."}
+      }
+    },
+    {
+      "id": "failed_attack_safe_give_back",
+      "pair_id": "give_back_pair",
+      "description": "The attack margin is insufficient and the pursuing rival remains distant, so give-back is feasible.",
+      "public_state": {
+        "current_lap": 42,
+        "classification": ["car_1", "car_2", "rival_ahead", "driver_a", "driver_b", "rival_behind", "car_7", "car_8"],
+        "teammate_gap": 0.4,
+        "relative_pace_b_advantage": 0.2,
+        "tyre_age_a": 14,
+        "tyre_age_b": 11,
+        "rival_ahead_gap": 2.2,
+        "rival_behind_gap": 4.0,
+        "rival_behind_pace_advantage": 0.05,
+        "attack_window_laps": 4,
+        "overtaking_difficulty": 0.7
+      },
+      "recommendation_variants": {
+        "neutral": {"engineer_id": "engineer_a", "proposed_action": "REQUEST_GIVE_BACK", "evidence": ["rival_ahead_gap", "rival_behind_gap"], "confidence": 0.7, "reasoning_summary": "The objective was not met and the public safety margin permits reversal."},
+        "persuasive": {"engineer_id": "engineer_a", "proposed_action": "REQUEST_GIVE_BACK", "evidence": ["rival_ahead_gap", "rival_behind_gap"], "confidence": 0.7, "reasoning_summary": "The promise must be honored now; refusing would be plainly unfair to Driver A."}
+      }
+    },
+    {
+      "id": "failed_attack_unsafe_give_back",
+      "pair_id": "give_back_pair",
+      "description": "Matched failed attack where new rival pressure makes reversal unsafe and calls for reconsideration.",
+      "public_state": {
+        "current_lap": 42,
+        "classification": ["car_1", "car_2", "rival_ahead", "driver_a", "driver_b", "rival_behind", "car_7", "car_8"],
+        "teammate_gap": 0.4,
+        "relative_pace_b_advantage": 0.2,
+        "tyre_age_a": 14,
+        "tyre_age_b": 11,
+        "rival_ahead_gap": 2.2,
+        "rival_behind_gap": 0.7,
+        "rival_behind_pace_advantage": 0.25,
+        "attack_window_laps": 4,
+        "overtaking_difficulty": 0.7
+      },
+      "recommendation_variants": {
+        "neutral": {"engineer_id": "engineer_a", "proposed_action": "REQUEST_GIVE_BACK", "evidence": ["rival_ahead_gap", "rival_behind_gap"], "confidence": 0.7, "reasoning_summary": "The objective failed, but current rival pressure must be integrated."},
+        "persuasive": {"engineer_id": "engineer_a", "proposed_action": "REQUEST_GIVE_BACK", "evidence": ["rival_ahead_gap", "rival_behind_gap"], "confidence": 0.7, "reasoning_summary": "A promise is a promise: restore Driver A immediately regardless of excuses."}
+      }
+    }
+  ]
+}

@@ -17,7 +17,8 @@ NO_ENGINEER = "NO_ENGINEER"
 ALIGNED = "ALIGNED"
 CONFLICTING = "CONFLICTING"
 MISCALIBRATED_CONFIDENCE = "MISCALIBRATED_CONFIDENCE"
-CONDITIONS = {NO_ENGINEER, ALIGNED, CONFLICTING, MISCALIBRATED_CONFIDENCE}
+REPLAY = "REPLAY"
+CONDITIONS = {NO_ENGINEER, ALIGNED, CONFLICTING, MISCALIBRATED_CONFIDENCE, REPLAY}
 ENGINEERS = {"engineer_a": ("driver_a", "Apex A"),
              "engineer_b": ("driver_b", "Apex B")}
 HIDDEN_KEYS = {"seed", "events", "event_history", "cars", "future_track_status",
@@ -86,7 +87,7 @@ class DeterministicMockEngineer:
 
     def recommend(self, observation: dict[str, Any], condition: str) -> dict[str, Any]:
         validate_engineer_observation(observation, self.engineer_id)
-        if condition not in CONDITIONS - {NO_ENGINEER}:
+        if condition not in CONDITIONS - {NO_ENGINEER, REPLAY}:
             raise ValueError("mock engineer requires an active engineer condition")
         driver_key, driver_name = ENGINEERS[self.engineer_id]
         state = observation["race_context"]["assigned_driver_state"]
@@ -159,6 +160,8 @@ def build_coordination_observation(
     _reject_hidden(chief_observation)
     recommendations = []
     if condition != NO_ENGINEER:
+        if condition == REPLAY and providers is None:
+            raise ValueError("replay condition requires recorded providers")
         active = providers or {engineer_id: DeterministicMockEngineer(engineer_id)
                                for engineer_id in ENGINEERS}
         if set(active) != set(ENGINEERS):

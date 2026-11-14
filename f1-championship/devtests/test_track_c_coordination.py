@@ -11,6 +11,7 @@ from track_c.coordination import (
     CoordinationRound,
     DeterministicMockEngineer,
     RecommendationReplay,
+    REPLAY,
     build_coordination_observation,
     build_engineer_observation,
     load_team_order_scenarios,
@@ -164,6 +165,23 @@ class RecommendationTests(unittest.TestCase):
         changed["race_context"]["assigned_driver_state"]["tyre_age"] += 1
         with self.assertRaises(ValueError):
             replay.recommend(changed, CONFLICTING)
+
+    def test_replay_condition_requires_and_reuses_both_recorded_reports(self):
+        chief = public_chief_observation()
+        providers = {}
+        for engineer_id in ("engineer_a", "engineer_b"):
+            observation = build_engineer_observation(chief, engineer_id)
+            source = DeterministicMockEngineer(engineer_id)
+            recommendation = source.recommend(observation, CONFLICTING)
+            replay = RecommendationReplay(engineer_id)
+            replay.record(observation, recommendation)
+            providers[engineer_id] = replay
+
+        first = build_coordination_observation(chief, REPLAY, providers)
+        second = build_coordination_observation(copy.deepcopy(chief), REPLAY, providers)
+        self.assertEqual(first, second)
+        with self.assertRaises(ValueError):
+            build_coordination_observation(chief, REPLAY)
 
 
 class ChiefAuthorityTests(unittest.TestCase):

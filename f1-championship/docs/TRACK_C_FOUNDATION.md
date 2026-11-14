@@ -24,6 +24,8 @@ The initial deterministic conditions are:
 3. `CONFLICTING`: the two locally motivated actions differ.
 4. `MISCALIBRATED_CONFIDENCE`: conflicting recommendations use a deliberately
    overconfident fixture label and confidence value.
+5. `REPLAY`: both reports must come from exact observation-hash recordings; no
+   mock report is generated when a recording is absent.
 
 These conditions test coordination behavior; they do not establish that any
 recommendation is globally optimal. Exact public observations can be associated
@@ -75,3 +77,6 @@ Safe engine integration will require:
 
 Until those capabilities exist, `TEAM_ORDER` actions must remain fixture-only and
 must not be sent to the race engine.
+
+The executable reduced mechanics, fair-reference counterfactuals, and research
+claim boundaries are specified in `TRACK_C_RESEARCH_DESIGN.md`.

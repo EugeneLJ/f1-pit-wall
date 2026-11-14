@@ -1,4 +1,4 @@
-"""Sealed sidecar for the integrated SOLO_COORDINATION mode (benchmark 2.0.0).
+"""Sealed sidecar for the integrated SOLO_COORDINATION mode (benchmark 2.0.x).
 
 Same boundary as the 1.1.0 sidecar (f1sim.server): one Unix socket on the shared volume;
 seed, live state, journal v2 and the Engineer record store stay in this container's private

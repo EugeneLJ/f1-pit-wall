@@ -37,10 +37,10 @@ docker.write_text(text)
 toml = dest / "task.toml"
 text = toml.read_text()
 text = text.replace('name = "EugeneLJ/f1-championship"', 'name = "EugeneLJ/f1-championship-integrated"', 1)
-text = text.replace('version = "1.1.0"', 'version = "2.0.0"', 1)
+text = text.replace('version = "1.1.0"', 'version = "2.0.1"', 1)
 text = text.replace('command = "python3 -m f1sim.export"', 'command = "python3 -m f1sim.export_integrated"', 1)
 toml.write_text(text)
-for path, needle in ((docker, "f1sim.integrated_server"), (toml, "2.0.0"), (toml, "export_integrated")):
+for path, needle in ((docker, "f1sim.integrated_server"), (toml, "2.0.1"), (toml, "export_integrated")):
     assert needle in path.read_text(), (path, needle)
 PY
 echo "integrated task ($COND) at $DEST"

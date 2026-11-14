@@ -104,7 +104,7 @@ def play(cfg, seed, pols, broker=None):
 class VersionAndLegacyTests(unittest.TestCase):
     def test_versions_and_modes(self):
         self.assertEqual(BENCHMARK_VERSION, "1.1.0")
-        self.assertEqual(C.INTEGRATED_VERSION, "2.0.0")
+        self.assertEqual(C.INTEGRATED_VERSION, "2.0.1")
         with self.assertRaises(ValueError):
             C.IntegratedConfig(C.SOLO_LEGACY, []).validate()
         self.assertNotEqual(C.solo_coordination().config_hash(), C.two_team(1).config_hash())

@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Optional
 
 from ..version import BENCHMARK_VERSION as LEGACY_VERSION
 
-INTEGRATED_VERSION = "2.0.0"
+INTEGRATED_VERSION = "2.0.1"
 SOLO_LEGACY = "SOLO_LEGACY"
 SOLO_COORDINATION = "SOLO_COORDINATION"
 TWO_TEAM_COMPETITION = "TWO_TEAM_COMPETITION"
@@ -27,6 +27,9 @@ ENGINEER_CONDITIONS = ("CHIEF_ONLY", "GEMINI_LITE_ENGINEERS", "RECORDED_RECOMMEN
 RIVAL_CONDITIONS = ("ADAPTIVE", "FIXED_REPLAY")
 
 VERSION_NOTES = {
+    "2.0.1": ("Interface clarification only (B7-P0 probe): action_schema states that component decisions "
+              "are a list and that consumed_reports is a top-level field, and gives one format example "
+              "per phase (the same examples as instruction.md). Mechanics, legal actions, scoring unchanged."),
     "2.0.0": ("Integrated modes (B6): Track C team orders (RACE/HOLD/SWAP/DEFENSIVE_BUFFER, "
               "KEEP_ORDER/REQUEST_GIVE_BACK) and conditional commitments executed by the Track B "
               "race engine; Engineer reports as observation content; multi-team simultaneous ticks; "

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Trusted verifier for the integrated SOLO_COORDINATION task (benchmark 2.0.0).
+"""Trusted verifier for the integrated SOLO_COORDINATION task (benchmark 2.0.x).
 
 Reads only sidecar evidence (journal v2 + Engineer record store + manifest) and the hidden seed
 in this image. Integrity: manifest hashes, journal hash chain, and a full replay from the seed

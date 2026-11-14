@@ -322,9 +322,15 @@ class IntegratedSession:
             for d in state.power_units if driver_team(d) != slot}
         if self.decision_type == COMPONENT_DECISION:
             obs["race_progress"] = {"status": "PRE_RACE", "completed_decisions": 0}
-            obs["action_schema"] = {"type": COMPONENT_DECISION,
-                                    "decisions": "exactly one USE or REPLACE for each own driver/component pair",
-                                    "optional": {"consumed_reports": "list of Engineer record hashes used"}}
+            first = TEAM_DRIVERS[slot][0]
+            obs["action_schema"] = {
+                "type": COMPONENT_DECISION,
+                "decisions": ("a LIST with exactly one {driver, component, action} object per own driver/component "
+                              "pair; action is USE or REPLACE (see controlled_drivers.*.components.*.legal_actions)"),
+                "consumed_reports": "optional top-level list of Engineer record hashes used",
+                "format_example": {"type": COMPONENT_DECISION, "decisions": [
+                    {"driver": self.public_driver(first), "component": "ICE", "action": "USE"},
+                    "...one object per own driver/component pair..."]}}
             return obs
         obs["race_progress"] = self._race_view(slot)
         obs["starting_grid"] = [self.public_driver(d) for d in self._active.starting_grid]
@@ -334,7 +340,9 @@ class IntegratedSession:
                                 "team_order": {"order": "|".join(obs["team_orders"]["legal_team_orders"]),
                                                "commitment": "optional with SWAP: {objective: PASS_CAR_AHEAD, "
                                                              "deadline_lap: int, give_back_if: OBJECTIVE_NOT_MET}"},
-                                "optional": {"consumed_reports": "list of Engineer record hashes used"}}
+                                "consumed_reports": "optional top-level list of Engineer record hashes used",
+                                "format_example": {"type": RACE_STRATEGY, "driver_a": "PIT_HARD", "driver_b": "STAY",
+                                                   "team_order": {"order": "RACE"}}}
         return obs
 
     def _race_view(self, slot: str) -> Dict[str, Any]:

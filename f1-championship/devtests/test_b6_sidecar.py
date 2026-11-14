@@ -85,7 +85,7 @@ class IntegratedSidecarTests(unittest.TestCase):
 
     def test_task_files_and_legacy_untouched(self):
         toml = (self.root / "task.toml").read_text()
-        self.assertIn('version = "2.0.0"', toml)
+        self.assertIn('version = "2.0.1"', toml)
         self.assertIn("f1sim.export_integrated", toml)
         self.assertIn("f1sim.integrated_server", (self.root / "environment/sim/Dockerfile").read_text())
         self.assertIn('version = "1.1.0"', (TASK / "task.toml").read_text())

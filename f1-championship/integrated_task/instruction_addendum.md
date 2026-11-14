@@ -1,5 +1,5 @@
 
-## Integrated mode (benchmark 2.0.0, SOLO_COORDINATION)
+## Integrated mode (benchmark 2.0.1, SOLO_COORDINATION)
 
 This version adds team orders, conditional commitments and two race engineers.
 Everything above still applies; decision ids look like `t001`.

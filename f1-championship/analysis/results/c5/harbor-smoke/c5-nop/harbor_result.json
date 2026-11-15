@@ -1,0 +1,124 @@
+{
+    "schema_version": 1,
+    "id": "2589dec6-b979-450e-862b-26f4a1ab8be9",
+    "task_name": "EugeneLJ/f1-championship-integrated",
+    "trial_name": "c5task__Qot4eM9",
+    "trial_uri": "file:///root/f1-c5/jobs/c5-nop/c5task__Qot4eM9",
+    "task_id": {
+        "path": "/root/f1-c5/build/c5task"
+    },
+    "source": null,
+    "task_checksum": "9a1afcf4bbba8c2df02ffd5d58c7d8a84996fea0cd51ed464c75c78e1c31359f",
+    "config": {
+        "schema_version": 1,
+        "task": {
+            "path": "/root/f1-c5/build/c5task",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "c5task__Qot4eM9",
+        "trials_dir": "/root/f1-c5/jobs/c5-nop",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "nop",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "override_error_policy": {},
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "8e336606-560f-45a8-8566-2777d8ffd8d5",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "nop",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-15T07:05:31.173304Z",
+    "finished_at": "2026-11-15T07:06:18.556651Z",
+    "environment_setup": {
+        "started_at": "2026-11-15T07:05:31.201646Z",
+        "finished_at": "2026-11-15T07:05:40.330913Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-15T07:05:40.330969Z",
+        "finished_at": "2026-11-15T07:05:40.331024Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-15T07:05:40.331095Z",
+        "finished_at": "2026-11-15T07:05:40.331769Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-15T07:06:01.548911Z",
+        "finished_at": "2026-11-15T07:06:18.556637Z"
+    },
+    "step_results": null,
+    "reward_valid": true
+}

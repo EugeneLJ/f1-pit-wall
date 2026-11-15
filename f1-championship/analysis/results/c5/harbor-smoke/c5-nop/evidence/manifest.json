@@ -1,0 +1,11 @@
+{
+  "benchmark_version": "2.2.0",
+  "engineer_record_files": {},
+  "head_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "journal_entries": 0,
+  "journal_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "journal_version": 2,
+  "request_stats": {},
+  "sealed_at": 1794726350.856675,
+  "server_version": "2.2.0"
+}

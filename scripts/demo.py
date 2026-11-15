@@ -428,21 +428,42 @@ def timeline(rows: list[dict[str, Any]], ref_rows: list[dict[str, Any]] | None, 
     return f'<div class="timeline">{"".join(cards)}</div>'
 
 
-def case_cards(examples: list[dict[str, Any]], frontier_label: str) -> str:
+def gap_by_race(rows: list[dict[str, Any]], ref_rows: list[dict[str, Any]]) -> list[tuple[int, int]]:
+    """Realized (race, Reference − run) Apex points for every race where the two runs differ."""
+    return [(r["race"], q["apex"] - r["apex"]) for r, q in zip(rows, ref_rows) if q["apex"] != r["apex"]]
+
+
+def case_cards(examples: list[dict[str, Any]], frontier_label: str, rows: list[dict[str, Any]],
+               ref_rows: list[dict[str, Any]] | None) -> str:
     out = []
     for ex in examples:
         cars = ex["cars"]
-        ctx = (f'Race {ex["race_index"] + 1} · {esc(ex["race_name"])} · lap {ex["lap"]} · {esc(ex["status"])} · {ex["laps_remaining"]} laps to go. '
+        race = ex["race_index"] + 1
+        ctx = (f'Race {race} · {esc(ex["race_name"])} · lap {ex["lap"]} · {esc(ex["status"])} · {ex["laps_remaining"]} laps to go. '
                f'Car A P{cars["driver_a"]["position"]} on {cars["driver_a"]["compound"]} ({cars["driver_a"]["tyre_age"]} laps), '
                f'car B P{cars["driver_b"]["position"]} on {cars["driver_b"]["compound"]} ({cars["driver_b"]["tyre_age"]} laps).')
-        rows = [(f"{frontier_label} chose", esc(ex["chosen"])),
-                ("Best by engine rollout on public inputs", esc(ex["best"])),
-                ("Expected points given up", f'<span class="loss">{ex["regret"]:.1f} ± {ex["se"]:.1f}</span>' if ex["regret"] > 0.05 else "≈ 0")]
+        realized = rows[ex["race_index"]]["apex"] if ex["race_index"] < len(rows) else None
+        ref_realized = ref_rows[ex["race_index"]]["apex"] if ref_rows and ex["race_index"] < len(ref_rows) else None
+        table = [(f"{frontier_label} chose", esc(ex["chosen"])),
+                 ("Best by engine rollout on public inputs", esc(ex["best"]))]
         if ex.get("reference_run_action"):
-            rows.append(("The Reference run at this same Safety Car tick" if ex["status"] == "SC" else "The Reference run at this tick", esc(ex["reference_run_action"])))
-        title = "Race 7 Safety Car: the cheap stop" if ex["tick_id"] == KEY_TICK else f'{ex["status"]} decision, race {ex["race_index"] + 1}'
-        out.append(f'<div class="case"><h3>{esc(title)}</h3><div class="ctx">{ctx}</div><table>'
-                   + "".join(f"<tr><td>{a}</td><td>{b}</td></tr>" for a, b in rows) + "</table></div>")
+            table.append(("The Reference run at this same Safety Car tick" if ex["status"] == "SC" else "The Reference run at this tick", esc(ex["reference_run_action"])))
+        if realized is not None:
+            table.append((f"Realized race {race} points (recorded)",
+                          f"{esc(frontier_label)} {realized} · Reference {ref_realized}" if ref_realized is not None else f"{esc(frontier_label)} {realized}"))
+        table.append(("Estimated decision regret (counterfactual rollout)",
+                      f'<span class="loss">+{ex["regret"]:.1f} ± {ex["se"]:.1f}</span>' if ex["regret"] > 0.05 else "≈ 0"))
+        if ex["tick_id"] == KEY_TICK and realized is not None and realized == ref_realized:
+            title = "A Lucky Outcome Can Hide a Bad Decision"
+            lead = (f'<p class="note" style="margin:0 0 10px">Race {race} Safety Car. Both runs scored {realized} points in this race, so it adds '
+                    f'nothing to the realized championship gap. The regret is an expected-value estimate from a public-information '
+                    f'counterfactual rollout, not points that were actually lost.</p>')
+        else:
+            title = f'Race {race} {ex["status"]} decision'
+            lead = ('<p class="note" style="margin:0 0 10px">The regret is an expected-value estimate from a public-information '
+                    'counterfactual rollout, not points that were actually lost.</p>')
+        out.append(f'<div class="case"><h3>{esc(title)}</h3><div class="ctx">{ctx}</div>{lead}<table>'
+                   + "".join(f"<tr><td>{a}</td><td>{b}</td></tr>" for a, b in table) + "</table></div>")
     return f'<div class="cases">{"".join(out)}</div>'
 
 
@@ -491,7 +512,13 @@ def render(ctx: dict[str, Any]) -> str:
         if others:
             strip = '<div class="runs">All committed Gemini Harbor runs on this seed (each re-verified here): ' + " · ".join(
                 f'{esc(o["source"])} {o["points"]} ({esc(o["instruction"])})' for o in others) + ". Reference " + (f'{ref["points"]}' if ref else "—") + ".</div>"
-        body.append(f'<section><div class="hero">{"".join(tiles)}</div>{strip}</section>')
+        attribution = ""
+        if ref and ref.get("verified") and ref_rows:
+            diffs = gap_by_race(rows, ref_rows)
+            parts = ", ".join(f"race {k} ({d:+d})" for k, d in diffs) or "no race"
+            attribution = (f'<div class="runs">Realized gap by race (Reference − {esc(frontier)}, recorded points): {esc(parts)}; '
+                           f'every other race is level.</div>')
+        body.append(f'<section><div class="hero">{"".join(tiles)}</div>{attribution}{strip}</section>')
         body.append(f'<section><h2>Championship progression</h2><p class="note">Cumulative constructors\' points after each race, from the authoritative replay of the sealed journal. '
                     f'Rivals are from this run; the dashed line is Apex in the Reference run on the same seed.</p>{points_chart(rows, ref_rows, frontier)}</section>')
         key_race = next((ex["race_index"] + 1 for ex in ctx.get("examples", []) if ex["tick_id"] == KEY_TICK), None)
@@ -500,7 +527,8 @@ def render(ctx: dict[str, Any]) -> str:
         if ctx.get("examples"):
             body.append(f'<section><h2>Strategic decisions under neutralisation</h2><p class="note">Counterfactual analysis, not a race result: the authoritative engine rolled out every legal pit '
                         f'choice over {CF_FUTURES} SC/VSC futures drawn from the published model, conditioned on what had happened so far (public inputs only; the reference has a model-access advantage). '
-                        f'Values are expected constructors\' points for the rest of the race.</p>{case_cards(ctx["examples"], frontier)}</section>')
+                        f'Values are expected constructors\' points for the rest of the race; regret is the estimated shortfall of the chosen action, '
+                        f'not realized lost points.</p>{case_cards(ctx["examples"], frontier, rows, ref_rows)}</section>')
         table_rows = "".join(f'<tr><td>R{r["race"]} {esc(r["name"])}</td>' + "".join(f'<td>{r["team_points"].get(t, 0)}</td>' for t in TEAMS)
                              + (f'<td>{ref_rows[i]["apex"]}</td>' if ref_rows else "") + f'<td>{r["cumulative"]["Apex"]}</td></tr>' for i, r in enumerate(rows))
         n = run["report"]["normalization"]

@@ -154,9 +154,15 @@ class DemoV21(unittest.TestCase):
         self.assertEqual(code, 0, err)
         page = (run_dir / "report.html").read_text()
         for needle in ("F1 Championship Strategist", "A Long-Horizon AI Strategy Benchmark", "Recorded replay",
-                       "Championship progression", "Eight-race timeline", "Race 7 Safety Car", "PIT_HARD/STAY",
+                       "Championship progression", "Eight-race timeline", "PIT_HARD/STAY",
                        "Verified evidence", ">279<", ">289<", "+10"):
             self.assertIn(needle, page)
+        # Race 7: a level realized result (33 vs 33) next to a counterfactual regret, never presented as lost points.
+        for needle in ("A Lucky Outcome Can Hide a Bad Decision", "Realized race 7 points (recorded)", "Gemini 33 · Reference 33",
+                       "Estimated decision regret (counterfactual rollout)", "+3.9 ± 0.8", "not points that were actually lost",
+                       "Realized gap by race (Reference − Gemini, recorded points): race 4 (+7), race 6 (+3)"):
+            self.assertIn(needle, page)
+        self.assertNotIn("Expected points given up", page)
         self.assertNotIn("Live · fresh Harbor trial", page)
         self.assertNotIn("No verified championship result", page)
         result = json.loads((run_dir / "demo_result.json").read_text())

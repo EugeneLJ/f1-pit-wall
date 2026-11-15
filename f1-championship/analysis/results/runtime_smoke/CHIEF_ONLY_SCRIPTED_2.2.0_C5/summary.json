@@ -1,0 +1,165 @@
+{
+ "aborted": {
+  "reason": "StopAfter: tick limit 8 reached",
+  "team": "Apex",
+  "tick_id": "t009"
+ },
+ "complete": false,
+ "config": {
+  "benchmark_version": "2.2.0",
+  "c5_weekend": true,
+  "decision_timeout_sec": 120.0,
+  "mode": "SOLO_COORDINATION",
+  "rival_condition": "ADAPTIVE",
+  "rival_policy_variant": null,
+  "teams": [
+   {
+    "chief": {
+     "model": "gemini-3.8-flash",
+     "provider": "google_genai"
+    },
+    "engineers": "CHIEF_ONLY",
+    "label": "Apex",
+    "short": "Apex",
+    "slot": "Apex"
+   }
+  ]
+ },
+ "config_hash": "1fd684f19a690b0b9c984efc23e9777e06121bb86f7e86ab39f571c3d529f2e4",
+ "cost": {
+  "calls": {
+   "chief:Apex": 8
+  },
+  "ceiling_basis_usd": 0.15638,
+  "estimated_usd": 0.07819,
+  "tokens": {
+   "chief:Apex": {
+    "input": 29913,
+    "output": 649,
+    "thinking": 14219
+   }
+  },
+  "usd_limit": 5.0
+ },
+ "decision_types": [
+  "COMPONENT_DECISION",
+  "PRACTICE",
+  "QUALIFYING",
+  "RACE_STRATEGY"
+ ],
+ "label": "CHIEF_ONLY|SCRIPTED|2.2.0|C5",
+ "llm_calls": 8,
+ "max_ticks": 8,
+ "models_listed": {
+  "chief": true
+ },
+ "provenance": [
+  {
+   "error": null,
+   "latency_ms": 4875.684,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "Apex",
+   "tick_id": "t001"
+  },
+  {
+   "error": null,
+   "latency_ms": 9608.19,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "Apex",
+   "tick_id": "t002"
+  },
+  {
+   "error": null,
+   "latency_ms": 11257.681,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "Apex",
+   "tick_id": "t003"
+  },
+  {
+   "error": null,
+   "latency_ms": 38672.978,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "Apex",
+   "tick_id": "t004"
+  },
+  {
+   "error": null,
+   "latency_ms": 11861.678,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "Apex",
+   "tick_id": "t005"
+  },
+  {
+   "error": null,
+   "latency_ms": 10719.361,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "Apex",
+   "tick_id": "t006"
+  },
+  {
+   "error": null,
+   "latency_ms": 15514.847,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "Apex",
+   "tick_id": "t007"
+  },
+  {
+   "error": null,
+   "latency_ms": 26338.055,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "Apex",
+   "tick_id": "t008"
+  }
+ ],
+ "provenance_status": {
+  "Apex": {
+   "SUBMITTED": 8
+  }
+ },
+ "race_results": [],
+ "replay": {
+  "ok": true,
+  "resolved_ticks": 8
+ },
+ "returned_models": [
+  "gemini-3.8-flash"
+ ],
+ "rival_condition": "ADAPTIVE",
+ "spec": {
+  "benchmark_version": "2.2.0",
+  "c5_weekend": true,
+  "chief_model": "gemini-3.8-flash",
+  "engineer_model": "gemini-3.5-flash-lite",
+  "engineers": "CHIEF_ONLY",
+  "replay_journal": null,
+  "rival": "SCRIPTED",
+  "rival_model": "deepseek-4-1-flash-1017"
+ },
+ "standings": {
+  "driver_points": {
+   "Apex A": 0,
+   "Apex B": 0,
+   "Nova A": 0,
+   "Nova B": 0,
+   "Orion A": 0,
+   "Orion B": 0,
+   "Vertex A": 0,
+   "Vertex B": 0
+  },
+  "team_points": {
+   "Apex": 0,
+   "Nova": 0,
+   "Orion": 0,
+   "Vertex": 0
+  }
+ },
+ "wall_seconds": 128.9
+}

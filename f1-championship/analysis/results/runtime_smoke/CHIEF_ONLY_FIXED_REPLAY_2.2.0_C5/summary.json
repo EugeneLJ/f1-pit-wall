@@ -1,0 +1,242 @@
+{
+ "aborted": {
+  "reason": "StopAfter: tick limit 8 reached",
+  "team": "McLearn Racing",
+  "tick_id": "t009"
+ },
+ "complete": false,
+ "config": {
+  "benchmark_version": "2.2.0",
+  "c5_weekend": true,
+  "decision_timeout_sec": 120.0,
+  "mode": "TWO_TEAM_COMPETITION",
+  "rival_condition": "FIXED_REPLAY",
+  "rival_policy_variant": null,
+  "teams": [
+   {
+    "chief": {
+     "model": "gemini-3.8-flash",
+     "provider": "google_genai"
+    },
+    "engineers": "CHIEF_ONLY",
+    "label": "McLearn Racing",
+    "short": "McLearn",
+    "slot": "Apex"
+   },
+   {
+    "chief": {
+     "model": "deepseek-4-1-flash-1017",
+     "provider": "verda_openai_compatible"
+    },
+    "engineers": "CHIEF_ONLY",
+    "label": "Red Bool Racing",
+    "short": "Red Bool",
+    "slot": "Orion"
+   }
+  ]
+ },
+ "config_hash": "1914d32b6141d244469e91380c882ae064ba7a25c8c768007d71584c1aa89dcb",
+ "cost": {
+  "calls": {
+   "chief:McLearn Racing": 8
+  },
+  "ceiling_basis_usd": 0.131463,
+  "estimated_usd": 0.065731,
+  "tokens": {
+   "chief:McLearn Racing": {
+    "input": 30177,
+    "output": 653,
+    "thinking": 11271
+   }
+  },
+  "usd_limit": 5.0
+ },
+ "decision_types": [
+  "COMPONENT_DECISION",
+  "PRACTICE",
+  "QUALIFYING",
+  "RACE_STRATEGY"
+ ],
+ "label": "CHIEF_ONLY|FIXED_REPLAY|2.2.0|C5",
+ "llm_calls": 8,
+ "max_ticks": 8,
+ "models_listed": {
+  "chief": true
+ },
+ "provenance": [
+  {
+   "error": null,
+   "latency_ms": 4260.739,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "McLearn Racing",
+   "tick_id": "t001"
+  },
+  {
+   "error": null,
+   "latency_ms": 2.313,
+   "returned_model": null,
+   "status": "SUBMITTED",
+   "team": "Red Bool Racing",
+   "tick_id": "t001"
+  },
+  {
+   "error": null,
+   "latency_ms": 9716.558,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "McLearn Racing",
+   "tick_id": "t002"
+  },
+  {
+   "error": null,
+   "latency_ms": 3.715,
+   "returned_model": null,
+   "status": "SUBMITTED",
+   "team": "Red Bool Racing",
+   "tick_id": "t002"
+  },
+  {
+   "error": null,
+   "latency_ms": 12208.833,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "McLearn Racing",
+   "tick_id": "t003"
+  },
+  {
+   "error": null,
+   "latency_ms": 4.188,
+   "returned_model": null,
+   "status": "SUBMITTED",
+   "team": "Red Bool Racing",
+   "tick_id": "t003"
+  },
+  {
+   "error": null,
+   "latency_ms": 25907.494,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "McLearn Racing",
+   "tick_id": "t004"
+  },
+  {
+   "error": null,
+   "latency_ms": 1.868,
+   "returned_model": null,
+   "status": "SUBMITTED",
+   "team": "Red Bool Racing",
+   "tick_id": "t004"
+  },
+  {
+   "error": null,
+   "latency_ms": 5129.197,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "McLearn Racing",
+   "tick_id": "t005"
+  },
+  {
+   "error": null,
+   "latency_ms": 0.772,
+   "returned_model": null,
+   "status": "SUBMITTED",
+   "team": "Red Bool Racing",
+   "tick_id": "t005"
+  },
+  {
+   "error": null,
+   "latency_ms": 12836.032,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "McLearn Racing",
+   "tick_id": "t006"
+  },
+  {
+   "error": null,
+   "latency_ms": 0.739,
+   "returned_model": null,
+   "status": "SUBMITTED",
+   "team": "Red Bool Racing",
+   "tick_id": "t006"
+  },
+  {
+   "error": null,
+   "latency_ms": 9981.144,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "McLearn Racing",
+   "tick_id": "t007"
+  },
+  {
+   "error": null,
+   "latency_ms": 0.732,
+   "returned_model": null,
+   "status": "SUBMITTED",
+   "team": "Red Bool Racing",
+   "tick_id": "t007"
+  },
+  {
+   "error": null,
+   "latency_ms": 29801.388,
+   "returned_model": "gemini-3.8-flash",
+   "status": "SUBMITTED",
+   "team": "McLearn Racing",
+   "tick_id": "t008"
+  },
+  {
+   "error": null,
+   "latency_ms": 0.77,
+   "returned_model": null,
+   "status": "SUBMITTED",
+   "team": "Red Bool Racing",
+   "tick_id": "t008"
+  }
+ ],
+ "provenance_status": {
+  "McLearn Racing": {
+   "SUBMITTED": 8
+  },
+  "Red Bool Racing": {
+   "SUBMITTED": 8
+  }
+ },
+ "race_results": [],
+ "replay": {
+  "ok": true,
+  "resolved_ticks": 8
+ },
+ "returned_models": [
+  "gemini-3.8-flash"
+ ],
+ "rival_condition": "FIXED_REPLAY",
+ "spec": {
+  "benchmark_version": "2.2.0",
+  "c5_weekend": true,
+  "chief_model": "gemini-3.8-flash",
+  "engineer_model": "gemini-3.5-flash-lite",
+  "engineers": "CHIEF_ONLY",
+  "replay_journal": "/root/f1-c5/runtime_smoke/CHIEF_ONLY_ADAPTIVE_LLM_2.2.0_C5/journal.jsonl",
+  "rival": "FIXED_REPLAY",
+  "rival_model": "deepseek-4-1-flash-1017"
+ },
+ "standings": {
+  "driver_points": {
+   "McLearn A": 0,
+   "McLearn B": 0,
+   "Nova A": 0,
+   "Nova B": 0,
+   "Red Bool A": 0,
+   "Red Bool B": 0,
+   "Vertex A": 0,
+   "Vertex B": 0
+  },
+  "team_points": {
+   "McLearn Racing": 0,
+   "Nova": 0,
+   "Red Bool Racing": 0,
+   "Vertex": 0
+  }
+ },
+ "wall_seconds": 109.9
+}

@@ -83,7 +83,7 @@ D (same-seed fallback) = 95, U = 344. **Gemini − oracle must not be read as a 
 
 | Run | Points | Reward | Complete / intact |
 |---|---:|---:|---|
-| Gemini 3.8 Flash, OpenCode (fresh Harbor run) | GEMINI_P | GEMINI_R | GEMINI_C |
+| Gemini 3.8 Flash, OpenCode (fresh Harbor run) | 167 | 0.2892 | yes (144 ticks) / yes, 0 rejected |
 | oracle (scripted coordinator + C5 smoke policy; **not a reference**) | 186 | 0.3655 | yes (144 ticks) / yes, 0 rejected |
 | nop | 0 | 0 | no / yes |
 | stop-early probe (attacks as root, 1 decision, quits) | 0 | 0 | no (1 tick) / yes, 4 rejected requests logged |
@@ -92,7 +92,14 @@ D (same-seed fallback, 2.2.0 unified) = 95, U = 344.
 
 ## 5. Live provider checks of the runtime axes on the unified configuration
 
-RESULTS_5
+Setup: Verda, seed 20261116, unified flags C5+M2+M6+M7, first 8 ticks. These are provider and plumbing checks, not benchmark evaluations. Combinations not listed had not finished by the commit deadline.
+
+| Run | Calls | Returned models | Status per team | Replay | Est. USD |
+|---|---:|---|---|---|---:|
+| CHIEF_ONLY|SCRIPTED|2.2.0|C5|M2|M6|M7 | 8 | gemini-3.8-flash | {"Apex": {"SUBMITTED": 8}} | exact | 0.086579 |
+| GEMINI_LITE_ENGINEERS|SCRIPTED|2.2.0|C5|M2|M6|M7 | 8 | gemini-3.8-flash | {"Apex": {"SUBMITTED": 8}} | exact | 0.085795 |
+
+Evidence: `analysis/results/runtime_smoke_unified/`.
 
 ## 6. Remaining blockers for a 2.2.0 benchmark
 

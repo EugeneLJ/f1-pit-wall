@@ -11,9 +11,20 @@ rm -rf "$DEST"
 mkdir -p "$DEST"
 cp -R "$TASK/environment" "$TASK/tests" "$TASK/solution" "$DEST/"
 cp "$TASK/task.toml" "$DEST/task.toml"
-cat "$TASK/instruction.md" "$TASK/integrated_task/instruction_addendum.md" > "$DEST/instruction.md"
-if [ "$VERSION" = "2.1.0" ]; then
-  cat "$TASK/integrated_task/instruction_addendum_2_1_0.md" >> "$DEST/instruction.md"
+# Instruction. The submitted 2.1.0 CHIEF_ONLY task uses the standalone revision r2
+# (integrated_task/instruction_2_1_0_chief_only.md). F1_INSTRUCTION_REVISION=r1 rebuilds the exact
+# instruction the first 2.1.0 Harbor runs were evaluated on (integrated_task/evaluated/, sha256 f6697c53...).
+# Other versions and Engineer conditions keep the composed instruction unchanged.
+REVISION="${F1_INSTRUCTION_REVISION:-r2}"
+if [ "$VERSION" = "2.1.0" ] && [ "$COND" = "CHIEF_ONLY" ] && [ "$REVISION" = "r2" ]; then
+  cp "$TASK/integrated_task/instruction_2_1_0_chief_only.md" "$DEST/instruction.md"
+elif [ "$VERSION" = "2.1.0" ] && [ "$COND" = "CHIEF_ONLY" ] && [ "$REVISION" = "r1" ]; then
+  cp "$TASK/integrated_task/evaluated/instruction_2_1_0_r1.md" "$DEST/instruction.md"
+else
+  cat "$TASK/instruction.md" "$TASK/integrated_task/instruction_addendum.md" > "$DEST/instruction.md"
+  if [ "$VERSION" = "2.1.0" ]; then
+    cat "$TASK/integrated_task/instruction_addendum_2_1_0.md" >> "$DEST/instruction.md"
+  fi
 fi
 O="$TASK/integrated_task"
 cp "$O/sim/f1sim/"*.py "$DEST/environment/sim/f1sim/"

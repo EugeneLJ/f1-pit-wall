@@ -335,6 +335,7 @@ class IntegratedSession:
             self.race_state["config"][weather.WEATHER_KEY] = weather.create(
                 self.race_state["seed"], str(self.state.race_index),
                 len(self.race_state["config"]["decision_laps"]))
+            weather.adopt_tyre_model(self.race_state)
         self._m2_tendency_map = self._initialize_m2()
         ir.update_commitments(self.race_state)
         self.decision_type = RACE_STRATEGY

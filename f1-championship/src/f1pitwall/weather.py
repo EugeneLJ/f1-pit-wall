@@ -82,6 +82,22 @@ def warmup(compound: str, state: dict[str, Any], old_warmups: dict[str, float]) 
     return context(state)["model"]["compounds"][compound]["warmup_sec"]["value"]
 
 
+def adopt_tyre_model(state: dict[str, Any]) -> None:
+    """Add only the no-cliff/warmup metadata required by existing engine helpers."""
+    if not enabled(state):
+        return
+    ctx = context(state)
+    tyre_model = state["config"].get("tyres")
+    if tyre_model is None:
+        raise ValueError("M7 requires the configured Track B tyre model")
+    for compound in WET_COMPOUNDS:
+        # The contract supplies no calibrated cliff/lifetime for these compounds.
+        tyre_model["compounds"].setdefault(compound, {"life_laps": 10**6, "offset": 0.0, "degradation": 0.0})
+        if "pit" in state["config"]:
+            state["config"]["pit"]["out_lap_warmup_sec"].setdefault(
+                compound, ctx["model"]["compounds"][compound]["warmup_sec"]["value"])
+
+
 def _race_compound(vehicle: dict[str, Any], compound: str) -> None:
     raced = vehicle.setdefault("weather_raced", [])
     if not raced or raced[-1] != compound:
@@ -162,7 +178,7 @@ def incident(state: dict[str, Any], car: dict[str, Any], laps: int) -> None:
     """Apply weather risks after neutralized segment running, not to retired cars."""
     ctx, model, wetness = _current(state)
     from track_c.v22.weather import incident_probabilities
-    from track_c.v22.common import uniform
+    from track_c.v22.common import finite, uniform
     if car.get("weather_retired"):
         return
     compound = car["compound"]

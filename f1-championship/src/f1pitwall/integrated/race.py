@@ -202,12 +202,15 @@ def _m2_plans(state: Dict[str, Any], tendencies: Dict[str, str] | None) -> Dict[
         return {}
     plans = {}
     current = state["integrated"]["controlled"]
+    from .. import weather
     for slot in set(tendencies) - set(current):
         if slot not in ("Apex", "Orion", "Nova", "Vertex"):
             continue
         cars = team_cars(slot)
         for slot_key, tendency in tendencies[slot].items():
             if slot_key not in ("driver_a", "driver_b"):
+                continue
+            if any(weather.retired_context(state, name) for name in cars.values()):
                 continue
             if tendency == "DEFENDER":
                 geo = pair_geometry(state, slot)
@@ -218,7 +221,8 @@ def _m2_plans(state: Dict[str, Any], tendencies: Dict[str, str] | None) -> Dict[
                 ordered = _order(state)
                 name = cars[slot_key]
                 index = next((i for i, car in enumerate(ordered) if car["name"] == name), None)
-                if index is not None and index > 0:
+                if index is not None and index > 0 and not any(
+                    weather.retired_context(state, name) for name in cars.values()):
                     ahead = ordered[index - 1]["name"]
                     gap = ordered[index]["elapsed"] - ordered[index - 1]["elapsed"]
                     if gap > 1.0:
@@ -319,10 +323,16 @@ def _plan_order(state, slot, order, pits, model, lap):
     team = state["integrated"]["teams"][slot]
     cars = team_cars(slot)
     from .. import weather
-    if (weather.retired_context(state, cars["driver_a"])
-            or weather.retired_context(state, cars["driver_b"])):
+    retired = (weather.retired_context(state, cars["driver_a"])
+               or weather.retired_context(state, cars["driver_b"]))
+    if retired:
         plan = {"kind": "RACE", "cars": cars,
-                "feasibility": {"executable": False, "blocking_reasons": ["RETIRED_DRIVER"], "safe": False}}
+                "feasibility": {"executable": False, "blocking_reasons": ["RETIRED_DRIVER"],
+                                  "leader": "driver_a", "trailer": "driver_b", "safe": False}}
+        report = {"decision": state["step"] + 1, "lap": lap, "order": name, "status": "APPLIED",
+                  "feasibility": {"executable": False, "blocking_reasons": ["RETIRED_DRIVER"],
+                                  "leader": "driver_a", "trailer": "driver_b", "safe": False,
+                                  "gap_sec": 0.0, "rear_gap_sec": None, "adjacent": False}}
         return plan, report
     feas = exchange_feasibility(state, slot, pits, model)
     plan = {"kind": "RACE", "cars": cars, "feasibility": feas}
@@ -458,10 +468,10 @@ def _finish_orders(state, plans, reports):
         if plan["kind"] != "EXCHANGE":
             continue
         team = state["integrated"]["teams"][slot]
+        start = plan["start"]
         from .. import weather
         if (weather.retired_context(state, start["leader"]) or weather.retired_context(state, start["trailer"])):
             plan["aborted"] = True
-        start = plan["start"]
         success = order.index(start["trailer"]) < order.index(start["leader"]) and not plan["aborted"]
         if plan["aborted"] and order.index(start["trailer"]) < order.index(start["leader"]):
             success = True  # passed anyway within the maximum lift

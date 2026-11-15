@@ -211,6 +211,8 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
     if clean_config["tyres"] is not None:
         for car in cars:
             car["compounds_used"] = [car["compound"]]
+    if "v22_weather" in config:
+        clean_config["v22_weather"] = copy.deepcopy(config["v22_weather"])
     return {"seed": seed, "step": 0, "cars": [by_name[name] for name in grid], "events": events,
             "actions": [], "complete": False, "config": clean_config}
 
@@ -232,6 +234,9 @@ def _tyres(state: dict[str, Any]) -> dict[str, Any] | None:
 def legal_actions(state: dict[str, Any]) -> list[str]:
     """Per-driver legal race actions for this race."""
     tyres = _tyres(state)
+    from . import weather
+    if weather.enabled(state):
+        return weather.legal_actions(list(LEGACY_ACTIONS), True)
     if tyres is None:
         return list(LEGACY_ACTIONS)
     if not tyres["compound_choice"]:
@@ -356,6 +361,7 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
             apex[key]["compounds_used"] = sorted(set(car["compounds_used"]))
     index = state["step"]
     laps = _decision_laps(state)
+    from . import weather
     out = {"race": "Harbor Grand Prix", "lap": laps[index], "laps_total": laps_total(state),
            "decision_index": index + 1, "decision_count": len(laps),
            "track_status": state["events"][index], "drivers": apex,
@@ -380,6 +386,9 @@ def observation(state: dict[str, Any]) -> dict[str, Any]:
     out["segment_laps"] = segment_laps(state)
     if tyres is not None:
         out["tyre_life_laps"] = {name: spec["life_laps"] for name, spec in tyres["compounds"].items()}
+        if weather.enabled(state):
+            out["tyre_life_laps"].update({"INTERMEDIATE": 10**6, "WET": 10**6})
+            out["weather"] = weather.weather_observation(state)
         out["laps_remaining"] = laps_total(state) - laps[index]
         for entry in classification:
             car = next(c for c in state["cars"] if c["name"] == entry["driver"])
@@ -427,7 +436,10 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
     remaining = laps_total(state) - _decision_laps(state)[index]
     apex_actions = {"Apex A": clean["driver_a"], "Apex B": clean["driver_b"]}
     variant = config.get("rival_policy") if config else None
-    if variant not in (None, "public"):
+    from . import weather
+    if weather.enabled(state):
+        rival = lambda car: weather.rival_action(state, car, status, index, decision_count, tyres, remaining)  # noqa: E731
+    elif variant not in (None, "public"):
         from . import rival_policies  # opt-in variants (B5-P1); default behaviour unchanged
         rival = lambda car: rival_policies.decide(variant, car, state, status, index, decision_count,  # noqa: E731
                                                   tyres, remaining)
@@ -437,7 +449,7 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
                    for car in state["cars"]}
     pit = _pit(state)
     pitting = [car for car in sorted(state["cars"], key=lambda c: (c["elapsed"], c["name"]))
-               if pit_compound(pit_actions[car["name"]]) is not None]
+               if pit_compound(pit_actions[car["name"]]) is not None and not car.get("weather_retired")]
     if pit is not None:
         # Shared crew: the second car of a team to arrive (road order) waits for the first.
         seen_teams = set()
@@ -462,7 +474,7 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
         state["step"] += 1
         state["complete"] = state["step"] == decision_count
         return state
-    order = sorted(state["cars"], key=lambda car: (car["elapsed"], car["name"]))
+    order = sorted((car for car in state["cars"] if not car.get("weather_retired")), key=lambda car: (car["elapsed"], car["name"]))
     positions = {car["name"]: index + 1 for index, car in enumerate(order)}
     deg = config["deg_multiplier"] if config else 1.0
     model = config["overtaking"] if config else None
@@ -473,14 +485,21 @@ def step(state: dict[str, Any], action: Any) -> dict[str, Any]:
             traffic[car["name"]] = model["dirty_air_loss_sec_per_lap"] if close else 0.0
     warmup = pit["out_lap_warmup_sec"] if pit is not None else {}
     seg = segment_laps(state)
-    finish = {car["name"]: car["elapsed"] + _segment_time(car, positions[car["name"]], deg, traffic[car["name"]], tyres, seg)
-              + (warmup.get(car["compound"], 0.0) if car.pop("out_lap", False) else 0.0)
-              for car in state["cars"]}
+    finish = {car["name"]: car["elapsed"] + weather.segment_time(state, car, positions[car["name"]], deg,
+                                                                  traffic[car["name"]], tyres, seg,
+                                                                  None if weather.enabled(state) else
+                                                                  _segment_time(car, positions[car["name"]], deg,
+                                                                                traffic[car["name"]], tyres, seg))
+              + (weather.warmup(car["compound"], state, warmup) if car.pop("out_lap", False) else 0.0)
+              for car in order}
     if config and config["overtaking"] is not None:
         _apply_overtaking(order, finish, config["overtaking"], config["overtaking_difficulty"])
     for car in state["cars"]:
+        if car.get("weather_retired"):
+            continue
         car["elapsed"] = finish[car["name"]]
-        car["tyre_age"] += seg
+        if not car.get("weather_retired"):
+            car["tyre_age"] += seg
     state["actions"].append(clean)
     state["step"] += 1
     state["complete"] = state["step"] == decision_count
@@ -494,11 +513,17 @@ def _neutralized_segment(state: dict[str, Any], status: str, neutral: dict[str, 
     reference_lap = sum(LEGACY_BASE_PACE.values()) / len(LEGACY_BASE_PACE)
     slow = neutral["lap_time_factor"][status] * reference_lap * laps
     for car in state["cars"]:
+        if car.get("weather_retired"):
+            continue
         car["elapsed"] += slow
         car["tyre_age"] += neutral["tyre_age_laps"][status]
         car.pop("out_lap", None)  # tyres come up to temperature behind the SC/VSC
+    from . import weather
+    if weather.enabled(state):
+        for car in state["cars"]:
+            weather.incident(state, car, laps)
     if status == "SC":
-        order = sorted(state["cars"], key=lambda car: (car["elapsed"], car["name"]))
+        order = sorted((car for car in state["cars"] if not car.get("weather_retired")), key=lambda car: (car["elapsed"], car["name"]))
         for ahead, car in zip(order, order[1:]):
             car["elapsed"] = min(car["elapsed"], ahead["elapsed"] + neutral["sc_gap"])
 
@@ -515,6 +540,9 @@ def result(state: dict[str, Any]) -> dict[str, Any]:
                 "constructors_points": constructors_points}
     draws = dnf_uniforms(state["seed"])
     retired = {name for name, p in state["config"]["dnf_prob"].items() if draws[name] < p}
+    from . import weather
+    if weather.enabled(state):
+        retired |= {car["name"] for car in state["cars"] if car.get("weather_retired")}
     tyres = _tyres(state)
     penalty = {car["name"]: finish_penalty(state, car) for car in state["cars"]}
     running = [car for car in state["cars"] if car["name"] not in retired]
@@ -542,6 +570,9 @@ def result(state: dict[str, Any]) -> dict[str, Any]:
 def finish_penalty(state: dict[str, Any], car: dict[str, Any]) -> float:
     """Time penalty added at the finish (two-compound rule, B1)."""
     tyres = _tyres(state)
+    from . import weather
+    if weather.enabled(state) and weather.retire_exempt(car.get("weather_raced", [])):
+        return 0.0
     if tyres is not None and tyres["two_compound_rule"] and len(set(car["compounds_used"])) < 2:
         return tyres["two_compound_penalty_sec"]
     return 0.0

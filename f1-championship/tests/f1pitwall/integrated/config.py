@@ -17,7 +17,8 @@ from ..version import BENCHMARK_VERSION as LEGACY_VERSION
 
 INTEGRATED_VERSION = "2.0.1"
 FIA_PU_VERSION = "2.1.0"  # opt-in: FIA-2026-based PU allocation/penalty/grid rules (B8)
-OPT_IN_VERSIONS = (FIA_PU_VERSION,)
+SCENARIO_VERSION = "2.2.0"  # isolated integration candidate; disabled features preserve 2.1.0
+OPT_IN_VERSIONS = (FIA_PU_VERSION, SCENARIO_VERSION)
 SOLO_LEGACY = "SOLO_LEGACY"
 SOLO_COORDINATION = "SOLO_COORDINATION"
 TWO_TEAM_COMPETITION = "TWO_TEAM_COMPETITION"
@@ -70,6 +71,9 @@ class IntegratedConfig:
     rival_policy_variant: Optional[str] = None  # uncontrolled teams' pit rule (None = published)
     decision_timeout_sec: float = 120.0
     benchmark_version: str = INTEGRATED_VERSION
+    m2_tendencies: bool = False
+    m6_compliance: bool = False
+    m7_weather: bool = False
 
     def validate(self) -> None:
         if self.mode not in MODES:
@@ -93,13 +97,24 @@ class IntegratedConfig:
             raise ValueError("unknown rival condition")
         if self.benchmark_version not in (INTEGRATED_VERSION,) + OPT_IN_VERSIONS:
             raise ValueError(f"integrated modes are benchmark {INTEGRATED_VERSION} or opt-in {OPT_IN_VERSIONS}")
+        features = (self.m2_tendencies, self.m6_compliance, self.m7_weather)
+        if any(not isinstance(value, bool) for value in features):
+            raise ValueError("M2/M6/M7 flags must be booleans")
+        if any(features) and self.benchmark_version != SCENARIO_VERSION:
+            raise ValueError("M2/M6/M7 extensions require opt-in benchmark 2.2.0")
+        if self.m2_tendencies and self.rival_policy_variant is not None:
+            raise ValueError("M2 tendency dispatch and rival_policy_variant cannot both override rival actions")
 
     def as_dict(self) -> Dict[str, Any]:
-        return {"mode": self.mode, "benchmark_version": self.benchmark_version,
-                "teams": [{"label": t.label, "short": t.short, "slot": t.slot,
-                           "chief": copy.deepcopy(t.chief), "engineers": t.engineers} for t in self.teams],
-                "rival_condition": self.rival_condition, "rival_policy_variant": self.rival_policy_variant,
-                "decision_timeout_sec": self.decision_timeout_sec}
+        output = {"mode": self.mode, "benchmark_version": self.benchmark_version,
+                  "teams": [{"label": t.label, "short": t.short, "slot": t.slot,
+                             "chief": copy.deepcopy(t.chief), "engineers": t.engineers} for t in self.teams],
+                  "rival_condition": self.rival_condition, "rival_policy_variant": self.rival_policy_variant,
+                  "decision_timeout_sec": self.decision_timeout_sec}
+        for key in ("m2_tendencies", "m6_compliance", "m7_weather"):
+            if getattr(self, key):
+                output[key] = True
+        return output
 
     def config_hash(self) -> str:
         text = json.dumps(self.as_dict(), sort_keys=True, separators=(",", ":"))
@@ -112,8 +127,9 @@ class IntegratedConfig:
         a, b = self.teams
         return IntegratedConfig(self.mode, [TeamSpec(a.label, a.short, b.slot, a.chief, a.engineers),
                                             TeamSpec(b.label, b.short, a.slot, b.chief, b.engineers)],
-                                self.rival_condition, self.rival_policy_variant,
-                                self.decision_timeout_sec, self.benchmark_version)
+                                             self.rival_condition, self.rival_policy_variant,
+                                 self.decision_timeout_sec, self.benchmark_version,
+                                 self.m2_tendencies, self.m6_compliance, self.m7_weather)
 
     @staticmethod
     def from_dict(value: Dict[str, Any]) -> "IntegratedConfig":
@@ -121,7 +137,9 @@ class IntegratedConfig:
                           t.get("engineers", "CHIEF_ONLY")) for t in value["teams"]]
         cfg = IntegratedConfig(value["mode"], teams, value.get("rival_condition", "ADAPTIVE"),
                                value.get("rival_policy_variant"), float(value.get("decision_timeout_sec", 120.0)),
-                               value.get("benchmark_version", INTEGRATED_VERSION))
+                               value.get("benchmark_version", INTEGRATED_VERSION),
+                               value.get("m2_tendencies", False), value.get("m6_compliance", False),
+                               value.get("m7_weather", False))
         cfg.validate()
         return cfg
 
@@ -129,7 +147,7 @@ class IntegratedConfig:
 def with_version(cfg: IntegratedConfig, version: str) -> IntegratedConfig:
     """Same configuration under another integrated version (e.g. the opt-in 2.1.0 PU rules)."""
     out = IntegratedConfig(cfg.mode, list(cfg.teams), cfg.rival_condition, cfg.rival_policy_variant,
-                           cfg.decision_timeout_sec, version)
+                           cfg.decision_timeout_sec, version, cfg.m2_tendencies, cfg.m6_compliance, cfg.m7_weather)
     out.validate()
     return out
 

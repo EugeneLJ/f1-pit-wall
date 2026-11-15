@@ -62,7 +62,8 @@ def attach(state: Dict[str, Any], controlled_slots: List[str]) -> Dict[str, Any]
 
 
 def _order(state):
-    return sorted(state["cars"], key=lambda c: (c["elapsed"], c["name"]))
+    return sorted((car for car in state["cars"] if not car.get("weather_retired")),
+                  key=lambda c: (c["elapsed"], c["name"]))
 
 
 def _by_name(state):
@@ -158,6 +159,10 @@ def update_commitments(state: Dict[str, Any]) -> None:
         c = team["commitment"]
         if c is None or c["status"] not in OPEN_COMMITMENT:
             continue
+        from .. import weather
+        if (weather.retired_context(state, team_cars(slot)["driver_a"])
+                or weather.retired_context(state, team_cars(slot)["driver_b"])):
+            continue
         cars = team_cars(slot)
         order = [x["name"] for x in _order(state)]
         promoted, other = cars[c["promoted"]], cars[c["yielded"]]
@@ -182,14 +187,55 @@ def _transition(c, state, status, reason, **extra):
 
 def _rival(state, status, index, decision_count, tyres, remaining):
     variant = state["config"].get("rival_policy")
+    from .. import weather
+    if weather.enabled(state):
+        return lambda car: weather.rival_action(state, car, status, index, decision_count, tyres, remaining)
     if variant not in (None, "public"):
         from .. import rival_policies
         return lambda car: rival_policies.decide(variant, car, state, status, index, decision_count, tyres, remaining)
     return lambda car: engine._rival_action(car, status, index, decision_count, tyres, remaining)
 
 
+def _m2_plans(state: Dict[str, Any], tendencies: Dict[str, str] | None) -> Dict[str, Any]:
+    """Resolve hidden M2 intents only against existing defence/overtake mechanics."""
+    if not tendencies:
+        return {}
+    plans = {}
+    current = state["integrated"]["controlled"]
+    from .. import weather
+    for slot in set(tendencies) - set(current):
+        if slot not in ("Apex", "Orion", "Nova", "Vertex"):
+            continue
+        cars = team_cars(slot)
+        for slot_key, tendency in tendencies[slot].items():
+            if slot_key not in ("driver_a", "driver_b"):
+                continue
+            if any(weather.retired_context(state, name) for name in cars.values()):
+                continue
+            if tendency == "DEFENDER":
+                geo = pair_geometry(state, slot)
+                if slot_key == geo["trailer"] and slot not in plans:
+                    plans[slot] = {"kind": "DEFEND", "cars": cars,
+                                   "feasibility": exchange_feasibility(state, slot, {})}
+            elif tendency == "CONSERVATIVE":
+                ordered = _order(state)
+                name = cars[slot_key]
+                index = next((i for i, car in enumerate(ordered) if car["name"] == name), None)
+                if index is not None and index > 0 and not any(
+                    weather.retired_context(state, name) for name in cars.values()):
+                    ahead = ordered[index - 1]["name"]
+                    gap = ordered[index]["elapsed"] - ordered[index - 1]["elapsed"]
+                    if gap > 1.0:
+                        plans.setdefault(slot, {"kind": "RACE", "cars": cars,
+                                                "feasibility": exchange_feasibility(state, slot, {})})
+                        plans[slot].setdefault("inhibitions", []).append((ahead, name))
+    return plans
+
+
 def step(state: Dict[str, Any], team_actions: Dict[str, Any],
-         model: Dict[str, Any] = TEAM_ORDER_MODEL) -> Dict[str, Any]:
+         model: Dict[str, Any] = TEAM_ORDER_MODEL,
+         compliance_overrides: Dict[str, Dict[str, Any]] | None = None,
+         tendency_map: Dict[str, Any] | None = None) -> Dict[str, Any]:
     """Advance one decision segment. `team_actions` maps every controlled slot to its action.
     Returns a per-team public outcome report of the team orders."""
     if state["complete"]:
@@ -215,10 +261,25 @@ def step(state: Dict[str, Any], team_actions: Dict[str, Any],
     for slot in controlled:
         order = clean[slot]["team_order"]
         pits = {k: engine.pit_compound(clean[slot][k]) is not None for k in ("driver_a", "driver_b")}
-        plans[slot], reports[slot] = _plan_order(state, slot, order, pits, model, lap)
+        override = (compliance_overrides or {}).get(slot)
+        if override is not None and not override["complied"]:
+            # A declined order is RACE internally; the Chief's original request
+            # remains sealed/recorded, and its commitment is not advanced/refunded.
+            effective_order = {"order": "RACE", "commitment": None}
+            plans[slot], reports[slot] = _plan_order(state, slot, effective_order, pits, model, lap)
+            reports[slot]["order"] = order["order"]
+            reports[slot]["status"] = "DECLINED"
+            reports[slot]["effective_order"] = "RACE"
+            reports[slot]["compliance_event"] = copy.deepcopy(override["event"])
+        else:
+            plans[slot], reports[slot] = _plan_order(state, slot, order, pits, model, lap)
+    for slot, plan in _m2_plans(state, tendency_map).items():
+        if slot not in controlled:
+            plans[slot] = plan
 
     pit = engine._pit(state)
-    pitting = [car for car in _order(state) if engine.pit_compound(pit_actions[car["name"]]) is not None]
+    pitting = [car for car in _order(state) if (
+        engine.pit_compound(pit_actions[car["name"]]) is not None and not car.get("weather_retired"))]
     if pit is not None:
         seen_teams = set()
         for car in pitting:
@@ -261,6 +322,18 @@ def _plan_order(state, slot, order, pits, model, lap):
     name, commitment_req = order["order"], order["commitment"]
     team = state["integrated"]["teams"][slot]
     cars = team_cars(slot)
+    from .. import weather
+    retired = (weather.retired_context(state, cars["driver_a"])
+               or weather.retired_context(state, cars["driver_b"]))
+    if retired:
+        plan = {"kind": "RACE", "cars": cars,
+                "feasibility": {"executable": False, "blocking_reasons": ["RETIRED_DRIVER"],
+                                  "leader": "driver_a", "trailer": "driver_b", "safe": False}}
+        report = {"decision": state["step"] + 1, "lap": lap, "order": name, "status": "APPLIED",
+                  "feasibility": {"executable": False, "blocking_reasons": ["RETIRED_DRIVER"],
+                                  "leader": "driver_a", "trailer": "driver_b", "safe": False,
+                                  "gap_sec": 0.0, "rear_gap_sec": None, "adjacent": False}}
+        return plan, report
     feas = exchange_feasibility(state, slot, pits, model)
     plan = {"kind": "RACE", "cars": cars, "feasibility": feas}
     report = {"decision": state["step"] + 1, "lap": lap, "order": name, "status": "APPLIED",
@@ -312,10 +385,14 @@ def _green_segment(state, plans, model):
             traffic[car["name"]] = overtaking["dirty_air_loss_sec_per_lap"] if close else 0.0
     warmup = pit["out_lap_warmup_sec"] if pit is not None else {}
     seg = engine.segment_laps(state)
-    finish = {car["name"]: car["elapsed"] + engine._segment_time(car, positions[car["name"]], deg,
-                                                                traffic[car["name"]], tyres, seg)
-              + (warmup.get(car["compound"], 0.0) if car.pop("out_lap", False) else 0.0)
-              for car in state["cars"]}
+    from .. import weather
+    finish = {car["name"]: car["elapsed"] + weather.segment_time(state, car, positions[car["name"]], deg,
+                                                                  traffic[car["name"]], tyres, seg,
+                                                                  None if weather.enabled(state) else
+                                                                  engine._segment_time(car, positions[car["name"]], deg,
+                                                                                       traffic[car["name"]], tyres, seg))
+              + (weather.warmup(car["compound"], state, warmup) if car.pop("out_lap", False) else 0.0)
+              for car in order}
     overrides, guarded, bonus = {}, set(), {}
     for slot, plan in plans.items():
         feas = plan["feasibility"]
@@ -339,11 +416,17 @@ def _green_segment(state, plans, model):
             overrides[(lead, trail)] = 0.0
             guarded.add(lead)
             plan["start"] = {"leader": lead, "trailer": trail, "car_ahead": feas["car_ahead"]}
+    for plan in plans.values():
+        for ahead, trailing in plan.get("inhibitions", []):
+            overrides[(ahead, trailing)] = float("inf")
     if overtaking is not None:
         _resolve(order, finish, overtaking, config["overtaking_difficulty"], overrides, guarded, bonus)
     for car in state["cars"]:
+        if car.get("weather_retired"):
+            continue
         car["elapsed"] = finish[car["name"]]
-        car["tyre_age"] += seg
+        if not car.get("weather_retired"):
+            car["tyre_age"] += seg
 
 
 def _resolve(order, finish, model, difficulty, overrides, guarded, bonus):
@@ -386,6 +469,9 @@ def _finish_orders(state, plans, reports):
             continue
         team = state["integrated"]["teams"][slot]
         start = plan["start"]
+        from .. import weather
+        if (weather.retired_context(state, start["leader"]) or weather.retired_context(state, start["trailer"])):
+            plan["aborted"] = True
         success = order.index(start["trailer"]) < order.index(start["leader"]) and not plan["aborted"]
         if plan["aborted"] and order.index(start["trailer"]) < order.index(start["leader"]):
             success = True  # passed anyway within the maximum lift
@@ -418,6 +504,18 @@ def public_order_view(state: Dict[str, Any], slot: str) -> Dict[str, Any]:
     """Team-private team-order state for that team's observation."""
     team = state["integrated"]["teams"][slot]
     pits = {}
+    from .. import weather
+    if any(weather.retired_context(state, name) for name in team_cars(slot).values()):
+        return {
+            "legal_team_orders": legal_team_orders(state, slot),
+            "exchange_feasibility_if_no_pit": {
+                "executable": False, "blocking_reasons": ["RETIRED_DRIVER"], "safe": False,
+                "leader": None, "trailer": None, "adjacent": False, "gap_sec": None,
+                "car_ahead": None, "car_behind": None, "rear_gap_sec": None,
+            },
+            "commitment": copy.deepcopy(team["commitment"]),
+            "last_order_outcome": copy.deepcopy(team["order_log"][-1]) if team["order_log"] else None,
+        }
     feas = exchange_feasibility(state, slot, pits)
     return {"legal_team_orders": legal_team_orders(state, slot),
             "exchange_feasibility_if_no_pit": {k: feas[k] for k in (

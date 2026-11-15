@@ -71,6 +71,11 @@ def replay(config: IntegratedConfig, base_seed: int, journal: List[Dict[str, Any
             session.close_tick(tick, reason=late[0][1]["status"])
         if session._obs_hash != entry["obs_after_sha256"]:
             raise ReplayError(f"{tick}: observation hash after the tick differs")
+        if config.m6_compliance:
+            if entry.get("order_events") != session._last_order_events:
+                raise ReplayError(f"{tick}: M6 public order events differ from trusted resolution")
+        elif "order_events" in entry:
+            raise ReplayError(f"{tick}: M6 order event appears in a legacy journal")
         resolved += 1
     if require_complete and session.decision_type != CHAMPIONSHIP_COMPLETE:
         raise ReplayError("journal does not complete the championship")

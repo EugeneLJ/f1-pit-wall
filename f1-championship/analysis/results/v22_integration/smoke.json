@@ -1,0 +1,433 @@
+{
+  "all_replays_exact": true,
+  "fixtures": {
+    "m2": "3f2bb4f6df1eddbce3fa611f879988a783062f371a866c32dfcd10bd120cc4a3",
+    "m6": "2243b8c75ba5e05adc89d45b9d86b46ba04b1221c9d6df4747a77808b8eaf7c1",
+    "m7": "af671dfa920d41064aa5336947ab8f1d90b779b85c316097a615565dabea7706"
+  },
+  "limitations": [
+    "M2 full M1/M3 S1 attack/proximity semantics are not integrated",
+    "M7 neutralization multiplier remains an adapter, not a new SC/VSC rollout reference",
+    "No live Engineer, adaptive LLM, Harbor, reward, or official reference result was evaluated"
+  ],
+  "model_calls": 0,
+  "runs": [
+    {
+      "complete_ticks": 120,
+      "config": {
+        "benchmark_version": "2.2.0",
+        "decision_timeout_sec": 120.0,
+        "m2_tendencies": true,
+        "mode": "TWO_TEAM_COMPETITION",
+        "rival_condition": "ADAPTIVE",
+        "rival_policy_variant": null,
+        "teams": [
+          {
+            "chief": {
+              "model": "gemini",
+              "provider": "google_genai"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "McLearn Racing",
+            "short": "McLearn",
+            "slot": "Apex"
+          },
+          {
+            "chief": {
+              "model": "deepseek-4-1-flash-1017",
+              "provider": "verda_openai_compatible"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "Red Bool Racing",
+            "short": "Red Bool",
+            "slot": "Orion"
+          }
+        ]
+      },
+      "config_sha256": "242fe224cccaa17a65ee03a994479e64d5a02cca5f697911e32832d4da9bf793",
+      "head_hash": "a48a34731c1a7b3981941677a745f04e0bb9cc0d20a0f5a80c7573e41af5cd86",
+      "module": "M2",
+      "points": {
+        "driver_points": {
+          "McLearn A": 36,
+          "McLearn B": 56,
+          "Nova A": 138,
+          "Nova B": 139,
+          "Red Bool A": 64,
+          "Red Bool B": 60,
+          "Vertex A": 160,
+          "Vertex B": 123
+        },
+        "team_points": {
+          "McLearn Racing": 92,
+          "Nova": 277,
+          "Red Bool Racing": 124,
+          "Vertex": 283
+        }
+      },
+      "races": 8,
+      "replay_complete": true,
+      "replay_matches_standings": true,
+      "seconds": 0.207,
+      "seed_id": 11
+    },
+    {
+      "complete_ticks": 120,
+      "config": {
+        "benchmark_version": "2.2.0",
+        "decision_timeout_sec": 120.0,
+        "m2_tendencies": true,
+        "mode": "TWO_TEAM_COMPETITION",
+        "rival_condition": "ADAPTIVE",
+        "rival_policy_variant": null,
+        "teams": [
+          {
+            "chief": {
+              "model": "gemini",
+              "provider": "google_genai"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "McLearn Racing",
+            "short": "McLearn",
+            "slot": "Apex"
+          },
+          {
+            "chief": {
+              "model": "deepseek-4-1-flash-1017",
+              "provider": "verda_openai_compatible"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "Red Bool Racing",
+            "short": "Red Bool",
+            "slot": "Orion"
+          }
+        ]
+      },
+      "config_sha256": "242fe224cccaa17a65ee03a994479e64d5a02cca5f697911e32832d4da9bf793",
+      "head_hash": "b835205f6e75b0592949226e306ef7f2bbef4f5dc8c9377a7f023327d4e31903",
+      "module": "M2",
+      "points": {
+        "driver_points": {
+          "McLearn A": 34,
+          "McLearn B": 54,
+          "Nova A": 150,
+          "Nova B": 159,
+          "Red Bool A": 62,
+          "Red Bool B": 70,
+          "Vertex A": 140,
+          "Vertex B": 111
+        },
+        "team_points": {
+          "McLearn Racing": 88,
+          "Nova": 309,
+          "Red Bool Racing": 132,
+          "Vertex": 251
+        }
+      },
+      "races": 8,
+      "replay_complete": true,
+      "replay_matches_standings": true,
+      "seconds": 0.404,
+      "seed_id": 12
+    },
+    {
+      "complete_ticks": 120,
+      "config": {
+        "benchmark_version": "2.2.0",
+        "decision_timeout_sec": 120.0,
+        "m6_compliance": true,
+        "mode": "TWO_TEAM_COMPETITION",
+        "rival_condition": "ADAPTIVE",
+        "rival_policy_variant": null,
+        "teams": [
+          {
+            "chief": {
+              "model": "gemini",
+              "provider": "google_genai"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "McLearn Racing",
+            "short": "McLearn",
+            "slot": "Apex"
+          },
+          {
+            "chief": {
+              "model": "deepseek-4-1-flash-1017",
+              "provider": "verda_openai_compatible"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "Red Bool Racing",
+            "short": "Red Bool",
+            "slot": "Orion"
+          }
+        ]
+      },
+      "config_sha256": "b86e27d4c752d99647bb1d6700a7cb4d41ca4d8fe60bc61ae77e4bd402104ae0",
+      "head_hash": "7acb6c6c54b68d8e328f498c3c115230a208e98d475ceb745d17a81da8cf7d42",
+      "module": "M6",
+      "points": {
+        "driver_points": {
+          "McLearn A": 36,
+          "McLearn B": 56,
+          "Nova A": 170,
+          "Nova B": 142,
+          "Red Bool A": 64,
+          "Red Bool B": 60,
+          "Vertex A": 140,
+          "Vertex B": 108
+        },
+        "team_points": {
+          "McLearn Racing": 92,
+          "Nova": 312,
+          "Red Bool Racing": 124,
+          "Vertex": 248
+        }
+      },
+      "races": 8,
+      "replay_complete": true,
+      "replay_matches_standings": true,
+      "seconds": 0.64,
+      "seed_id": 11
+    },
+    {
+      "complete_ticks": 120,
+      "config": {
+        "benchmark_version": "2.2.0",
+        "decision_timeout_sec": 120.0,
+        "m6_compliance": true,
+        "mode": "TWO_TEAM_COMPETITION",
+        "rival_condition": "ADAPTIVE",
+        "rival_policy_variant": null,
+        "teams": [
+          {
+            "chief": {
+              "model": "gemini",
+              "provider": "google_genai"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "McLearn Racing",
+            "short": "McLearn",
+            "slot": "Apex"
+          },
+          {
+            "chief": {
+              "model": "deepseek-4-1-flash-1017",
+              "provider": "verda_openai_compatible"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "Red Bool Racing",
+            "short": "Red Bool",
+            "slot": "Orion"
+          }
+        ]
+      },
+      "config_sha256": "b86e27d4c752d99647bb1d6700a7cb4d41ca4d8fe60bc61ae77e4bd402104ae0",
+      "head_hash": "8b0b65a1c2cd614a086c9e85b007faa41fef94e14fece5cc6a3d5f95599199c4",
+      "module": "M6",
+      "points": {
+        "driver_points": {
+          "McLearn A": 34,
+          "McLearn B": 54,
+          "Nova A": 147,
+          "Nova B": 145,
+          "Red Bool A": 62,
+          "Red Bool B": 70,
+          "Vertex A": 160,
+          "Vertex B": 108
+        },
+        "team_points": {
+          "McLearn Racing": 88,
+          "Nova": 292,
+          "Red Bool Racing": 132,
+          "Vertex": 268
+        }
+      },
+      "races": 8,
+      "replay_complete": true,
+      "replay_matches_standings": true,
+      "seconds": 0.872,
+      "seed_id": 12
+    },
+    {
+      "complete_ticks": 120,
+      "config": {
+        "benchmark_version": "2.2.0",
+        "decision_timeout_sec": 120.0,
+        "m7_weather": true,
+        "mode": "TWO_TEAM_COMPETITION",
+        "rival_condition": "ADAPTIVE",
+        "rival_policy_variant": null,
+        "teams": [
+          {
+            "chief": {
+              "model": "gemini",
+              "provider": "google_genai"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "McLearn Racing",
+            "short": "McLearn",
+            "slot": "Apex"
+          },
+          {
+            "chief": {
+              "model": "deepseek-4-1-flash-1017",
+              "provider": "verda_openai_compatible"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "Red Bool Racing",
+            "short": "Red Bool",
+            "slot": "Orion"
+          }
+        ]
+      },
+      "config_sha256": "f03a0c663917af4f1b4a0f65c011fb15a2b6b9a8727792161dec1c41792b431e",
+      "head_hash": "843243a3c2e900a2fc82981efa19d7e71ef533446d0d5679dc9a054371c1bddd",
+      "module": "M7",
+      "points": {
+        "driver_points": {
+          "McLearn A": 46,
+          "McLearn B": 44,
+          "Nova A": 136,
+          "Nova B": 91,
+          "Red Bool A": 31,
+          "Red Bool B": 62,
+          "Vertex A": 88,
+          "Vertex B": 140
+        },
+        "team_points": {
+          "McLearn Racing": 90,
+          "Nova": 227,
+          "Red Bool Racing": 93,
+          "Vertex": 228
+        }
+      },
+      "races": 8,
+      "replay_complete": true,
+      "replay_matches_standings": true,
+      "seconds": 1.345,
+      "seed_id": 11
+    },
+    {
+      "complete_ticks": 120,
+      "config": {
+        "benchmark_version": "2.2.0",
+        "decision_timeout_sec": 120.0,
+        "m7_weather": true,
+        "mode": "TWO_TEAM_COMPETITION",
+        "rival_condition": "ADAPTIVE",
+        "rival_policy_variant": null,
+        "teams": [
+          {
+            "chief": {
+              "model": "gemini",
+              "provider": "google_genai"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "McLearn Racing",
+            "short": "McLearn",
+            "slot": "Apex"
+          },
+          {
+            "chief": {
+              "model": "deepseek-4-1-flash-1017",
+              "provider": "verda_openai_compatible"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "Red Bool Racing",
+            "short": "Red Bool",
+            "slot": "Orion"
+          }
+        ]
+      },
+      "config_sha256": "f03a0c663917af4f1b4a0f65c011fb15a2b6b9a8727792161dec1c41792b431e",
+      "head_hash": "941ce65d5b6347114b15c13b81fb05142bba8ec37697a367fccb6edab129211a",
+      "module": "M7",
+      "points": {
+        "driver_points": {
+          "McLearn A": 16,
+          "McLearn B": 52,
+          "Nova A": 127,
+          "Nova B": 149,
+          "Red Bool A": 46,
+          "Red Bool B": 59,
+          "Vertex A": 110,
+          "Vertex B": 111
+        },
+        "team_points": {
+          "McLearn Racing": 68,
+          "Nova": 276,
+          "Red Bool Racing": 105,
+          "Vertex": 221
+        }
+      },
+      "races": 8,
+      "replay_complete": true,
+      "replay_matches_standings": true,
+      "seconds": 1.802,
+      "seed_id": 12
+    },
+    {
+      "complete_ticks": 120,
+      "config": {
+        "benchmark_version": "2.2.0",
+        "decision_timeout_sec": 120.0,
+        "m2_tendencies": true,
+        "m6_compliance": true,
+        "m7_weather": true,
+        "mode": "TWO_TEAM_COMPETITION",
+        "rival_condition": "ADAPTIVE",
+        "rival_policy_variant": null,
+        "teams": [
+          {
+            "chief": {
+              "model": "gemini",
+              "provider": "google_genai"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "McLearn Racing",
+            "short": "McLearn",
+            "slot": "Apex"
+          },
+          {
+            "chief": {
+              "model": "deepseek-4-1-flash-1017",
+              "provider": "verda_openai_compatible"
+            },
+            "engineers": "CHIEF_ONLY",
+            "label": "Red Bool Racing",
+            "short": "Red Bool",
+            "slot": "Orion"
+          }
+        ]
+      },
+      "config_sha256": "025733cfadc9b1df29d728c03fc078f49c47455862166216ea8e8664252574a2",
+      "head_hash": "878284b53138be29d53d2480f3d6e54ca83df53a930fdca615c10796b11cb9a8",
+      "module": "combined",
+      "points": {
+        "driver_points": {
+          "McLearn A": 36,
+          "McLearn B": 40,
+          "Nova A": 147,
+          "Nova B": 111,
+          "Red Bool A": 44,
+          "Red Bool B": 71,
+          "Vertex A": 134,
+          "Vertex B": 58
+        },
+        "team_points": {
+          "McLearn Racing": 76,
+          "Nova": 258,
+          "Red Bool Racing": 115,
+          "Vertex": 192
+        }
+      },
+      "races": 8,
+      "replay_complete": true,
+      "replay_matches_standings": true,
+      "seconds": 2.322,
+      "seed_id": 21
+    }
+  ],
+  "schema_version": 1,
+  "total_wall_seconds": 2.323
+}

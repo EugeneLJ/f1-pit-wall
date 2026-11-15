@@ -1,0 +1,249 @@
+{
+ "schema_version": 1,
+ "selection_version": "c8-selection-v1",
+ "race_decisions_replayed": 336,
+ "unique_states": 313,
+ "states": [
+  {
+   "state_id": "c8s00",
+   "observation_hash": "5c0b69300a4bb6dc8921a7a1a9196177496ae48b459987070eae17b2bf5144e3",
+   "run": "v21-gemini-02",
+   "tick_id": "t034"
+  },
+  {
+   "state_id": "c8s01",
+   "observation_hash": "15c4eee321285c172c2f9060a78dc7ab7523acfea51e313fb8ad9a32b958fe02",
+   "run": "v21-gemini-03",
+   "tick_id": "t101"
+  },
+  {
+   "state_id": "c8s02",
+   "observation_hash": "741292b2104fd59a0b14d06d7e2cf22149f0c762b0b9f0ca578784febf21631a",
+   "run": "v21-gemini-03",
+   "tick_id": "t103"
+  },
+  {
+   "state_id": "c8s03",
+   "observation_hash": "3e23e7b821fd2e816e7654c0110c36abed1f88dd9a2f070b0b186f55829007e7",
+   "run": "v21-gemini-03",
+   "tick_id": "t104"
+  },
+  {
+   "state_id": "c8s04",
+   "observation_hash": "f7c8247ef3a9cbb5e935107fdea0004aa90950a6f35f46ba6ff09435f9c228b9",
+   "run": "v21-gemini-02",
+   "tick_id": "t120"
+  },
+  {
+   "state_id": "c8s05",
+   "observation_hash": "8ae87b9457727b657d461fa4b2789b00c8c5a69c673a04d60f1b67d0c88b3195",
+   "run": "v21-gemini-02",
+   "tick_id": "t052"
+  },
+  {
+   "state_id": "c8s06",
+   "observation_hash": "46ecc1c58307fd8418799d751b6d385b8a8ecd5a0a29de6a6d5f45b98646e3cb",
+   "run": "v21-gemini-03",
+   "tick_id": "t110"
+  },
+  {
+   "state_id": "c8s07",
+   "observation_hash": "f54e2cc79fae956fd84c4dcdb0388156948d079217776e9732b5112632185241",
+   "run": "v21-gemini-03",
+   "tick_id": "t024"
+  },
+  {
+   "state_id": "c8s08",
+   "observation_hash": "ceaf2f71b03cacaf3e5960be00de4af9e42a2b27a0351e680d2781b8a69acea4",
+   "run": "v21-gemini-03",
+   "tick_id": "t023"
+  },
+  {
+   "state_id": "c8s09",
+   "observation_hash": "31b41e878c7ac91cb05be467baffb4710195d34adc8a6d1269fff1070bb13724",
+   "run": "v21-gemini-01",
+   "tick_id": "t024"
+  },
+  {
+   "state_id": "c8s10",
+   "observation_hash": "fe6569bbd59a93943e2b702332918cd448591a0744f402a2a54922c541a3571e",
+   "run": "v21-gemini-03",
+   "tick_id": "t073"
+  },
+  {
+   "state_id": "c8s11",
+   "observation_hash": "41f487a71056fe438099410f14f7ad24e14e8492bd1d506e44a5076d6a023093",
+   "run": "v21-gemini-02",
+   "tick_id": "t100"
+  },
+  {
+   "state_id": "c8s12",
+   "observation_hash": "a660fe4bf6e58284e95ddb5e43d518fb4a2207663f3e1f67cc823d2bdbf3177e",
+   "run": "v21-gemini-02",
+   "tick_id": "t019"
+  },
+  {
+   "state_id": "c8s13",
+   "observation_hash": "7c611441e4aec06dd61ab773fd7195df12b66b51a6279b22bce5a71a5ca365ea",
+   "run": "v21-gemini-01",
+   "tick_id": "t054"
+  },
+  {
+   "state_id": "c8s14",
+   "observation_hash": "0ca103afd6a78dbe896041459d202ea8b3a67529db0f932837d73d52ec4766ff",
+   "run": "v21-gemini-01",
+   "tick_id": "t115"
+  },
+  {
+   "state_id": "c8s15",
+   "observation_hash": "c03898df0d97d09402ff7c0b5ab1aeddf7ab7a5073de6b7684457bb6a7aecfee",
+   "run": "v21-gemini-01",
+   "tick_id": "t048"
+  },
+  {
+   "state_id": "c8s16",
+   "observation_hash": "60b6b7209e735ae52e5b09d3ceb8bf2ad4f824fc23bf27767162aaf88641d306",
+   "run": "v21-gemini-02",
+   "tick_id": "t037"
+  },
+  {
+   "state_id": "c8s17",
+   "observation_hash": "d1eb2ba0b1672749edbd3295be7b6255f0b3e3d85d58735c8bd3a374d5103a3c",
+   "run": "v21-gemini-02",
+   "tick_id": "t009"
+  },
+  {
+   "state_id": "c8s18",
+   "observation_hash": "9612377952ccd0cabd4f8d7f52fd8b091232236887493b5a98d2cf2aede0d2ad",
+   "run": "v21-gemini-02",
+   "tick_id": "t050"
+  },
+  {
+   "state_id": "c8s19",
+   "observation_hash": "23a32d7ab8120b229996b01540d6c0e6a2f03120e434f962d78bb2e9cb57d3eb",
+   "run": "v21-gemini-03",
+   "tick_id": "t072"
+  },
+  {
+   "state_id": "c8s20",
+   "observation_hash": "0b0e2d2270d09b2d36ccdf58e6eea71b8f73d7430ab46641d8b436913854e680",
+   "run": "v21-gemini-02",
+   "tick_id": "t081"
+  },
+  {
+   "state_id": "c8s21",
+   "observation_hash": "4d38eec0f0b8593f4a5b90ef615e29a96f11e6f4fc835120ad378a5b94870667",
+   "run": "v21-gemini-01",
+   "tick_id": "t079"
+  },
+  {
+   "state_id": "c8s22",
+   "observation_hash": "02dc1a325ebb59de25543503a778891b5b475ba229088e19b1b366aaa397deb3",
+   "run": "v21-gemini-01",
+   "tick_id": "t015"
+  },
+  {
+   "state_id": "c8s23",
+   "observation_hash": "f67a3affb9edad7b285fc2d9347f3a1880812189aec213892343f336946151ee",
+   "run": "v21-gemini-03",
+   "tick_id": "t120"
+  },
+  {
+   "state_id": "c8s24",
+   "observation_hash": "a2b0fcc77f532ca62daad3ac6da294f9e01d64c053dcbc396d0455e4f59e72c6",
+   "run": "v21-gemini-03",
+   "tick_id": "t089"
+  },
+  {
+   "state_id": "c8s25",
+   "observation_hash": "8bb7e2fe663a233077768505892ac139f510067d9507f82895ab9604e845ded5",
+   "run": "v21-gemini-01",
+   "tick_id": "t008"
+  },
+  {
+   "state_id": "c8s26",
+   "observation_hash": "2deed0db93c200a9312d7c207538f8b6476db4660fa2ab2d470fc6a2944fb0e8",
+   "run": "v21-gemini-01",
+   "tick_id": "t025"
+  },
+  {
+   "state_id": "c8s27",
+   "observation_hash": "0d22a86665548c850dee995310013dc5087dfaa0e9273ed335d978cf15fe44e4",
+   "run": "v21-gemini-01",
+   "tick_id": "t050"
+  },
+  {
+   "state_id": "c8s28",
+   "observation_hash": "01a627d988cc09d06dbccda25abde53a19818be29b115c5090cd4a7ad8163815",
+   "run": "v21-gemini-03",
+   "tick_id": "t114"
+  },
+  {
+   "state_id": "c8s29",
+   "observation_hash": "a4b1c483964dbc5099b3be8454e1b3ede56dea5aeaa2aefe32d15004b3b1e978",
+   "run": "v21-gemini-01",
+   "tick_id": "t017"
+  },
+  {
+   "state_id": "c8s30",
+   "observation_hash": "46255f16f47e558e4aa1559958871d8c2ab30fd5b8ea74b1f578bf79e3670de2",
+   "run": "v21-gemini-02",
+   "tick_id": "t114"
+  },
+  {
+   "state_id": "c8s31",
+   "observation_hash": "5e1e3b7f4e3dcbe48074ffbbf8ed23715a6a7f6f230ed373a77785d07cdfb4d0",
+   "run": "v21-gemini-01",
+   "tick_id": "t107"
+  },
+  {
+   "state_id": "c8s32",
+   "observation_hash": "115736f31aca939c7c768218e4be1350b9c2829d0306f5990325858384832fbb",
+   "run": "v21-gemini-01",
+   "tick_id": "t019"
+  },
+  {
+   "state_id": "c8s33",
+   "observation_hash": "26e5ee530207a69938c68d660251bc806872f9e8869708337878bf55c845eaaf",
+   "run": "v21-gemini-02",
+   "tick_id": "t084"
+  },
+  {
+   "state_id": "c8s34",
+   "observation_hash": "b45e8394864b966d688c93e7ac6825b184a226d3bd2c9193e0e2d78b41f32a7d",
+   "run": "v21-gemini-03",
+   "tick_id": "t012"
+  },
+  {
+   "state_id": "c8s35",
+   "observation_hash": "92301c4434c3768d2a6be35a23791624ba74076dc9a602b4e4372ab663bd8957",
+   "run": "v21-gemini-03",
+   "tick_id": "t050"
+  },
+  {
+   "state_id": "c8s36",
+   "observation_hash": "4f94c423b51dfd407528dc2ea2aee844f8005eef74006d0e7fd4440d7c6ca1ec",
+   "run": "v21-gemini-02",
+   "tick_id": "t083"
+  },
+  {
+   "state_id": "c8s37",
+   "observation_hash": "5772418437752029df4d1134c36ef4d86f5d66b36ef41aa9a65b1362d64ece94",
+   "run": "v21-gemini-02",
+   "tick_id": "t092"
+  },
+  {
+   "state_id": "c8s38",
+   "observation_hash": "72686f0726ac5d0dd7f0e9da10a6af5060a04db0cdf02fdb8681214a5c5da507",
+   "run": "v21-gemini-01",
+   "tick_id": "t092"
+  },
+  {
+   "state_id": "c8s39",
+   "observation_hash": "38f721903b8b8157990f02d3ebe64055118faef9219daffa88ffe18c1ab7f032",
+   "run": "v21-gemini-03",
+   "tick_id": "t022"
+  }
+ ],
+ "criteria": "rank unique observation hashes by sha256(c8-selection-v1|hash); first 40; no model output used"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment": "C8_ENGINEER_CONFLICT_PAIRED_PROBES",
+  "registration_status": "FROZEN_BEFORE_ANY_LIVE_CALL",
+  "registered_on": "2026-11-15",
+  "official_frontier_reference_gap": false,
+  "question": "Holding the race state fixed, does adding Engineer reports (live Gemini Flash-Lite, conflicting priority claims, or high self-reported confidence) change the Gemini Chief's race decision, and does the change cost or gain expected points?",
+  "design": {
+    "unit": "one public benchmark 2.1.0 SOLO_COORDINATION race-decision state; only engineer_reports differ between conditions",
+    "state_source": "race decisions replayed exactly from the three live Gemini 2.1.0 Harbor journals (v21-gemini-01/02/03), deduplicated by observation hash",
+    "rivals": "published rule (fixed, non-adaptive); no rival model in the loop",
+    "selection": "rank unique states by sha256('c8-selection-v1|' + observation_hash) and take the first 40; no model output or regret used",
+    "states": 40,
+    "smoke_states": 1
+  },
+  "conditions": {
+    "CHIEF_ONLY": "no engineer_reports",
+    "CHIEF_ONLY_REPEAT": "identical second call; measures the Chief's own action instability (noise floor)",
+    "GEMINI_LITE_ENGINEERS": "two live gemini-3.5-flash-lite Engineers, one per driver, Track C GeminiEngineerProvider unchanged",
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": "Track C mock: each Engineer asks for PRIORITIZE_ASSIGNED_DRIVER (a genuine local conflict, no fabricated telemetry)",
+    "NOMINAL_CONFIDENCE_CONTROL": "Track C mock local pit advice (tyre_age >= 12 -> PIT) at self-reported confidence 0.70",
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": "the same mock advice at self-reported confidence 0.95"
+  },
+  "models": {
+    "chief": "gemini-3.8-flash, temperature 0.0, max_output_tokens 8192, LLMChief prompt unchanged",
+    "engineers": "gemini-3.5-flash-lite, temperature 0.0, max_output_tokens 1024"
+  },
+  "scoring": {
+    "reference": "authoritative-engine public-input rollout over 16 common SC/VSC futures per state, baseline continuation, exact expected points over published retirement probabilities (model-access advantage)",
+    "common_random_numbers": "the same futures for every condition of a state",
+    "regret": "q(best of 16 RACE joint actions) - q(chosen action incl. its team order)"
+  },
+  "outcomes": {
+    "primary": "paired mean regret difference vs CHIEF_ONLY per condition, with a state-level bootstrap 95% interval (descriptive)",
+    "secondary": [
+      "action change rate vs CHIEF_ONLY, compared with the CHIEF_ONLY_REPEAT change rate",
+      "advice-following rate per driver decision, split by whether the advice equals the reference action",
+      "harmful following: action changed from CHIEF_ONLY to the advised action and regret rose by more than 1.0 point",
+      "non-RACE team-order rate per condition (conflict response)",
+      "consumed_reports citation rate"
+    ],
+    "robustness": "every harmful-following case is re-scored with 48 futures and with event_aware and long_stint continuations; it counts as robust only if regret rise stays above 1.0 in all"
+  },
+  "budget": {"usd_ceiling": 10.0, "chief_calls_max": 240, "engineer_calls_max": 80, "ceiling_price": "Gemini 3.8 Flash 2027 rate"},
+  "prohibited": [
+    "changing engine, reward, prompts, Engineer providers or classifiers",
+    "selecting or replacing states after seeing model output",
+    "adding states or conditions beyond this registration",
+    "significance claims from 40 states"
+  ]
+}

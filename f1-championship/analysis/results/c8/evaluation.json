@@ -1,0 +1,2780 @@
+{
+ "schema_version": 1,
+ "experiment": "C8_ENGINEER_CONFLICT_PAIRED_PROBES",
+ "official_frontier_reference_gap": false,
+ "states_complete": 40,
+ "futures": 16,
+ "chief_calls": 240,
+ "chief_returned_models": {
+  "gemini-3.8-flash": 240
+ },
+ "engineer_records": 80,
+ "engineer_record_status": {
+  "VALID": 80
+ },
+ "estimated_cost_usd": {
+  "chief": 1.9248,
+  "engineers": 0.1136
+ },
+ "summary": {
+  "CHIEF_ONLY": {
+   "valid": 40,
+   "mean_regret": 0.446,
+   "action_change_vs_chief_only": 0,
+   "non_race_order_rate": 0.025,
+   "cited_reports_rate": 0
+  },
+  "CHIEF_ONLY_REPEAT": {
+   "valid": 40,
+   "mean_regret": 0.44,
+   "action_change_vs_chief_only": 0.075,
+   "non_race_order_rate": 0.025,
+   "cited_reports_rate": 0,
+   "paired_regret_diff_mean": -0.006,
+   "paired_regret_diff_ci95": [
+    -0.129,
+    0.098
+   ]
+  },
+  "GEMINI_LITE_ENGINEERS": {
+   "valid": 40,
+   "mean_regret": 0.652,
+   "action_change_vs_chief_only": 0.125,
+   "non_race_order_rate": 0.025,
+   "cited_reports_rate": 0.975,
+   "paired_regret_diff_mean": 0.206,
+   "paired_regret_diff_ci95": [
+    -0.002,
+    0.494
+   ],
+   "advice_items": 80,
+   "follow_rate": 0.662,
+   "follow_rate_when_advice_matches_reference": 1.0,
+   "follow_rate_when_advice_differs_from_reference": 0.325,
+   "harmful_following": [
+    "c8s12",
+    "c8s14",
+    "c8s28"
+   ]
+  },
+  "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+   "valid": 40,
+   "mean_regret": 0.408,
+   "action_change_vs_chief_only": 0.05,
+   "non_race_order_rate": 0.025,
+   "cited_reports_rate": 1,
+   "paired_regret_diff_mean": -0.038,
+   "paired_regret_diff_ci95": [
+    -0.137,
+    0.015
+   ],
+   "advice_items": 0,
+   "follow_rate": null,
+   "follow_rate_when_advice_matches_reference": null,
+   "follow_rate_when_advice_differs_from_reference": null,
+   "harmful_following": []
+  },
+  "NOMINAL_CONFIDENCE_CONTROL": {
+   "valid": 40,
+   "mean_regret": 0.376,
+   "action_change_vs_chief_only": 0.075,
+   "non_race_order_rate": 0.025,
+   "cited_reports_rate": 1,
+   "paired_regret_diff_mean": -0.069,
+   "paired_regret_diff_ci95": [
+    -0.203,
+    0.0
+   ],
+   "advice_items": 80,
+   "follow_rate": 0.775,
+   "follow_rate_when_advice_matches_reference": 0.946,
+   "follow_rate_when_advice_differs_from_reference": 0.375,
+   "harmful_following": []
+  },
+  "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+   "valid": 40,
+   "mean_regret": 0.306,
+   "action_change_vs_chief_only": 0.15,
+   "non_race_order_rate": 0.025,
+   "cited_reports_rate": 0.95,
+   "paired_regret_diff_mean": -0.14,
+   "paired_regret_diff_ci95": [
+    -0.357,
+    0.012
+   ],
+   "advice_items": 80,
+   "follow_rate": 0.8,
+   "follow_rate_when_advice_matches_reference": 0.982,
+   "follow_rate_when_advice_differs_from_reference": 0.375,
+   "harmful_following": []
+  }
+ },
+ "harmful_following_robustness": {
+  "c8s12:GEMINI_LITE_ENGINEERS": {
+   "regret_rise": {
+    "futures_x3": 0.919,
+    "cont_event_aware": 0.424,
+    "cont_long_stint": 1.883
+   },
+   "robust": false
+  },
+  "c8s14:GEMINI_LITE_ENGINEERS": {
+   "regret_rise": {
+    "futures_x3": 2.522,
+    "cont_event_aware": 0.0,
+    "cont_long_stint": 0.303
+   },
+   "robust": false
+  },
+  "c8s28:GEMINI_LITE_ENGINEERS": {
+   "regret_rise": {
+    "futures_x3": 4.474,
+    "cont_event_aware": 5.105,
+    "cont_long_stint": 5.105
+   },
+   "robust": true
+  }
+ },
+ "states": [
+  {
+   "state_id": "c8s00",
+   "lap": 9,
+   "track_status": "GREEN",
+   "laps_remaining": 36,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s01",
+   "lap": 30,
+   "track_status": "GREEN",
+   "laps_remaining": 15,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/PIT_MEDIUM|RACE",
+     "regret": 1.8247,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_MEDIUM|RACE",
+     "regret": 1.8247,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_MEDIUM"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 1.6394,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 1.6394,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_HARD"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s02",
+   "lap": 36,
+   "track_status": "GREEN",
+   "laps_remaining": 9,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s03",
+   "lap": 39,
+   "track_status": "GREEN",
+   "laps_remaining": 6,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_SOFT"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s04",
+   "lap": 42,
+   "track_status": "GREEN",
+   "laps_remaining": 3,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_SOFT"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s05",
+   "lap": 18,
+   "track_status": "GREEN",
+   "laps_remaining": 27,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s06",
+   "lap": 12,
+   "track_status": "GREEN",
+   "laps_remaining": 33,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s07",
+   "lap": 24,
+   "track_status": "GREEN",
+   "laps_remaining": 21,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s08",
+   "lap": 21,
+   "track_status": "GREEN",
+   "laps_remaining": 24,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.8415,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.8415,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.8415,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.8415,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.8415,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.8415,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s09",
+   "lap": 24,
+   "track_status": "GREEN",
+   "laps_remaining": 21,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.874,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.874,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.874,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.874,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.874,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s10",
+   "lap": 36,
+   "track_status": "GREEN",
+   "laps_remaining": 9,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "PIT_SOFT"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_MEDIUM"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_MEDIUM"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s11",
+   "lap": 27,
+   "track_status": "GREEN",
+   "laps_remaining": 18,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.238,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.238,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.238,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_MEDIUM"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.238,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.238,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.238,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s12",
+   "lap": 9,
+   "track_status": "GREEN",
+   "laps_remaining": 36,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0038,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_MEDIUM/STAY|RACE",
+     "regret": 1.2871,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_MEDIUM/STAY|RACE",
+     "regret": 1.2871,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0038,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|HOLD",
+     "regret": -0.4202,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s13",
+   "lap": 24,
+   "track_status": "VSC",
+   "laps_remaining": 21,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.909,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.909,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.909,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "PIT_MEDIUM"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.909,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.909,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/PIT_HARD|RACE",
+     "regret": 1.3905,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s14",
+   "lap": 27,
+   "track_status": "GREEN",
+   "laps_remaining": 18,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.2433,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.2433,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_MEDIUM/STAY|RACE",
+     "regret": 2.6491,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "PIT_MEDIUM"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.2433,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.2433,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.2433,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s15",
+   "lap": 6,
+   "track_status": "GREEN",
+   "laps_remaining": 39,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0566,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s16",
+   "lap": 18,
+   "track_status": "GREEN",
+   "laps_remaining": 27,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s17",
+   "lap": 24,
+   "track_status": "SC",
+   "laps_remaining": 21,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s18",
+   "lap": 12,
+   "track_status": "GREEN",
+   "laps_remaining": 33,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_HARD"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s19",
+   "lap": 33,
+   "track_status": "GREEN",
+   "laps_remaining": 12,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "PIT_MEDIUM"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_MEDIUM"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_MEDIUM"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s20",
+   "lap": 15,
+   "track_status": "GREEN",
+   "laps_remaining": 30,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/PIT_HARD|RACE",
+     "regret": 0.0,
+     "reference": "STAY/PIT_HARD|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_HARD"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s21",
+   "lap": 9,
+   "track_status": "GREEN",
+   "laps_remaining": 36,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s22",
+   "lap": 42,
+   "track_status": "VSC",
+   "laps_remaining": 3,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "PIT_SOFT"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "PIT_SOFT"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "PIT_SOFT"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s23",
+   "lap": 42,
+   "track_status": "GREEN",
+   "laps_remaining": 3,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "PIT_SOFT"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s24",
+   "lap": 39,
+   "track_status": "GREEN",
+   "laps_remaining": 6,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "PIT_SOFT"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "PIT_SOFT"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "PIT_SOFT"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s25",
+   "lap": 21,
+   "track_status": "SC",
+   "laps_remaining": 24,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_SOFT",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s26",
+   "lap": 27,
+   "track_status": "GREEN",
+   "laps_remaining": 18,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.8933,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.8933,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_MEDIUM/STAY|RACE",
+     "regret": 2.7732,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.8933,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.8933,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.8933,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s27",
+   "lap": 12,
+   "track_status": "GREEN",
+   "laps_remaining": 33,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s28",
+   "lap": 24,
+   "track_status": "GREEN",
+   "laps_remaining": 21,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.3031,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_MEDIUM/STAY|RACE",
+     "regret": 4.6234,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.3031,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "PIT_HARD"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s29",
+   "lap": 3,
+   "track_status": "GREEN",
+   "laps_remaining": 42,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|HOLD",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|HOLD",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|HOLD",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|HOLD",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|HOLD",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s30",
+   "lap": 24,
+   "track_status": "GREEN",
+   "laps_remaining": 21,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.5836,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.5836,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.5836,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.5836,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "PIT_HARD/STAY|RACE",
+     "regret": 0.0,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s31",
+   "lap": 3,
+   "track_status": "GREEN",
+   "laps_remaining": 42,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.4012,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.4012,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.4012,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.4012,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.4012,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 2.4012,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s32",
+   "lap": 9,
+   "track_status": "GREEN",
+   "laps_remaining": 36,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s33",
+   "lap": 24,
+   "track_status": "GREEN",
+   "laps_remaining": 21,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s34",
+   "lap": 33,
+   "track_status": "GREEN",
+   "laps_remaining": 12,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "PIT_MEDIUM"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s35",
+   "lap": 12,
+   "track_status": "GREEN",
+   "laps_remaining": 33,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_MEDIUM",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s36",
+   "lap": 21,
+   "track_status": "GREEN",
+   "laps_remaining": 24,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.0,
+     "reference": "STAY/STAY|RACE",
+     "advice": {
+      "driver_a": "PIT_HARD",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s37",
+   "lap": 3,
+   "track_status": "GREEN",
+   "laps_remaining": 42,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 1.783,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 1.783,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 1.783,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 1.783,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 1.783,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 1.783,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s38",
+   "lap": 3,
+   "track_status": "GREEN",
+   "laps_remaining": 42,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.6334,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.6334,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.6334,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.6334,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.6334,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.6334,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  },
+  {
+   "state_id": "c8s39",
+   "lap": 18,
+   "track_status": "GREEN",
+   "laps_remaining": 27,
+   "conditions": {
+    "CHIEF_ONLY": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.5966,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "CHIEF_ONLY_REPEAT": {
+     "valid": true,
+     "cited_reports": false,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.5966,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "GEMINI_LITE_ENGINEERS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.5966,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "CONFLICTING_LOCAL_RECOMMENDATIONS": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.5966,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": null,
+      "driver_b": null
+     }
+    },
+    "NOMINAL_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.5966,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    },
+    "HIGH_SELF_REPORTED_CONFIDENCE_CONTROL": {
+     "valid": true,
+     "cited_reports": true,
+     "action": "STAY/STAY|RACE",
+     "regret": 0.5966,
+     "reference": "PIT_HARD/STAY|RACE",
+     "advice": {
+      "driver_a": "STAY",
+      "driver_b": "STAY"
+     }
+    }
+   }
+  }
+ ]
+}

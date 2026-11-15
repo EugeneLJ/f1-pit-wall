@@ -1,0 +1,40 @@
+{
+    "schema_version": 1,
+    "id": "64a98086-184a-4e5d-90c0-ad8b235acce1",
+    "started_at": "2026-11-15T00:44:01.673069",
+    "updated_at": "2026-11-15T00:57:22.499530",
+    "finished_at": "2026-11-15T00:57:22.499530",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "opencode__gemini-3.8-flash__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.75396825
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.75396825": [
+                            "f1-championship__bBwmXNk"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 3512380,
+        "n_cache_tokens": 3314641,
+        "n_output_tokens": 29583,
+        "cost_usd": 0.671856075
+    }
+}

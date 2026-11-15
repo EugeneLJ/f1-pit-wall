@@ -1,0 +1,248 @@
+#!/usr/bin/env python3
+"""
+Apex GP Chief Strategist Engine
+Automated championship solver for f1ctl.
+"""
+
+import json
+import subprocess
+import sys
+import time
+
+COMPOUNDS = {
+    "SOFT": {"offset": -0.55, "deg": 0.350, "life": 10, "warmup": 0.3},
+    "MEDIUM": {"offset": 0.00, "deg": 0.140, "life": 16, "warmup": 0.6},
+    "HARD": {"offset": 0.28, "deg": 0.055, "life": 24, "warmup": 1.0},
+}
+
+POINTS_TABLE = [25, 18, 15, 12, 10, 8, 6, 4]
+
+
+def run_f1ctl(args, retries=5):
+    cmd = ["f1ctl"] + args
+    for attempt in range(retries):
+        res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if res.returncode == 0:
+            try:
+                data = json.loads(res.stdout)
+                if data.get("ok"):
+                    return data
+            except Exception:
+                pass
+        time.sleep(0.5)
+    raise RuntimeError(f"f1ctl failed after {retries} attempts: {res.stderr} | {res.stdout}")
+
+
+def observe():
+    return run_f1ctl(["observe"])
+
+
+def act(decision_id, action_dict):
+    return run_f1ctl(["act", decision_id, json.dumps(action_dict)])
+
+
+def decide_components(obs):
+    championship = obs.get("championship", {})
+    race_idx = championship.get("race_index", 0)
+    controlled = obs.get("controlled_drivers", {})
+
+    # Budgeted PU Strategy:
+    # Stint 1: Races 0-3 (cum stress 2.50)
+    # Stint 2: Races 4-7 (cum stress 2.40)
+    # Replace ICE and turbo for both drivers before Race 4 (Rainland GP).
+    # Exactly consumes 4 free units with 0 grid penalties.
+    # Max wear on any component never exceeds 0.55 across whole championship!
+    decisions = []
+    for driver in ["Apex A", "Apex B"]:
+        for comp in ["ICE", "turbo", "energy_store"]:
+            d_info = controlled.get(driver, {}).get("components", {}).get(comp, {})
+            wear = d_info.get("wear", 0.0)
+            if comp in ["ICE", "turbo"] and race_idx == 4:
+                action = "REPLACE"
+            elif wear >= 0.85:
+                action = "REPLACE"
+            else:
+                action = "USE"
+            decisions.append({"driver": driver, "component": comp, "action": action})
+
+    return {"type": "COMPONENT_DECISION", "decisions": decisions}
+
+
+def segment_time(compound, start_age, is_warmup, deg_mult=1.0, laps=3):
+    c = COMPOUNDS[compound]
+    total = c["warmup"] if is_warmup else 0.0
+    for lap in range(start_age + 1, start_age + laps + 1):
+        t = c["offset"] + c["deg"] * deg_mult * lap
+        if lap > c["life"]:
+            t += 0.25 * deg_mult * (lap - c["life"])
+        total += t
+    return total
+
+
+def compute_driver_action_cost(laps_remaining, curr_comp, curr_age, used_compounds, action, pit_loss_now, deg_mult, green_pit_loss):
+    memo = {}
+
+    def dp(rem_laps, comp, age, used_fs):
+        if rem_laps == 0:
+            if len(used_fs) < 2:
+                return 100.0  # Strict two-compound rule penalty
+            return 0.0
+
+        state = (rem_laps, comp, age, used_fs)
+        if state in memo:
+            return memo[state]
+
+        # Option 1: STAY
+        cost_stay = segment_time(comp, age, is_warmup=False, deg_mult=deg_mult) + dp(rem_laps - 3, comp, age + 3, used_fs)
+
+        # Option 2: PIT (optimal green compound)
+        best_pit = 1e9
+        for next_c in ["SOFT", "MEDIUM", "HARD"]:
+            cost_p = green_pit_loss + segment_time(next_c, 0, is_warmup=True, deg_mult=deg_mult) + dp(rem_laps - 3, next_c, 3, used_fs | {next_c})
+            if cost_p < best_pit:
+                best_pit = cost_p
+
+        res = min(cost_stay, best_pit)
+        memo[state] = res
+        return res
+
+    used_fs = frozenset(used_compounds)
+
+    if action == "STAY":
+        return segment_time(curr_comp, curr_age, is_warmup=False, deg_mult=deg_mult) + dp(laps_remaining - 3, curr_comp, curr_age + 3, used_fs)
+    elif action.startswith("PIT_"):
+        new_c = action.split("_")[1]
+        return pit_loss_now + segment_time(new_c, 0, is_warmup=True, deg_mult=deg_mult) + dp(laps_remaining - 3, new_c, 3, used_fs | {new_c})
+    else:
+        raise ValueError(f"Unknown action: {action}")
+
+
+def decide_race_strategy(obs):
+    progress = obs["race_progress"]
+    laps_remaining = progress["laps_remaining"]
+    track_status = progress["track_status"]  # GREEN, SC, VSC
+    drivers = progress["drivers"]
+    pit_info = progress["pit"]
+    track = obs["current_track"]
+
+    deg_mult = 0.5 + track["tyre_degradation"]
+    green_pit_loss = pit_info["loss_sec"]["GREEN"]
+    pit_loss_base = pit_info["loss_sec"].get(track_status, green_pit_loss)
+    double_stack_queue = pit_info.get("double_stack_queue_sec", 6.0)
+
+    da = drivers["driver_a"]
+    db = drivers["driver_b"]
+
+    serviced_first = pit_info.get("if_both_pit_serviced_first", "driver_a")
+    first_key = serviced_first
+    second_key = "driver_b" if first_key == "driver_a" else "driver_a"
+
+    # Legal actions per driver
+    actions_a = ["STAY", "PIT_SOFT", "PIT_MEDIUM", "PIT_HARD"]
+    actions_b = ["STAY", "PIT_SOFT", "PIT_MEDIUM", "PIT_HARD"]
+
+    # Mandatory 2-compound rule safeguard:
+    # If laps_remaining <= 6 and driver has only 1 compound used, must pit for a new compound
+    if laps_remaining <= 6 and len(da["compounds_used"]) < 2:
+        actions_a = [f"PIT_{c}" for c in ["SOFT", "MEDIUM", "HARD"] if c not in da["compounds_used"]]
+    if laps_remaining <= 6 and len(db["compounds_used"]) < 2:
+        actions_b = [f"PIT_{c}" for c in ["SOFT", "MEDIUM", "HARD"] if c not in db["compounds_used"]]
+
+    best_pair = None
+    best_score = 1e9
+
+    for act_a in actions_a:
+        for act_b in actions_b:
+            act_first = act_a if first_key == "driver_a" else act_b
+            act_second = act_b if first_key == "driver_a" else act_a
+
+            first_pits = act_first != "STAY"
+            second_pits = act_second != "STAY"
+
+            loss_first = pit_loss_base if first_pits else 0.0
+            loss_second = (pit_loss_base + double_stack_queue) if (first_pits and second_pits) else pit_loss_base
+
+            loss_a = loss_first if first_key == "driver_a" else loss_second
+            loss_b = loss_second if first_key == "driver_a" else loss_first
+
+            cost_a = compute_driver_action_cost(
+                laps_remaining, da["compound"], da["tyre_age"], da["compounds_used"],
+                act_a, loss_a, deg_mult, green_pit_loss
+            )
+
+            cost_b = compute_driver_action_cost(
+                laps_remaining, db["compound"], db["tyre_age"], db["compounds_used"],
+                act_b, loss_b, deg_mult, green_pit_loss
+            )
+
+            total_cost = cost_a + cost_b
+
+            if total_cost < best_score:
+                best_score = total_cost
+                best_pair = (act_a, act_b)
+
+    return {
+        "type": "RACE_STRATEGY",
+        "driver_a": best_pair[0],
+        "driver_b": best_pair[1]
+    }
+
+
+def step():
+    obs_data = observe()
+    if not obs_data.get("ok"):
+        raise RuntimeError(f"observe failed: {obs_data}")
+
+    obs = obs_data["observation"]
+    decision_type = obs.get("decision_type")
+    decision_id = obs.get("decision_id")
+
+    if decision_type == "CHAMPIONSHIP_COMPLETE":
+        print("\n==========================================")
+        print("          CHAMPIONSHIP COMPLETE           ")
+        print("==========================================")
+        standings = obs.get("championship", {}).get("team_standings", [])
+        for team in standings:
+            print(f"Team: {team['team']:10s} | Points: {team['points']}")
+        return "COMPLETE"
+
+    if decision_type == "COMPONENT_DECISION":
+        action = decide_components(obs)
+    elif decision_type == "RACE_STRATEGY":
+        action = decide_race_strategy(obs)
+    else:
+        raise ValueError(f"Unknown decision type: {decision_type}")
+
+    resp = act(decision_id, action)
+    if not resp.get("accepted"):
+        raise RuntimeError(f"Action rejected! {resp}")
+
+    # Log step summary
+    if decision_type == "COMPONENT_DECISION":
+        r_name = obs.get("current_track", {}).get("name", "Unknown")
+        print(f"[{decision_id}] COMPONENT_DECISION for {r_name}")
+    elif decision_type == "RACE_STRATEGY":
+        prog = obs["race_progress"]
+        lap = prog["lap"]
+        status = prog["track_status"]
+        da_pos = prog["drivers"]["driver_a"]["position"]
+        db_pos = prog["drivers"]["driver_b"]["position"]
+        print(f"[{decision_id}] Lap {lap:2d} ({status:5s}) Apex A: P{da_pos} -> {action['driver_a']:10s} | Apex B: P{db_pos} -> {action['driver_b']:10s}")
+
+    return "CONTINUE"
+
+
+def main():
+    print("Apex GP Chief Strategist active. Running championship loop...")
+    decisions_count = 0
+    while True:
+        status = step()
+        decisions_count += 1
+        if status == "COMPLETE":
+            break
+        time.sleep(0.02)
+    print(f"Season completed successfully ({decisions_count} decisions).")
+
+
+if __name__ == "__main__":
+    main()

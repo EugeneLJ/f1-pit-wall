@@ -1,0 +1,461 @@
+import socket
+import json
+import time
+import copy
+import sys
+
+SOCKET_PATH = "/run/f1sim/sim.sock"
+CONNECT_WAIT_SEC = 15.0
+
+POINTS = [25, 18, 15, 12, 10, 8, 6, 4]
+
+
+def request(payload):
+    deadline = time.monotonic() + CONNECT_WAIT_SEC
+    while True:
+        try:
+            with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as conn:
+                conn.settimeout(30.0)
+                conn.connect(SOCKET_PATH)
+                conn.sendall((json.dumps(payload) + "\n").encode("utf-8"))
+                chunks = []
+                while True:
+                    chunk = conn.recv(65536)
+                    if not chunk:
+                        break
+                    chunks.append(chunk)
+                    if chunk.endswith(b"\n"):
+                        break
+            return json.loads(b"".join(chunks).decode("utf-8"))
+        except (FileNotFoundError, ConnectionRefusedError):
+            if time.monotonic() > deadline:
+                raise RuntimeError(f"cannot reach simulator at {SOCKET_PATH}")
+            time.sleep(0.5)
+        except (OSError, ValueError) as exc:
+            raise RuntimeError(f"simulator connection failed: {exc}")
+
+
+class RaceSim:
+    def __init__(self, track_info, starting_state, car_base_paces, tyre_params, if_both_pit_first='driver_a'):
+        self.track = track_info
+        self.state = copy.deepcopy(starting_state)
+        self.stress = track_info['power_unit_stress']
+        self.deg_mult = 0.5 + track_info['tyre_degradation']
+        self.overtaking_diff = track_info['overtaking_difficulty']
+        self.pass_threshold = 0.2 + self.overtaking_diff * 2.0
+        
+        pit_info = starting_state.get('pit', {})
+        if 'loss_sec' in pit_info:
+            self.pit_loss = pit_info['loss_sec']
+        else:
+            green_loss = track_info.get('pit_loss_green_sec', 20.0)
+            self.pit_loss = {
+                'GREEN': green_loss,
+                'SC': green_loss * 0.3,
+                'VSC': green_loss * 0.55
+            }
+        self.car_base_paces = car_base_paces
+        self.tyre_params = tyre_params
+        self.if_both_pit_first = if_both_pit_first
+
+    def rival_choice(self, driver_info, laps_remaining):
+        if laps_remaining <= 6:
+            choice = 'SOFT'
+        elif laps_remaining <= 14:
+            choice = 'MEDIUM'
+        else:
+            choice = 'HARD'
+        comp_used = driver_info.get('compounds_used', [])
+        if choice in comp_used and len(comp_used) == 1:
+            for alt in ['SOFT', 'MEDIUM', 'HARD']:
+                if alt not in comp_used:
+                    choice = alt
+                    break
+        return choice
+
+    def step_segment(self, apex_actions, status='GREEN', is_first_step=False):
+        # Filter active cars (not retired)
+        active_cars = [c for c in self.state['classification'] 
+                       if not c.get('retired') and c.get('elapsed') is not None 
+                       and c.get('status') not in ('RETIRED', 'DNF')]
+        active_cars.sort(key=lambda c: c['elapsed'])
+        laps_rem = self.state['laps_remaining']
+
+        pit_actions = {}
+        for c in active_cars:
+            driver = c['driver']
+            if driver in apex_actions:
+                pit_actions[driver] = apex_actions[driver]
+            else:
+                comp = c['compound']
+                life = self.tyre_params[comp]['life']
+                if laps_rem == 3 and len(c.get('compounds_used', [])) == 1:
+                    pit_actions[driver] = 'PIT_' + self.rival_choice(c, laps_rem)
+                elif c['tyre_age'] + 3 > life:
+                    pit_actions[driver] = 'PIT_' + self.rival_choice(c, laps_rem)
+                else:
+                    pit_actions[driver] = 'STAY'
+
+        # Double stacking logic
+        double_stack_driver = None
+        act_a = pit_actions.get('Apex A', '')
+        act_b = pit_actions.get('Apex B', '')
+        if act_a.startswith('PIT') and act_b.startswith('PIT'):
+            if is_first_step:
+                double_stack_driver = 'Apex B' if self.if_both_pit_first == 'driver_a' else 'Apex A'
+            else:
+                pos_a = [i for i, c in enumerate(active_cars) if c['driver'] == 'Apex A']
+                pos_b = [i for i, c in enumerate(active_cars) if c['driver'] == 'Apex B']
+                if pos_a and pos_b:
+                    double_stack_driver = 'Apex B' if pos_a[0] < pos_b[0] else 'Apex A'
+
+        raw_times = {}
+        for c in active_cars:
+            d = c['driver']
+            action = pit_actions.get(d, 'STAY')
+            just_pitted = action.startswith('PIT')
+            if just_pitted:
+                new_comp = action.split('_')[1]
+                c['compound'] = new_comp
+                if 'compounds_used' not in c:
+                    c['compounds_used'] = []
+                if new_comp not in c['compounds_used']:
+                    c['compounds_used'].append(new_comp)
+                c['tyre_age'] = 0
+
+            base = self.car_base_paces.get(d, 90.0)
+            comp = c['compound']
+            p = self.tyre_params[comp]
+
+            seg_time = 0.0
+            for l in range(3):
+                age = c['tyre_age'] + l
+                lt = base + p['offset'] + p['deg'] * self.deg_mult * age
+                if age > p['life']:
+                    lt += 0.25 * self.deg_mult * (age - p['life'])
+                if l == 0 and just_pitted:
+                    lt += p['warmup']
+                seg_time += lt
+
+            if just_pitted:
+                seg_time += self.pit_loss[status]
+                if d == double_stack_driver:
+                    seg_time += 6.0
+
+            raw_times[d] = seg_time
+
+            if status == 'SC':
+                c['tyre_age'] += 1
+            elif status == 'VSC':
+                c['tyre_age'] += 2
+            else:
+                c['tyre_age'] += 3
+
+        if status == 'SC':
+            for c in active_cars:
+                c['elapsed'] += raw_times[c['driver']] * 1.4
+            active_cars.sort(key=lambda c: c['elapsed'])
+            for i in range(1, len(active_cars)):
+                active_cars[i]['elapsed'] = active_cars[i - 1]['elapsed'] + 0.8
+        elif status == 'VSC':
+            for c in active_cars:
+                c['elapsed'] += raw_times[c['driver']] * 1.3
+            active_cars.sort(key=lambda c: c['elapsed'])
+        else:
+            for i in range(1, len(active_cars)):
+                gap = active_cars[i]['elapsed'] - active_cars[i - 1]['elapsed']
+                if gap <= 1.0:
+                    raw_times[active_cars[i]['driver']] += 0.45
+
+            proj = [(c['driver'], c['elapsed'] + raw_times[c['driver']]) for c in active_cars]
+            final_elapsed = {}
+            final_elapsed[proj[0][0]] = proj[0][1]
+            for i in range(1, len(proj)):
+                d_curr, t_curr = proj[i]
+                d_prev = proj[i - 1][0]
+                t_prev = final_elapsed[d_prev]
+                if t_curr < t_prev - self.pass_threshold:
+                    final_elapsed[d_curr] = t_curr
+                else:
+                    final_elapsed[d_curr] = max(t_curr, t_prev + 0.3)
+
+            for c in active_cars:
+                c['elapsed'] = final_elapsed[c['driver']]
+            active_cars.sort(key=lambda c: c['elapsed'])
+
+        for i, c in enumerate(active_cars):
+            c['position'] = i + 1
+
+        self.state['classification'] = active_cars
+        self.state['lap'] += 3
+        self.state['laps_remaining'] -= 3
+
+
+def generate_driver_plans(driver_info, current_lap, laps_remaining, tyre_params):
+    dec_laps = list(range(current_lap, 45, 3))
+    compounds_used = set(driver_info.get('compounds_used', []))
+    curr_comp = driver_info['compound']
+    curr_age = driver_info['tyre_age']
+    life = tyre_params[curr_comp]['life']
+
+    plans = []
+
+    # 0 stops: valid whenever two-compound rule is satisfied
+    if len(compounds_used) >= 2:
+        plans.append({})
+
+    # 1 stop
+    for p1 in dec_laps:
+        stint0_laps = p1 - current_lap
+        # Tyre shouldn't extend absurdly past life under green
+        if stint0_laps > 0 and curr_age + stint0_laps > life + 6:
+            continue
+        rem = 45 - p1
+        for c1 in ['SOFT', 'MEDIUM', 'HARD']:
+            if len(compounds_used | {c1}) < 2:
+                continue
+            if c1 == 'SOFT' and rem > 10:
+                continue
+            if c1 == 'HARD' and rem < 12:
+                continue
+            if c1 == 'MEDIUM' and rem > 21:
+                continue
+            if c1 == 'HARD' and rem > 33:
+                continue
+            plans.append({p1: 'PIT_' + c1})
+
+    # 2 stops
+    for i, p1 in enumerate(dec_laps):
+        stint0_laps = p1 - current_lap
+        if stint0_laps > 0 and curr_age + stint0_laps > life + 6:
+            continue
+        for p2 in dec_laps[i + 1:]:
+            stint1_laps = p2 - p1
+            stint2_laps = 45 - p2
+            for c1 in ['SOFT', 'MEDIUM', 'HARD']:
+                if c1 == 'SOFT' and stint1_laps > 10:
+                    continue
+                if c1 == 'MEDIUM' and (stint1_laps < 6 or stint1_laps > 21):
+                    continue
+                if c1 == 'HARD' and (stint1_laps < 12 or stint1_laps > 30):
+                    continue
+                for c2 in ['SOFT', 'MEDIUM', 'HARD']:
+                    if c2 == 'SOFT' and stint2_laps > 10:
+                        continue
+                    if c2 == 'MEDIUM' and (stint2_laps < 6 or stint2_laps > 21):
+                        continue
+                    if c2 == 'HARD' and (stint2_laps < 12 or stint2_laps > 30):
+                        continue
+                    if len(compounds_used | {c1, c2}) < 2:
+                        continue
+                    plans.append({p1: 'PIT_' + c1, p2: 'PIT_' + c2})
+
+    if not plans:
+        plans.append({})
+        for c in ['SOFT', 'MEDIUM', 'HARD']:
+            plans.append({current_lap: 'PIT_' + c})
+
+    return plans
+
+
+def choose_race_strategy(obs, tyre_params):
+    rp = obs['race_progress']
+    current_lap = rp['lap']
+    laps_rem = rp['laps_remaining']
+    track_info = obs['current_track']
+    status = rp.get('track_status', 'GREEN')
+
+    # Car base paces directly from observation estimates
+    car_base_paces = {}
+    for d, v in obs.get('rivals_public', {}).items():
+        car_base_paces[d] = v.get('published_pace_estimate', 90.0)
+    for d, v in obs.get('controlled_drivers', {}).items():
+        car_base_paces[d] = v.get('projection_if_all_used', {}).get('pace', 89.8)
+
+    pit_info = rp.get('pit', {})
+    if_both_pit_first = pit_info.get('if_both_pit_serviced_first', 'driver_a')
+
+    cars_by_driver = {c['driver']: c for c in rp['classification']}
+    driver_a_info = cars_by_driver.get('Apex A')
+    driver_b_info = cars_by_driver.get('Apex B')
+
+    is_a_active = (driver_a_info and not driver_a_info.get('retired') 
+                   and driver_a_info.get('elapsed') is not None 
+                   and driver_a_info.get('status') not in ('RETIRED', 'DNF'))
+    is_b_active = (driver_b_info and not driver_b_info.get('retired') 
+                   and driver_b_info.get('elapsed') is not None 
+                   and driver_b_info.get('status') not in ('RETIRED', 'DNF'))
+
+    if not is_a_active and not is_b_active:
+        return {'type': 'RACE_STRATEGY', 'driver_a': 'STAY', 'driver_b': 'STAY'}
+
+    plans_a = generate_driver_plans(driver_a_info, current_lap, laps_rem, tyre_params) if is_a_active else [{}]
+    plans_b = generate_driver_plans(driver_b_info, current_lap, laps_rem, tyre_params) if is_b_active else [{}]
+
+    best_score = -1e12
+    best_action_pair = ('STAY', 'STAY')
+    best_pts = 0
+    best_positions = (0, 0)
+
+    for pa in plans_a:
+        for pb in plans_b:
+            sim = RaceSim(track_info, rp, car_base_paces, tyre_params, if_both_pit_first)
+            first_step = True
+            while sim.state['laps_remaining'] > 0:
+                lap = sim.state['lap']
+                step_status = status if first_step else 'GREEN'
+                act_a = pa.get(lap, 'STAY')
+                act_b = pb.get(lap, 'STAY')
+                sim.step_segment({'Apex A': act_a, 'Apex B': act_b}, status=step_status, is_first_step=first_step)
+                first_step = False
+
+            pts = 0
+            tot_el = 0.0
+            pos_a, pos_b = 8, 8
+            for c in sim.state['classification']:
+                if c['driver'] == 'Apex A':
+                    pts += POINTS[c['position'] - 1]
+                    tot_el += c['elapsed']
+                    pos_a = c['position']
+                elif c['driver'] == 'Apex B':
+                    pts += POINTS[c['position'] - 1]
+                    tot_el += c['elapsed']
+                    pos_b = c['position']
+
+            score = pts * 100000.0 - tot_el
+            if score > best_score:
+                best_score = score
+                best_action_pair = (pa.get(current_lap, 'STAY'), pb.get(current_lap, 'STAY'))
+                best_pts = pts
+                best_positions = (pos_a, pos_b)
+
+    act_a, act_b = best_action_pair
+    # Enforce 2 compounds rule at the last decision if not already met
+    if laps_rem == 3:
+        if is_a_active and len(driver_a_info.get('compounds_used', [])) == 1 and act_a == 'STAY':
+            for alt in ['SOFT', 'MEDIUM', 'HARD']:
+                if alt not in driver_a_info['compounds_used']:
+                    act_a = 'PIT_' + alt
+                    break
+        if is_b_active and len(driver_b_info.get('compounds_used', [])) == 1 and act_b == 'STAY':
+            for alt in ['SOFT', 'MEDIUM', 'HARD']:
+                if alt not in driver_b_info['compounds_used']:
+                    act_b = 'PIT_' + alt
+                    break
+
+    a_str = f"P{driver_a_info['position']}({driver_a_info['compound']},{driver_a_info['tyre_age']}L)" if is_a_active else "RETIRED"
+    b_str = f"P{driver_b_info['position']}({driver_b_info['compound']},{driver_b_info['tyre_age']}L)" if is_b_active else "RETIRED"
+    print(f"  [Lap {current_lap:2d} | {status:5s}] Apex A: {a_str} -> {act_a} | Apex B: {b_str} -> {act_b} | Proj: {best_pts} pts (A:P{best_positions[0]}, B:P{best_positions[1]})")
+    return {'type': 'RACE_STRATEGY', 'driver_a': act_a, 'driver_b': act_b}
+
+
+def choose_component_decision(obs):
+    race_idx = obs['championship']['race_index']
+    track_name = obs['current_track']['name']
+    free_units = obs['controlled_drivers']['Apex A'].get('free_units_available', 4)
+
+    print(f"\n=================================================================")
+    print(f"PRE-RACE {race_idx+1}/8: {track_name} (Free Units Remaining: {free_units})")
+    print(f"=================================================================")
+
+    decisions = []
+    # Plan:
+    # Race 4 (Rainland): replace ICE on both Apex A and Apex B (consumes 2 free units)
+    # Race 5 (Metro): replace Turbo on both Apex A and Apex B (consumes 2 free units)
+    # Emergency: wear >= 0.88 or 'USE' not legal
+    units_to_use = free_units
+    for driver in ['Apex A', 'Apex B']:
+        driver_comps = obs['controlled_drivers'][driver]['components']
+        for comp_name in ['ICE', 'turbo', 'energy_store']:
+            wear = driver_comps[comp_name]['wear']
+            legal = driver_comps[comp_name]['legal_actions']
+            action = 'USE'
+
+            if 'USE' not in legal:
+                action = 'REPLACE'
+                if units_to_use >= 1:
+                    units_to_use -= 1
+            elif wear >= 0.88:
+                action = 'REPLACE'
+                if units_to_use >= 1:
+                    units_to_use -= 1
+            elif race_idx == 4 and comp_name == 'ICE' and units_to_use >= 1:
+                action = 'REPLACE'
+                units_to_use -= 1
+            elif race_idx == 5 and comp_name == 'turbo' and units_to_use >= 1:
+                action = 'REPLACE'
+                units_to_use -= 1
+
+            decisions.append({
+                'driver': driver,
+                'component': comp_name,
+                'action': action
+            })
+            print(f"  {driver} {comp_name:12s}: current wear = {wear:.3f} -> {action}")
+
+    return {'type': 'COMPONENT_DECISION', 'decisions': decisions}
+
+
+def main():
+    tyre_params = {
+        'SOFT': {'offset': -0.55, 'deg': 0.35, 'life': 10, 'warmup': 0.3},
+        'MEDIUM': {'offset': 0.0, 'deg': 0.14, 'life': 16, 'warmup': 0.6},
+        'HARD': {'offset': 0.28, 'deg': 0.055, 'life': 24, 'warmup': 1.0}
+    }
+
+    print("Beginning championship campaign...")
+
+    last_dec_type = None
+
+    while True:
+        obs_resp = request({'cmd': 'observe'})
+        if not obs_resp.get('ok'):
+            print(f"Observe failed: {obs_resp}")
+            time.sleep(1.0)
+            continue
+
+        obs = obs_resp['observation']
+        dec_type = obs.get('decision_type')
+        dec_id = obs.get('decision_id')
+
+        if last_dec_type == 'RACE_STRATEGY' and dec_type == 'COMPONENT_DECISION':
+            champ = obs.get('championship', {})
+            print("\n-------------------------------------------------------")
+            print(f"RACE FINISHED! Team Standings after Race {champ.get('race_index', 0)}:")
+            for ts in champ.get('team_standings', []):
+                print(f"  {ts['team']:10s}: {ts['points']} pts")
+            print("-------------------------------------------------------")
+
+        last_dec_type = dec_type
+
+        if dec_type == 'CHAMPIONSHIP_COMPLETE':
+            print("\n=======================================================")
+            print("CHAMPIONSHIP COMPLETE!")
+            print("=======================================================")
+            champ = obs.get('championship', {})
+            print("\nFinal Team Standings:")
+            for ts in champ.get('team_standings', []):
+                print(f"  {ts['team']:10s}: {ts['points']} pts")
+            print("\nFinal Driver Standings:")
+            for ds in champ.get('driver_standings', []):
+                print(f"  {ds['driver']:10s}: {ds['points']} pts")
+            break
+
+        if dec_type == 'COMPONENT_DECISION':
+            action = choose_component_decision(obs)
+        elif dec_type == 'RACE_STRATEGY':
+            action = choose_race_strategy(obs, tyre_params)
+        else:
+            print(f"Unknown decision_type: {dec_type}")
+            break
+
+        act_resp = request({'cmd': 'act', 'decision_id': dec_id, 'action': action})
+        if not act_resp.get('ok'):
+            print(f"Action {dec_id} failed: {act_resp}")
+            sys.exit(1)
+
+    print("\nCampaign finished successfully.")
+
+
+if __name__ == '__main__':
+    main()

@@ -100,13 +100,15 @@ class Harness:
 class LayoutTests(unittest.TestCase):
     def test_engine_copies_are_identical(self):
         canonical = _tree(TASK / "src" / "f1pitwall")
-        for target in (SIM / "f1pitwall", TASK / "tests" / "f1pitwall"):
+        for target in (SIM / "f1pitwall", TASK / "tests" / "f1pitwall",
+                       TASK / "solution" / "lib" / "f1pitwall"):
             self.assertEqual(canonical, _tree(target), f"{target} drifted; run scripts/sync_engine.py")
 
     def test_seed_only_in_sim_and_verifier(self):
         self.assertEqual(json.loads((TASK / "tests" / "hidden_seed.json").read_text())["base_seed"], SEED)
         agent_side = [TASK / "environment" / "Dockerfile", TASK / "environment" / "client" / "f1ctl",
-                      TASK / "instruction.md", TASK / "solution" / "play.py"]
+                      TASK / "instruction.md", TASK / "solution" / "play.py",
+                      TASK / "solution" / "reference.py"]
         for path in agent_side:
             self.assertNotIn(str(SEED), path.read_text())
         self.assertIn("sim", (TASK / "environment" / ".dockerignore").read_text().split())

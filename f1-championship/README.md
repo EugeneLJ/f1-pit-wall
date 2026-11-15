@@ -62,18 +62,63 @@ P = Apex points, D = do-nothing policy on the same hidden seed,
 U = 43 x races (P1+P2 every race; a true upper bound, not a reference score)
 ```
 
-Points only accumulate, so stopping early cannot beat finishing. P2 will add
-a reference planner and reference-relative regret as a separate report field.
+Points only accumulate, so stopping early cannot beat finishing. `U` is a bound, not a
+reference score: the reference below reaches about 0.72 on average.
 
-## Run
+## Reference and measured gap
+
+`solution/reference.py` (run by `-a oracle`) plays through `f1ctl` from public observations only, using a
+model of the published rules: one-step rollout over all 16 joint race actions with futures sampled from
+the published SC/VSC model, plus a search over season replacement plans. It is budget-limited, not optimal.
+
+| | Points | Reward |
+|---|---:|---:|
+| Reference, task seed (Harbor) | 286 | 0.770 |
+| Gemini 3.8 Flash, task seed, benchmark 1.0.0 (Harbor) | 268 | 0.698 |
+| Gemini 3.8 Flash, task seed, benchmark 1.1.0 (Harbor, 3 runs on the same seed) | 282 / 279 / 286 | 0.754 / 0.742 / 0.770 |
+| Reference, mean of 100 seeds | 271.8 | 0.724 |
+| Scripts written by the four 1.0.0 Gemini runs, same 100 seeds | 243.7–254.9 | 0.617–0.660 |
+| Scripts written by the three 1.1.0 Gemini runs, 20 paired seeds (reference 266.8 on these) | 256.6–261.1 | — |
+| Simple public heuristic (`F1_SOLUTION=baseline`) | 231.6 | 0.571 |
+
+Details, limits and open items: [docs/REFERENCE_GAP_REPORT.md](docs/REFERENCE_GAP_REPORT.md).
+
+## Run (judges: start here)
+
+Requirements: Harbor 0.26+, local Docker with Compose. Run from the repository root.
 
 ```bash
-harbor run -p ./f1-championship -a oracle    # P0 heuristic oracle
-harbor run -p ./f1-championship -a nop       # stop-early / do-nothing
-scripts/make_probe_task.sh /tmp/probe complete && harbor run -p /tmp/probe -a oracle
-scripts/py312 -m unittest discover -s devtests -v  # local tests on the image interpreter (no Docker)
+# 1. Reference run (public-information rollout player, about 90 s including image start)
+harbor run -p ./f1-championship -a oracle
+
+# 2. Frontier run (the documented model; repeat for more runs)
+harbor run -p ./f1-championship -a opencode -m gemini/gemini-3.8-flash \
+  --api-key-name GEMINI_API_KEY --env-file <file with GEMINI_API_KEY=...> \
+  --allow-agent-host generativelanguage.googleapis.com
+
+# 3. Do-nothing baseline (agent does nothing; season unfinished -> reward 0)
+harbor run -p ./f1-championship -a nop
+
+# 4. Stop-early baseline (tries 20+ boundary attacks, plays two decisions, quits -> reward 0)
+f1-championship/scripts/make_probe_task.sh /tmp/probe-stop stop && harbor run -p /tmp/probe-stop -a oracle
+
+# 5. Exploit probe that then finishes honestly with the simple public heuristic (reward 0.587, evidence intact)
+f1-championship/scripts/make_probe_task.sh /tmp/probe-complete complete && harbor run -p /tmp/probe-complete -a oracle
+
+# Same task on another hidden seed (only the two seed files change)
+f1-championship/scripts/make_seed_variant.sh /tmp/seed-x <integer seed> x && harbor run -p /tmp/seed-x -a oracle
+
+# Local tests and the matched-seed comparison (no Docker; Python 3.12 through uv)
+cd f1-championship
+scripts/py312 -m unittest discover -s devtests
+scripts/py312 analysis/reference_eval.py --seeds 100       # reference vs the four recorded Gemini policies
+scripts/py312 analysis/reference_eval.py --harbor-seeds    # the four seeds of the recorded Harbor runs
 ```
 
+The reward is written to `/logs/verifier/reward.txt` (one number in [0, 1]); the full breakdown is in
+`/logs/verifier/report.json`. A "play every decision but do nothing" policy (USE, STAY) is the reward's
+zero point `D`, so it also scores 0.
+
 Edit the engine only in `src/f1pitwall/`, then run `scripts/sync_engine.py`
-(the sim and verifier images each need a copy; `devtests` fails on drift).
+(the sim image, the verifier image and the reference solution each need a copy; `devtests` fails on drift).
 All track and component coefficients are synthetic placeholders.

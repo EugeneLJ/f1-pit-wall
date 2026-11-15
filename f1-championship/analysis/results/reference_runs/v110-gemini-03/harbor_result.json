@@ -1,0 +1,136 @@
+{
+    "schema_version": 1,
+    "id": "00748cac-fb74-45f4-9ca1-2278b12b06e1",
+    "task_name": "EugeneLJ/f1-championship",
+    "trial_name": "f1-championship__GpdHwJh",
+    "trial_uri": "file:///root/f1-championship-ref/jobs/v110-gemini-03/f1-championship__GpdHwJh",
+    "task_id": {
+        "path": "f1-championship"
+    },
+    "source": null,
+    "task_checksum": "b9ced636ed2a4e6e7e40773e2285c1fcdacbfe7ea1411a30f71f4bdb1d5b019c",
+    "config": {
+        "schema_version": 1,
+        "task": {
+            "path": "f1-championship",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "f1-championship__GpdHwJh",
+        "trials_dir": "jobs/v110-gemini-03",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "opencode",
+            "import_path": null,
+            "model_name": "gemini/gemini-3.8-flash",
+            "base_url": null,
+            "model_api_key_name": "GEMINI_API_KEY",
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [
+                "generativelanguage.googleapis.com"
+            ],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "override_error_policy": {},
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "c3ea4021-fba8-421e-8993-0e975b2844e7",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "opencode",
+        "version": "1.19.5",
+        "model_info": {
+            "name": "gemini-3.8-flash",
+            "provider": "gemini"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 7457390,
+        "n_cache_tokens": 7174386,
+        "n_output_tokens": 25889,
+        "cost_usd": 0.9869906999999998,
+        "model_usage": {
+            "gemini/gemini-3.8-flash": {
+                "n_input_tokens": 7457390,
+                "n_cache_tokens": 7174386,
+                "n_output_tokens": 25889,
+                "cost_usd": 0.9869906999999998
+            }
+        },
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.76984127
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-15T01:08:21.017422Z",
+    "finished_at": "2026-11-15T01:19:03.319337Z",
+    "environment_setup": {
+        "started_at": "2026-11-15T01:08:21.038216Z",
+        "finished_at": "2026-11-15T01:08:30.388831Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-15T01:08:30.388890Z",
+        "finished_at": "2026-11-15T01:08:30.837994Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-15T01:08:30.838279Z",
+        "finished_at": "2026-11-15T01:18:24.970301Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-15T01:18:46.011467Z",
+        "finished_at": "2026-11-15T01:19:03.319321Z"
+    },
+    "step_results": null,
+    "reward_valid": true
+}

@@ -1,0 +1,517 @@
+{
+ "seeds": [
+  3905429505653179902,
+  1750874342504930565,
+  1364246715079465874,
+  1097959138959845647
+ ],
+ "rows": [
+  {
+   "policy": "reference",
+   "seed": 3905429505653179902,
+   "points": 286,
+   "per_race": [
+    43,
+    40,
+    27,
+    37,
+    33,
+    40,
+    33,
+    33
+   ],
+   "seconds": 38.6,
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112
+  },
+  {
+   "policy": "reference",
+   "seed": 1750874342504930565,
+   "points": 279,
+   "per_race": [
+    33,
+    25,
+    43,
+    43,
+    27,
+    43,
+    37,
+    28
+   ],
+   "seconds": 38.2,
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112
+  },
+  {
+   "policy": "reference",
+   "seed": 1364246715079465874,
+   "points": 264,
+   "per_race": [
+    43,
+    18,
+    27,
+    43,
+    33,
+    40,
+    30,
+    30
+   ],
+   "seconds": 38.1,
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112
+  },
+  {
+   "policy": "reference",
+   "seed": 1097959138959845647,
+   "points": 272,
+   "per_race": [
+    33,
+    43,
+    27,
+    30,
+    33,
+    40,
+    33,
+    33
+   ],
+   "seconds": 38.1,
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112
+  },
+  {
+   "policy": "baseline",
+   "seed": 3905429505653179902,
+   "points": 240,
+   "complete": true
+  },
+  {
+   "policy": "baseline",
+   "seed": 1750874342504930565,
+   "points": 239,
+   "complete": true
+  },
+  {
+   "policy": "baseline",
+   "seed": 1364246715079465874,
+   "points": 218,
+   "complete": true
+  },
+  {
+   "policy": "baseline",
+   "seed": 1097959138959845647,
+   "points": 236,
+   "complete": true
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 3905429505653179902,
+   "points": 92,
+   "complete": true
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1750874342504930565,
+   "points": 84,
+   "complete": true
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1364246715079465874,
+   "points": 84,
+   "complete": true
+  },
+  {
+   "policy": "do_nothing",
+   "seed": 1097959138959845647,
+   "points": 84,
+   "complete": true
+  },
+  {
+   "policy": "stop_early",
+   "seed": 3905429505653179902,
+   "points": 122,
+   "complete": false
+  },
+  {
+   "policy": "stop_early",
+   "seed": 1750874342504930565,
+   "points": 128,
+   "complete": false
+  },
+  {
+   "policy": "stop_early",
+   "seed": 1364246715079465874,
+   "points": 110,
+   "complete": false
+  },
+  {
+   "policy": "stop_early",
+   "seed": 1097959138959845647,
+   "points": 117,
+   "complete": false
+  },
+  {
+   "policy": "gemini_r0",
+   "seed": 3905429505653179902,
+   "points": 268,
+   "per_race": [
+    43,
+    33,
+    27,
+    33,
+    26,
+    40,
+    33,
+    33
+   ]
+  },
+  {
+   "policy": "gemini_r0",
+   "seed": 1750874342504930565,
+   "points": 273,
+   "per_race": [
+    40,
+    25,
+    43,
+    40,
+    25,
+    43,
+    35,
+    22
+   ]
+  },
+  {
+   "policy": "gemini_r0",
+   "seed": 1364246715079465874,
+   "points": 242,
+   "per_race": [
+    43,
+    18,
+    23,
+    40,
+    26,
+    40,
+    24,
+    28
+   ]
+  },
+  {
+   "policy": "gemini_r0",
+   "seed": 1097959138959845647,
+   "points": 277,
+   "per_race": [
+    30,
+    43,
+    30,
+    40,
+    26,
+    40,
+    33,
+    35
+   ]
+  },
+  {
+   "policy": "gemini_r1",
+   "seed": 3905429505653179902,
+   "points": 259,
+   "per_race": [
+    43,
+    37,
+    27,
+    28,
+    28,
+    33,
+    30,
+    33
+   ]
+  },
+  {
+   "policy": "gemini_r1",
+   "seed": 1750874342504930565,
+   "points": 267,
+   "per_race": [
+    35,
+    18,
+    43,
+    43,
+    30,
+    40,
+    30,
+    28
+   ]
+  },
+  {
+   "policy": "gemini_r1",
+   "seed": 1364246715079465874,
+   "points": 239,
+   "per_race": [
+    43,
+    18,
+    25,
+    40,
+    28,
+    33,
+    24,
+    28
+   ]
+  },
+  {
+   "policy": "gemini_r1",
+   "seed": 1097959138959845647,
+   "points": 261,
+   "per_race": [
+    35,
+    40,
+    25,
+    30,
+    28,
+    33,
+    30,
+    40
+   ]
+  },
+  {
+   "policy": "gemini_r2",
+   "seed": 3905429505653179902,
+   "points": 270,
+   "per_race": [
+    43,
+    33,
+    27,
+    37,
+    24,
+    40,
+    33,
+    33
+   ]
+  },
+  {
+   "policy": "gemini_r2",
+   "seed": 1750874342504930565,
+   "points": 276,
+   "per_race": [
+    40,
+    25,
+    43,
+    43,
+    27,
+    43,
+    22,
+    33
+   ]
+  },
+  {
+   "policy": "gemini_r2",
+   "seed": 1364246715079465874,
+   "points": 248,
+   "per_race": [
+    43,
+    18,
+    27,
+    43,
+    19,
+    40,
+    28,
+    30
+   ]
+  },
+  {
+   "policy": "gemini_r2",
+   "seed": 1097959138959845647,
+   "points": 250,
+   "per_race": [
+    30,
+    40,
+    22,
+    24,
+    24,
+    40,
+    33,
+    37
+   ]
+  },
+  {
+   "policy": "gemini_r3",
+   "seed": 3905429505653179902,
+   "points": 256,
+   "per_race": [
+    43,
+    30,
+    27,
+    30,
+    30,
+    40,
+    26,
+    30
+   ]
+  },
+  {
+   "policy": "gemini_r3",
+   "seed": 1750874342504930565,
+   "points": 250,
+   "per_race": [
+    33,
+    25,
+    40,
+    43,
+    23,
+    43,
+    25,
+    18
+   ]
+  },
+  {
+   "policy": "gemini_r3",
+   "seed": 1364246715079465874,
+   "points": 235,
+   "per_race": [
+    35,
+    18,
+    25,
+    40,
+    25,
+    40,
+    24,
+    28
+   ]
+  },
+  {
+   "policy": "gemini_r3",
+   "seed": 1097959138959845647,
+   "points": 261,
+   "per_race": [
+    28,
+    43,
+    24,
+    31,
+    30,
+    40,
+    30,
+    35
+   ]
+  }
+ ],
+ "summary": {
+  "reference": {
+   "mean_points": 275.25,
+   "sd_points": 9.429563439877091,
+   "mean_reward": 0.7338064713064714,
+   "reference_minus_policy_points": 0,
+   "se_points": 0.0,
+   "reference_minus_policy_reward": 0.0,
+   "se_reward": 0.0,
+   "reference_better_equal_worse": [
+    0,
+    4,
+    0
+   ]
+  },
+  "baseline": {
+   "mean_points": 233.25,
+   "sd_points": 10.307764064044152,
+   "mean_reward": 0.5708638583638583,
+   "reference_minus_policy_points": 42,
+   "se_points": 2.449489742783178,
+   "reference_minus_policy_reward": 0.16294261294261295,
+   "se_reward": 0.01025332094877441,
+   "reference_better_equal_worse": [
+    4,
+    0,
+    0
+   ]
+  },
+  "do_nothing": {
+   "mean_points": 86,
+   "sd_points": 4.0,
+   "mean_reward": 0.0,
+   "reference_minus_policy_points": 189.25,
+   "se_points": 3.4490336810958127,
+   "reference_minus_policy_reward": 0.7338064713064714,
+   "se_reward": 0.016827578902383636,
+   "reference_better_equal_worse": [
+    4,
+    0,
+    0
+   ]
+  },
+  "stop_early": {
+   "mean_points": 119.25,
+   "sd_points": 7.632168761236874,
+   "mean_reward": 0.0,
+   "reference_minus_policy_points": 156,
+   "se_points": 2.798809270624444,
+   "reference_minus_policy_reward": 0.7338064713064714,
+   "se_reward": 0.016827578902383636,
+   "reference_better_equal_worse": [
+    4,
+    0,
+    0
+   ]
+  },
+  "gemini_r0": {
+   "mean_points": 265,
+   "sd_points": 15.769168230019828,
+   "mean_reward": 0.6938339438339438,
+   "reference_minus_policy_points": 10.25,
+   "se_points": 6.115213269652444,
+   "reference_minus_policy_reward": 0.0399725274725275,
+   "se_reward": 0.023757383385089433,
+   "reference_better_equal_worse": [
+    3,
+    0,
+    1
+   ]
+  },
+  "gemini_r1": {
+   "mean_points": 256.5,
+   "sd_points": 12.151817422372122,
+   "mean_reward": 0.6608669108669109,
+   "reference_minus_policy_points": 18.75,
+   "se_points": 4.2106016988865935,
+   "reference_minus_policy_reward": 0.07293956043956043,
+   "se_reward": 0.01674453742180397,
+   "reference_better_equal_worse": [
+    4,
+    0,
+    0
+   ]
+  },
+  "gemini_r2": {
+   "mean_points": 261,
+   "sd_points": 14.094916341243984,
+   "mean_reward": 0.6785103785103785,
+   "reference_minus_policy_points": 14.25,
+   "se_points": 4.00780488547035,
+   "reference_minus_policy_reward": 0.055296092796092794,
+   "se_reward": 0.015493257321677438,
+   "reference_better_equal_worse": [
+    4,
+    0,
+    0
+   ]
+  },
+  "gemini_r3": {
+   "mean_points": 250.5,
+   "sd_points": 11.269427669584644,
+   "mean_reward": 0.6376984126984127,
+   "reference_minus_policy_points": 24.75,
+   "se_points": 4.589389937671455,
+   "reference_minus_policy_reward": 0.0961080586080586,
+   "se_reward": 0.018020584332930252,
+   "reference_better_equal_worse": [
+    4,
+    0,
+    0
+   ]
+  }
+ },
+ "wall_seconds": 38.8
+}

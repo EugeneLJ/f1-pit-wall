@@ -1,0 +1,184 @@
+import json, copy
+
+RULES = None
+
+def load_rules():
+    global RULES
+    import subprocess
+    RULES = json.loads(subprocess.check_output(['f1ctl', 'rules']))['rules']
+
+class RaceSim:
+    def __init__(self, track_info, starting_state):
+        self.track = track_info
+        self.state = copy.deepcopy(starting_state)
+        # track params
+        self.stress = track_info['power_unit_stress']
+        self.deg_mult = 0.5 + track_info['tyre_degradation']
+        self.overtaking_diff = track_info['overtaking_difficulty']
+        self.pass_threshold = 0.2 + self.overtaking_diff * 2.0
+        self.pit_loss = {
+            'GREEN': track_info['pit_loss_green_sec'],
+            'SC': track_info['pit_loss_green_sec'] * 0.3,
+            'VSC': track_info['pit_loss_green_sec'] * 0.55
+        }
+        self.base_paces = {
+            'Apex A': 89.65, 'Apex B': 89.85,
+            'Nova A': 89.75, 'Nova B': 90.0,
+            'Orion A': 89.55, 'Orion B': 89.9,
+            'Vertex A': 90.05, 'Vertex B': 90.15
+        }
+        self.offsets = {
+            'Apex': {'mixed': 0.05, 'street': -0.15, 'high_speed': 0.1, 'high_degradation': -0.05, 'wet_prone': 0.05},
+            'Nova': {'mixed': 0.1, 'street': 0.05, 'high_speed': 0.05, 'high_degradation': -0.15, 'wet_prone': -0.05},
+            'Orion': {'mixed': -0.05, 'street': 0.15, 'high_speed': -0.15, 'high_degradation': 0.05, 'wet_prone': 0.0},
+            'Vertex': {'mixed': 0.1, 'street': -0.05, 'high_speed': 0.0, 'high_degradation': 0.1, 'wet_prone': -0.15}
+        }
+        self.tyre_params = {
+            'SOFT': {'offset': -0.55, 'deg': 0.35, 'life': 10, 'warmup': 0.3},
+            'MEDIUM': {'offset': 0.0, 'deg': 0.14, 'life': 16, 'warmup': 0.6},
+            'HARD': {'offset': 0.28, 'deg': 0.055, 'life': 24, 'warmup': 1.0}
+        }
+
+    def rival_choice(self, driver_info, laps_remaining):
+        # rival compound policy
+        if laps_remaining <= 6:
+            choice = 'SOFT'
+        elif laps_remaining <= 14:
+            choice = 'MEDIUM'
+        else:
+            choice = 'HARD'
+        # two compound rule check
+        if choice in driver_info['compounds_used'] and len(driver_info['compounds_used']) == 1:
+            for alt in ['SOFT', 'MEDIUM', 'HARD']:
+                if alt not in driver_info['compounds_used']:
+                    choice = alt
+                    break
+        return choice
+
+    def step_segment(self, apex_actions, status='GREEN', rival_pit_trigger='life'):
+        # apex_actions: {'Apex A': 'STAY'|'PIT_...', 'Apex B': 'STAY'|'PIT_...'}
+        # 1. Determine who pits
+        cars = sorted(self.state['classification'], key=lambda c: c['elapsed'])
+        laps_rem = self.state['laps_remaining']
+        
+        # Check rivals
+        pit_actions = {}
+        for c in cars:
+            driver = c['driver']
+            if driver in apex_actions:
+                pit_actions[driver] = apex_actions[driver]
+            else:
+                # Rival pitting decision
+                # Does rival pit if tyre_age >= life or next segment would exceed life?
+                comp = c['compound']
+                life = self.tyre_params[comp]['life']
+                # at last decision, must satisfy 2 compounds
+                if laps_rem == 3 and len(c['compounds_used']) == 1:
+                    pit_actions[driver] = 'PIT_' + self.rival_choice(c, laps_rem)
+                elif c['tyre_age'] + 3 > life:
+                    pit_actions[driver] = 'PIT_' + self.rival_choice(c, laps_rem)
+                else:
+                    pit_actions[driver] = 'STAY'
+
+        # 2. Process pit stops & calculate raw times for each car
+        # Check double stacking for Apex
+        double_stack_driver = None
+        if pit_actions.get('Apex A', '').startswith('PIT') and pit_actions.get('Apex B', '').startswith('PIT'):
+            # whoever is second on road waits
+            pos_a = [i for i, c in enumerate(cars) if c['driver'] == 'Apex A'][0]
+            pos_b = [i for i, c in enumerate(cars) if c['driver'] == 'Apex B'][0]
+            double_stack_driver = 'Apex B' if pos_a < pos_b else 'Apex A'
+
+        raw_times = {}
+        for c in cars:
+            d = c['driver']
+            action = pit_actions[d]
+            just_pitted = action.startswith('PIT')
+            if just_pitted:
+                new_comp = action.split('_')[1]
+                c['compound'] = new_comp
+                if new_comp not in c['compounds_used']:
+                    c['compounds_used'].append(new_comp)
+                c['tyre_age'] = 0
+            
+            # calculate segment time (3 laps)
+            team = c['team']
+            arch = self.track['archetype']
+            base = self.base_paces[d] + self.offsets[team][arch]
+            comp = c['compound']
+            p = self.tyre_params[comp]
+            
+            seg_time = 0.0
+            for l in range(3):
+                age = c['tyre_age'] + l
+                lt = base + p['offset'] + p['deg'] * self.deg_mult * age
+                if age > p['life']:
+                    lt += 0.25 * self.deg_mult * (age - p['life'])
+                if l == 0 and just_pitted:
+                    lt += p['warmup']
+                seg_time += lt
+
+            # pit loss
+            if just_pitted:
+                seg_time += self.pit_loss[status]
+                if d == double_stack_driver:
+                    seg_time += 6.0
+                    
+            raw_times[d] = seg_time
+            # update tyre age
+            if status == 'SC':
+                c['tyre_age'] += 1
+            elif status == 'VSC':
+                c['tyre_age'] += 2
+            else:
+                c['tyre_age'] += 3
+
+        # 3. Apply dirty air and overtaking order
+        # In track order:
+        if status == 'SC':
+            # SC compresses gaps to 0.8s, no overtaking
+            p1_time = cars[0]['elapsed'] + raw_times[cars[0]['driver']]
+            cars[0]['elapsed'] = p1_time
+            for i in range(1, len(cars)):
+                cars[i]['elapsed'] = cars[i-1]['elapsed'] + 0.8
+        elif status == 'VSC':
+            # VSC no overtaking, all cars slow equally
+            for c in cars:
+                c['elapsed'] += raw_times[c['driver']] * 1.3 # or factor
+        else:
+            # GREEN: simulate with dirty air & overtaking
+            # First check dirty air based on starting gaps
+            for i in range(1, len(cars)):
+                gap = cars[i]['elapsed'] - cars[i-1]['elapsed']
+                if gap <= 1.0:
+                    raw_times[cars[i]['driver']] += 0.45 # 0.15 * 3
+
+            # Projected finishing times without overtaking block
+            proj = [(c['driver'], c['elapsed'] + raw_times[c['driver']]) for c in cars]
+            # Overtaking logic: iterate from front to back
+            final_elapsed = {}
+            # Car 0 (leader) finishes at its proj time
+            final_elapsed[proj[0][0]] = proj[0][1]
+            for i in range(1, len(proj)):
+                d_curr, t_curr = proj[i]
+                d_prev = proj[i-1][0]
+                t_prev = final_elapsed[d_prev]
+                # Can curr overtake prev?
+                # "completes a pass in a segment only if it would finish the segment at least pass_threshold seconds ahead; otherwise held min_gap behind"
+                if t_curr < t_prev - self.pass_threshold:
+                    # Pass completed!
+                    final_elapsed[d_curr] = t_curr
+                else:
+                    # Held behind if faster or close
+                    final_elapsed[d_curr] = max(t_curr, t_prev + 0.3)
+            
+            for c in cars:
+                c['elapsed'] = final_elapsed[c['driver']]
+
+        # re-sort classification
+        cars.sort(key=lambda c: c['elapsed'])
+        for i, c in enumerate(cars):
+            c['position'] = i + 1
+        self.state['classification'] = cars
+        self.state['lap'] += 3
+        self.state['laps_remaining'] -= 3

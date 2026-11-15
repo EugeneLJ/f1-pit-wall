@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Copy the canonical f1pitwall package into the sim image and the verifier image.
+"""Copy the canonical f1pitwall package into the sim image, the verifier image and the
+reference solution.
 
 Docker build contexts cannot reach outside their directory, so the sidecar and
 the verifier each need a copy. `src/f1pitwall` is the only place to edit;
@@ -14,7 +15,9 @@ from pathlib import Path
 
 TASK = Path(__file__).resolve().parents[1]
 SOURCE = TASK / "src" / "f1pitwall"
-TARGETS = (TASK / "environment" / "sim" / "f1pitwall", TASK / "tests" / "f1pitwall")
+# solution/lib is the reference player's model of the published rules (never in the agent image).
+TARGETS = (TASK / "environment" / "sim" / "f1pitwall", TASK / "tests" / "f1pitwall",
+           TASK / "solution" / "lib" / "f1pitwall")
 
 
 def files(root: Path) -> dict:

@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "mode": "fia2026_scaled",
+  "benchmark_version": "2.1.0",
+  "verified_source": {
+    "document": "FIA 2026 F1 Regulations, Section B Sporting, Issue 07, 25 June 2026",
+    "url": "https://api.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_07_-_2026-06-25.pdf",
+    "read_on": "2026-11-15",
+    "articles": {
+      "B8.2.2": "per driver per Championship: 3 ICE, 3 TC, 3 EXH, 2 ES, 2 PU-CE, 2 MGU-K, 5 PU-ANC",
+      "B8.2.3": "one additional unit of each element in the 2026 Championship",
+      "B8.2.7": "a replacement driver is deemed the original driver for PU usage (allocation is per driver)",
+      "B8.2.8": "each additional element: 10 grid places the first time an additional element of that type is used, 5 places the next times; cumulative",
+      "B8.2.8_same_event": "if several of the same element are introduced at one Competition, only the last fitted may be used later without penalty",
+      "B2.5.4b": "<=15 cumulative places: temporary slot = qualifying position + penalty (ties: slowest keeps it, others ahead), unpenalised fill free slots in qualifying order, penalised move up to fill gaps; >15: behind all other classified drivers, in qualifying order"
+    }
+  },
+  "verified_rules_used": {
+    "first_additional_element_places": 10,
+    "subsequent_additional_element_places": 5,
+    "back_of_grid_above_places": 15,
+    "penalties_cumulative_within_event": true,
+    "allocation_is_per_driver": true
+  },
+  "synthetic": {
+    "label": "SYNTHETIC season-length scaling and logistics; NOT an FIA rule",
+    "element_mapping": "the engine models three elements: ICE, turbo (FIA TC) and energy_store (FIA ES); EXH, PU-CE, MGU-K and PU-ANC are not modelled",
+    "real_2026_allocation_with_B8.2.3": {
+      "ICE": 4,
+      "turbo": 4,
+      "energy_store": 3
+    },
+    "scaling_rule": "allocation_8_races = 1 + ceil((real_allocation - 1) * 8 / 24), so the season-length ratio of spare elements is kept for an 8-race calendar",
+    "allocation_per_driver": {
+      "ICE": 2,
+      "turbo": 2,
+      "energy_store": 2
+    },
+    "team_physical_stock_per_type": {
+      "ICE": 3,
+      "turbo": 3,
+      "energy_store": 3
+    },
+    "team_physical_stock_note": "new elements a team has available to fit over the season (shared by its two drivers); a REPLACE needs one in stock. Logistics placeholder, not an FIA rule",
+    "pool_reuse": "NOT modelled: a replaced element is retired (no rotation of used elements); the B8.2.8 same-event rule is therefore moot",
+    "grid_size": "8 cars; FIA wording for 20+ cars applied to 8 slots",
+    "field_size_scaling": {
+      "label": "SYNTHETIC: FIA grid places are for a 22-car field; places are scaled by 8/22 and rounded so a penalty costs a similar share of the field",
+      "real_field": 22,
+      "model_field": 8,
+      "places": {
+        "first_additional_element": 4,
+        "subsequent_additional_element": 2,
+        "back_of_grid_above": 5
+      }
+    }
+  },
+  "unchanged": "wear, pace loss, reliability, the published rival replacement threshold and all race mechanics are the 1.1.0/2.0.1 models"
+}

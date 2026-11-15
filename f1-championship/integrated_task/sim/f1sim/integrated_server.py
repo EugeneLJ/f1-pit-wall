@@ -43,8 +43,9 @@ def load_mode(path: Path = MODE_PATH) -> Dict[str, Any]:
 
 def task_config(mode: Dict[str, Any]) -> C.IntegratedConfig:
     """The sidecar's and the verifier's configuration (one function, so they cannot diverge)."""
-    return C.with_version(C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"}),
-                          mode["benchmark_version"])
+    return C.with_features(
+        C.with_version(C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"}),
+                       mode["benchmark_version"]), mode)
 
 
 def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
@@ -62,7 +63,7 @@ def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
                                "List the record hashes you used in the optional consumed_reports field.")},
         "objective": "maximize Apex constructors' points over the whole championship",
     })
-    if config.benchmark_version == "2.1.0":
+    if config.benchmark_version in ("2.1.0", "2.2.0"):
         from f1pitwall import pu_rules
         rules["power_unit_rules"] = pu_rules.RULES
         rules["track_a_model"] = json.loads(json.dumps(pu_rules.with_fia_pu_rules(rules["track_a_model"])))
@@ -72,6 +73,23 @@ def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
                      "a REPLACE needs a unit in the team's physical stock; using more elements than the "
                      "allocation costs grid places (first extra element of a type 4, later 2, cumulative); "
                      "above 5 places the driver starts behind all other cars, in qualifying order.")}
+    if config.m2_tendencies:
+        from track_c.v22.rival_tendencies import load_model as load_tendencies
+        public = load_tendencies()
+        rules["m2_tendencies"] = {
+            "status": "opt-in hidden per-race rival tendencies with publicly inferable history only",
+            "type_prior": public["prior"],
+            "conservative_gap_threshold_sec": public["conservative_gap_threshold_sec"]["value"],
+            "reaction_observation_confusion": public["reaction_observation_confusion"],
+        }
+    if config.m6_compliance:
+        from track_c.driver_objectives import load_m6_config
+        rules["m6_driver_objectives"] = load_m6_config()
+    if config.m7_weather:
+        from track_c.v22.weather import load_model as load_weather
+        rules["m7_weather"] = load_weather()
+        rules["m7_actions"] = {"driver_a": "STAY|PIT_SOFT|PIT_MEDIUM|PIT_HARD|PIT_INTERMEDIATE|PIT_WET",
+                               "driver_b": "STAY|PIT_SOFT|PIT_MEDIUM|PIT_HARD|PIT_INTERMEDIATE|PIT_WET"}
     return rules
 
 

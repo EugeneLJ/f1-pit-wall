@@ -10,7 +10,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Any, Dict, List, Optional
 
 from ..version import BENCHMARK_VERSION as LEGACY_VERSION
@@ -152,6 +152,15 @@ def with_version(cfg: IntegratedConfig, version: str) -> IntegratedConfig:
     return out
 
 
+def with_features(cfg: IntegratedConfig, options: Dict[str, Any]) -> IntegratedConfig:
+    """Apply optional M2/M6/M7 task flags with one validated task/verifier mapping."""
+    out = replace(cfg, m2_tendencies=options.get("m2_tendencies", False),
+                  m6_compliance=options.get("m6_compliance", False),
+                  m7_weather=options.get("m7_weather", False))
+    out.validate()
+    return out
+
+
 def solo_coordination(engineers: str = "CHIEF_ONLY", chief: Optional[Dict[str, Any]] = None) -> IntegratedConfig:
     cfg = IntegratedConfig(SOLO_COORDINATION, [TeamSpec("Apex", "Apex", "Apex", chief or {}, engineers)])
     cfg.validate()
@@ -179,4 +188,4 @@ def two_team(layer: int = 1, mclearn_chief: Optional[Dict[str, Any]] = None,
 
 
 __all__ = ["INTEGRATED_VERSION", "LEGACY_VERSION", "MODES", "SOLO_LEGACY", "SOLO_COORDINATION",
-           "TWO_TEAM_COMPETITION", "TeamSpec", "IntegratedConfig", "solo_coordination", "two_team"]
+           "TWO_TEAM_COMPETITION", "TeamSpec", "IntegratedConfig", "solo_coordination", "two_team", "with_features"]

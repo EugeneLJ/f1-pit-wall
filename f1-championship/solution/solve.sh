@@ -1,5 +1,9 @@
 #!/bin/bash
-# P0 oracle: a simple legal heuristic that plays through f1ctl like an agent.
-# Not the reference planner (that is P2).
+# Reference run: the public-information rollout player (reference.py), through f1ctl like an agent.
+# F1_SOLUTION=baseline runs the simple public heuristic (play.py) instead.
 set -euo pipefail
-python3 "$(dirname "$0")/play.py"
+HERE="$(cd "$(dirname "$0")" && pwd)"
+if [ "${F1_SOLUTION:-reference}" = "baseline" ]; then
+  exec python3 "$HERE/play.py"
+fi
+exec python3 "$HERE/reference.py"

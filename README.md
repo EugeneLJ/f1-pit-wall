@@ -1,4 +1,26 @@
-# F1 Championship Strategy Benchmark
+# F1 Pit Wall
+
+**Submission task: [`f1-championship/`](f1-championship/README.md)** — benchmark 1.1.0, an eight-race
+constructors' championship played through a sealed simulator sidecar (120 sequential decisions).
+
+```bash
+harbor run -p ./f1-championship -a oracle     # reference run
+harbor run -p ./f1-championship -a nop        # do-nothing baseline (reward 0)
+harbor run -p ./f1-championship -a opencode -m gemini/gemini-3.8-flash \
+  --api-key-name GEMINI_API_KEY --env-file <env file> --allow-agent-host generativelanguage.googleapis.com
+```
+
+All commands, the stop-early and exploit probes, and the measured frontier-reference gap are in
+[`f1-championship/README.md`](f1-championship/README.md) and
+[`f1-championship/docs/REFERENCE_GAP_REPORT.md`](f1-championship/docs/REFERENCE_GAP_REPORT.md).
+
+The files at the repository root (`instruction.md`, `task.toml`, `environment/`, `tests/`, `solution/`)
+are the earlier single-race task, kept only as a regression baseline. The rest of this page describes
+that earlier state.
+
+---
+
+## Earlier notes: F1 Championship Strategy Benchmark
 
 An eight-race, deterministic F1 Team Principal and Pit Wall benchmark for
 long-horizon strategy research. The Championship connects race results,

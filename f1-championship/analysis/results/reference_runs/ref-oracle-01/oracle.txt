@@ -1,0 +1,9 @@
+race 1: replace nothing (plan value 244.5, 11.2s)
+race 2: replace ['Apex A:energy_store'] (plan value 216.1, 0.2s)
+race 3: replace nothing (plan value 177.6, 2.4s)
+race 4: replace ['Apex A:ICE', 'Apex A:turbo', 'Apex B:ICE', 'Apex B:turbo'] (plan value 151.7, 0.1s)
+race 5: replace nothing (plan value 119.5, 1.5s)
+race 6: replace ['Apex A:turbo'] (plan value 90.9, 0.0s)
+race 7: replace nothing (plan value 52.6, 0.3s)
+race 8: replace nothing (plan value 26.5, 0.0s)
+{"reference": "public-information rollout", "futures": 32, "seconds": 36.3, "decisions": 120, "fallbacks": 0, "resyncs": 0, "race_decisions": 112, "team_standings": [{"points": 286, "team": "Apex"}, {"points": 236, "team": "Orion"}, {"points": 148, "team": "Nova"}, {"points": 100, "team": "Vertex"}]}

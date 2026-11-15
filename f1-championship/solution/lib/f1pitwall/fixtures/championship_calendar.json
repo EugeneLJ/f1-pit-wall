@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_placeholder",
+  "scale": "normalized_0_to_1",
+  "races": [
+    {
+      "name": "Harbor Grand Prix",
+      "archetype": "mixed",
+      "power_unit_stress": 0.55,
+      "overtaking_difficulty": 0.45,
+      "tyre_degradation": 0.50,
+      "synthetic_placeholder": true
+    },
+    {
+      "name": "Marina Grand Prix",
+      "archetype": "street",
+      "power_unit_stress": 0.45,
+      "overtaking_difficulty": 0.90,
+      "tyre_degradation": 0.35,
+      "synthetic_placeholder": true
+    },
+    {
+      "name": "Velocity Grand Prix",
+      "archetype": "high_speed",
+      "power_unit_stress": 0.90,
+      "overtaking_difficulty": 0.25,
+      "tyre_degradation": 0.45,
+      "synthetic_placeholder": true
+    },
+    {
+      "name": "Granite Grand Prix",
+      "archetype": "high_degradation",
+      "power_unit_stress": 0.60,
+      "overtaking_difficulty": 0.40,
+      "tyre_degradation": 0.95,
+      "synthetic_placeholder": true
+    },
+    {
+      "name": "Rainland Grand Prix",
+      "archetype": "wet_prone",
+      "power_unit_stress": 0.50,
+      "overtaking_difficulty": 0.55,
+      "tyre_degradation": 0.60,
+      "synthetic_placeholder": true
+    },
+    {
+      "name": "Metro Grand Prix",
+      "archetype": "street",
+      "power_unit_stress": 0.40,
+      "overtaking_difficulty": 0.85,
+      "tyre_degradation": 0.40,
+      "synthetic_placeholder": true
+    },
+    {
+      "name": "Summit Grand Prix",
+      "archetype": "high_speed",
+      "power_unit_stress": 0.85,
+      "overtaking_difficulty": 0.30,
+      "tyre_degradation": 0.55,
+      "synthetic_placeholder": true
+    },
+    {
+      "name": "Finale Grand Prix",
+      "archetype": "mixed",
+      "power_unit_stress": 0.65,
+      "overtaking_difficulty": 0.50,
+      "tyre_degradation": 0.65,
+      "synthetic_placeholder": true
+    }
+  ]
+}

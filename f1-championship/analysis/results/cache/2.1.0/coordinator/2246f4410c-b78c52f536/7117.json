@@ -1,0 +1,1 @@
+{"version": "2.1.0", "policy": "coordinator", "seed": 7117, "points": 222, "replacements": {"Apex A": 0, "Apex B": 0}, "stock_left": {"stock:ICE": 3, "stock:turbo": 3, "stock:energy_store": 3}, "per_race": [25, 37, 27, 28, 26, 43, 18, 18], "seconds": 0.1}

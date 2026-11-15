@@ -1,0 +1,1 @@
+{"version": "2.1.0", "policy": "fallback", "seed": 7117, "points": 80, "replacements": {"Apex A": 1, "Apex B": 1}, "stock_left": {"stock:ICE": 1, "stock:turbo": 3, "stock:energy_store": 3}, "per_race": [10, 10, 10, 10, 10, 10, 10, 10], "seconds": 0.1}

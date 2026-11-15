@@ -35,14 +35,23 @@ def load_mode(path: Path = MODE_PATH) -> Dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
     if value.get("mode") != C.SOLO_COORDINATION or value.get("engineers") not in OFFLINE_CONDITIONS:
         raise ValueError("sidecar serves SOLO_COORDINATION with an offline Engineer condition")
+    value.setdefault("benchmark_version", C.INTEGRATED_VERSION)
+    if value["benchmark_version"] not in (C.INTEGRATED_VERSION,) + C.OPT_IN_VERSIONS:
+        raise ValueError("unsupported benchmark_version in mode file")
     return value
+
+
+def task_config(mode: Dict[str, Any]) -> C.IntegratedConfig:
+    """The sidecar's and the verifier's configuration (one function, so they cannot diverge)."""
+    return C.with_version(C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"}),
+                          mode["benchmark_version"])
 
 
 def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
     from f1pitwall.integrated.race import TEAM_ORDER_MODEL
     rules = json.loads(json.dumps(legacy.PUBLIC_RULES))
     rules.update({
-        "benchmark_version": C.INTEGRATED_VERSION,
+        "benchmark_version": config.benchmark_version,
         "mode": config.mode,
         "contract": "f1-championship integrated contract v2 (Track A + Track B + Track C team orders)",
         "decision_id": "every observation carries decision_id (= tick_id, e.g. t001); act must echo it",
@@ -53,6 +62,16 @@ def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
                                "List the record hashes you used in the optional consumed_reports field.")},
         "objective": "maximize Apex constructors' points over the whole championship",
     })
+    if config.benchmark_version == "2.1.0":
+        from f1pitwall import pu_rules
+        rules["power_unit_rules"] = pu_rules.RULES
+        rules["track_a_model"] = json.loads(json.dumps(pu_rules.with_fia_pu_rules(rules["track_a_model"])))
+        rules["track_a_model"]["allocation"] = {
+            "superseded_by": "power_unit_rules (2.1.0)",
+            "note": ("2.1.0: no shared free-unit pool. Each driver has an element allocation per type; "
+                     "a REPLACE needs a unit in the team's physical stock; using more elements than the "
+                     "allocation costs grid places (first extra element of a type 4, later 2, cumulative); "
+                     "above 5 places the driver starts behind all other cars, in qualifying order.")}
     return rules
 
 
@@ -66,7 +85,7 @@ class IntegratedSimulator:
         self._sealed_path = state_dir / "SEALED"
         self._stats_path = state_dir / "stats.json"
         self._store = state_dir / "engineers"
-        self.config = C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"})
+        self.config = task_config(mode)
         self._seed = base_seed
         self._stats = {"observe": 0, "rules": 0, "ping": 0, "act_accepted": 0, "act_rejected": 0,
                        "protocol_errors": 0}
@@ -112,7 +131,8 @@ class IntegratedSimulator:
             cmd = request["cmd"]
             if cmd == "ping":
                 self._stats["ping"] += 1
-                return {"ok": True, "server_version": C.INTEGRATED_VERSION, "benchmark_version": C.INTEGRATED_VERSION}
+                return {"ok": True, "server_version": self.config.benchmark_version,
+                        "benchmark_version": self.config.benchmark_version}
             if cmd == "rules":
                 self._stats["rules"] += 1
                 self._flush()

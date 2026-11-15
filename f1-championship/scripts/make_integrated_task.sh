@@ -1,28 +1,32 @@
 #!/bin/bash
 # Build the integrated SOLO_COORDINATION Harbor task (benchmark 2.0.0) from the 1.1.0 task
 # plus integrated_task/ overlay. The 1.1.0 task directory itself is never modified.
-# Usage: scripts/make_integrated_task.sh <dest-dir> [engineer-condition]
+# Usage: scripts/make_integrated_task.sh <dest-dir> [engineer-condition] [benchmark-version: 2.0.1|2.1.0]
 set -euo pipefail
 TASK="$(cd "$(dirname "$0")/.." && pwd)"
 DEST="$1"
 COND="${2:-MOCK_ENGINEERS}"
+VERSION="${3:-2.0.1}"
 rm -rf "$DEST"
 mkdir -p "$DEST"
 cp -R "$TASK/environment" "$TASK/tests" "$TASK/solution" "$DEST/"
 cp "$TASK/task.toml" "$DEST/task.toml"
 cat "$TASK/instruction.md" "$TASK/integrated_task/instruction_addendum.md" > "$DEST/instruction.md"
+if [ "$VERSION" = "2.1.0" ]; then
+  cat "$TASK/integrated_task/instruction_addendum_2_1_0.md" >> "$DEST/instruction.md"
+fi
 O="$TASK/integrated_task"
 cp "$O/sim/f1sim/"*.py "$DEST/environment/sim/f1sim/"
-printf '{"mode": "SOLO_COORDINATION", "engineers": "%s"}\n' "$COND" > "$DEST/environment/sim/secret/mode.json"
+printf '{"mode": "SOLO_COORDINATION", "engineers": "%s", "benchmark_version": "%s"}\n' "$COND" "$VERSION" > "$DEST/environment/sim/secret/mode.json"
 cp "$DEST/environment/sim/secret/mode.json" "$DEST/tests/mode.json"
 for target in "$DEST/environment/sim" "$DEST/tests"; do
   rm -rf "$target/track_c"; mkdir -p "$target/track_c"
   cp "$TASK/track_c/"*.py "$target/track_c/"; cp -R "$TASK/track_c/fixtures" "$target/track_c/"
 done
 cp "$O/tests/grade_integrated.py" "$O/tests/test.sh" "$DEST/tests/"
-cp "$O/solution/play_integrated.py" "$O/solution/solve.sh" "$DEST/solution/"
+cp "$O/solution/play_integrated.py" "$O/solution/solve.sh" "$O/solution/reference_v21.py" "$DEST/solution/"
 cp "$TASK/src/f1pitwall/integrated/policies.py" "$DEST/solution/policies.py"
-python3 - "$DEST" <<'PY'
+python3 - "$DEST" "$VERSION" <<'PY'
 import sys
 from pathlib import Path
 dest = Path(sys.argv[1])
@@ -37,10 +41,10 @@ docker.write_text(text)
 toml = dest / "task.toml"
 text = toml.read_text()
 text = text.replace('name = "EugeneLJ/f1-championship"', 'name = "EugeneLJ/f1-championship-integrated"', 1)
-text = text.replace('version = "1.1.0"', 'version = "2.0.1"', 1)
+text = text.replace('version = "1.1.0"', f'version = "{sys.argv[2]}"', 1)
 text = text.replace('command = "python3 -m f1sim.export"', 'command = "python3 -m f1sim.export_integrated"', 1)
 toml.write_text(text)
-for path, needle in ((docker, "f1sim.integrated_server"), (toml, "2.0.1"), (toml, "export_integrated")):
+for path, needle in ((docker, "f1sim.integrated_server"), (toml, sys.argv[2]), (toml, "export_integrated")):
     assert needle in path.read_text(), (path, needle)
 PY
-echo "integrated task ($COND) at $DEST"
+echo "integrated task ($COND, $VERSION) at $DEST"

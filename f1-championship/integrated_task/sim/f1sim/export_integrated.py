@@ -21,8 +21,9 @@ def export_integrated(state_dir: Path = STATE_DIR, evidence_dir: Path = EVIDENCE
         shutil.copytree(store, evidence_dir / "engineers")
         for path in sorted((evidence_dir / "engineers").rglob("*.jsonl")):
             files[path.relative_to(evidence_dir).as_posix()] = _sha256(path)
-    from f1pitwall.integrated.config import INTEGRATED_VERSION
-    manifest.update({"benchmark_version": INTEGRATED_VERSION, "server_version": INTEGRATED_VERSION,
+    from f1sim.integrated_server import load_mode
+    version = load_mode()["benchmark_version"]
+    manifest.update({"benchmark_version": version, "server_version": version,
                      "journal_version": 2, "engineer_record_files": files})
     (evidence_dir / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return manifest

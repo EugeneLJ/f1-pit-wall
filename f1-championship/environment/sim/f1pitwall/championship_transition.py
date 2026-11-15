@@ -54,8 +54,11 @@ def initial_inventory(coeffs: Mapping[str, Any]) -> Dict[str, Dict[str, int]]:
                                f"{SPARES}:{drivers[1]}": units // 2}
         inventory[team]["development_units"] = 100
         from . import pu_rules
-        if pu_rules.enabled(coeffs):
+        if pu_rules.enabled(coeffs):  # 2.1.0: element allocation + team stock replace the shared pool
             inventory[team].update(pu_rules.initial_stock())
+            for key in list(inventory[team]):
+                if key.startswith(SPARES):
+                    inventory[team][key] = 0
     return inventory
 
 
@@ -70,14 +73,10 @@ def available_component_actions(state: ChampionshipState, driver: str,
         raise ValueError("unknown driver")
     limit = coef.max_wear_for_use(coeffs)
     from . import pu_rules
-    if pu_rules.enabled(coeffs):  # opt-in 2.1.0: REPLACE needs team stock; without stock the element runs on
+    if pu_rules.enabled(coeffs):  # opt-in 2.1.0: REPLACE needs team stock; a worn element may run on
         inventory = state.resource_inventory[driver_team(driver)]
-        out = {}
-        for name, component in state.power_units[driver].items():
-            stock = inventory.get(pu_rules.stock_key(name), 0) > 0
-            out[name] = (["USE", "REPLACE"] if component.wear <= limit and stock else
-                         ["REPLACE"] if stock else ["USE"])
-        return out
+        return {name: (["USE", "REPLACE"] if inventory.get(pu_rules.stock_key(name), 0) > 0 else ["USE"])
+                for name in state.power_units[driver]}
     return {name: (["USE", "REPLACE"] if component.wear <= limit else ["REPLACE"])
             for name, component in state.power_units[driver].items()}
 
@@ -109,6 +108,36 @@ def rival_component_decisions(state: ChampionshipState,
     return decisions
 
 
+def published_rule_decisions(state: ChampionshipState, coeffs: Mapping[str, Any],
+                             controlled_teams, chosen: Mapping[Any, str]) -> List[Dict[str, str]]:
+    """Full component decision list: `chosen[(driver, component)]` for controlled teams, the
+    published threshold rule for every other team. Under the opt-in 2.1.0 PU rules the rule is
+    stock-aware (a REPLACE needs a unit left in the team's stock after earlier REPLACEs of that
+    type in this list). Shared by the integrated session and model-based planners."""
+    from . import pu_rules
+    decisions = default_component_decisions(state)
+    threshold = coeffs["rival_component_policy"]["threshold"]
+    limit = coef.max_wear_for_use(coeffs)
+    for item in decisions:
+        key = (item["driver"], item["component"])
+        if driver_team(item["driver"]) in controlled_teams:
+            item["action"] = chosen[key]
+            continue
+        wear = state.power_units[item["driver"]][item["component"]].wear
+        want = "REPLACE" if wear >= threshold or wear > limit else "USE"
+        legal = available_component_actions(state, item["driver"], coeffs)[item["component"]]
+        if want == "REPLACE" and "REPLACE" in legal and pu_rules.enabled(coeffs):
+            team = driver_team(item["driver"])
+            stock_key = pu_rules.stock_key(item["component"])
+            used = sum(1 for d in decisions if d is not item and d.get("action") == "REPLACE"
+                       and d["component"] == item["component"] and driver_team(d["driver"]) == team
+                       and decisions.index(d) < decisions.index(item))
+            if state.resource_inventory[team].get(stock_key, 0) - used <= 0:
+                want = "USE"
+        item["action"] = want if want in legal else legal[0]
+    return decisions
+
+
 def prepare_race(state: ChampionshipState, decisions: Any,
                  coeffs: Mapping[str, Any] = coef.DEFAULT) -> RaceStartConditions:
     """Validate and atomically apply component choices before the current race."""
@@ -121,8 +150,7 @@ def prepare_race(state: ChampionshipState, decisions: Any,
     limit = coef.max_wear_for_use(coeffs)
     from . import pu_rules
     for driver, name, component, action in clean:
-        if action == "USE" and component.wear > limit and not (
-                pu_rules.enabled(coeffs) and "REPLACE" not in available_component_actions(state, driver, coeffs)[name]):
+        if action == "USE" and component.wear > limit and not pu_rules.enabled(coeffs):
             raise ValueError(f"{driver} {name} is too worn to use")
     from . import pu_rules
     if pu_rules.enabled(coeffs):  # opt-in FIA-based rules (2.1.0): allocation, stock, B8.2.8 penalties

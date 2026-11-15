@@ -20,7 +20,8 @@ from ..championship import TEAM_DRIVERS, new_championship_state
 from ..championship_adapter import (ENGINE_TO_CHAMPIONSHIP_DRIVER, car_performance, finish_prepared_race,
                                     start_prepared_race)
 from ..championship_transition import (available_component_actions, default_component_decisions, driver_team,
-                                       free_units, initial_inventory, prepare_race, replacement_cost)
+                                       free_units, initial_inventory, prepare_race, published_rule_decisions,
+                                       replacement_cost)
 from ..journal import GENESIS_HASH, canonical, observation_hash, seal_entry, sha256_text
 from . import race as ir
 from .config import INTEGRATED_VERSION, SLOTS, IntegratedConfig
@@ -157,7 +158,7 @@ class IntegratedSession:
                 for name in self.state.power_units[driver]:
                     decisions.append({"driver": self.public_driver(driver), "component": name,
                                       "action": "USE" if "USE" in legal[name] else "REPLACE"})
-            return {"type": COMPONENT_DECISION, "decisions": decisions}
+            return {"type": COMPONENT_DECISION, "decisions": decisions}  # 2.1.0: USE is always legal
         order = "KEEP_ORDER" if "RACE" not in ir.legal_team_orders(self.race_state, slot) else "RACE"
         return {"type": RACE_STRATEGY, "driver_a": "STAY", "driver_b": "STAY",
                 "team_order": {"order": order}}
@@ -246,35 +247,13 @@ class IntegratedSession:
 
     def _apply_components(self, by_label: Dict[str, Dict[str, Any]]) -> None:
         working = copy.deepcopy(self.state)
-        decisions = default_component_decisions(working)
         chosen = {}
-        controlled_slots = set(self.slot_of.values())
         for label, action in by_label.items():
             slot = self.slot_of[label]
             names = {self.public_driver(d): d for d in TEAM_DRIVERS[slot]}
             for item in action["decisions"]:
                 chosen[(names[item["driver"]], item["component"])] = item["action"]
-        threshold = self.coeffs["rival_component_policy"]["threshold"]
-        limit = coef.max_wear_for_use(self.coeffs)
-        for item in decisions:
-            key = (item["driver"], item["component"])
-            if driver_team(item["driver"]) in controlled_slots:
-                item["action"] = chosen[key]
-            else:  # published threshold rule for every uncontrolled team (incl. Apex if uncontrolled)
-                wear = working.power_units[item["driver"]][item["component"]].wear
-                want = "REPLACE" if wear >= threshold or wear > limit else "USE"
-                legal = available_component_actions(working, item["driver"], self.coeffs)[item["component"]]
-                if want == "REPLACE" and "REPLACE" in legal:
-                    from .. import pu_rules
-                    if pu_rules.enabled(self.coeffs):  # stock is shared by the team's two drivers
-                        team = driver_team(item["driver"])
-                        key = pu_rules.stock_key(item["component"])
-                        used = sum(1 for d in decisions if d is not item and d.get("action") == "REPLACE"
-                                   and d["component"] == item["component"] and driver_team(d["driver"]) == team
-                                   and decisions.index(d) < decisions.index(item))
-                        if working.resource_inventory[team].get(key, 0) - used <= 0:
-                            want = "USE"
-                item["action"] = want if want in legal else legal[0]
+        decisions = published_rule_decisions(working, self.coeffs, set(self.slot_of.values()), chosen)
         prepare_race(working, decisions, self.coeffs)
         self._active = start_prepared_race(working, self._base_seed + working.race_index, self.coeffs)
         self.state = working

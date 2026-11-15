@@ -46,7 +46,7 @@ def fallback_points(config, seed):
 
 
 def grade():
-    report = {"benchmark_version": C.INTEGRATED_VERSION, "scalar_version": SCALAR_VERSION,
+    report = {"benchmark_version": None, "scalar_version": SCALAR_VERSION,
               "completion": {"complete": False}, "integrity": {"intact": False, "error": None}, "reward": 0.0}
     journal_path, manifest_path = EVIDENCE_DIR / "journal.jsonl", EVIDENCE_DIR / "manifest.json"
     if not journal_path.is_file() or not manifest_path.is_file():
@@ -55,8 +55,14 @@ def grade():
     raw = journal_path.read_bytes()
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     mode = json.loads(MODE_PATH.read_text(encoding="utf-8"))
-    config = C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"})
+    mode.setdefault("benchmark_version", C.INTEGRATED_VERSION)
+    config = C.with_version(C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"}),
+                            mode["benchmark_version"])
     seed = json.loads(SEED_PATH.read_text(encoding="utf-8"))["base_seed"]
+    report["benchmark_version"] = config.benchmark_version
+    if manifest.get("benchmark_version") != config.benchmark_version:
+        report["integrity"]["error"] = "evidence version differs from the task version"
+        return report
     try:
         if manifest.get("journal_sha256") != hashlib.sha256(raw).hexdigest():
             raise V.ReplayError("journal does not match sealed manifest")

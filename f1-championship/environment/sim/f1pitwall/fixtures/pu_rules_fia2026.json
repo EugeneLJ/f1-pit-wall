@@ -53,7 +53,8 @@
         "subsequent_additional_element": 2,
         "back_of_grid_above": 5
       }
-    }
+    },
+    "worn_element_rule": "2.1.0: an element above the wear limit may keep running (USE stays legal) with the published pace and reliability cost; REPLACE is legal only while the team has stock. Prevents a state with no legal action when two drivers need the last unit of a type. Not an FIA rule."
   },
   "unchanged": "wear, pace loss, reliability, the published rival replacement threshold and all race mechanics are the 1.1.0/2.0.1 models"
 }

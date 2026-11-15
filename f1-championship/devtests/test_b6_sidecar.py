@@ -58,6 +58,7 @@ GRADE = textwrap.dedent('''
     root, state, ev, logs = map(Path, sys.argv[1:5])
     sys.path.insert(0, str(root / "environment" / "sim"))
     os.environ["F1SIM_STATE_DIR"], os.environ["F1SIM_EVIDENCE_DIR"] = str(state), str(ev)
+    os.environ["F1SIM_MODE_PATH"] = str(root / "environment" / "sim" / "secret" / "mode.json")
     from f1sim import export as legacy_export
     legacy_export.STATE_DIR, legacy_export.EVIDENCE_DIR = state, ev
     from f1sim.export_integrated import export_integrated

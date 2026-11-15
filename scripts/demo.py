@@ -113,7 +113,9 @@ def benchmark_version(report: dict[str, Any]) -> str:
     evidence = report.get("evidence")
     if isinstance(evidence, dict) and isinstance(evidence.get("evidence_benchmark_version"), str):
         return evidence["evidence_benchmark_version"]
-    return "pre-1.1.0"
+    if "evidence" in report or "completion" in report:
+        return "pre-1.1.0"
+    return "unavailable (no version in verifier report)"
 
 
 def relative_parts(root: Path, path: Path) -> tuple[str, ...]:

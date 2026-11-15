@@ -217,6 +217,8 @@ class DemoUxTests(unittest.TestCase):
         self.assertIn("HARBOR RUN FAILED", page)
         self.assertIn("Harbor verifier report.json was not found", page)
         self.assertNotIn("0.70384615", page)
+        self.assertIn("unavailable (no version in verifier report)", page)
+        self.assertNotIn("pre-1.1.0", page)
 
     def test_missing_and_invalid_matched_reference_never_produces_a_gap(self) -> None:
         workspace = DemoWorkspace(self.root)

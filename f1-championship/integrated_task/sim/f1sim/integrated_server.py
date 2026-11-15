@@ -45,10 +45,12 @@ def load_mode(path: Path = MODE_PATH) -> Dict[str, Any]:
 
 def task_config(mode: Dict[str, Any]) -> C.IntegratedConfig:
     """The sidecar's and the verifier's configuration (one function, so they cannot diverge)."""
-    base = C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"})
-    if mode.get("c5_weekend"):  # opt-in 2.2.0 C5 practice/qualifying weekend
-        return C.with_c5_weekend(base)
-    return C.with_version(base, mode["benchmark_version"])
+    cfg = C.with_features(
+        C.with_version(C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"}),
+                       mode["benchmark_version"]), mode)
+    if mode.get("c5_weekend"):  # opt-in 2.2.0 C5 practice/qualifying weekend (keeps M2/M6/M7 flags)
+        cfg = C.with_c5_weekend(cfg)
+    return cfg
 
 
 def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
@@ -76,6 +78,23 @@ def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
                      "a REPLACE needs a unit in the team's physical stock; using more elements than the "
                      "allocation costs grid places (first extra element of a type 4, later 2, cumulative); "
                      "above 5 places the driver starts behind all other cars, in qualifying order.")}
+    if config.m2_tendencies:
+        from track_c.v22.rival_tendencies import load_model as load_tendencies
+        public = load_tendencies()
+        rules["m2_tendencies"] = {
+            "status": "opt-in hidden per-race rival tendencies with publicly inferable history only",
+            "type_prior": public["prior"],
+            "conservative_gap_threshold_sec": public["conservative_gap_threshold_sec"]["value"],
+            "reaction_observation_confusion": public["reaction_observation_confusion"],
+        }
+    if config.m6_compliance:
+        from track_c.driver_objectives import load_m6_config
+        rules["m6_driver_objectives"] = load_m6_config()
+    if config.m7_weather:
+        from track_c.v22.weather import load_model as load_weather
+        rules["m7_weather"] = load_weather()
+        rules["m7_actions"] = {"driver_a": "STAY|PIT_SOFT|PIT_MEDIUM|PIT_HARD|PIT_INTERMEDIATE|PIT_WET",
+                               "driver_b": "STAY|PIT_SOFT|PIT_MEDIUM|PIT_HARD|PIT_INTERMEDIATE|PIT_WET"}
     if getattr(config, "c5_weekend", False):
         rules["weekend"] = weekend_rules()
     return rules

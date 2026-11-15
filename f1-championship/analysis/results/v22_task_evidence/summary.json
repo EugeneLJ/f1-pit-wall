@@ -1,0 +1,20 @@
+{
+  "actual_harbor_run": false,
+  "benchmark_version": "2.2.0",
+  "completion": {
+    "complete": true,
+    "races_completed": 8,
+    "resolved_ticks": 120
+  },
+  "engineer_record_files": {
+    "engineers/apex/engineer_records.jsonl": "d7a98eadcd1cb1064591ba04b010a1085c777745c8bd3337064010d3dd11072c"
+  },
+  "integrity_intact": true,
+  "journal_entries": 120,
+  "model_calls": 0,
+  "oracle_manifest_sha256": "0c5d24db39e3315d0c672a750a57b61c2c2d2576793eb0d76c5fb8ba9e00bccb",
+  "oracle_report_sha256": "bb3d2167f879e70f05616e1f8e419cf95ace385eaac50011583625344a7f5a32",
+  "reward": 0.40562248995983935,
+  "schema_version": 1,
+  "summary_note": "generated coordinator replay through the independent v2 verifier; not live model or Harbor evaluation"
+}

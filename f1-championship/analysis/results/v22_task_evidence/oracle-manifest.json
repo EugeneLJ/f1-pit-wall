@@ -1,0 +1,13 @@
+{
+  "benchmark_version": "2.2.0",
+  "engineer_record_files": {
+    "engineers/apex/engineer_records.jsonl": "d7a98eadcd1cb1064591ba04b010a1085c777745c8bd3337064010d3dd11072c"
+  },
+  "head_hash": "681f0342a3184e701b35629ef3fb2890fd2b2a74b7b5e904501b68a9dccf2390",
+  "journal_entries": 120,
+  "journal_sha256": "fd442202bc564a27e7a22817d9b5936aa7598b8a534d7bb3681c74283e32fdea",
+  "journal_version": 2,
+  "request_stats": {},
+  "sealed_at": 1794726009.982795,
+  "server_version": "2.2.0"
+}

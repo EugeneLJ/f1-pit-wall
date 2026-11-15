@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_provisional_not_fia_calibrated",
+  "description": "Provisional public M6 compliance curve; coefficients are benchmark design choices, not measured driver behavior.",
+  "parameters": {
+    "base_compliance": 0.98,
+    "minimum_compliance": 0.20,
+    "maximum_reduction": 0.78,
+    "gap_full_effect_points": 30.0,
+    "late_season_horizon_races": 8,
+    "early_season_pressure_weight": 0.25,
+    "order_adjustments": {
+      "HOLD": 0.0,
+      "KEEP_ORDER": 0.0,
+      "REQUEST_GIVE_BACK": 0.0
+    }
+  },
+  "demo": {
+    "driver_points": {"Apex A": 120, "Apex B": 88},
+    "teams": {"Apex": ["Apex A", "Apex B"]},
+    "races_remaining": 1,
+    "order": "REQUEST_GIVE_BACK",
+    "affected_driver": "Apex A",
+    "seeded_draw": 0.60
+  }
+}

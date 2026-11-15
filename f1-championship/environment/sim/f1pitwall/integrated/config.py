@@ -10,14 +10,14 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Any, Dict, List, Optional
 
 from ..version import BENCHMARK_VERSION as LEGACY_VERSION
 
 INTEGRATED_VERSION = "2.0.1"
 FIA_PU_VERSION = "2.1.0"  # opt-in: FIA-2026-based PU allocation/penalty/grid rules (B8)
-SCENARIO_VERSION = "2.2.0"  # opt-in successor; every 2.2.0 feature is a flag and off by default
+SCENARIO_VERSION = "2.2.0"  # opt-in successor; every 2.2.0 feature is a flag, off by default (= 2.1.0)
 OPT_IN_VERSIONS = (FIA_PU_VERSION, SCENARIO_VERSION)
 SOLO_LEGACY = "SOLO_LEGACY"
 SOLO_COORDINATION = "SOLO_COORDINATION"
@@ -76,6 +76,9 @@ class IntegratedConfig:
     rival_policy_variant: Optional[str] = None  # uncontrolled teams' pit rule (None = published)
     decision_timeout_sec: float = 120.0
     benchmark_version: str = INTEGRATED_VERSION
+    m2_tendencies: bool = False
+    m6_compliance: bool = False
+    m7_weather: bool = False
     c5_weekend: bool = False  # 2.2.0: PRACTICE x2 -> QUALIFYING before each race (track_c.c5)
 
     def validate(self) -> None:
@@ -100,6 +103,13 @@ class IntegratedConfig:
             raise ValueError("unknown rival condition")
         if self.benchmark_version not in (INTEGRATED_VERSION,) + OPT_IN_VERSIONS:
             raise ValueError(f"integrated modes are benchmark {INTEGRATED_VERSION} or opt-in {OPT_IN_VERSIONS}")
+        features = (self.m2_tendencies, self.m6_compliance, self.m7_weather)
+        if any(not isinstance(value, bool) for value in features):
+            raise ValueError("M2/M6/M7 flags must be booleans")
+        if any(features) and self.benchmark_version != SCENARIO_VERSION:
+            raise ValueError("M2/M6/M7 extensions require opt-in benchmark 2.2.0")
+        if self.m2_tendencies and self.rival_policy_variant is not None:
+            raise ValueError("M2 tendency dispatch and rival_policy_variant cannot both override rival actions")
         if not isinstance(self.c5_weekend, bool):
             raise ValueError("c5_weekend must be a boolean")
         if self.c5_weekend and self.benchmark_version != SCENARIO_VERSION:
@@ -113,6 +123,9 @@ class IntegratedConfig:
                              "chief": copy.deepcopy(t.chief), "engineers": t.engineers} for t in self.teams],
                   "rival_condition": self.rival_condition, "rival_policy_variant": self.rival_policy_variant,
                   "decision_timeout_sec": self.decision_timeout_sec}
+        for key in ("m2_tendencies", "m6_compliance", "m7_weather"):
+            if getattr(self, key):
+                output[key] = True
         if self.c5_weekend:  # only when enabled, so existing config hashes are unchanged
             output["c5_weekend"] = True
         return output
@@ -129,7 +142,9 @@ class IntegratedConfig:
         return IntegratedConfig(self.mode, [TeamSpec(a.label, a.short, b.slot, a.chief, a.engineers),
                                             TeamSpec(b.label, b.short, a.slot, b.chief, b.engineers)],
                                 self.rival_condition, self.rival_policy_variant,
-                                self.decision_timeout_sec, self.benchmark_version, c5_weekend=self.c5_weekend)
+                                self.decision_timeout_sec, self.benchmark_version,
+                                self.m2_tendencies, self.m6_compliance, self.m7_weather,
+                                c5_weekend=self.c5_weekend)
 
     @staticmethod
     def from_dict(value: Dict[str, Any]) -> "IntegratedConfig":
@@ -138,7 +153,8 @@ class IntegratedConfig:
         cfg = IntegratedConfig(value["mode"], teams, value.get("rival_condition", "ADAPTIVE"),
                                value.get("rival_policy_variant"), float(value.get("decision_timeout_sec", 120.0)),
                                value.get("benchmark_version", INTEGRATED_VERSION),
-                               c5_weekend=value.get("c5_weekend", False))
+                               value.get("m2_tendencies", False), value.get("m6_compliance", False),
+                               value.get("m7_weather", False), c5_weekend=value.get("c5_weekend", False))
         cfg.validate()
         return cfg
 
@@ -146,15 +162,25 @@ class IntegratedConfig:
 def with_version(cfg: IntegratedConfig, version: str) -> IntegratedConfig:
     """Same configuration under another integrated version (e.g. the opt-in 2.1.0 PU rules)."""
     out = IntegratedConfig(cfg.mode, list(cfg.teams), cfg.rival_condition, cfg.rival_policy_variant,
-                           cfg.decision_timeout_sec, version, c5_weekend=cfg.c5_weekend)
+                           cfg.decision_timeout_sec, version, cfg.m2_tendencies, cfg.m6_compliance, cfg.m7_weather,
+                           c5_weekend=cfg.c5_weekend)
+    out.validate()
+    return out
+
+
+def with_features(cfg: IntegratedConfig, options: Dict[str, Any]) -> IntegratedConfig:
+    """Apply optional M2/M6/M7 task flags with one validated task/verifier mapping."""
+    out = replace(cfg, m2_tendencies=options.get("m2_tendencies", False),
+                  m6_compliance=options.get("m6_compliance", False),
+                  m7_weather=options.get("m7_weather", False))
     out.validate()
     return out
 
 
 def with_c5_weekend(cfg: IntegratedConfig) -> IntegratedConfig:
-    """Same configuration under opt-in 2.2.0 with the C5 practice/qualifying weekend enabled."""
-    out = IntegratedConfig(cfg.mode, list(cfg.teams), cfg.rival_condition, cfg.rival_policy_variant,
-                           cfg.decision_timeout_sec, SCENARIO_VERSION, c5_weekend=True)
+    """Same configuration under opt-in 2.2.0 with the C5 practice/qualifying weekend enabled
+    (other 2.2.0 flags are kept)."""
+    out = replace(cfg, benchmark_version=SCENARIO_VERSION, c5_weekend=True)
     out.validate()
     return out
 
@@ -186,4 +212,4 @@ def two_team(layer: int = 1, mclearn_chief: Optional[Dict[str, Any]] = None,
 
 
 __all__ = ["INTEGRATED_VERSION", "LEGACY_VERSION", "MODES", "SOLO_LEGACY", "SOLO_COORDINATION",
-           "TWO_TEAM_COMPETITION", "TeamSpec", "IntegratedConfig", "solo_coordination", "two_team"]
+           "TWO_TEAM_COMPETITION", "TeamSpec", "IntegratedConfig", "solo_coordination", "two_team", "with_features"]

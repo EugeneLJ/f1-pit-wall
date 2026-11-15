@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_only",
+  "sources": [],
+  "micro_race": {
+    "segments": {"value": 8, "provenance": "synthetic"},
+    "laps_per_segment": {"value": 3, "provenance": "synthetic"},
+    "pit_loss_sec": {"value": 16.0, "provenance": "synthetic"},
+    "base_pace_sec": {"value": 90.0, "provenance": "synthetic"},
+    "track_deg_multiplier": {"value": 0.5, "provenance": "synthetic"},
+    "spin_loss_sec": {"value": 4.0, "provenance": "synthetic"},
+    "retirement_value_cost_sec": {"value": 30.0, "provenance": "synthetic decision-value proxy, not a reward"},
+    "two_dry_finish_penalty_sec": {"value": 20.0, "provenance": "synthetic micro-race preservation of documented 2.1.0 behavior"},
+    "near_tie_threshold_sec": {"value": 0.5, "provenance": "synthetic"}
+  },
+  "rain": {
+    "states": ["DRY", "DAMP", "WET"],
+    "initial_distribution": {"DRY": 0.8, "DAMP": 0.15, "WET": 0.05, "provenance": "synthetic"},
+    "transition": {
+      "DRY": [0.75, 0.20, 0.05],
+      "DAMP": [0.25, 0.55, 0.20],
+      "WET": [0.08, 0.32, 0.60],
+      "provenance": "synthetic Markov model; no fitted weather source"
+    },
+    "intensity": {"DRY": 0.0, "DAMP": 0.45, "WET": 0.85, "provenance": "synthetic"},
+    "wetness_retention_per_segment": {"value": 0.6, "provenance": "synthetic"},
+    "wetness_target_weight": {"value": 0.4, "provenance": "synthetic"},
+    "forecast_concentration_base": {"value": 2.0, "provenance": "synthetic; multiplied by lead so report noise shrinks as lead grows"}
+  },
+  "compounds": {
+    "SOFT": {
+      "offset_sec_at_wetness": {"0.0": -0.55, "0.4": 2.0, "0.7": 4.3, "1.0": 7.0, "provenance": "dry node mirrors 2.1.0; remaining nodes synthetic"},
+      "deg_per_lap_at_wetness": {"0.0": 0.35, "0.4": 0.15, "0.7": 0.22, "1.0": 0.4, "provenance": "dry node mirrors 2.1.0; remaining nodes synthetic"},
+      "retire_probability_at_wetness": {"0.0": 0.0, "0.4": 0.01, "0.7": 0.07, "1.0": 0.22, "provenance": "synthetic"},
+      "spin_probability_at_wetness": {"0.0": 0.0, "0.4": 0.01, "0.7": 0.05, "1.0": 0.10, "provenance": "synthetic"},
+      "warmup_sec": {"value": 0.3, "provenance": "dry value mirrors 2.1.0"}
+    },
+    "MEDIUM": {
+      "offset_sec_at_wetness": {"0.0": 0.0, "0.4": 1.8, "0.7": 3.75, "1.0": 6.0, "provenance": "dry node mirrors 2.1.0; remaining nodes synthetic"},
+      "deg_per_lap_at_wetness": {"0.0": 0.14, "0.4": 0.08, "0.7": 0.14, "1.0": 0.28, "provenance": "dry node mirrors 2.1.0; remaining nodes synthetic"},
+      "retire_probability_at_wetness": {"0.0": 0.0, "0.4": 0.008, "0.7": 0.06, "1.0": 0.18, "provenance": "synthetic"},
+      "spin_probability_at_wetness": {"0.0": 0.0, "0.4": 0.008, "0.7": 0.04, "1.0": 0.08, "provenance": "synthetic"},
+      "warmup_sec": {"value": 0.6, "provenance": "dry value mirrors 2.1.0"}
+    },
+    "HARD": {
+      "offset_sec_at_wetness": {"0.0": 0.28, "0.4": 2.2, "0.7": 3.4, "1.0": 4.8, "provenance": "dry node mirrors 2.1.0; remaining nodes synthetic"},
+      "deg_per_lap_at_wetness": {"0.0": 0.055, "0.4": 0.055, "0.7": 0.10, "1.0": 0.20, "provenance": "dry node mirrors 2.1.0; remaining nodes synthetic"},
+      "retire_probability_at_wetness": {"0.0": 0.0, "0.4": 0.006, "0.7": 0.045, "1.0": 0.14, "provenance": "synthetic"},
+      "spin_probability_at_wetness": {"0.0": 0.0, "0.4": 0.006, "0.7": 0.03, "1.0": 0.06, "provenance": "synthetic"},
+      "warmup_sec": {"value": 1.0, "provenance": "dry value mirrors 2.1.0"}
+    },
+    "INTERMEDIATE": {
+      "offset_sec_at_wetness": {"0.0": 0.5, "0.4": -0.15, "0.7": -0.75, "1.0": 0.4, "provenance": "synthetic"},
+      "deg_per_lap_at_wetness": {"0.0": 0.18, "0.4": 0.035, "0.7": 0.045, "1.0": 0.12, "provenance": "synthetic"},
+      "retire_probability_at_wetness": {"0.0": 0.0, "0.4": 0.001, "0.7": 0.006, "1.0": 0.018, "provenance": "synthetic"},
+      "spin_probability_at_wetness": {"0.0": 0.0, "0.4": 0.001, "0.7": 0.003, "1.0": 0.004, "provenance": "synthetic"},
+      "warmup_sec": {"value": 1.0, "provenance": "synthetic"}
+    },
+    "WET": {
+      "offset_sec_at_wetness": {"0.0": 0.9, "0.4": 0.3, "0.7": -0.7, "1.0": -1.2, "provenance": "synthetic"},
+      "deg_per_lap_at_wetness": {"0.0": 0.25, "0.4": 0.08, "0.7": 0.05, "1.0": 0.14, "provenance": "synthetic"},
+      "retire_probability_at_wetness": {"0.0": 0.0, "0.4": 0.002, "0.7": 0.004, "1.0": 0.007, "provenance": "synthetic"},
+      "spin_probability_at_wetness": {"0.0": 0.0, "0.4": 0.002, "0.7": 0.002, "1.0": 0.002, "provenance": "synthetic"},
+      "warmup_sec": {"value": 1.2, "provenance": "synthetic"}
+    }
+  },
+  "tyre_interpolation_nodes": [0.0, 0.4, 0.7, 1.0],
+  "rival_bias": {
+    "labels": ["EARLY", "ON_TIME", "LATE"],
+    "weights": [0.3, 0.4, 0.3],
+    "wetness_offset": {"value": 0.08, "provenance": "synthetic"}
+  },
+  "neutralisation": {
+    "sc_vsc_multiplier": {"DRY": 1.0, "DAMP": 1.15, "WET": 1.5, "provenance": "synthetic"},
+    "engine_owner_rule": "multiply only existing SC/VSC hazards; resulting probabilities must remain in [0,1] and sum <= 1"
+  },
+  "stream_version": "m7-weather-v1"
+}

@@ -1,5 +1,11 @@
 # C7 live paired-probe preflight report
 
+> **P0 reconciliation:** this report's corrected census is backed by the row-level
+> cross-table in `analysis/results/c7/reconciliation.json`. Historical C6 “69
+> reversals” are 69 raw point-estimate action changes: 68 fail the unchanged
+> uncertainty gate and 1 is a validated reversal. See
+> `docs/C7_C6_COUNT_RECONCILIATION.md`.
+
 ## Outcome
 
 The live experiment was stopped before any model call. The frozen C6 held-out

@@ -1,5 +1,14 @@
 # C6 adaptive-rival and gap evidence pipeline
 
+> **Historical-count erratum (C7/P0):** the checked-in C6 artifact's
+> `reference_classes.REVERSAL=69` means the point-estimate reference action changed.
+> It is not a count of statistically separated reversals. The reporting expression
+> checked `reference_reversal` before `NEAR_TIE`, so 68 near-tie action changes were
+> included. With the unchanged 0.5-point uncertainty gate applied first, the same
+> 431 rows contain 1 validated reversal, 289 near ties, and 141 separated no-change
+> controls. The original artifact remains preserved. See
+> `docs/C7_C6_COUNT_RECONCILIATION.md` for the auditable cross-table.
+
 ## Scope
 
 C6 is analysis-only. It does not modify the authoritative engine, Harbor task,
@@ -55,9 +64,10 @@ rollout reference. Selection uses only reference reversal/control status and pai
 ID; no model output is consulted.
 
 The generated file reports the denominator for natural visible-pair frequency
-separately from the small targeted diagnostic set. Reference reversal, stable
-control, and near-tie pairs are separate. These are synthetic probes, not live
-Gemini results and not FIA-calibrated frequencies.
+separately from the small targeted diagnostic set. The historical summary gave raw
+action reversal precedence over the near-tie gate; use the C7 reconciliation for
+evidence claims. These are synthetic probes, not live Gemini results and not
+FIA-calibrated frequencies.
 
 ```sh
 PYTHONPATH=src:. scripts/py312 analysis/c6_adaptive_probes.py \

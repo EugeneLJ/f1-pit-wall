@@ -130,6 +130,12 @@ The reward is written to `/logs/verifier/reward.txt` (one number in [0, 1]); the
 `/logs/verifier/report.json`. A "play every decision but do nothing" policy (USE, STAY) is the reward's
 zero point `D`, so it also scores 0.
 
+## Planned 2.2.0 scenarios (proposal, not implemented)
+
+Rival interaction (pace and gap control, hidden rival driver types, proximity advantage), FIA-2026-based
+stewarding for off-track passes and slow driving, a cross-team hold-up order, driver WDC compliance, and
+weather with wet compounds are specified in [`docs/V2_2_0_SCENARIO_CONTRACT.md`](docs/V2_2_0_SCENARIO_CONTRACT.md).
+
 ## C6/C7 evidence analysis (analysis-only; not part of the official Frontier–Reference gap)
 
 The adaptive-rival probes, the verified B7 case audit, and the strict

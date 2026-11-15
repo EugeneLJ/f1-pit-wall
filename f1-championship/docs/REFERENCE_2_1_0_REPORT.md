@@ -98,14 +98,37 @@ Per-seed values are in `analysis/results/reference21_2.1.0_inter20.json`.
 - The published baseline falls further behind under 2.1.0, because it never replaces and races on worn elements.
 - **No significance claim is made.** There is one live run, and the replays come from one script.
 
-## 6. Observed strategic behaviour and candidate failures (Gemini 2.1.0)
+## 6. Decision-level analysis of the live 2.1.0 run (`analysis/b21_decisions.py`)
 
-| Behaviour | Evidence | Status |
-|---|---|---|
-| Race-strategy losses | +8.0 points per season attributable to the race policy (20 seeds) | **Main candidate.** Decision-level analysis, as in B7's `b7_analysis`, is not yet run on 2.1.0 |
-| Penalty aversion (never exceeds allocation, 3 stock units unused) | 20 / 20 seeds | **Not a scored failure:** its cost is +0.6 ± 1.2 points (near tie) |
-| Illegal SWAP commitment (no car ahead) | 1 of 25 replayed seasons | Script bug; an operational, not strategic, failure; never occurred live |
-| DEFENSIVE_BUFFER ×1 (live run) | journal | Not evaluated |
+**Method.**
+- The live journal v2 replays exactly from the task seed.
+- At each of the 112 race decisions, all 16 joint pit actions (team order RACE) plus Gemini's own action were rolled out over 16 public SC/VSC futures, with baseline continuation. This is the authoritative-engine public-input reference, and it has a **model-access advantage**.
+- **Candidate:** regret > 1 point and > 2 SE.
+- **Robust:** the candidate stays a candidate with 3× futures **and** with two other continuation rules (`event_aware`, `long_stint`).
+- Data: `analysis/results/reference_runs/v21-gemini-01/decisions.json`.
+
+**Overall.**
+- 73% of Gemini's decisions equal the reference, and 78% are near ties (|regret| < 0.25 points).
+- 15 candidates, 7 robust. **All 7 robust candidates are missed stops.**
+- Regret by race is concentrated in races 2, 4 and 7 (11.6, 10.1 and 15.8). Decision regrets within a stint are not additive.
+
+Consecutive candidates in one stint are one missed opportunity that persists, so they are grouped into **episodes**:
+
+| Episode | Decisions | Gemini | Reference (regret) | Robust | Same type as on 1.1.0 |
+|---|---|---|---|---|---|
+| Early SOFT stop not taken: Apex A on SOFT at lap 3, races 5 / 7 / 8 | t062, t092, t107 | STAY | PIT_HARD (+1.5, +2.0, +2.4) | 2 / 3 | **T1** (early-stint SOFT stop never a candidate) |
+| Race 7: Apex A P8 on HARD, never stops, laps 12–24, **including under SC at lap 12** | t095, t097, t098, t099 | STAY ×4 | PIT_HARD (+3.9 under SC; +2.6, +2.9, +3.9) | 3 / 4 | **T3** (missed mid-race stop), **T4** (SC opportunity) |
+| Race 2: Apex A P5 on HARD, laps 18–21 | t022, t023 | STAY | PIT_HARD (+3.1, +2.2) | 1 / 2 | T3 |
+| Race 1: Apex B on MEDIUM age 15 (life 16), lap 15 | t006 | STAY | PIT_HARD (+2.5) | yes | T3 |
+| Race 4: mid-race and VSC stop timing; stops the other car | t049, t052–t054 | mixed | other car or other timing | 0 / 4 | — |
+| Race 2: SOFT/HARD stop under VSC at lap 36 | t028 | PIT_HARD | STAY (+2.7) | no | (T2-like late stop) |
+
+**Reading.**
+- The robust losses are the same failure types found in the four 1.0.0 runs: the early SOFT stop is never taken, and mid-race stops are missed, including a cheap stop under SC.
+- They recur on 2.1.0 with a different script. That suggests they are stable behaviours of Gemini-written strategies, not artefacts of one version.
+- **No robust candidate involves components.** That matches the phase attribution (§4: components +0.6, race +8.0).
+- Gemini's penalty-averse component rule, which leaves 3 stock units unused, is a strategic choice with a near-tie cost, not a scored failure.
+- **Operational, not strategic:** the script submitted an illegal SWAP commitment once on a replayed dev seed, never live. The single DEFENSIVE_BUFFER (live) was applied; it is not among the candidates.
 
 ## 7. Limitations and next steps
 
@@ -114,4 +137,4 @@ Per-seed values are in `analysis/results/reference21_2.1.0_inter20.json`.
 - **Synthetic scaling.** The 2.1.0 allocation, places and stock are synthetic scalings of the FIA rule structure. CHIEF_ONLY (no Engineers) was used for the gap task.
 - **Team orders.** The reference uses team order RACE only. B6/B8 show orders are rarely best.
 - **Race-side strengthening.** That is where the gap is; the bounded 1.1.0 study found no cheap gain.
-- **Next.** A decision-level analysis of the live 2.1.0 run (reuse `b7_analysis` with the 2.1.0 config). Then more live runs only if the user decides.
+- **Next.** More live runs, only if decided, to see whether the T1/T3 patterns recur across runs, which would support a stable gap claim. Possibly a reference that mirrors these specific decisions as a targeted check.

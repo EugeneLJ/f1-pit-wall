@@ -1,0 +1,4351 @@
+{
+ "summary": {
+  "live_points": 279,
+  "race_decisions": 112,
+  "futures": 16,
+  "reference": "authoritative-engine public-input rollout, baseline continuation (model-access advantage)",
+  "same_as_reference": 0.732,
+  "near_tie_share": 0.777,
+  "sum_regret": 46.61,
+  "candidates": 15,
+  "robust_candidates": 7,
+  "regret_by_race": {
+   "0": 3.2,
+   "1": 11.58,
+   "2": 0.3,
+   "3": 10.07,
+   "4": 2.11,
+   "5": 0.18,
+   "6": 15.79,
+   "7": 3.37
+  },
+  "candidate_labels": {
+   "missed_stop": 13,
+   "unneeded_stop": 3,
+   "event": 3,
+   "late_race": 1
+  },
+  "robust_labels": {
+   "missed_stop": 7,
+   "event": 1
+  },
+  "robust_regret_sum": 17.99
+ },
+ "rows": [
+  {
+   "tick_id": "t002",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 1,
+   "lap": 3,
+   "status": "GREEN",
+   "laps_remaining": 42,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 3,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_age": 3,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.6609,
+   "se": 0.727,
+   "q_chosen": 30.963,
+   "q_reference": 31.624,
+   "q_stay_stay": 30.963
+  },
+  {
+   "tick_id": "t003",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 2,
+   "lap": 6,
+   "status": "GREEN",
+   "laps_remaining": 39,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 6,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_age": 6,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 30.19,
+   "q_reference": 30.19,
+   "q_stay_stay": 29.697
+  },
+  {
+   "tick_id": "t004",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 3,
+   "lap": 9,
+   "status": "GREEN",
+   "laps_remaining": 36,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 9,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 28.717,
+   "q_reference": 28.717,
+   "q_stay_stay": 28.717
+  },
+  {
+   "tick_id": "t005",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 4,
+   "lap": 12,
+   "status": "GREEN",
+   "laps_remaining": 33,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 12,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 0.0623,
+   "se": 0.4905,
+   "q_chosen": 30.907,
+   "q_reference": 30.969,
+   "q_stay_stay": 30.907
+  },
+  {
+   "tick_id": "t006",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 5,
+   "lap": 15,
+   "status": "GREEN",
+   "laps_remaining": 30,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 15,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 2.4752,
+   "se": 0.4853,
+   "q_chosen": 30.054,
+   "q_reference": 32.529,
+   "q_stay_stay": 30.054,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_b"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 2.3531,
+     "se": 0.3261,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 3.2229,
+     "se": 0.7143,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 6.3022,
+     "se": 0.728,
+     "reference": "STAY/PIT_HARD|RACE"
+    }
+   },
+   "robust": true
+  },
+  {
+   "tick_id": "t007",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 6,
+   "lap": 18,
+   "status": "GREEN",
+   "laps_remaining": 27,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_age": 18,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 28.969,
+   "q_reference": 28.969,
+   "q_stay_stay": 25.443
+  },
+  {
+   "tick_id": "t008",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 7,
+   "lap": 21,
+   "status": "SC",
+   "laps_remaining": 24,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 33.064,
+   "q_reference": 33.064,
+   "q_stay_stay": 25.36
+  },
+  {
+   "tick_id": "t009",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 8,
+   "lap": 24,
+   "status": "SC",
+   "laps_remaining": 21,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 1,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 4,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 31.124,
+   "q_reference": 31.124,
+   "q_stay_stay": 31.124
+  },
+  {
+   "tick_id": "t010",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 9,
+   "lap": 27,
+   "status": "GREEN",
+   "laps_remaining": 18,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 2,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 5,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.884,
+   "q_reference": 32.884,
+   "q_stay_stay": 32.884
+  },
+  {
+   "tick_id": "t011",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 10,
+   "lap": 30,
+   "status": "GREEN",
+   "laps_remaining": 15,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 5,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 8,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|DEFENSIVE_BUFFER",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 33.622,
+   "q_reference": 33.622,
+   "q_stay_stay": 33.622
+  },
+  {
+   "tick_id": "t012",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 11,
+   "lap": 33,
+   "status": "GREEN",
+   "laps_remaining": 12,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 8,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 33.437,
+   "q_reference": 33.437,
+   "q_stay_stay": 33.437
+  },
+  {
+   "tick_id": "t013",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 12,
+   "lap": 36,
+   "status": "GREEN",
+   "laps_remaining": 9,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 14,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 33.201,
+   "q_reference": 33.201,
+   "q_stay_stay": 33.201
+  },
+  {
+   "tick_id": "t014",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 13,
+   "lap": 39,
+   "status": "GREEN",
+   "laps_remaining": 6,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 14,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 17,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 33.017,
+   "q_reference": 33.017,
+   "q_stay_stay": 33.017
+  },
+  {
+   "tick_id": "t015",
+   "race_index": 0,
+   "race": "Harbor Grand Prix",
+   "decision": 14,
+   "lap": 42,
+   "status": "VSC",
+   "laps_remaining": 3,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 17,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 20,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 42.277,
+   "q_reference": 42.277,
+   "q_stay_stay": 42.277
+  },
+  {
+   "tick_id": "t017",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 1,
+   "lap": 3,
+   "status": "GREEN",
+   "laps_remaining": 42,
+   "cars": {
+    "driver_a": {
+     "position": 1,
+     "compound": "SOFT",
+     "tyre_age": 3,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "MEDIUM",
+     "tyre_age": 3,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 38.189,
+   "q_reference": 38.189,
+   "q_stay_stay": 38.189
+  },
+  {
+   "tick_id": "t018",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 2,
+   "lap": 6,
+   "status": "GREEN",
+   "laps_remaining": 39,
+   "cars": {
+    "driver_a": {
+     "position": 1,
+     "compound": "SOFT",
+     "tyre_age": 6,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "MEDIUM",
+     "tyre_age": 6,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 1.0361,
+   "se": 0.9118,
+   "q_chosen": 37.879,
+   "q_reference": 38.915,
+   "q_stay_stay": 38.915
+  },
+  {
+   "tick_id": "t019",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 3,
+   "lap": 9,
+   "status": "GREEN",
+   "laps_remaining": 36,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "MEDIUM",
+     "tyre_age": 9,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 37.332,
+   "q_reference": 37.332,
+   "q_stay_stay": 37.332
+  },
+  {
+   "tick_id": "t020",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 4,
+   "lap": 12,
+   "status": "SC",
+   "laps_remaining": 33,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "MEDIUM",
+     "tyre_age": 12,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "PIT_HARD/PIT_HARD|RACE",
+   "regret": 0.6555,
+   "se": 1.0187,
+   "q_chosen": 36.613,
+   "q_reference": 37.268,
+   "q_stay_stay": 27.914
+  },
+  {
+   "tick_id": "t021",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 5,
+   "lap": 15,
+   "status": "GREEN",
+   "laps_remaining": 30,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 7,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 1,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 37.088,
+   "q_reference": 37.088,
+   "q_stay_stay": 37.088
+  },
+  {
+   "tick_id": "t022",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 6,
+   "lap": 18,
+   "status": "GREEN",
+   "laps_remaining": 27,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 10,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 4,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 3.1046,
+   "se": 0.914,
+   "q_chosen": 34.734,
+   "q_reference": 37.838,
+   "q_stay_stay": 34.734,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 2.6508,
+     "se": 0.4836,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 0.3877,
+     "se": 1.4149,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 2.7403,
+     "se": 1.1893,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": false
+  },
+  {
+   "tick_id": "t023",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 7,
+   "lap": 21,
+   "status": "GREEN",
+   "laps_remaining": 24,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 13,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 7,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 2.1501,
+   "se": 0.7325,
+   "q_chosen": 37.932,
+   "q_reference": 40.082,
+   "q_stay_stay": 37.932,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 3.4729,
+     "se": 0.4896,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 3.5327,
+     "se": 1.0333,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 3.893,
+     "se": 0.8779,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": true
+  },
+  {
+   "tick_id": "t024",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 8,
+   "lap": 24,
+   "status": "GREEN",
+   "laps_remaining": 21,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 16,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 10,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 1.9758,
+   "se": 1.1734,
+   "q_chosen": 37.026,
+   "q_reference": 39.002,
+   "q_stay_stay": 37.026
+  },
+  {
+   "tick_id": "t025",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 9,
+   "lap": 27,
+   "status": "GREEN",
+   "laps_remaining": 18,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 19,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 13,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.966,
+   "q_reference": 39.966,
+   "q_stay_stay": 38.291
+  },
+  {
+   "tick_id": "t026",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 10,
+   "lap": 30,
+   "status": "GREEN",
+   "laps_remaining": 15,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 16,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.111,
+   "q_reference": 39.111,
+   "q_stay_stay": 39.111
+  },
+  {
+   "tick_id": "t027",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 11,
+   "lap": 33,
+   "status": "GREEN",
+   "laps_remaining": 12,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 19,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 41.907,
+   "q_reference": 41.907,
+   "q_stay_stay": 41.907
+  },
+  {
+   "tick_id": "t028",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 12,
+   "lap": 36,
+   "status": "VSC",
+   "laps_remaining": 9,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 22,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 2.6562,
+   "se": 1.1502,
+   "q_chosen": 36.663,
+   "q_reference": 39.319,
+   "q_stay_stay": 39.319,
+   "candidate": true,
+   "labels": [
+    "unneeded_stop:driver_b",
+    "event:VSC",
+    "late_race"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 4.6483,
+     "se": 0.7608,
+     "reference": "STAY/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 0.0,
+     "se": 0.0,
+     "reference": "STAY/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 0.0,
+     "se": 0.0,
+     "reference": "STAY/STAY|RACE"
+    }
+   },
+   "robust": false
+  },
+  {
+   "tick_id": "t029",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 13,
+   "lap": 39,
+   "status": "VSC",
+   "laps_remaining": 6,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 2,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.319,
+   "q_reference": 39.319,
+   "q_stay_stay": 39.319
+  },
+  {
+   "tick_id": "t030",
+   "race_index": 1,
+   "race": "Marina Grand Prix",
+   "decision": 14,
+   "lap": 42,
+   "status": "GREEN",
+   "laps_remaining": 3,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 13,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 4,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.319,
+   "q_reference": 39.319,
+   "q_stay_stay": 39.319
+  },
+  {
+   "tick_id": "t032",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 1,
+   "lap": 3,
+   "status": "GREEN",
+   "laps_remaining": 42,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 3,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_age": 3,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 27.067,
+   "q_reference": 27.067,
+   "q_stay_stay": 27.067
+  },
+  {
+   "tick_id": "t033",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 2,
+   "lap": 6,
+   "status": "GREEN",
+   "laps_remaining": 39,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 6,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_age": 6,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 27.624,
+   "q_reference": 27.624,
+   "q_stay_stay": 27.076
+  },
+  {
+   "tick_id": "t034",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 3,
+   "lap": 9,
+   "status": "GREEN",
+   "laps_remaining": 36,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 9,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 28.214,
+   "q_reference": 28.214,
+   "q_stay_stay": 28.214
+  },
+  {
+   "tick_id": "t035",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 4,
+   "lap": 12,
+   "status": "GREEN",
+   "laps_remaining": 33,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 12,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 26.398,
+   "q_reference": 26.398,
+   "q_stay_stay": 26.398
+  },
+  {
+   "tick_id": "t036",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 5,
+   "lap": 15,
+   "status": "GREEN",
+   "laps_remaining": 30,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_age": 15,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 28.583,
+   "q_reference": 28.583,
+   "q_stay_stay": 28.583
+  },
+  {
+   "tick_id": "t037",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 6,
+   "lap": 18,
+   "status": "GREEN",
+   "laps_remaining": 27,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_age": 18,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 26.635,
+   "q_reference": 26.635,
+   "q_stay_stay": 25.058
+  },
+  {
+   "tick_id": "t038",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 7,
+   "lap": 21,
+   "status": "GREEN",
+   "laps_remaining": 24,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 26.087,
+   "q_reference": 26.087,
+   "q_stay_stay": 26.087
+  },
+  {
+   "tick_id": "t039",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 8,
+   "lap": 24,
+   "status": "GREEN",
+   "laps_remaining": 21,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 18,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.3049,
+   "se": 0.3944,
+   "q_chosen": 25.793,
+   "q_reference": 26.097,
+   "q_stay_stay": 26.097
+  },
+  {
+   "tick_id": "t040",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 9,
+   "lap": 27,
+   "status": "GREEN",
+   "laps_remaining": 18,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 25.729,
+   "q_reference": 25.729,
+   "q_stay_stay": 25.729
+  },
+  {
+   "tick_id": "t041",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 10,
+   "lap": 30,
+   "status": "GREEN",
+   "laps_remaining": 15,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 27.604,
+   "q_reference": 27.604,
+   "q_stay_stay": 27.604
+  },
+  {
+   "tick_id": "t042",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 11,
+   "lap": 33,
+   "status": "VSC",
+   "laps_remaining": 12,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 26.379,
+   "q_reference": 26.379,
+   "q_stay_stay": 26.379
+  },
+  {
+   "tick_id": "t043",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 12,
+   "lap": 36,
+   "status": "VSC",
+   "laps_remaining": 9,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 17,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 26.756,
+   "q_reference": 26.756,
+   "q_stay_stay": 26.756
+  },
+  {
+   "tick_id": "t044",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 13,
+   "lap": 39,
+   "status": "GREEN",
+   "laps_remaining": 6,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 13,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 19,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 26.756,
+   "q_reference": 26.756,
+   "q_stay_stay": 26.756
+  },
+  {
+   "tick_id": "t045",
+   "race_index": 2,
+   "race": "Velocity Grand Prix",
+   "decision": 14,
+   "lap": 42,
+   "status": "GREEN",
+   "laps_remaining": 3,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 16,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 22,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 26.756,
+   "q_reference": 26.756,
+   "q_stay_stay": 26.756
+  },
+  {
+   "tick_id": "t047",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 1,
+   "lap": 3,
+   "status": "GREEN",
+   "laps_remaining": 42,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "SOFT",
+     "tyre_age": 3,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_age": 3,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 33.737,
+   "q_reference": 33.737,
+   "q_stay_stay": 29.244
+  },
+  {
+   "tick_id": "t048",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 2,
+   "lap": 6,
+   "status": "GREEN",
+   "laps_remaining": 39,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 6,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.339,
+   "q_reference": 32.339,
+   "q_stay_stay": 32.339
+  },
+  {
+   "tick_id": "t049",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 3,
+   "lap": 9,
+   "status": "GREEN",
+   "laps_remaining": 36,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 9,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 2.3022,
+   "se": 0.8916,
+   "q_chosen": 29.93,
+   "q_reference": 32.232,
+   "q_stay_stay": 32.232,
+   "candidate": true,
+   "labels": [
+    "unneeded_stop:driver_b"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 0.0,
+     "se": 0.0,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 2.11,
+     "se": 0.6905,
+     "reference": "STAY/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 0.2205,
+     "se": 0.8781,
+     "reference": "STAY/STAY|RACE"
+    }
+   },
+   "robust": false
+  },
+  {
+   "tick_id": "t050",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 4,
+   "lap": 12,
+   "status": "GREEN",
+   "laps_remaining": 33,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 31.623,
+   "q_reference": 31.623,
+   "q_stay_stay": 31.623
+  },
+  {
+   "tick_id": "t051",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 5,
+   "lap": 15,
+   "status": "VSC",
+   "laps_remaining": 30,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 1.1739,
+   "se": 0.6117,
+   "q_chosen": 27.366,
+   "q_reference": 28.54,
+   "q_stay_stay": 27.366
+  },
+  {
+   "tick_id": "t052",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 6,
+   "lap": 18,
+   "status": "GREEN",
+   "laps_remaining": 27,
+   "cars": {
+    "driver_a": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 14,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 8,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 2.2739,
+   "se": 0.6297,
+   "q_chosen": 27.843,
+   "q_reference": 30.117,
+   "q_stay_stay": 27.843,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_b"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 1.782,
+     "se": 0.322,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 1.4814,
+     "se": 0.5639,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 0.0,
+     "se": 0.0,
+     "reference": "STAY/STAY|RACE"
+    }
+   },
+   "robust": false
+  },
+  {
+   "tick_id": "t053",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 7,
+   "lap": 21,
+   "status": "GREEN",
+   "laps_remaining": 24,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 17,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 1.9523,
+   "se": 0.511,
+   "q_chosen": 26.769,
+   "q_reference": 28.721,
+   "q_stay_stay": 26.769,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_b"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 1.7416,
+     "se": 0.3233,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 0.3864,
+     "se": 0.7336,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 0.6112,
+     "se": 0.8294,
+     "reference": "STAY/PIT_HARD|RACE"
+    }
+   },
+   "robust": false
+  },
+  {
+   "tick_id": "t054",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 8,
+   "lap": 24,
+   "status": "VSC",
+   "laps_remaining": 21,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 20,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 14,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 2.3687,
+   "se": 0.7829,
+   "q_chosen": 29.747,
+   "q_reference": 32.116,
+   "q_stay_stay": 27.443,
+   "candidate": true,
+   "labels": [
+    "unneeded_stop:driver_a",
+    "missed_stop:driver_b",
+    "event:VSC"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 2.2499,
+     "se": 0.5282,
+     "reference": "STAY/PIT_HARD|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 0.0,
+     "se": 0.0,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 2.3135,
+     "se": 0.3025,
+     "reference": "PIT_HARD/PIT_HARD|RACE"
+    }
+   },
+   "robust": false
+  },
+  {
+   "tick_id": "t055",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 9,
+   "lap": 27,
+   "status": "GREEN",
+   "laps_remaining": 18,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 2,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 16,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 30.069,
+   "q_reference": 30.069,
+   "q_stay_stay": 28.411
+  },
+  {
+   "tick_id": "t056",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 10,
+   "lap": 30,
+   "status": "GREEN",
+   "laps_remaining": 15,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 5,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 29.945,
+   "q_reference": 29.945,
+   "q_stay_stay": 29.945
+  },
+  {
+   "tick_id": "t057",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 11,
+   "lap": 33,
+   "status": "GREEN",
+   "laps_remaining": 12,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 8,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 29.344,
+   "q_reference": 29.344,
+   "q_stay_stay": 29.344
+  },
+  {
+   "tick_id": "t058",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 12,
+   "lap": 36,
+   "status": "GREEN",
+   "laps_remaining": 9,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 29.714,
+   "q_reference": 29.714,
+   "q_stay_stay": 29.714
+  },
+  {
+   "tick_id": "t059",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 13,
+   "lap": 39,
+   "status": "GREEN",
+   "laps_remaining": 6,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 14,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 29.714,
+   "q_reference": 29.714,
+   "q_stay_stay": 29.714
+  },
+  {
+   "tick_id": "t060",
+   "race_index": 3,
+   "race": "Granite Grand Prix",
+   "decision": 14,
+   "lap": 42,
+   "status": "GREEN",
+   "laps_remaining": 3,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 17,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 29.714,
+   "q_reference": 29.714,
+   "q_stay_stay": 29.714
+  },
+  {
+   "tick_id": "t062",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 1,
+   "lap": 3,
+   "status": "GREEN",
+   "laps_remaining": 42,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 3,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_age": 3,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 1.5146,
+   "se": 0.7478,
+   "q_chosen": 30.13,
+   "q_reference": 31.644,
+   "q_stay_stay": 30.13,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 2.9187,
+     "se": 0.4462,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 2.2948,
+     "se": 0.9156,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 5.0185,
+     "se": 1.3652,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": true
+  },
+  {
+   "tick_id": "t063",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 2,
+   "lap": 6,
+   "status": "GREEN",
+   "laps_remaining": 39,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 6,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_age": 6,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.304,
+   "q_reference": 32.304,
+   "q_stay_stay": 30.487
+  },
+  {
+   "tick_id": "t064",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 3,
+   "lap": 9,
+   "status": "GREEN",
+   "laps_remaining": 36,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "MEDIUM",
+     "tyre_age": 9,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 31.742,
+   "q_reference": 31.742,
+   "q_stay_stay": 31.742
+  },
+  {
+   "tick_id": "t065",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 4,
+   "lap": 12,
+   "status": "GREEN",
+   "laps_remaining": 33,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "MEDIUM",
+     "tyre_age": 12,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 30.916,
+   "q_reference": 30.916,
+   "q_stay_stay": 30.916
+  },
+  {
+   "tick_id": "t066",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 5,
+   "lap": 15,
+   "status": "GREEN",
+   "laps_remaining": 30,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_age": 15,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 33.446,
+   "q_reference": 33.446,
+   "q_stay_stay": 33.446
+  },
+  {
+   "tick_id": "t067",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 6,
+   "lap": 18,
+   "status": "GREEN",
+   "laps_remaining": 27,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "MEDIUM",
+     "tyre_age": 18,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.723,
+   "q_reference": 32.723,
+   "q_stay_stay": 27.998
+  },
+  {
+   "tick_id": "t068",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 7,
+   "lap": 21,
+   "status": "GREEN",
+   "laps_remaining": 24,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 33.031,
+   "q_reference": 33.031,
+   "q_stay_stay": 33.031
+  },
+  {
+   "tick_id": "t069",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 8,
+   "lap": 24,
+   "status": "GREEN",
+   "laps_remaining": 21,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 18,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.5994,
+   "se": 0.5804,
+   "q_chosen": 32.856,
+   "q_reference": 33.455,
+   "q_stay_stay": 33.455
+  },
+  {
+   "tick_id": "t070",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 9,
+   "lap": 27,
+   "status": "GREEN",
+   "laps_remaining": 18,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 30.795,
+   "q_reference": 30.795,
+   "q_stay_stay": 30.795
+  },
+  {
+   "tick_id": "t071",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 10,
+   "lap": 30,
+   "status": "GREEN",
+   "laps_remaining": 15,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 29.947,
+   "q_reference": 29.947,
+   "q_stay_stay": 29.947
+  },
+  {
+   "tick_id": "t072",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 11,
+   "lap": 33,
+   "status": "GREEN",
+   "laps_remaining": 12,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.246,
+   "q_reference": 32.246,
+   "q_stay_stay": 32.246
+  },
+  {
+   "tick_id": "t073",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 12,
+   "lap": 36,
+   "status": "GREEN",
+   "laps_remaining": 9,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 18,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.431,
+   "q_reference": 32.431,
+   "q_stay_stay": 32.431
+  },
+  {
+   "tick_id": "t074",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 13,
+   "lap": 39,
+   "status": "GREEN",
+   "laps_remaining": 6,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 21,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.611,
+   "q_reference": 32.611,
+   "q_stay_stay": 32.611
+  },
+  {
+   "tick_id": "t075",
+   "race_index": 4,
+   "race": "Rainland Grand Prix",
+   "decision": 14,
+   "lap": 42,
+   "status": "GREEN",
+   "laps_remaining": 3,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 18,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 24,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.611,
+   "q_reference": 32.611,
+   "q_stay_stay": 32.611
+  },
+  {
+   "tick_id": "t077",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 1,
+   "lap": 3,
+   "status": "GREEN",
+   "laps_remaining": 42,
+   "cars": {
+    "driver_a": {
+     "position": 1,
+     "compound": "SOFT",
+     "tyre_age": 3,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "MEDIUM",
+     "tyre_age": 3,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 40.19,
+   "q_reference": 40.19,
+   "q_stay_stay": 40.19
+  },
+  {
+   "tick_id": "t078",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 2,
+   "lap": 6,
+   "status": "GREEN",
+   "laps_remaining": 39,
+   "cars": {
+    "driver_a": {
+     "position": 1,
+     "compound": "SOFT",
+     "tyre_age": 6,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "MEDIUM",
+     "tyre_age": 6,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.1848,
+   "se": 0.1789,
+   "q_chosen": 39.266,
+   "q_reference": 39.451,
+   "q_stay_stay": 39.451
+  },
+  {
+   "tick_id": "t079",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 3,
+   "lap": 9,
+   "status": "GREEN",
+   "laps_remaining": 36,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "MEDIUM",
+     "tyre_age": 9,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 37.51,
+   "q_reference": 37.51,
+   "q_stay_stay": 37.51
+  },
+  {
+   "tick_id": "t080",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 4,
+   "lap": 12,
+   "status": "GREEN",
+   "laps_remaining": 33,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "MEDIUM",
+     "tyre_age": 12,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.875,
+   "q_reference": 39.875,
+   "q_stay_stay": 39.875
+  },
+  {
+   "tick_id": "t081",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 5,
+   "lap": 15,
+   "status": "GREEN",
+   "laps_remaining": 30,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "MEDIUM",
+     "tyre_age": 15,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.88,
+   "q_reference": 39.88,
+   "q_stay_stay": 39.88
+  },
+  {
+   "tick_id": "t082",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 6,
+   "lap": 18,
+   "status": "GREEN",
+   "laps_remaining": 27,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "MEDIUM",
+     "tyre_age": 18,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.581,
+   "q_reference": 39.581,
+   "q_stay_stay": 34.822
+  },
+  {
+   "tick_id": "t083",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 7,
+   "lap": 21,
+   "status": "GREEN",
+   "laps_remaining": 24,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 38.363,
+   "q_reference": 38.363,
+   "q_stay_stay": 38.363
+  },
+  {
+   "tick_id": "t084",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 8,
+   "lap": 24,
+   "status": "GREEN",
+   "laps_remaining": 21,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 18,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.515,
+   "q_reference": 39.515,
+   "q_stay_stay": 39.515
+  },
+  {
+   "tick_id": "t085",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 9,
+   "lap": 27,
+   "status": "GREEN",
+   "laps_remaining": 18,
+   "cars": {
+    "driver_a": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 21,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.202,
+   "q_reference": 39.202,
+   "q_stay_stay": 39.017
+  },
+  {
+   "tick_id": "t086",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 10,
+   "lap": 30,
+   "status": "GREEN",
+   "laps_remaining": 15,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 38.363,
+   "q_reference": 38.363,
+   "q_stay_stay": 38.363
+  },
+  {
+   "tick_id": "t087",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 11,
+   "lap": 33,
+   "status": "GREEN",
+   "laps_remaining": 12,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.69,
+   "q_reference": 39.69,
+   "q_stay_stay": 39.69
+  },
+  {
+   "tick_id": "t088",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 12,
+   "lap": 36,
+   "status": "GREEN",
+   "laps_remaining": 9,
+   "cars": {
+    "driver_a": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 18,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 40.06,
+   "q_reference": 40.06,
+   "q_stay_stay": 40.06
+  },
+  {
+   "tick_id": "t089",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 13,
+   "lap": 39,
+   "status": "GREEN",
+   "laps_remaining": 6,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 21,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.321,
+   "q_reference": 39.321,
+   "q_stay_stay": 39.321
+  },
+  {
+   "tick_id": "t090",
+   "race_index": 5,
+   "race": "Metro Grand Prix",
+   "decision": 14,
+   "lap": 42,
+   "status": "GREEN",
+   "laps_remaining": 3,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 24,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 39.321,
+   "q_reference": 39.321,
+   "q_stay_stay": 39.321
+  },
+  {
+   "tick_id": "t092",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 1,
+   "lap": 3,
+   "status": "GREEN",
+   "laps_remaining": 42,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 3,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_age": 3,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 2.0225,
+   "se": 0.5912,
+   "q_chosen": 27.287,
+   "q_reference": 29.31,
+   "q_stay_stay": 27.287,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 1.2333,
+     "se": 0.4026,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 0.2631,
+     "se": 0.4501,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 3.84,
+     "se": 1.2155,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": false
+  },
+  {
+   "tick_id": "t093",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 2,
+   "lap": 6,
+   "status": "GREEN",
+   "laps_remaining": 39,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 6,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_age": 6,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 30.711,
+   "q_reference": 30.711,
+   "q_stay_stay": 28.679
+  },
+  {
+   "tick_id": "t094",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 3,
+   "lap": 9,
+   "status": "SC",
+   "laps_remaining": 36,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 9,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "PIT_SOFT/PIT_HARD|RACE",
+   "regret": 0.1466,
+   "se": 1.3387,
+   "q_chosen": 27.442,
+   "q_reference": 27.588,
+   "q_stay_stay": 25.569
+  },
+  {
+   "tick_id": "t095",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 4,
+   "lap": 12,
+   "status": "SC",
+   "laps_remaining": 33,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 4,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 1,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 3.9286,
+   "se": 0.8169,
+   "q_chosen": 25.638,
+   "q_reference": 29.567,
+   "q_stay_stay": 25.638,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a",
+    "event:SC"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 2.5468,
+     "se": 0.4571,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 2.8714,
+     "se": 0.6583,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 5.7008,
+     "se": 1.3273,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": true
+  },
+  {
+   "tick_id": "t096",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 5,
+   "lap": 15,
+   "status": "GREEN",
+   "laps_remaining": 30,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 5,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 2,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 29.024,
+   "q_reference": 29.024,
+   "q_stay_stay": 29.024
+  },
+  {
+   "tick_id": "t097",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 6,
+   "lap": 18,
+   "status": "GREEN",
+   "laps_remaining": 27,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 8,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 5,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 2.6379,
+   "se": 0.7521,
+   "q_chosen": 27.945,
+   "q_reference": 30.583,
+   "q_stay_stay": 27.945,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 3.2649,
+     "se": 0.5177,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 1.5531,
+     "se": 0.5836,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 6.3608,
+     "se": 1.2725,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": true
+  },
+  {
+   "tick_id": "t098",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 7,
+   "lap": 21,
+   "status": "GREEN",
+   "laps_remaining": 24,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 8,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 2.8914,
+   "se": 0.438,
+   "q_chosen": 27.502,
+   "q_reference": 30.393,
+   "q_stay_stay": 27.502,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 3.1872,
+     "se": 0.4217,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 2.3362,
+     "se": 0.6565,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 6.9511,
+     "se": 1.1191,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": true
+  },
+  {
+   "tick_id": "t099",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 8,
+   "lap": 24,
+   "status": "GREEN",
+   "laps_remaining": 21,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 14,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 3.9194,
+   "se": 0.711,
+   "q_chosen": 25.578,
+   "q_reference": 29.498,
+   "q_stay_stay": 25.578,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 3.2959,
+     "se": 0.3492,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 0.8937,
+     "se": 0.6382,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 5.9939,
+     "se": 1.4402,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": false
+  },
+  {
+   "tick_id": "t100",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 9,
+   "lap": 27,
+   "status": "GREEN",
+   "laps_remaining": 18,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 17,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 14,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 31.183,
+   "q_reference": 31.183,
+   "q_stay_stay": 27.646
+  },
+  {
+   "tick_id": "t101",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 10,
+   "lap": 30,
+   "status": "GREEN",
+   "laps_remaining": 15,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 17,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.2427,
+   "se": 0.235,
+   "q_chosen": 32.259,
+   "q_reference": 32.502,
+   "q_stay_stay": 32.502
+  },
+  {
+   "tick_id": "t102",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 11,
+   "lap": 33,
+   "status": "GREEN",
+   "laps_remaining": 12,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 30.993,
+   "q_reference": 30.993,
+   "q_stay_stay": 30.993
+  },
+  {
+   "tick_id": "t103",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 12,
+   "lap": 36,
+   "status": "GREEN",
+   "laps_remaining": 9,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 31.838,
+   "q_reference": 31.838,
+   "q_stay_stay": 31.838
+  },
+  {
+   "tick_id": "t104",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 13,
+   "lap": 39,
+   "status": "GREEN",
+   "laps_remaining": 6,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.681,
+   "q_reference": 32.681,
+   "q_stay_stay": 32.681
+  },
+  {
+   "tick_id": "t105",
+   "race_index": 6,
+   "race": "Summit Grand Prix",
+   "decision": 14,
+   "lap": 42,
+   "status": "GREEN",
+   "laps_remaining": 3,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.681,
+   "q_reference": 32.681,
+   "q_stay_stay": 32.681
+  },
+  {
+   "tick_id": "t107",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 1,
+   "lap": 3,
+   "status": "GREEN",
+   "laps_remaining": 42,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 3,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_age": 3,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 2.397,
+   "se": 0.446,
+   "q_chosen": 28.134,
+   "q_reference": 30.531,
+   "q_stay_stay": 28.134,
+   "candidate": true,
+   "labels": [
+    "missed_stop:driver_a"
+   ],
+   "robustness": {
+    "futures_x3": {
+     "regret": 1.9154,
+     "se": 0.5521,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_event_aware": {
+     "regret": 2.5783,
+     "se": 0.7364,
+     "reference": "PIT_HARD/STAY|RACE"
+    },
+    "cont_long_stint": {
+     "regret": 9.9813,
+     "se": 1.2754,
+     "reference": "PIT_HARD/STAY|RACE"
+    }
+   },
+   "robust": true
+  },
+  {
+   "tick_id": "t108",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 2,
+   "lap": 6,
+   "status": "GREEN",
+   "laps_remaining": 39,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "SOFT",
+     "tyre_age": 6,
+     "compounds_used": [
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "MEDIUM",
+     "tyre_age": 6,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 28.475,
+   "q_reference": 28.475,
+   "q_stay_stay": 27.552
+  },
+  {
+   "tick_id": "t109",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 3,
+   "lap": 9,
+   "status": "GREEN",
+   "laps_remaining": 36,
+   "cars": {
+    "driver_a": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "MEDIUM",
+     "tyre_age": 9,
+     "compounds_used": [
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.2956,
+   "se": 0.9034,
+   "q_chosen": 29.924,
+   "q_reference": 30.22,
+   "q_stay_stay": 30.22
+  },
+  {
+   "tick_id": "t110",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 4,
+   "lap": 12,
+   "status": "GREEN",
+   "laps_remaining": 33,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 28.905,
+   "q_reference": 28.905,
+   "q_stay_stay": 28.905
+  },
+  {
+   "tick_id": "t111",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 5,
+   "lap": 15,
+   "status": "GREEN",
+   "laps_remaining": 30,
+   "cars": {
+    "driver_a": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 29.98,
+   "q_reference": 29.98,
+   "q_stay_stay": 29.98
+  },
+  {
+   "tick_id": "t112",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 6,
+   "lap": 18,
+   "status": "GREEN",
+   "laps_remaining": 27,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 6,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "PIT_HARD/STAY|RACE",
+   "regret": 0.3073,
+   "se": 0.2932,
+   "q_chosen": 30.046,
+   "q_reference": 30.353,
+   "q_stay_stay": 30.046
+  },
+  {
+   "tick_id": "t113",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 7,
+   "lap": 21,
+   "status": "GREEN",
+   "laps_remaining": 24,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 31.673,
+   "q_reference": 31.673,
+   "q_stay_stay": 31.673
+  },
+  {
+   "tick_id": "t114",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 8,
+   "lap": 24,
+   "status": "GREEN",
+   "laps_remaining": 21,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 18,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 15,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 28.955,
+   "q_reference": 28.955,
+   "q_stay_stay": 28.955
+  },
+  {
+   "tick_id": "t115",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 9,
+   "lap": 27,
+   "status": "GREEN",
+   "laps_remaining": 18,
+   "cars": {
+    "driver_a": {
+     "position": 1,
+     "compound": "HARD",
+     "tyre_age": 21,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 18,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "PIT_HARD/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.3669,
+   "se": 0.617,
+   "q_chosen": 30.046,
+   "q_reference": 30.413,
+   "q_stay_stay": 30.413
+  },
+  {
+   "tick_id": "t116",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 10,
+   "lap": 30,
+   "status": "GREEN",
+   "laps_remaining": 15,
+   "cars": {
+    "driver_a": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 21,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/PIT_HARD|RACE",
+   "reference": "STAY/PIT_HARD|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 31.963,
+   "q_reference": 31.963,
+   "q_stay_stay": 29.874
+  },
+  {
+   "tick_id": "t117",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 11,
+   "lap": 33,
+   "status": "GREEN",
+   "laps_remaining": 12,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 8,
+     "compound": "HARD",
+     "tyre_age": 3,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.025,
+   "q_reference": 32.025,
+   "q_stay_stay": 32.025
+  },
+  {
+   "tick_id": "t118",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 12,
+   "lap": 36,
+   "status": "GREEN",
+   "laps_remaining": 9,
+   "cars": {
+    "driver_a": {
+     "position": 4,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 7,
+     "compound": "HARD",
+     "tyre_age": 6,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.452,
+   "q_reference": 32.452,
+   "q_stay_stay": 32.452
+  },
+  {
+   "tick_id": "t119",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 13,
+   "lap": 39,
+   "status": "VSC",
+   "laps_remaining": 6,
+   "cars": {
+    "driver_a": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 12,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 5,
+     "compound": "HARD",
+     "tyre_age": 9,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.631,
+   "q_reference": 32.631,
+   "q_stay_stay": 32.631
+  },
+  {
+   "tick_id": "t120",
+   "race_index": 7,
+   "race": "Finale Grand Prix",
+   "decision": 14,
+   "lap": 42,
+   "status": "GREEN",
+   "laps_remaining": 3,
+   "cars": {
+    "driver_a": {
+     "position": 2,
+     "compound": "HARD",
+     "tyre_age": 14,
+     "compounds_used": [
+      "HARD",
+      "SOFT"
+     ]
+    },
+    "driver_b": {
+     "position": 3,
+     "compound": "HARD",
+     "tyre_age": 11,
+     "compounds_used": [
+      "HARD",
+      "MEDIUM"
+     ]
+    }
+   },
+   "chosen": "STAY/STAY|RACE",
+   "reference": "STAY/STAY|RACE",
+   "regret": 0.0,
+   "se": 0.0,
+   "q_chosen": 32.631,
+   "q_reference": 32.631,
+   "q_stay_stay": 32.631
+  }
+ ]
+}

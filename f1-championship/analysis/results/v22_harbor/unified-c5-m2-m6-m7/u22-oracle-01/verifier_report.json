@@ -1,0 +1,39 @@
+{
+  "benchmark_version": "2.2.0",
+  "completion": {
+    "complete": true,
+    "races_completed": 8,
+    "resolved_ticks": 144
+  },
+  "integrity": {
+    "error": null,
+    "intact": true,
+    "rejected_requests_logged": 0
+  },
+  "normalization": {
+    "D_fallback_same_seed": 95,
+    "P": 186,
+    "U": 344,
+    "formula": "complete and intact ? clip((P - D) / (U - D), 0, 1) : 0"
+  },
+  "performance": {
+    "apex_constructors_points": 186,
+    "commitment_outcomes": {},
+    "engineer_reports": {
+      "delivered": 0,
+      "referenced": 0
+    },
+    "note": "orders, commitments and report use are diagnostics, not part of the reward",
+    "team_orders": {
+      "RACE:APPLIED": 112
+    },
+    "team_points": {
+      "Apex": 186,
+      "Nova": 174,
+      "Orion": 221,
+      "Vertex": 111
+    }
+  },
+  "reward": 0.3654618473895582,
+  "scalar_version": "b6-integrated-p0"
+}

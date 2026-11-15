@@ -13,6 +13,9 @@ f1-championship/scripts/run_v21.sh probe-complete  # exploit probe, then honest 
 GEMINI_ENV_FILE=<env file> f1-championship/scripts/run_v21.sh opencode   # frontier run
 ```
 
+Demo with an HTML report: `scripts/demo.sh recorded` (instant, a committed genuine run) or
+`F1_ENV_FILE=<env file> scripts/demo.sh live` (a fresh Gemini season).
+
 Results, integrity evidence, the 1.1.0 comparison and the diagnostic studies are in
 [`f1-championship/README.md`](f1-championship/README.md).
 

@@ -94,6 +94,38 @@ printf '{"schema_version": 1, "base_seed": %s}\n' <integer seed> | tee /tmp/v21-
 harbor run -p /tmp/v21-x -a oracle
 ```
 
+## Demo: F1 Championship Strategist (one command, HTML report)
+
+```bash
+scripts/demo.sh recorded                 # instant: verifies and renders a committed genuine Harbor run (v21-gemini-01)
+scripts/demo.sh recorded v21-gemini-02   # any committed 2.1.0 run
+F1_ENV_FILE=<file containing GEMINI_API_KEY=...> scripts/demo.sh live   # fresh Harbor + OpenCode Gemini season (~10 min)
+```
+
+**What each run does**
+1. Builds the 2.1.0 task with `f1-championship/scripts/run_v21.sh`, or rebuilds it for a recorded run.
+2. Captures the verifier output.
+3. Re-checks it:
+   - reward;
+   - manifest, journal SHA-256 and entry count;
+   - completion and integrity;
+   - a full replay with the built task's own verifier package.
+4. Writes `jobs/demo-<mode>-<UTC>/report.html` and opens it in the default browser where one exists
+   (set `F1_OPEN=0` to skip).
+
+**What the report shows**
+- the eight-race championship progression and timeline;
+- the verified Gemini vs Reference comparison, on the same benchmark, mode and seed;
+- the race-7 Safety Car decision, labelled as a counterfactual;
+- the final reward and provenance.
+
+**Labelling and failures**
+- A recorded run is labelled **Recorded replay**, with its original Harbor timestamps.
+- A failed or incomplete live run is shown as **Not verified**. Recorded results are never substituted.
+
+**Requirements:** the same as above (Docker, Harbor 0.26.0, uv for Python 3.12). Only `live` needs the API key.
+Tests: `f1-championship/scripts/py312 -m unittest tests.test_demo_ux`.
+
 ## 4. Verified Frontier–Reference results (2.1.0)
 
 **Scope of every row:**

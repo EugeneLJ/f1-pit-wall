@@ -11,7 +11,7 @@
 
 | # | Item | Status | Evidence |
 |---|---|---|---|
-| 1 | Submission branch pushed; `main` untouched | PASS | `submission/2.1.0`; `main` is still `972f5ca` |
+| 1 | Submission pushed; `main` = submission | PASS | `main` fast-forwarded from `972f5ca` to the submission commit on 2026-11-15 with approval (no history rewrite); `submission/2.1.0` is identical |
 | 2 | Harbor task builds with one command | PASS | `scripts/run_v21.sh` |
 | 3 | Instruction states 2.1.0, CHIEF_ONLY, fixed-rule rivals, and promises no Engineers or adaptive rivals | PASS | `integrated_task/instruction_2_1_0_chief_only.md` (r2) |
 | 4 | The evaluated instruction is preserved and rebuildable | PASS | `integrated_task/evaluated/instruction_2_1_0_r1.md`, sha256 `f6697c53…`; `F1_INSTRUCTION_REVISION=r1` rebuilds the evaluated task byte for byte |
@@ -31,7 +31,7 @@
 | 18 | No unfinished M2/M6/M7/C5 work advertised as part of the task | PASS | README §1 "Not in this task", §7 "Planned" |
 | 19 | Demo entry point for 2.1.0 | PASS | `scripts/demo.sh recorded` / `live`; a real LIVE run through it passed all 10 checks (279 / 0.7421; `analysis/results/demo/live-20261115T061229Z/`); 16 offline demo tests (`tests/test_demo_ux.py`) |
 | 20 | Video script | PASS | `docs/VIDEO_SCRIPT.md`; the demo report (`docs/demo/*.jpg`) can be recorded directly |
-| 21 | Submission platform's required target (`main` or a branch/commit URL) | UNKNOWN | no published rule found; both links below are ready. Changing `main` needs explicit approval. |
+| 21 | Submission platform's required target (`main` or a branch/commit URL) | PASS | either works: `main` now holds the submission, and the commit permalink below is immutable |
 
 ## Evidence inventory
 
@@ -57,6 +57,7 @@ All paths are relative to `f1-championship/`.
 
 ## Links (pin to the final commit)
 
+- **Repository (default branch `main` = submission):** `https://github.com/EugeneLJ/f1-pit-wall`
 - **Branch:** `https://github.com/EugeneLJ/f1-pit-wall/tree/submission/2.1.0`
 - **Exact commit:** `https://github.com/EugeneLJ/f1-pit-wall/tree/<final SHA>`. The final SHA is
   reported with the push; use the commit URL if the platform wants an immutable target.

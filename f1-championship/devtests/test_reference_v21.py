@@ -11,6 +11,7 @@ import unittest
 from pathlib import Path
 
 TASK = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(TASK / "src"))
 SRC = TASK / "integrated_task" / "solution" / "reference_v21.py"
 
 

@@ -1,0 +1,348 @@
+#!/usr/bin/env python3
+"""Apex GP Chief Strategist for the 8-race F1 Constructors' Championship."""
+
+import sys
+import os
+import json
+import socket
+import time
+
+SOCKET_PATH = os.environ.get("F1SIM_SOCKET", "/run/f1sim/sim.sock")
+
+
+class F1Client:
+    def __init__(self, socket_path=SOCKET_PATH):
+        self.socket_path = socket_path
+
+    def request(self, payload):
+        deadline = time.monotonic() + 15.0
+        while True:
+            try:
+                with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as conn:
+                    conn.settimeout(30.0)
+                    conn.connect(self.socket_path)
+                    conn.sendall((json.dumps(payload) + "\n").encode("utf-8"))
+                    chunks = []
+                    while True:
+                        chunk = conn.recv(65536)
+                        if not chunk:
+                            break
+                        chunks.append(chunk)
+                        if chunk.endswith(b"\n"):
+                            break
+                return json.loads(b"".join(chunks).decode("utf-8"))
+            except (FileNotFoundError, ConnectionRefusedError):
+                if time.monotonic() > deadline:
+                    raise RuntimeError(f"Cannot reach simulator at {self.socket_path}")
+                time.sleep(0.2)
+
+    def observe(self):
+        res = self.request({"cmd": "observe"})
+        if not res.get("ok"):
+            raise RuntimeError(f"observe failed: {res}")
+        return res["observation"]
+
+    def act(self, decision_id, action):
+        res = self.request({"cmd": "act", "decision_id": decision_id, "action": action})
+        if not res.get("ok"):
+            raise RuntimeError(f"act failed: {res}")
+        return res
+
+
+class RaceEvaluator:
+    def __init__(self, track_deg, pit_loss_green, warmups, overtaking_diff=0.5):
+        self.mult = 0.5 + track_deg
+        self.offsets = {'SOFT': -0.55, 'MEDIUM': 0.0, 'HARD': 0.28}
+        self.degs = {'SOFT': 0.35, 'MEDIUM': 0.14, 'HARD': 0.055}
+        self.lives = {'SOFT': 10, 'MEDIUM': 16, 'HARD': 24}
+        self.warmups = warmups
+        self.pit_losses = {
+            'GREEN': pit_loss_green,
+            'SC': 0.3 * pit_loss_green,
+            'VSC': 0.55 * pit_loss_green
+        }
+        self.age_inc = {'GREEN': 3, 'SC': 1, 'VSC': 2}
+        self.pace_factor = {'GREEN': 1.0, 'SC': 1.4, 'VSC': 1.3}
+        self.overtaking_diff = overtaking_diff
+        self.memo = {}
+
+    def seg_cost(self, compound, start_age, status):
+        inc = self.age_inc[status]
+        cost = 0.0
+        for i in range(1, 4):
+            a = start_age + (i * inc / 3.0)
+            c = (self.offsets[compound] + self.degs[compound] * self.mult * a)
+            if a > self.lives[compound]:
+                c += 0.25 * self.mult * (a - self.lives[compound])
+            cost += c * self.pace_factor[status]
+        return cost
+
+    def get_val(self, stage, comp, age, two_comp, status, seg_in_status):
+        if stage == 14:
+            return 0.0 if two_comp else 20.0
+        key = (stage, comp, round(age, 1), two_comp, status, seg_in_status)
+        if key in self.memo:
+            return self.memo[key]
+
+        if status == 'GREEN':
+            transitions = [('GREEN', 0, 0.93), ('SC', 1, 0.035), ('VSC', 1, 0.035)]
+        elif status == 'SC':
+            p_end = 0.35 if seg_in_status == 1 else (0.50 / 0.65 if seg_in_status == 2 else 1.0)
+            transitions = [('GREEN', 0, p_end), ('SC', seg_in_status + 1, 1.0 - p_end)]
+        elif status == 'VSC':
+            p_end = 0.70 if seg_in_status == 1 else 1.0
+            transitions = [('GREEN', 0, p_end), ('VSC', seg_in_status + 1, 1.0 - p_end)]
+
+        def eval_future(next_comp, next_age, next_tc):
+            return sum(prob * self.get_val(stage + 1, next_comp, next_age, next_tc, nxt_stat, nxt_seg)
+                       for nxt_stat, nxt_seg, prob in transitions)
+
+        cost_stay = self.seg_cost(comp, age, status) + eval_future(comp, age + self.age_inc[status], two_comp)
+        best_val = cost_stay
+
+        p_loss = self.pit_losses[status]
+        for c2 in ['SOFT', 'MEDIUM', 'HARD']:
+            is_two = two_comp or (c2 != comp)
+            cost_pit = p_loss + self.warmups[c2] + self.seg_cost(c2, 0, status) + eval_future(c2, self.age_inc[status], is_two)
+            if cost_pit < best_val:
+                best_val = cost_pit
+
+        self.memo[key] = best_val
+        return best_val
+
+    def evaluate_car_action(self, stage, comp, age, used_compounds, status, seg_in_status, action, extra_pit_loss=0.0):
+        two_comp = len(used_compounds) >= 2
+        if status == 'GREEN':
+            transitions = [('GREEN', 0, 0.93), ('SC', 1, 0.035), ('VSC', 1, 0.035)]
+        elif status == 'SC':
+            p_end = 0.35 if seg_in_status == 1 else (0.50 / 0.65 if seg_in_status == 2 else 1.0)
+            transitions = [('GREEN', 0, p_end), ('SC', seg_in_status + 1, 1.0 - p_end)]
+        elif status == 'VSC':
+            p_end = 0.70 if seg_in_status == 1 else 1.0
+            transitions = [('GREEN', 0, p_end), ('VSC', seg_in_status + 1, 1.0 - p_end)]
+
+        def eval_future(next_comp, next_age, next_tc):
+            return sum(prob * self.get_val(stage + 1, next_comp, next_age, next_tc, nxt_stat, nxt_seg)
+                       for nxt_stat, nxt_seg, prob in transitions)
+
+        if action == 'STAY':
+            return self.seg_cost(comp, age, status) + eval_future(comp, age + self.age_inc[status], two_comp)
+        else:
+            new_comp = action.replace('PIT_', '')
+            is_two = two_comp or (new_comp not in used_compounds)
+            p_loss = self.pit_losses[status] + extra_pit_loss
+            return p_loss + self.warmups[new_comp] + self.seg_cost(new_comp, 0, status) + eval_future(new_comp, self.age_inc[status], is_two)
+
+
+def choose_race_strategy(obs, evaluator):
+    progress = obs["race_progress"]
+    decision_idx = progress["decision_index"]  # 1..14
+    stage = decision_idx - 1  # 0..13
+    laps_rem = progress["laps_remaining"]
+    neutralization = progress["neutralization"]
+    status = neutralization["status"]
+    seg_in_status = neutralization["segments_so_far"]
+    pit = progress["pit"]
+    serviced_first = pit["if_both_pit_serviced_first"]
+    double_stack_queue = pit["double_stack_queue_sec"]
+    
+    da = progress["drivers"]["driver_a"]
+    db = progress["drivers"]["driver_b"]
+    
+    actions = ["STAY", "PIT_SOFT", "PIT_MEDIUM", "PIT_HARD"]
+    
+    # Prune unreasonable actions:
+    # 1. Never pit if tyre age < 6 (unless SC/VSC and tyre age >= 3 and compound != HARD)
+    # 2. Never pit to SOFT if laps_rem > 12 (SOFT life is 10)
+    # 3. Never pit to MEDIUM if laps_rem > 21 (MEDIUM life is 16)
+    # 4. At stage 13 (lap 42, 3 laps left): if car has only used 1 compound, MUST PIT to another compound!
+    
+    def valid_actions(driver_info):
+        comp = driver_info["compound"]
+        age = driver_info["tyre_age"]
+        used = set(driver_info["compounds_used"])
+        acts = ["STAY"]
+        
+        # If at last decision (stage 13) and only 1 compound used, MUST PIT
+        if stage == 13 and len(used) < 2:
+            acts = []
+            for c in ["SOFT", "MEDIUM", "HARD"]:
+                if c not in used:
+                    acts.append(f"PIT_{c}")
+            return acts
+            
+        # Tyres too fresh to pit under green
+        min_pit_age = 6 if status == "GREEN" else 3
+        if age >= min_pit_age:
+            if laps_rem <= 12:
+                acts.append("PIT_SOFT")
+            if laps_rem <= 21:
+                acts.append("PIT_MEDIUM")
+            acts.append("PIT_HARD")
+            
+        return acts
+
+    acts_a = valid_actions(da)
+    acts_b = valid_actions(db)
+    
+    best_cost = 1e9
+    best_pair = ("STAY", "STAY")
+    
+    for act_a in acts_a:
+        for act_b in acts_b:
+            # Double stack queue
+            extra_a = 0.0
+            extra_b = 0.0
+            if act_a != "STAY" and act_b != "STAY":
+                if serviced_first == "driver_a":
+                    extra_b = double_stack_queue
+                else:
+                    extra_a = double_stack_queue
+                    
+            cost_a = evaluator.evaluate_car_action(
+                stage, da["compound"], da["tyre_age"], set(da["compounds_used"]),
+                status, seg_in_status, act_a, extra_a
+            )
+            cost_b = evaluator.evaluate_car_action(
+                stage, db["compound"], db["tyre_age"], set(db["compounds_used"]),
+                status, seg_in_status, act_b, extra_b
+            )
+            
+            # Traffic / Street track bias:
+            # On street circuits (overtaking_diff >= 0.8), track position is vital!
+            # Adding extra stops on street tracks loses track position that cannot be regained by passing.
+            street_penalty = 0.0
+            if evaluator.overtaking_diff >= 0.8:
+                if act_a != "STAY" and status == "GREEN":
+                    street_penalty += 3.0
+                if act_b != "STAY" and status == "GREEN":
+                    street_penalty += 3.0
+                    
+            total_cost = cost_a + cost_b + street_penalty
+            if total_cost < best_cost:
+                best_cost = total_cost
+                best_pair = (act_a, act_b)
+                
+    return best_pair
+
+
+def choose_component_decision(obs):
+    championship = obs["championship"]
+    race_idx = championship["race_index"]  # 0..7
+    controlled = obs["controlled_drivers"]
+    
+    # Target plan: Replace ICE and Turbo for both cars before Race 4 (Rainland GP)
+    # This uses exactly 4 free units (2 per car), avoiding any grid penalties,
+    # keeping ICE wear <= 0.55 and Turbo wear <= 0.45 across all 8 races.
+    decisions = []
+    
+    for driver in ["Apex A", "Apex B"]:
+        for comp in ["ICE", "turbo", "energy_store"]:
+            wear = controlled[driver]["components"][comp]["wear"]
+            action = "USE"
+            
+            # Planned replacement before Race 4
+            if race_idx == 4 and comp in ["ICE", "turbo"]:
+                action = "REPLACE"
+            # Safety replacement if wear is dangerously high (>= 0.85)
+            elif wear >= 0.85:
+                action = "REPLACE"
+                
+            decisions.append({
+                "driver": driver,
+                "component": comp,
+                "action": action
+            })
+            
+    return {"type": "COMPONENT_DECISION", "decisions": decisions}
+
+
+def main():
+    client = F1Client()
+    
+    # Optional flags: --step (run 1 step), --race (run 1 race), --all (default)
+    mode = "all"
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "--step":
+            mode = "step"
+        elif sys.argv[1] == "--race":
+            mode = "race"
+
+    print("Apex GP Strategist Online.")
+    current_race_idx = None
+    evaluator = None
+
+    while True:
+        obs = client.observe()
+        dec_type = obs.get("decision_type")
+        dec_id = obs.get("decision_id")
+
+        if dec_type == "CHAMPIONSHIP_COMPLETE":
+            print("\n================ CHAMPIONSHIP COMPLETE ================")
+            championship = obs["championship"]
+            print("Team Standings:")
+            for s in championship["team_standings"]:
+                print(f"  {s['team']:10s}: {s['points']:3d} pts")
+            print("Driver Standings:")
+            for s in championship["driver_standings"]:
+                print(f"  {s['driver']:10s}: {s['points']:3d} pts")
+            break
+
+        championship = obs["championship"]
+        race_idx = championship["race_index"]
+        track_name = obs["current_track"]["name"]
+
+        if dec_type == "COMPONENT_DECISION":
+            print(f"\n--- RACE {race_idx + 1}/8: {track_name} (COMPONENT DECISION: {dec_id}) ---")
+            action = choose_component_decision(obs)
+            print(f"Submitting component action: {json.dumps(action)}")
+            client.act(dec_id, action)
+            current_race_idx = race_idx
+            if mode == "step":
+                break
+
+        elif dec_type == "RACE_STRATEGY":
+            progress = obs["race_progress"]
+            lap = progress["lap"]
+            decision_idx = progress["decision_index"]
+            status = progress["neutralization"]["status"]
+            
+            # Initialize or update evaluator for this track
+            if evaluator is None or current_race_idx != race_idx:
+                current_race_idx = race_idx
+                track = obs["current_track"]
+                pit = progress["pit"]
+                evaluator = RaceEvaluator(
+                    track["tyre_degradation"],
+                    pit["loss_sec"]["GREEN"],
+                    pit["out_lap_warmup_sec"],
+                    track["overtaking_difficulty"]
+                )
+                print(f"\n--- RACE {race_idx + 1}/8: {track_name} ---")
+                print(f"Track: archetype={track['archetype']}, deg={track['tyre_degradation']}, overt={track['overtaking_difficulty']}")
+
+            da = progress["drivers"]["driver_a"]
+            db = progress["drivers"]["driver_b"]
+            
+            act_a, act_b = choose_race_strategy(obs, evaluator)
+            
+            print(f"Lap {lap:2d} (dec {decision_idx:2d}/14, {dec_id}) [{status:5s}] | "
+                  f"Apex A P{da['position']} ({da['compound']}, age {da['tyre_age']:2d}) -> {act_a:10s} | "
+                  f"Apex B P{db['position']} ({db['compound']}, age {db['tyre_age']:2d}) -> {act_b:10s}")
+            
+            action = {
+                "type": "RACE_STRATEGY",
+                "driver_a": act_a,
+                "driver_b": act_b
+            }
+            client.act(dec_id, action)
+
+            if mode == "step":
+                break
+            if mode == "race" and decision_idx == 14:
+                print(f"Completed Race {race_idx + 1}.")
+                break
+
+
+if __name__ == "__main__":
+    main()

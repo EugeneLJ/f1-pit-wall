@@ -7,7 +7,10 @@ the reference player in `solution/`, its tests, an evaluation script, and docume
 **Bottom line.**
 - **Submit `f1-championship/` at benchmark 1.1.0.** It is the only version with a Harbor task, recorded frontier runs and a stronger reference.
 - **The reference is now executable in Harbor.** `harbor run -p ./f1-championship -a oracle` plays the season through `f1ctl` from public observations and scores **286 points, reward 0.770** on the task seed (84 s). Before this change the Harbor oracle was the simple heuristic (240 points, 0.587), which Gemini beat.
-- **The gap is established on 1.0.0 and still open on 1.1.0.** On the four seeds of the recorded Gemini 3.8 Flash runs (benchmark 1.0.0) it is ahead 4 of 4, by +13.8 ± 2.0 points (reward 0.734 vs 0.680). Against those runs' own scripts on 100 fresh seeds it is ahead by +16.9 to +28.2 points and wins 92–100% of seasons. **But the first fresh Gemini run on 1.1.0 scored 282 (0.754) on the task seed, 4 points behind the reference.** Two more fresh runs were still in progress when this was written, and the new script has not been replayed on the 100 seeds. Until that is done, the gap on the submitted version is not established.
+- **The gap is established on 1.0.0. It is NOT established on 1.1.0.**
+  - **1.0.0 runs:** on the four seeds of the recorded Gemini 3.8 Flash runs, the reference is ahead 4 of 4, by +13.8 ± 2.0 points (reward 0.734 vs 0.680). Against those runs' own scripts on 100 fresh seeds it is ahead by +16.9 to +28.2 points and wins 92–100% of seasons.
+  - **Fresh 1.1.0 runs:** **three fresh runs on the task seed scored 282, 279 and 286 (rewards 0.754, 0.742, 0.770). The reference scores 286 there. The mean gap is +3.7 points, and one run ties the reference.** A 3.7-point gap is not evidence of a consistent frontier–reference gap.
+  - **Repeats on one seed:** the three are repeats on **one** seed. They are not independent across environments, so they cannot separate policy quality from seed. The 100-seed replay of the three new scripts (§3.2b) is the matched test.
 
 ## 1. Reference inventory
 
@@ -65,12 +68,20 @@ The reference is ahead in 4 of 4 matched seasons. The task-seed reference figure
 | Run | Points / reward | Reference on the same seed | Difference |
 |---|---:|---:|---:|
 | `v110-gemini-01` | 282 / 0.754 | 286 / 0.770 | +4 / +0.016 |
-| `v110-gemini-02` | in progress when written | 286 / 0.770 | — |
-| `v110-gemini-03` | queued when written | 286 / 0.770 | — |
+| `v110-gemini-02` | 279 / 0.742 | 286 / 0.770 | +7 / +0.028 |
+| `v110-gemini-03` | 286 / 0.770 | 286 / 0.770 | 0 / 0.000 |
+| **Mean (n = 3, one seed)** | **282.3 / 0.755** | **286 / 0.770** | **+3.7 / +0.015** |
+
+**Runs 02 and 03:** complete, evidence intact, 120 accepted and 0 rejected each.
+- Run 02 delegated 117 of 120 decisions to `strategist.py`. That script prices the pit choices of each car alone, with a time-based dynamic program that assumes future segments are GREEN.
+- Run 03 delegated 118 of 120 decisions to `strategist.py`. That script is a time-based value function per car with an SC/VSC-aware segment cost and pruned candidates.
+- Both hard-code replacing ICE and turbo on both cars before race 5. They worked out that this uses exactly the 4 free units with no grid penalty.
+- **Each script replays to its Harbor points exactly on the task seed** (282, 279, 286), so the replays below are the policies Gemini actually ran.
+- Evidence, verifier reports, scripts and adapters are in `analysis/results/reference_runs/v110-gemini-0{1,2,3}/`.
 
 `v110-gemini-01`: complete, evidence intact, 120 accepted / 0 rejected, 118 decisions by its own script (`strategy_agent.py`, a whole-field simulator with enumerated stop plans, future segments assumed GREEN), about 13 min, $0.67. Evidence, verifier report and the script are in `analysis/results/reference_runs/v110-gemini-01/`.
 
-**This run is 14 points above the 1.0.0 run on the same seed (268).** One season cannot separate a better policy from seed luck. A possible cause is the 1.1.0 rules fix (base paces are now keyed by the observation names; one 1.0.0 run mis-mapped them), but that is a hypothesis, not a finding. The check is to replay this script on the 100 seeds (`analysis/results/reference_runs/v110-gemini-01/policy.py` adapts it for `analysis/reference_eval.py`; not yet run).
+**All three 1.1.0 runs score above the 1.0.0 run on the same seed (268).** This is **not** attributed to the 1.1.0 rules clarification. There is no controlled comparison: the model, provider and sampling may differ between dates, and the runs are repeats on one seed. The 100-seed replay measures the scripts, not the cause.
 
 ### 3.2 100 fresh seeds, the agents' own final scripts
 
@@ -110,7 +121,7 @@ These are decisions inside scripts the model wrote (25 of the 26 confirmed insta
 | Do-nothing (`-a nop`) | `ref-nop-01`: reward 0.0, 0 decisions, evidence intact |
 | Stop-early with attacks | `ref-probe-stop-01`: reward 0.0 (2 decisions accepted, 23 rejected requests logged) |
 | Attacks then honest play | `ref-probe-complete-01`: reward 0.58730159 = the plain heuristic's score; evidence intact; 24 rejected requests logged. The attacks gained nothing. |
-| Frontier through OpenCode | `v110-gemini-01`: 282 points, reward 0.75396825, complete, intact, 0 rejected. Runs 02 and 03 were not finished when this was written. |
+| Frontier through OpenCode | `v110-gemini-01/02/03`: 282 / 279 / 286 points, rewards 0.754 / 0.742 / 0.770, all complete and intact with 0 rejected; about $0.67 per run |
 | Reward range | `tests/test.sh` writes 0 first and rewrites anything outside [0, 1] or non-finite as 0 |
 | Replay | Verifier replays the hash-chained journal from its own seed copy and recomputes every observation hash |
 | Leakage | Seed exists only in the sim image and the verifier image; the agent image build context excludes `sim/`; the reference and client contain no seed (tested) |
@@ -147,7 +158,7 @@ These are decisions inside scripts the model wrote (25 of the 26 confirmed insta
 Only items that could cost judging points.
 
 1. **Gap size.** About 0.05–0.10 reward (14–28 points) against the 1.0.0 runs, and possibly much less on 1.1.0 (see 2). A stronger model than Gemini 3.8 Flash that writes a faithful simulator and enumerates all actions could close most of it. Document Gemini 3.8 Flash as the judged model.
-2. **Frontier runs on 1.1.0.** **Open, and the most important item.** Only one fresh run is in, and it is within 4 points of the reference. The 1.0.0 evidence supports a gap; the 1.1.0 evidence so far does not. Collect runs 02 and 03, replay the new scripts on the 100 seeds, and only then state the gap.
+2. **Frontier runs on 1.1.0.** **Open, and the most important item.** Three fresh runs are in: 282, 279 and 286 against the reference's 286, a mean gap of +3.7 on one seed. The 1.0.0 evidence supports a gap; the 1.1.0 evidence does not. The 100-seed replay of the three new scripts (§3.2b) and a bounded reference improvement decide whether a gap can be claimed.
 3. **Early SOFT stop looks odd.** The largest recurring loss is "stop a SOFT at lap 3". It follows from the published coefficients, and it is in the rules, but a judge may read it as an unrealistic tyre model. Have the one-line explanation ready (SOFT loses 0.35 s per lap of age × track multiplier).
 4. **Root of the repository is a different, older task.** The root README now points to `f1-championship/` first; the demo must use that path.
 5. **Branches are not merged.** The submission branch must be pushed and named in the README/video; `main` does not contain the championship task's later work.

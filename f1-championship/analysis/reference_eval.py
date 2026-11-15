@@ -39,6 +39,10 @@ GEMINI = {  # run -> (script, component fn, race fn), as evaluated in FRONTIER_R
     "gemini_r2": (RUNS / "r2/scripts/app_run_championship.py.txt", "evaluate_component_decision", "evaluate_best_race_action"),
     "gemini_r3": (RUNS / "r3/scripts/app_run_championship.py.txt", "decide_component", "decide_race_strategy"),
 }
+REF_RUNS = HERE / "results" / "reference_runs"
+for _run in ("v110-gemini-01", "v110-gemini-02", "v110-gemini-03"):  # fresh 1.1.0 runs (adapters)
+    if (REF_RUNS / _run / "policy.py").exists():
+        GEMINI[_run.replace("-", "_")] = (REF_RUNS / _run / "policy.py", "decide_component", "decide_strategy")
 UPPER = (engine.POINTS[0] + engine.POINTS[1]) * 8
 
 
@@ -91,6 +95,35 @@ def reward(points, nothing, complete=True):
     return min(1.0, max(0.0, (points - nothing) / (UPPER - nothing))) if complete else 0.0
 
 
+def add_policies(args):
+    out_path = HERE / "results" / ("reference_eval_harbor_seeds.json" if args.harbor_seeds else "reference_eval.json")
+    out = json.loads(out_path.read_text())
+    seeds = out["seeds"]
+    with mp.Pool(args.workers) as pool:
+        new = pool.map(play_gemini, [(n, str(GEMINI[n][0]), GEMINI[n][1:], s) for n in args.add for s in seeds], chunksize=2)
+    out["rows"] = [r for r in out["rows"] if r["policy"] not in args.add] + new
+    ref = {r["seed"]: r["points"] for r in out["rows"] if r["policy"] == "reference"}
+    nothing = {r["seed"]: r["points"] for r in out["rows"] if r["policy"] == "do_nothing"}
+    for name in args.add:
+        rs = {r["seed"]: r for r in new if r["policy"] == name}
+        pts = [rs[s]["points"] for s in seeds]
+        rew = [reward(rs[s]["points"], nothing[s]) for s in seeds]
+        diff = [ref[s] - rs[s]["points"] for s in seeds]
+        rdiff = [reward(ref[s], nothing[s]) - w for s, w in zip(seeds, rew)]
+        n = len(seeds)
+        out["summary"][name] = {
+            "mean_points": st.mean(pts), "sd_points": st.stdev(pts), "mean_reward": st.mean(rew),
+            "reference_minus_policy_points": st.mean(diff), "se_points": st.stdev(diff) / math.sqrt(n),
+            "reference_minus_policy_reward": st.mean(rdiff), "se_reward": st.stdev(rdiff) / math.sqrt(n),
+            "reference_better_equal_worse": [sum(d > 0 for d in diff), sum(d == 0 for d in diff), sum(d < 0 for d in diff)]}
+        sm = out["summary"][name]
+        print(f"| {name} | {sm['mean_points']:.1f} | {sm['sd_points']:.1f} | {sm['mean_reward']:.3f} | "
+              f"{sm['reference_minus_policy_points']:+.1f} ± {sm['se_points']:.1f} | "
+              f"{sm['reference_minus_policy_reward']:+.3f} ± {sm['se_reward']:.3f} | "
+              f"{'/'.join(map(str, sm['reference_better_equal_worse']))} |")
+    out_path.write_text(json.dumps(out, indent=1))
+
+
 def main():
     from _runtime import require_runtime_python
     require_runtime_python()
@@ -98,7 +131,11 @@ def main():
     parser.add_argument("--seeds", type=int, default=100)
     parser.add_argument("--workers", type=int, default=10)
     parser.add_argument("--harbor-seeds", action="store_true")
+    parser.add_argument("--add", nargs="+", metavar="POLICY",
+                        help="evaluate only these GEMINI entries on the seeds of the existing results file and merge")
     args = parser.parse_args()
+    if args.add:
+        return add_policies(args)
     if args.harbor_seeds:
         seeds = [wpe.HIDDEN] + json.loads((RUNS / "repeat_seeds.json").read_text())["seeds"]
         out_path = HERE / "results" / "reference_eval_harbor_seeds.json"

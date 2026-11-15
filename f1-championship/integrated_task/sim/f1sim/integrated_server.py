@@ -38,13 +38,17 @@ def load_mode(path: Path = MODE_PATH) -> Dict[str, Any]:
     value.setdefault("benchmark_version", C.INTEGRATED_VERSION)
     if value["benchmark_version"] not in (C.INTEGRATED_VERSION,) + C.OPT_IN_VERSIONS:
         raise ValueError("unsupported benchmark_version in mode file")
+    if not isinstance(value.get("c5_weekend", False), bool):
+        raise ValueError("c5_weekend must be a boolean")
     return value
 
 
 def task_config(mode: Dict[str, Any]) -> C.IntegratedConfig:
     """The sidecar's and the verifier's configuration (one function, so they cannot diverge)."""
-    return C.with_version(C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"}),
-                          mode["benchmark_version"])
+    base = C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"})
+    if mode.get("c5_weekend"):  # opt-in 2.2.0 C5 practice/qualifying weekend
+        return C.with_c5_weekend(base)
+    return C.with_version(base, mode["benchmark_version"])
 
 
 def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
@@ -62,7 +66,7 @@ def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
                                "List the record hashes you used in the optional consumed_reports field.")},
         "objective": "maximize Apex constructors' points over the whole championship",
     })
-    if config.benchmark_version == "2.1.0":
+    if config.benchmark_version in ("2.1.0", "2.2.0"):  # 2.2.0 keeps the 2.1.0 PU rules
         from f1pitwall import pu_rules
         rules["power_unit_rules"] = pu_rules.RULES
         rules["track_a_model"] = json.loads(json.dumps(pu_rules.with_fia_pu_rules(rules["track_a_model"])))
@@ -72,7 +76,32 @@ def public_rules(config: C.IntegratedConfig) -> Dict[str, Any]:
                      "a REPLACE needs a unit in the team's physical stock; using more elements than the "
                      "allocation costs grid places (first extra element of a type 4, later 2, cumulative); "
                      "above 5 places the driver starts behind all other cars, in qualifying order.")}
+    if getattr(config, "c5_weekend", False):
+        rules["weekend"] = weekend_rules()
     return rules
+
+
+def weekend_rules() -> Dict[str, Any]:
+    """Public C5 weekend rules (2.2.0). Priors, noise model and budgets come from the C5 fixture."""
+    from track_c import c5
+    model = c5.load_model("mixed")
+    return {
+        "phases": "COMPONENT_DECISION -> PRACTICE (session 1) -> PRACTICE (session 2) -> QUALIFYING -> RACE_STRATEGY x 14",
+        "setups": {k: v for k, v in model["setups"].items()},
+        "noise_model": model["noise_model"],
+        "lap_budget_per_driver": model["lap_budget_per_driver"],
+        "sessions_total": model["sessions_total"],
+        "programs": {p: f"measures {v['metric']}" for p, v in model["noise_model"]["programs"].items()},
+        "hidden_truth": ("each setup's true effect per weekend is drawn once from its published prior; practice "
+                         "measurements are that truth plus published Gaussian noise"),
+        "qualifying": ("time = published base pace + true qualifying offset of the chosen setup + per-run noise; "
+                       "TWO_RUN keeps the better run; rivals run the default setup once. The order is the "
+                       "provisional grid; power-unit grid penalties are applied after it."),
+        "parc_ferme": ("each car races with its qualifying setup: its true long-run pace offset is added to the "
+                       "car's race pace and its true degradation factor multiplies the car's tyre degradation"),
+        "fallback": "no practice laps; default setup with one qualifying run",
+        "data_status": "synthetic_only",
+    }
 
 
 class IntegratedSimulator:

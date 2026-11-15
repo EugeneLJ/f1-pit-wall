@@ -56,8 +56,8 @@ def grade():
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     mode = json.loads(MODE_PATH.read_text(encoding="utf-8"))
     mode.setdefault("benchmark_version", C.INTEGRATED_VERSION)
-    config = C.with_version(C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"}),
-                            mode["benchmark_version"])
+    base = C.solo_coordination(engineers=mode["engineers"], chief={"provider": "harbor_agent"})
+    config = C.with_c5_weekend(base) if mode.get("c5_weekend") else C.with_version(base, mode["benchmark_version"])
     seed = json.loads(SEED_PATH.read_text(encoding="utf-8"))["base_seed"]
     report["benchmark_version"] = config.benchmark_version
     if manifest.get("benchmark_version") != config.benchmark_version:

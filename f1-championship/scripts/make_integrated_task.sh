@@ -1,7 +1,9 @@
 #!/bin/bash
 # Build the integrated SOLO_COORDINATION Harbor task (benchmark 2.0.1 by default, or 2.1.0) from the 1.1.0 task
 # plus integrated_task/ overlay. The 1.1.0 task directory itself is never modified.
-# Usage: scripts/make_integrated_task.sh <dest-dir> [engineer-condition] [benchmark-version: 2.0.1|2.1.0]
+# Usage: scripts/make_integrated_task.sh <dest-dir> [engineer-condition] [benchmark-version: 2.0.1|2.1.0|2.2.0]
+# F1_C5_WEEKEND=1 (requires 2.2.0, CHIEF_ONLY): experimental C5 practice/qualifying weekend task.
+# Without it every existing build is unchanged.
 set -euo pipefail
 TASK="$(cd "$(dirname "$0")/.." && pwd)"
 DEST="$1"
@@ -16,7 +18,13 @@ cp "$TASK/task.toml" "$DEST/task.toml"
 # instruction the first 2.1.0 Harbor runs were evaluated on (integrated_task/evaluated/, sha256 f6697c53...).
 # Other versions and Engineer conditions keep the composed instruction unchanged.
 REVISION="${F1_INSTRUCTION_REVISION:-r2}"
-if [ "$VERSION" = "2.1.0" ] && [ "$COND" = "CHIEF_ONLY" ] && [ "$REVISION" = "r2" ]; then
+C5="${F1_C5_WEEKEND:-0}"
+if [ "$C5" = "1" ] && { [ "$VERSION" != "2.2.0" ] || [ "$COND" != "CHIEF_ONLY" ]; }; then
+  echo "F1_C5_WEEKEND=1 needs benchmark 2.2.0 and CHIEF_ONLY" >&2; exit 2
+fi
+if [ "$C5" = "1" ]; then
+  cat "$TASK/integrated_task/instruction_2_2_0_c5.md" "$TASK/integrated_task/instruction_2_1_0_chief_only.md" > "$DEST/instruction.md"
+elif [ "$VERSION" = "2.1.0" ] && [ "$COND" = "CHIEF_ONLY" ] && [ "$REVISION" = "r2" ]; then
   cp "$TASK/integrated_task/instruction_2_1_0_chief_only.md" "$DEST/instruction.md"
 elif [ "$VERSION" = "2.1.0" ] && [ "$COND" = "CHIEF_ONLY" ] && [ "$REVISION" = "r1" ]; then
   cp "$TASK/integrated_task/evaluated/instruction_2_1_0_r1.md" "$DEST/instruction.md"
@@ -28,15 +36,24 @@ else
 fi
 O="$TASK/integrated_task"
 cp "$O/sim/f1sim/"*.py "$DEST/environment/sim/f1sim/"
-printf '{"mode": "SOLO_COORDINATION", "engineers": "%s", "benchmark_version": "%s"}\n' "$COND" "$VERSION" > "$DEST/environment/sim/secret/mode.json"
+if [ "$C5" = "1" ]; then
+  printf '{"mode": "SOLO_COORDINATION", "engineers": "%s", "benchmark_version": "%s", "c5_weekend": true}\n' "$COND" "$VERSION" > "$DEST/environment/sim/secret/mode.json"
+else
+  printf '{"mode": "SOLO_COORDINATION", "engineers": "%s", "benchmark_version": "%s"}\n' "$COND" "$VERSION" > "$DEST/environment/sim/secret/mode.json"
+fi
 cp "$DEST/environment/sim/secret/mode.json" "$DEST/tests/mode.json"
 for target in "$DEST/environment/sim" "$DEST/tests"; do
   rm -rf "$target/track_c"; mkdir -p "$target/track_c"
   cp "$TASK/track_c/"*.py "$target/track_c/"; cp -R "$TASK/track_c/fixtures" "$target/track_c/"
+  if [ "$C5" = "1" ]; then cp -R "$TASK/track_c/c5" "$target/track_c/"; fi
 done
 cp "$O/tests/grade_integrated.py" "$O/tests/test.sh" "$DEST/tests/"
 cp "$O/solution/play_integrated.py" "$O/solution/solve.sh" "$O/solution/reference_v21.py" "$DEST/solution/"
 cp "$TASK/src/f1pitwall/integrated/policies.py" "$DEST/solution/policies.py"
+if [ "$C5" = "1" ]; then  # no 2.2.0 reference exists yet: the oracle is the scripted coordinator + C5 smoke policy
+  printf '#!/bin/bash\nset -euo pipefail\nexec python3 "$(cd "$(dirname "$0")" && pwd)/play_integrated.py"\n' > "$DEST/solution/solve.sh"
+  chmod +x "$DEST/solution/solve.sh"
+fi
 python3 - "$DEST" "$VERSION" <<'PY'
 import sys
 from pathlib import Path

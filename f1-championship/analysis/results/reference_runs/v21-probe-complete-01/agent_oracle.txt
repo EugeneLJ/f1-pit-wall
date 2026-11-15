@@ -1,0 +1,24 @@
+[probe] uid: 0
+[probe] private_paths_visible_in_agent_container: {"/opt/f1sim": false, "/var/lib/f1sim": false, "/evidence/f1sim": false, "/opt/f1sim/secret/seed.json": false}
+[probe] shared_volume_listing: ["sim.sock"]
+[probe] files_mentioning_seed_or_journal: ["/solution/probe_integrated.py"]
+[probe] simulator_process_visible: false
+[probe] reset: {"error_code": "unknown_command", "message": "commands: ['act', 'observe', 'ping', 'rules']", "ok": false}
+[probe] rewind: {"error_code": "unknown_command", "message": "commands: ['act', 'observe', 'ping', 'rules']", "ok": false}
+[probe] seed: {"error_code": "unknown_command", "message": "commands: ['act', 'observe', 'ping', 'rules']", "ok": false}
+[probe] observe_with_seed_field: {"error_code": "malformed_request", "message": "observe takes exactly ['cmd']", "ok": false}
+[probe] malformed_json: {"error_code": "malformed_request", "message": "request is not JSON", "ok": false}
+[probe] binary: {"error_code": "malformed_request", "message": "request is not JSON", "ok": false}
+[probe] oversized: {"connection_closed": "BrokenPipeError"}
+[probe] first_decision_id: "t001"
+[probe] observation_keys: ["action_schema", "benchmark_version", "championship", "contract_version", "controlled_drivers", "current_track", "decision_id", "decision_type", "mode", "public_resolution_rule", "race_progress", "resource_inventory", "rivals_public", "team", "tick_id"]
+[probe] wrong_phase_action: {"decision_id": "t001", "error_code": "invalid_action", "message": "action type must be COMPONENT_DECISION", "ok": false}
+[probe] future_decision_id: {"decision_id": "t001", "error_code": "out_of_order_decision", "message": "stale or unknown tick (current t001)", "ok": false}
+[probe] int_decision_id: {"decision_id": "t001", "error_code": "out_of_order_decision", "message": "stale or unknown tick (current t001)", "ok": false}
+[probe] missing_decision_id: {"error_code": "malformed_request", "message": "act takes exactly ['action', 'cmd', 'decision_id']", "ok": false}
+[probe] valid_first_action_ok: true
+[probe] duplicate_first_action: {"decision_id": "t002", "error_code": "out_of_order_decision", "message": "stale or unknown tick (current t002)", "ok": false}
+[probe] concurrent_same_decision: {"accepted": 1, "rejected_codes": ["out_of_order_decision"]}
+[probe] forged_files: {"/logs/verifier/reward.txt": "written", "/evidence/f1sim/journal.jsonl": "written", "/evidence/f1sim/manifest.json": "written", "/logs/artifacts/evidence/f1sim/manifest.json": "written", "/app/submission/actions.json": "written"}
+[probe] finished_standings: [{"points": 266, "team": "Orion"}, {"points": 229, "team": "Apex"}, {"points": 171, "team": "Nova"}, {"points": 104, "team": "Vertex"}]
+[probe] act_after_complete: {"error_code": "championship_complete", "message": "championship is already complete", "ok": false}

@@ -1,0 +1,81 @@
+{
+ "schema_version": 1,
+ "run": "v21-gemini-01",
+ "benchmark_version": "2.1.0",
+ "verifier": "unmodified integrated_task/tests/grade_integrated.py from a fresh make_integrated_task.sh build",
+ "edited_tick": "t022",
+ "harbor_reward": 0.7420634920634921,
+ "cases": {
+  "original": {
+   "reward": 0.7420634920634921,
+   "intact": true,
+   "error": null,
+   "complete": true,
+   "points": 279,
+   "reward_txt": "0.74206349"
+  },
+  "edit_action": {
+   "reward": 0.0,
+   "intact": false,
+   "error": "ReplayError: journal does not match sealed manifest",
+   "complete": false,
+   "points": null,
+   "reward_txt": "0.00000000"
+  },
+  "edit_manifest_only": {
+   "reward": 0.0,
+   "intact": false,
+   "error": "ReplayError: entry 22: entry hash mismatch",
+   "complete": false,
+   "points": null,
+   "reward_txt": "0.00000000"
+  },
+  "forged_chain": {
+   "reward": 0.0,
+   "intact": false,
+   "error": "ReplayError: t022: Apex action hash mismatch",
+   "complete": false,
+   "points": null,
+   "reward_txt": "0.00000000"
+  },
+  "forged_action_hash": {
+   "reward": 0.0,
+   "intact": false,
+   "error": "ReplayError: t022: observation hash after the tick differs",
+   "complete": false,
+   "points": null,
+   "reward_txt": "0.00000000"
+  },
+  "truncated": {
+   "reward": 0.0,
+   "intact": true,
+   "error": null,
+   "complete": false,
+   "points": 140,
+   "reward_txt": "0.00000000"
+  },
+  "wrong_version": {
+   "reward": 0.0,
+   "intact": false,
+   "error": "evidence version differs from the task version",
+   "complete": false,
+   "points": null,
+   "reward_txt": "0.00000000"
+  },
+  "foreign_seed_run": {
+   "reward": 0.0,
+   "intact": false,
+   "error": "ReplayError: entry 1: wrong version or sequence",
+   "complete": false,
+   "points": null,
+   "reward_txt": "0.00000000"
+  }
+ },
+ "checks": {
+  "original_matches_harbor": true,
+  "all_tampered_reward_zero": true,
+  "tampered_not_intact": true,
+  "truncated_incomplete": true
+ },
+ "all_checks_pass": true
+}

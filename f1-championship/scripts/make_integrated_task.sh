@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build the integrated SOLO_COORDINATION Harbor task (benchmark 2.0.0) from the 1.1.0 task
+# Build the integrated SOLO_COORDINATION Harbor task (benchmark 2.0.1 by default, or 2.1.0) from the 1.1.0 task
 # plus integrated_task/ overlay. The 1.1.0 task directory itself is never modified.
 # Usage: scripts/make_integrated_task.sh <dest-dir> [engineer-condition] [benchmark-version: 2.0.1|2.1.0]
 set -euo pipefail

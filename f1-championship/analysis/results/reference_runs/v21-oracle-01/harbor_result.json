@@ -1,0 +1,124 @@
+{
+    "schema_version": 1,
+    "id": "d48adea1-599b-4160-9c81-04c7a0274ce5",
+    "task_name": "EugeneLJ/f1-championship-integrated",
+    "trial_name": "f1-championship-2.1.0__zcMD32d",
+    "trial_uri": "file:///root/f1-championship-v21/jobs/v21-oracle-01/f1-championship-2.1.0__zcMD32d",
+    "task_id": {
+        "path": "f1-championship-2.1.0"
+    },
+    "source": null,
+    "task_checksum": "e94d82c1287f5be73f1671a19f7e085c8b6a87e9bb6f8b8a22c9f9ddccc801bf",
+    "config": {
+        "schema_version": 1,
+        "task": {
+            "path": "f1-championship-2.1.0",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "f1-championship-2.1.0__zcMD32d",
+        "trials_dir": "jobs/v21-oracle-01",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "override_error_policy": {},
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "760f1281-4baa-48d6-9d1d-f0a2cc40e82d",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.78174603
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-15T02:25:58.530102Z",
+    "finished_at": "2026-11-15T02:27:48.004155Z",
+    "environment_setup": {
+        "started_at": "2026-11-15T02:25:58.556393Z",
+        "finished_at": "2026-11-15T02:26:08.076358Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-15T02:26:08.076414Z",
+        "finished_at": "2026-11-15T02:26:08.076473Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-15T02:26:08.076543Z",
+        "finished_at": "2026-11-15T02:27:09.506319Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-15T02:27:30.569971Z",
+        "finished_at": "2026-11-15T02:27:48.004141Z"
+    },
+    "step_results": null,
+    "reward_valid": true
+}

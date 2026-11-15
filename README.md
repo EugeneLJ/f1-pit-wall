@@ -1,18 +1,20 @@
 # F1 Pit Wall
 
-**Submission task: [`f1-championship/`](f1-championship/README.md)** — benchmark 1.1.0, an eight-race
-constructors' championship played through a sealed simulator sidecar (120 sequential decisions).
+**Submission: benchmark 2.1.0, [`f1-championship/`](f1-championship/README.md)**. An eight-race
+constructors' championship with FIA-2026-based power-unit rules and team orders, played through a sealed
+simulator sidecar (120 sequential decisions). Reference 289 points (reward 0.7817) against three fresh
+Gemini 3.8 Flash runs at 279, 256 and 276.
 
 ```bash
-harbor run -p ./f1-championship -a oracle     # reference run
-harbor run -p ./f1-championship -a nop        # do-nothing baseline (reward 0)
-harbor run -p ./f1-championship -a opencode -m gemini/gemini-3.8-flash \
-  --api-key-name GEMINI_API_KEY --env-file <env file> --allow-agent-host generativelanguage.googleapis.com
+f1-championship/scripts/run_v21.sh oracle          # reference (289, 0.7817)
+f1-championship/scripts/run_v21.sh nop             # do-nothing baseline (reward 0)
+f1-championship/scripts/run_v21.sh probe-stop      # stop-early baseline (reward 0)
+f1-championship/scripts/run_v21.sh probe-complete  # exploit probe, then honest finish
+GEMINI_ENV_FILE=<env file> f1-championship/scripts/run_v21.sh opencode   # frontier run
 ```
 
-All commands, the stop-early and exploit probes, and the measured frontier-reference gap are in
-[`f1-championship/README.md`](f1-championship/README.md) and
-[`f1-championship/docs/REFERENCE_GAP_REPORT.md`](f1-championship/docs/REFERENCE_GAP_REPORT.md).
+Results, integrity evidence, the 1.1.0 comparison and the diagnostic studies are in
+[`f1-championship/README.md`](f1-championship/README.md).
 
 The files at the repository root (`instruction.md`, `task.toml`, `environment/`, `tests/`, `solution/`)
 are the earlier single-race task, kept only as a regression baseline. The rest of this page describes

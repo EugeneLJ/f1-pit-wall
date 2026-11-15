@@ -50,7 +50,7 @@ No agent had been evaluated on 2.1.0 before these fixes. B8's evaluation never r
 | **`v21-gemini-03` (live, same task build and flags)** | **276 points, reward 0.730.** Complete, intact, 0 rejected, about 8 min. 119 / 120 decisions by `/tmp/run_season.py` (one completed SWAP). |
 | **Mean of the 3 live runs** | **270.3 points, reward 0.708. The reference leads by +18.7 on the task seed (+10, +33, +13).** |
 
-**Reproduce:** `scripts/make_integrated_task.sh f1-championship-2.1.0 CHIEF_ONLY 2.1.0`, then `harbor run -p f1-championship-2.1.0 -a oracle`.
+**Reproduce:** `f1-championship/scripts/run_v21.sh oracle` (equivalent to `scripts/make_integrated_task.sh f1-championship-2.1.0 CHIEF_ONLY 2.1.0`, then `harbor run -p f1-championship-2.1.0 -a oracle`). Oracle and nop artifacts: `analysis/results/reference_runs/v21-oracle-01`, `v21-nop-01`. Stop-early, exploit-probe and tamper evidence on 2.1.0: `v21-probe-stop-01`, `v21-probe-complete-01`, `v21-gemini-01/tamper_regrade.json` (see README).
 
 **How Gemini played** (`delegation.json`): 119 of 120 decisions were made by its own `run_championship.py`, from the first race decision on.
 - **Race decisions:** a per-car stint-time search; one DEFENSIVE_BUFFER order.
@@ -68,7 +68,7 @@ No agent had been evaluated on 2.1.0 before these fixes. B8's evaluation never r
 
 Per-seed values are in `analysis/results/reference21_2.1.0_inter20.json`.
 
-**Script replay vs the live run.** The script replays to its Harbor 279 exactly on the task seed. On one dev seed it submitted an illegal action (a SWAP commitment with no car ahead). The sidecar would reject it, and the replay applies the published fallback for that tick: an approximation, because the live agent's reaction cannot be replayed. **These replays measure the script Gemini wrote. They are not independent model runs.** The only live 2.1.0 model run is `v21-gemini-01`.
+**Script replay vs the live run.** The script replays to its Harbor 279 exactly on the task seed. On one dev seed it submitted an illegal action (a SWAP commitment with no car ahead). The sidecar would reject it, and the replay applies the published fallback for that tick: an approximation, because the live agent's reaction cannot be replayed. **These replays measure the script Gemini wrote. They are not independent model runs.** The live 2.1.0 model runs are `v21-gemini-01`, `v21-gemini-02` and `v21-gemini-03` (three fresh Harbor runs on the task seed).
 
 **The reference in every evaluated season:** 0 fallbacks, 0 resyncs. It always used all 9 stock units (Apex A 6, Apex B 3), bundling Apex A's three elements before race 7 on the task seed. It runs in 61–100 s per season, against a 3600 s limit.
 

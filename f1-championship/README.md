@@ -1,149 +1,234 @@
-# F1 Pit Wall — Championship task
+# F1 Pit Wall — benchmark 2.1.0
 
-**Benchmark version 1.1.0** (`f1pitwall.version`; history in [docs/VERSIONS.md](docs/VERSIONS.md)). Analysis and replays run on Python 3.12, the same as the images (`scripts/py312`).
+**Submitted benchmark: 2.1.0**, Harbor mode `SOLO_COORDINATION`, Engineer condition `CHIEF_ONLY`
+(history in [docs/VERSIONS.md](docs/VERSIONS.md)).
 
-Harbor task in which an agent runs Apex GP through an eight-race constructors'
-championship. **Status: Track B through B4 (benchmark 1.1.0).** The sealed evaluation boundary (P0) is verified
-on Harbor 0.26.0. Track A long-horizon mechanics (component wear, reliability,
-shared free units, grid penalties, track-dependent performance) are implemented
-and analysed with an exact reduced-season solver. See
-[docs/P0_REPORT.md](docs/P0_REPORT.md), [docs/P1_REPORT.md](docs/P1_REPORT.md)
-and the full target scope in [docs/ROADMAP.md](docs/ROADMAP.md). The legacy single-race task at the
-repository root is unchanged and remains the regression baseline.
+An agent runs Apex GP, a two-car team, through an eight-race constructors' championship. It plays
+120 sequential decisions through a sealed simulator sidecar:
+- per race, one power-unit decision under FIA-2026-based allocation, stock and grid-penalty rules;
+- per race, 14 race decisions for both cars: stay out or pit onto SOFT / MEDIUM / HARD, plus a team
+  order (`RACE`, `HOLD`, `SWAP` with an optional give-back commitment, or `DEFENSIVE_BUFFER`).
 
-## What the agent does
+Safety cars, virtual safety cars and retirements are random. Rivals follow a published rule.
 
-Uses `f1ctl observe | rules | act <decision_id> '<json>'` to make 32 sequential
-decisions per season (32 before Track B, 120 from B3): per race, one component decision (USE/REPLACE per power-unit
-component) and, since Track B, 14 STAY/PIT_<compound> decisions per race for both cars. See `instruction.md`.
+**In the Harbor task**
+- pit and compound decisions;
+- SC/VSC;
+- the two-compound rule;
+- PU allocation, stock and cumulative grid penalties;
+- team orders and commitments.
 
-## Architecture
+**Not in the Harbor task**
+- Engineers: the observation has no `engineer_reports` in this mode;
+- an adaptive rival model;
+- weather;
+- practice and qualifying.
 
-```text
- main (agent) container            sim container (network: none)
- ┌─────────────────────┐           ┌──────────────────────────────────┐
- │ OpenCode / oracle   │           │ f1sim.server  (authoritative)    │
- │ /usr/local/bin/f1ctl│──socket──▶│ /opt/f1sim/secret/seed.json 0600 │
- │ no engine, no seed  │  volume   │ /var/lib/f1sim/journal.jsonl 0700│
- └─────────────────────┘ f1sock:   │ (hash-chained, fsync per entry)  │
-                         /run/f1sim└──────────────┬───────────────────┘
-                         (socket only)            │ [[verifier.collect]]
-                                                  │ f1sim.export (main stopped,
-                                                  ▼ session sealed)
-                                   /evidence/f1sim/{journal.jsonl,manifest.json}
-                                                  │ [[artifacts]] service="sim"
-                                                  ▼
-                                   verifier container (tests/Dockerfile)
-                                   grade.py: chain check + full replay from
-                                   hidden seed → /logs/verifier/reward.txt
-```
+Those appear only in separately labelled diagnostic studies (below) or in plans.
 
-- The shared volume holds only the Unix socket. Seed, live state and journal
-  never leave the sim container's private filesystem.
-- Every `act` must echo the current `decision_id`; stale ids are rejected as
-  duplicates, future ids as out of order, and phase/action validation runs on a
-  copy of the session, so rejected requests never change state. There is no
-  reset/rewind/preview/seed command. A restarted server rebuilds state from its
-  journal and refuses to start if the journal does not replay.
-- The verifier reads only sidecar evidence plus its own copy of the hidden
-  seed, re-verifies the hash chain and manifest, and replays every entry,
-  recomputing each observation hash. Rejected `invalid_action` entries must
-  also fail under replay.
+## Results (2.1.0, Harbor, same hidden task seed)
 
-## Scoring (P0, provisional)
+| Run | Points | Reward | Artifact |
+|---|---:|---:|---|
+| Public-information reference (`-a oracle`) | **289** | **0.7817** | [`v21-oracle-01`](analysis/results/reference_runs/v21-oracle-01/) |
+| Gemini 3.8 Flash, OpenCode 1.19.5, fresh run 1 | 279 | 0.7421 | [`v21-gemini-01`](analysis/results/reference_runs/v21-gemini-01/) |
+| Gemini 3.8 Flash, fresh run 2 | 256 | 0.6508 | [`v21-gemini-02`](analysis/results/reference_runs/v21-gemini-02/) |
+| Gemini 3.8 Flash, fresh run 3 | 276 | 0.7302 | [`v21-gemini-03`](analysis/results/reference_runs/v21-gemini-03/) |
+| Do nothing (`-a nop`) | 0 | 0.0 | [`v21-nop-01`](analysis/results/reference_runs/v21-nop-01/) |
+| Stop early after boundary attacks | 0 | 0.0 | [`v21-probe-stop-01`](analysis/results/reference_runs/v21-probe-stop-01/) |
+| Boundary attacks, then the published baseline heuristic | 229 | 0.5437 | [`v21-probe-complete-01`](analysis/results/reference_runs/v21-probe-complete-01/) |
 
-The report (`/logs/verifier/report.json`) separates `completion`, `integrity`,
-`performance` (raw Apex points, driver points, rank, margin) and `timing`.
+**The reference beats all three fresh Gemini runs on the task seed:** +10, +33 and +13 points
+(mean +18.7, n = 3, no significance claim).
 
-```text
-reward = 0                                  if not complete or not intact
-reward = clip((P - D) / (U - D), 0, 1)      otherwise
-P = Apex points, D = do-nothing policy on the same hidden seed,
-U = 43 x races (P1+P2 every race; a true upper bound, not a reference score)
-```
+**Script replays** (not new model runs). Each Gemini run wrote its own strategy script. Replayed
+on 20 paired seeds that no run had seen, the reference leads by +9.05 (15/20 seeds), +32.05
+(20/20) and +8.55 (15/20).
 
-Points only accumulate, so stopping early cannot beat finishing. `U` is a bound, not a
-reference score: the reference below reaches about 0.72 on average.
+**Where the gap comes from:**
+- Almost entirely race decisions: +8.0 / +27.1 / +7.9 points when only the race policy differs.
+- Not the power-unit rules: +0.55 in every run.
 
-## Reference and measured gap
+**Recurring failures, robust under three checks in all three runs:**
+- the early SOFT stop is never taken;
+- the cheap stop under the race-7 safety car (tick `t095`) is missed;
+- mid-race stops are missed.
 
-`solution/reference.py` (run by `-a oracle`) plays through `f1ctl` from public observations only, using a
-model of the published rules: one-step rollout over all 16 joint race actions with futures sampled from
-the published SC/VSC model, plus a search over season replacement plans. It is budget-limited, not optimal.
-
-| | Points | Reward |
-|---|---:|---:|
-| Reference, task seed (Harbor) | 286 | 0.770 |
-| Gemini 3.8 Flash, task seed, benchmark 1.0.0 (Harbor) | 268 | 0.698 |
-| Gemini 3.8 Flash, task seed, benchmark 1.1.0 (Harbor, 3 runs on the same seed) | 282 / 279 / 286 | 0.754 / 0.742 / 0.770 |
-| Reference, mean of 100 seeds | 271.8 | 0.724 |
-| Scripts written by the four 1.0.0 Gemini runs, same 100 seeds | 243.7–254.9 | 0.617–0.660 |
-| Scripts written by the three 1.1.0 Gemini runs, 20 paired seeds (reference 266.8 on these) | 256.6–261.1 | — |
-| Simple public heuristic (`F1_SOLUTION=baseline`) | 231.6 | 0.571 |
-
-Details, limits and open items: [docs/REFERENCE_GAP_REPORT.md](docs/REFERENCE_GAP_REPORT.md).
-
-**Benchmark 2.1.0 (integrated, FIA-2026-based power-unit rules).** Generate the task with `scripts/make_integrated_task.sh f1-championship-2.1.0 CHIEF_ONLY 2.1.0`, then run `harbor run -p f1-championship-2.1.0 -a oracle`.
-
-| 2.1.0 | Points | Reward |
-|---|---:|---:|
-| Reference, task seed (Harbor) | 289 | 0.782 |
-| Gemini 3.8 Flash, task seed (Harbor, 3 runs) | 279 / 256 / 276 | 0.742 / 0.651 / 0.730 |
-| Reference, mean of 20 seeds | 276.3 | — |
-| The three Gemini scripts replayed on the same 20 seeds | 267.3 / 244.3 / 267.8 | — |
-
-Details: [docs/REFERENCE_2_1_0_REPORT.md](docs/REFERENCE_2_1_0_REPORT.md).
+Method, attribution and limits: [docs/REFERENCE_2_1_0_REPORT.md](docs/REFERENCE_2_1_0_REPORT.md).
+Decision-level analysis: `analysis/results/reference_runs/v21-gemini-0N/decisions.json`.
 
 ## Run (judges: start here)
 
-Requirements: Harbor 0.26+, local Docker with Compose. Run from the repository root.
+Requirements: Harbor 0.26+, Docker with Compose, `python3` on the host. Run from the repository root.
+Each command builds the 2.1.0 task from this checkout into `$TMPDIR/f1-pit-wall-2.1.0` (override
+with `F1_BUILD_DIR`), then calls `harbor run`. Extra arguments go to `harbor run`.
 
 ```bash
-# 1. Reference run (public-information rollout player, about 90 s including image start)
-harbor run -p ./f1-championship -a oracle
+# 1. Reference: public-information rollout player. Expected 289 points, reward 0.7817, about 2 min.
+f1-championship/scripts/run_v21.sh oracle
 
-# 2. Frontier run (the documented model; repeat for more runs)
-harbor run -p ./f1-championship -a opencode -m gemini/gemini-3.8-flash \
-  --api-key-name GEMINI_API_KEY --env-file <file with GEMINI_API_KEY=...> \
-  --allow-agent-host generativelanguage.googleapis.com
+# 2. Frontier run: OpenCode + gemini/gemini-3.8-flash, about 8–10 min. Repeat for more runs.
+GEMINI_ENV_FILE=<file containing GEMINI_API_KEY=...> f1-championship/scripts/run_v21.sh opencode
 
-# 3. Do-nothing baseline (agent does nothing; season unfinished -> reward 0)
-harbor run -p ./f1-championship -a nop
+# 3. Do-nothing baseline: the season is never finished, so reward 0.
+f1-championship/scripts/run_v21.sh nop
 
-# 4. Stop-early baseline (tries 20+ boundary attacks, plays two decisions, quits -> reward 0)
-f1-championship/scripts/make_probe_task.sh /tmp/probe-stop stop && harbor run -p /tmp/probe-stop -a oracle
+# 4. Stop-early baseline: boundary attacks as root, two decisions, deletes the socket, quits. Reward 0.
+f1-championship/scripts/run_v21.sh probe-stop
 
-# 5. Exploit probe that then finishes honestly with the simple public heuristic (reward 0.587, evidence intact)
-f1-championship/scripts/make_probe_task.sh /tmp/probe-complete complete && harbor run -p /tmp/probe-complete -a oracle
-
-# Same task on another hidden seed (only the two seed files change)
-f1-championship/scripts/make_seed_variant.sh /tmp/seed-x <integer seed> x && harbor run -p /tmp/seed-x -a oracle
-
-# Local tests and the matched-seed comparison (no Docker; Python 3.12 through uv)
-cd f1-championship
-scripts/py312 -m unittest discover -s devtests
-scripts/py312 analysis/reference_eval.py --seeds 100       # reference vs the four recorded Gemini policies
-scripts/py312 analysis/reference_eval.py --harbor-seeds    # the four seeds of the recorded Harbor runs
+# 5. Exploit probe, then an honest finish with the published baseline heuristic.
+#    Reward equals the heuristic's own score; every attack is refused.
+f1-championship/scripts/run_v21.sh probe-complete
 ```
 
-The reward is written to `/logs/verifier/reward.txt` (one number in [0, 1]); the full breakdown is in
-`/logs/verifier/report.json`. A "play every decision but do nothing" policy (USE, STAY) is the reward's
-zero point `D`, so it also scores 0.
+- **Output:** the reward is written to `/logs/verifier/reward.txt` (one number in [0, 1]) and the
+  breakdown to `/logs/verifier/report.json` in the Harbor job directory.
+- **Network:** only the frontier run needs it, to `generativelanguage.googleapis.com`. The sim
+  container never has network.
+- **Images are pinned:** `node:22.22.0-bookworm-slim` with `opencode-ai@1.19.5` for the agent,
+  `python:3.12.12-slim-bookworm` for the sim and the verifier.
 
-## C6/C7 evidence analysis (analysis-only; not part of the official Frontier–Reference gap)
+**Local checks** (no Docker; Python 3.12 through uv):
 
-The adaptive-rival probes, the verified B7 case audit, and the strict
-Frontier–Reference gap exporter are documented in
-[`docs/C6_EVIDENCE_PIPELINE.md`](docs/C6_EVIDENCE_PIPELINE.md). The C7 reconciliation and the
-preregistered expansion are in [`docs/C7_C6_COUNT_RECONCILIATION.md`](docs/C7_C6_COUNT_RECONCILIATION.md),
-[`docs/C7_ADAPTIVE_EXPANSION_REPORT.md`](docs/C7_ADAPTIVE_EXPANSION_REPORT.md) and
-[`docs/C7_LIVE_PAIRED_PROBE_REPORT.md`](docs/C7_LIVE_PAIRED_PROBE_REPORT.md). The 16-call live Gemini result is in
-[`docs/C7_LIVE_EXPANSION_RESULTS.md`](docs/C7_LIVE_EXPANSION_RESULTS.md): 3 of 3 reversals were not followed, but Gemini stayed out in 15 of 16 calls, so this is not
-evidence of a rival-specific failure. C8 Engineer-conflict paired probes (40 fixed 2.1.0 states, 240 Chief calls) are in
-[`docs/C8_ENGINEER_CONFLICT_RESULTS.md`](docs/C8_ENGINEER_CONFLICT_RESULTS.md). They do not change the engine,
-Harbor task, scoring or verifier. They work on the benchmark 2.0.1 two-team B7 artifacts, which run
-outside Harbor, so they are kept separate from the 1.1.0/2.1.0 Harbor gap.
+```bash
+cd f1-championship
+scripts/py312 -m unittest discover -s devtests                  # all devtests
+scripts/py312 analysis/v21_tamper_regrade.py                    # tamper regrade of a real 2.1.0 run
+scripts/py312 analysis/reference21_eval.py --stage inter20      # reference vs Gemini scripts, 20 seeds (cached)
+```
 
-Edit the engine only in `src/f1pitwall/`, then run `scripts/sync_engine.py`
-(the sim image, the verifier image and the reference solution each need a copy; `devtests` fails on drift).
-All track and component coefficients are synthetic placeholders.
+**Another hidden seed.** `tests/hidden_seed.json` is public by design: the verifier needs it, and
+the agent container cannot read it. To grade on a seed nobody has seen:
+build the 2.1.0 task and replace its two seed files, as `scripts/make_seed_variant.sh` does for 1.1.0:
+
+```bash
+f1-championship/scripts/make_integrated_task.sh /tmp/v21-x CHIEF_ONLY 2.1.0
+printf '{"schema_version": 1, "base_seed": %s}\n' <integer seed> | tee /tmp/v21-x/environment/sim/secret/seed.json > /tmp/v21-x/tests/hidden_seed.json
+harbor run -p /tmp/v21-x -a oracle
+```
+
+## Scoring and integrity
+
+```text
+reward = 0                                  if the season is not complete or the evidence is not intact
+reward = clip((P - D) / (U - D), 0, 1)      otherwise
+P = Apex constructors' points; D = the published fallback policy (USE / STAY / RACE) on the same seed (92);
+U = 43 x 8 races = 344, a true upper bound, not a reference score
+```
+
+- Points only accumulate, so stopping early cannot beat finishing.
+- Team orders, commitments and report use are reported in `report.json`, never rewarded.
+
+| Check (2.1.0) | Result | Evidence |
+|---|---|---|
+| Do nothing | reward 0 | `v21-nop-01` |
+| Stop early after attacks | reward 0: 2 of 120 ticks resolved, evidence intact, 23 rejected requests logged | `v21-probe-stop-01` |
+| Attacks then honest finish | 229 points, reward 0.5437, the same as the baseline heuristic on this seed. Refused: reset, rewind, seed, malformed or oversized requests, wrong-phase, future, stale and duplicate decisions (1 of 20 concurrent submissions accepted), acting after completion. Private paths and the simulator process are not visible. Files forged inside the agent container (`reward.txt`, evidence, manifest) are ignored by the verifier | `v21-probe-complete-01` (`agent_probe_results.json`) |
+| Edited action, nothing else | reward 0, journal does not match sealed manifest | `v21-gemini-01/tamper_regrade.json` |
+| Edited action, manifest re-hashed | reward 0, entry hash mismatch | same |
+| Edited action, chain and manifest recomputed | reward 0, action hash mismatch | same |
+| Same, action hash also recomputed (a forger without the seed) | reward 0, observation hash after the tick differs on replay | same |
+| Truncated to half the season, chain and manifest valid | intact but incomplete, reward 0 | same |
+| Evidence claims another version | reward 0, version rejected | same |
+| Untouched evidence regraded | 279 points, reward 0.7421, identical to Harbor | same |
+
+**Architecture**
+- The agent container has `f1ctl` and OpenCode, but no engine, seed or state.
+- The sim container (`f1sim.integrated_server`, no network) holds the seed, the live session and a
+  hash-chained journal (v2), with an fsync per entry.
+- After the agent stops, `f1sim.export_integrated` seals the journal and a manifest.
+- The separate verifier container re-checks hashes and replays every tick from the hidden seed,
+  recomputing every observation hash.
+- Stale, future or duplicate decision ids are rejected and journaled. A restarted sidecar rebuilds
+  state by verified replay.
+
+**Disclosure.** The integrated instruction addendum (`integrated_task/instruction_addendum.md`) is
+shared by all integrated modes. It still describes two race engineers and `engineer_reports`, and its
+heading says 2.0.1, but this CHIEF_ONLY task delivers no reports. The three runs were evaluated on
+exactly this instruction:
+- the Gemini scripts read `engineer_reports` defensively (`obs.get(..., [])`);
+- no action was rejected.
+
+Changing the text would change the task, so it is left as run and disclosed here.
+
+## Reference
+
+`integrated_task/solution/reference_v21.py` (run by `-a oracle`) plays through `f1ctl` from public
+observations only.
+- **Race decisions:** a one-step rollout over the 16 joint pit actions, with futures from the
+  published SC/VSC model conditioned on the observed history.
+- **Components:** a season search under the published 2.1.0 power-unit rules.
+- **Information:** it reads no seed, journal or sidecar file. Static and dynamic seed-blindness
+  tests check this.
+- **Model-access advantage:** it executes the published rules exactly, which a frontier agent must
+  infer from `f1ctl rules`.
+- **Cost:** budget-limited, not optimal. It takes 61–100 s per season against a 3600 s limit.
+
+## Comparison version 1.1.0
+
+1.1.0 is the race-and-legacy-components task in this directory (`harbor run -p ./f1-championship
+-a oracle`). It is unchanged and still reproduces: oracle 286 / 0.7698, rerun during the 2.1.0 work
+as `v21-v110-oracle-01`.
+
+| 1.1.0 | Points | Reward |
+|---|---:|---:|
+| Reference, task seed (Harbor) | 286 | 0.770 |
+| Gemini 3.8 Flash, task seed (Harbor, 3 fresh runs) | 282 / 279 / 286 | 0.754 / 0.742 / 0.770 |
+| Scripts of those runs, 20 paired seeds (script replay) | reference ahead by +10.2 / +6.2 / +5.7 | — |
+
+1.1.0 stop-early and exploit probes: `scripts/make_probe_task.sh`. Details are in
+[docs/REFERENCE_GAP_REPORT.md](docs/REFERENCE_GAP_REPORT.md).
+
+## Diagnostic studies (not part of the Frontier–Reference gap)
+
+These run outside the Harbor task, through direct API runners. Each is preregistered or labelled,
+and none changes the engine, reward or verifier.
+
+| Study | What it shows | Report |
+|---|---|---|
+| B7: Gemini Chief vs DeepSeek Chief, two-team, 2.0.1 | one season per layer: 304 vs 143 without Engineers, 237 vs 175 with live Flash-Lite Engineers; DeepSeek's VSC double stacks were worse under all 12 assumptions | [docs/B7_P0_REPORT.md](docs/B7_P0_REPORT.md) |
+| C7: adaptive-rival paired probes, 16 calls | 3 of 3 separated reversals were not followed, but Gemini stayed out in 15 of 16 calls, so this is not evidence of a rival-specific failure | [docs/C7_LIVE_EXPANSION_RESULTS.md](docs/C7_LIVE_EXPANSION_RESULTS.md) |
+| C8: Engineer conflict, 40 fixed 2.1.0 states, 240 Chief calls | see the Gemini section below | [docs/C8_ENGINEER_CONFLICT_RESULTS.md](docs/C8_ENGINEER_CONFLICT_RESULTS.md) |
+
+C6/C7 tooling and its count reconciliation: [docs/C6_EVIDENCE_PIPELINE.md](docs/C6_EVIDENCE_PIPELINE.md),
+[docs/C7_C6_COUNT_RECONCILIATION.md](docs/C7_C6_COUNT_RECONCILIATION.md).
+
+## Gemini API: Chief with two driver-local Engineers
+
+**Architecture**
+- A Gemini 3.8 Flash Chief and two Gemini 3.5 Flash-Lite Engineers.
+- Each Engineer sees only its own driver and public rivals, and returns a schema-constrained
+  recommendation bound to the hash of its observation.
+- A trusted broker stores every record in a hash-chained store. The Chief cites the hashes it used
+  (`consumed_reports`), and replay re-supplies the exact records.
+- Every call records the requested and returned model, request id, prompt hash, token usage
+  (including thinking) and a dated price snapshot. A model that is not served is refused, never
+  substituted.
+- Code: `src/f1pitwall/integrated/engineers.py`, `providers.py`, `track_c/engineer_runtime.py`.
+
+**C8**, preregistered before any call (commit `0f5ba2d`): same state, only the Engineer reports differ.
+- **Noise floor:** a Chief-only repeat changes its action in 7.5% of states.
+- **Live Engineers:** mean regret +0.21 points per decision versus Chief-only, 95% bootstrap
+  [−0.00, +0.49]. This is not separated from zero.
+- **One robust harm (state `c8s28`):** the Chief kept its own correct pit decision but took the
+  Engineer's compound (HARD → MEDIUM, confidence 0.85), losing 4.5–5.1 expected points under all
+  three checks.
+- **Pure priority claims** ("prioritise my driver") changed nothing.
+- **Cost:** 240 Chief calls and 80 Engineer records, all valid, USD 2.04.
+
+The Engineers are **not** part of the Harbor task above.
+
+## Planned (not implemented in 2.1.0)
+
+- **C5 practice and qualifying:** an isolated Track C module on `feature/c5-practice-qualifying`.
+- **2.2.0 scenarios:** rival interaction, stewarding, intra-team rivalry, weather.
+  Contract: [docs/V2_2_0_SCENARIO_CONTRACT.md](docs/V2_2_0_SCENARIO_CONTRACT.md).
+- **Submission review and promotion gates:** [docs/SUBMISSION_READINESS_REVIEW.md](docs/SUBMISSION_READINESS_REVIEW.md).
+
+## Development
+
+- Edit the engine only in `src/f1pitwall/`, then run `scripts/sync_engine.py`. The sim image, the
+  verifier image and the reference solution each need a copy, and devtests fail on drift.
+- Analysis and replays run on Python 3.12, the same as the images (`scripts/py312`).
+- All track and component coefficients are synthetic. Where a power-unit rule follows the FIA 2026
+  Sporting Regulations (Section B, Issue 07), `f1ctl rules` says so and states the scaling.

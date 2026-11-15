@@ -29,8 +29,8 @@
 | 16 | Secrets and trajectories absent from commits | PASS | scans for `AIza` / `Bearer <token>` matched only documentation text; no `trajectory.json` committed |
 | 17 | Replays and counterfactuals labelled as such | PASS | README §4; `docs/DEMO_HANDOFF.md` §4 |
 | 18 | No unfinished M2/M6/M7/C5 work advertised as part of the task | PASS | README §1 "Not in this task", §7 "Planned" |
-| 19 | Demo entry point for 2.1.0 | BLOCKED (owner: demo-UX) | contract in `docs/DEMO_HANDOFF.md` §5; `feature/demo-ux` still targets journal v1 |
-| 20 | Video script | PASS | `docs/VIDEO_SCRIPT.md` |
+| 19 | Demo entry point for 2.1.0 | PASS | `scripts/demo.sh recorded` / `live`; a real LIVE run through it passed all 10 checks (279 / 0.7421; `analysis/results/demo/live-20261115T061229Z/`); 16 offline demo tests (`tests/test_demo_ux.py`) |
+| 20 | Video script | PASS | `docs/VIDEO_SCRIPT.md`; the demo report (`docs/demo/*.jpg`) can be recorded directly |
 | 21 | Submission platform's required target (`main` or a branch/commit URL) | UNKNOWN | no published rule found; both links below are ready. Changing `main` needs explicit approval. |
 
 ## Evidence inventory

@@ -1,4 +1,6 @@
-# Demo handoff (submission 2.1.0) — for the demo-UX owner
+# Demo handoff (submission 2.1.0)
+
+**Status (2026-11-15): implemented** on `submission/2.1.0` as `scripts/demo.sh`, `scripts/demo.py` and `scripts/demo_v21_replay.py`, following this contract. Usage is in the README "Demo" section. The rest of this file remains the contract that any further demo work must keep.
 
 **Scope.** This file says what the demo must read and how it must label results. It does not
 implement the demo: `feature/demo-ux` stays with its owner. Do not merge development branches

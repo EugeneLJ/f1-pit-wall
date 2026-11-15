@@ -8,6 +8,22 @@ The version is `f1pitwall.version.BENCHMARK_VERSION`. It appears in:
 
 Results are comparable only within one version.
 
+## 2.1.0 instruction revision r2 (2026-11-15; branch submission/2.1.0, commit 1f55492)
+
+**Instruction only; still benchmark 2.1.0.** The CHIEF_ONLY task now ships a standalone
+instruction, `integrated_task/instruction_2_1_0_chief_only.md` (sha256 `5ad46b10…`). It:
+- names benchmark 2.1.0 and the CHIEF_ONLY mode;
+- says the rivals follow fixed published rules and there are no Engineers;
+- uses `tNNN` ids and shows the `team_order` field;
+- states the 2.1.0 power-unit rules, without the superseded free pool or the "worn element cannot
+  be used" line.
+
+**r1**, the composed instruction the first 2.1.0 Harbor runs used (sha256 `f6697c53…`), is kept in
+`integrated_task/evaluated/`. `F1_INSTRUCTION_REVISION=r1` rebuilds that task byte for byte.
+
+r1 and r2 builds differ only in `instruction.md`. The simulator, legal actions, observations,
+reward and verifier are unchanged. Results on r1 and r2 are reported as separate conditions.
+
 ## 2.1.0 — opt-in FIA-2026-based power-unit rules (B8, 2026-11-15; branch feature/strategic-scenarios-b8)
 
 **What it is.** It is 2.0.1 plus `pu_rules.py`, enabled only through `integrated.config.with_version(cfg, "2.1.0")`.

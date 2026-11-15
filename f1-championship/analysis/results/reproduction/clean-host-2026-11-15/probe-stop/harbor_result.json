@@ -1,0 +1,124 @@
+{
+    "schema_version": 1,
+    "id": "f630deae-6319-4215-87bd-7beb2de842a6",
+    "task_name": "EugeneLJ/f1-championship-integrated-probe",
+    "trial_name": "probe-stop__Asi8nrA",
+    "trial_uri": "file:///root/judge/jobs/clean-probe-stop/probe-stop__Asi8nrA",
+    "task_id": {
+        "path": "/tmp/f1-pit-wall-2.1.0/probe-stop"
+    },
+    "source": null,
+    "task_checksum": "c2ada8c52578d87efb1cd63cecfb53b98b569f331c71191142545b363d6a2571",
+    "config": {
+        "schema_version": 1,
+        "task": {
+            "path": "/tmp/f1-pit-wall-2.1.0/probe-stop",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "probe-stop__Asi8nrA",
+        "trials_dir": "/root/judge/jobs/clean-probe-stop",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "override_error_policy": {},
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "15457865-c639-4ebe-8b08-1e46a74f37cf",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-15T05:31:52.774375Z",
+    "finished_at": "2026-11-15T05:32:38.465108Z",
+    "environment_setup": {
+        "started_at": "2026-11-15T05:31:52.794696Z",
+        "finished_at": "2026-11-15T05:32:01.019723Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-15T05:32:01.019786Z",
+        "finished_at": "2026-11-15T05:32:01.019845Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-15T05:32:01.019915Z",
+        "finished_at": "2026-11-15T05:32:01.381826Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-15T05:32:22.305443Z",
+        "finished_at": "2026-11-15T05:32:38.465093Z"
+    },
+    "step_results": null,
+    "reward_valid": true
+}

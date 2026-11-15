@@ -1,0 +1,33 @@
+{
+  "actual_model_results": false,
+  "blocker": "only 1 unique REVERSAL candidates; refusing live run",
+  "corrected_reference_classes": {
+    "NEAR_TIE": 289,
+    "NO_CHANGE_CONTROL": 141,
+    "REVERSAL": 1
+  },
+  "eligible_visible_action_pairs": 431,
+  "generator": {
+    "class_precedence": "NEAR_TIE, then separated REVERSAL, else NO_CHANGE_CONTROL",
+    "futures": 4,
+    "parent": "C6 c6_adaptive_probes.build_rows",
+    "seeds": [
+      400,
+      401,
+      402,
+      403
+    ],
+    "selection_independent_of_model_output": true,
+    "selection_version": "c7-selection-v1"
+  },
+  "live_calls_made": 0,
+  "natural_sampled_pre_action_states": 384,
+  "schema_version": 1,
+  "targeted_probe_count": 0,
+  "targeted_probes": [],
+  "unique_public_observation_pairs": {
+    "NEAR_TIE": 205,
+    "NO_CHANGE_CONTROL": 104,
+    "REVERSAL": 1
+  }
+}

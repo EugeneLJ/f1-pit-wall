@@ -1,0 +1,57 @@
+{
+  "cross_table_rows": {
+    "RAW_REVERSAL|NEAR_TIE": 68,
+    "RAW_REVERSAL|SEPARATED": 1,
+    "RAW_STABLE|NEAR_TIE": 221,
+    "RAW_STABLE|SEPARATED": 141
+  },
+  "definitions": {
+    "historical_c6_order": "raw reversal first; near tie only among raw-stable rows",
+    "near_tie": "at least one reference_gap lower bound is <= 0.5 points",
+    "raw_action_reversal": "condition_a.reference_action != condition_b.reference_action",
+    "uncertainty_separated": "both reference_gap lower bounds are > 0.5 points",
+    "validated_order": "near-tie uncertainty gate first; reversal/no-change second",
+    "validated_reversal": "raw action reversal AND uncertainty separated"
+  },
+  "eligible_rows": 431,
+  "generator": {
+    "futures": 4,
+    "near_tie_threshold_points": 0.5,
+    "sampling_row": "one state x named rival-policy variant",
+    "seeds": [
+      400,
+      401,
+      402,
+      403
+    ],
+    "unique_unit": "ordered baseline/altered public-observation hash pair"
+  },
+  "historical_c6_row_counts": {
+    "REPORTED_NEAR_TIE": 221,
+    "REPORTED_NO_CHANGE_CONTROL": 141,
+    "REPORTED_REVERSAL": 69
+  },
+  "historical_c6_unique_pair_counts": {
+    "REPORTED_NEAR_TIE": 164,
+    "REPORTED_NO_CHANGE_CONTROL": 104,
+    "REPORTED_REVERSAL": 63
+  },
+  "near_tie_precedence_effect": {
+    "raw_reversals_reclassified_as_near_tie": 68,
+    "reported_reversals_before_gate": 69,
+    "validated_reversals_after_gate": 1
+  },
+  "sampled_pre_action_states": 384,
+  "schema_version": 1,
+  "unique_public_observation_pairs_overall": 290,
+  "validated_row_counts": {
+    "NEAR_TIE": 289,
+    "NO_CHANGE_CONTROL": 141,
+    "VALIDATED_REVERSAL": 1
+  },
+  "validated_unique_pair_counts": {
+    "NEAR_TIE": 205,
+    "NO_CHANGE_CONTROL": 104,
+    "VALIDATED_REVERSAL": 1
+  }
+}

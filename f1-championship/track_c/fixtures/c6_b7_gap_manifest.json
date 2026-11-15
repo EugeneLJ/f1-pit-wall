@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "benchmark": {
+    "version": "2.0.1",
+    "config_hash": "multiple-b7-competition-configs-recorded-per-run",
+    "reward_version": "not-applicable-two-team-competition"
+  },
+  "runs": [
+    {
+      "run_id": "b7-layer1-f9b47c4",
+      "role": "COMPETITION",
+      "seed_id": "b7-live-pilot-layer1",
+      "comparison_group": "b7-layer1-competition",
+      "complete": true,
+      "model": "gemini-3.8-flash vs deepseek-4-1-flash-1017",
+      "provider": "google_genai + verda_openai_compatible",
+      "constructors_points": 304,
+      "normalized_reward": null,
+      "harness": {
+        "config_hash": "ad6e4cc33a1e27e36ec698ba9351adc462768def329c7845b226a1c37b8b5228",
+        "mode": "TWO_TEAM_COMPETITION",
+        "engineers": "CHIEF_ONLY"
+      },
+      "competition_result": {
+        "gemini_team": "McLearn Racing",
+        "gemini_points": 304,
+        "deepseek_team": "Red Bool Racing",
+        "deepseek_points": 143
+      }
+    },
+    {
+      "run_id": "b7-layer2-f9b47c4",
+      "role": "COMPETITION",
+      "seed_id": "b7-live-pilot-layer2",
+      "comparison_group": "b7-layer2-competition",
+      "complete": true,
+      "model": "gemini-3.8-flash plus Gemini Lite Engineers vs deepseek-4-1-flash-1017",
+      "provider": "google_genai + verda_openai_compatible",
+      "constructors_points": 237,
+      "normalized_reward": null,
+      "harness": {
+        "config_hash": "f3f1362d4329ab95986b2d399d5c9a6b2d38cde50443544d057f094b9a17e10f",
+        "mode": "TWO_TEAM_COMPETITION",
+        "engineers": "GEMINI_LITE_ENGINEERS"
+      },
+      "competition_result": {
+        "gemini_team": "McLearn Racing",
+        "gemini_points": 237,
+        "deepseek_team": "Red Bool Racing",
+        "deepseek_points": 175
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "registration_status": "FROZEN_BEFORE_GENERATION",
+  "registered_after_commit": "f3b257748180a1f88f43b8111e48fb28e8a94bef",
+  "purpose": "bounded adaptive-rival revalidation after C6/C7 count reconciliation",
+  "generator": {
+    "implementation": "analysis.c6_adaptive_probes.build_rows",
+    "seeds": [404, 405, 406, 407, 408, 409, 410, 411, 412, 413],
+    "common_futures_per_condition": 4,
+    "near_tie_threshold_points": 0.5,
+    "engine_or_reward_changes": false,
+    "public_observation_contract_changes": false,
+    "classifier_changes": false
+  },
+  "classification_order": [
+    "NEAR_TIE when either reference_gap lower bound is <= 0.5",
+    "VALIDATED_REVERSAL when separated and point-estimate actions differ",
+    "NO_CHANGE_CONTROL when separated and point-estimate actions match"
+  ],
+  "sampling_units": {
+    "reported_natural_frequency": "state x named rival-policy variant row",
+    "live_candidate": "unique ordered baseline/altered public-observation hash pair"
+  },
+  "go_no_go": {
+    "go": "at least 3 unique VALIDATED_REVERSAL public-observation pairs in these ten seeds",
+    "no_go": "fewer than 3; stop adaptive-rival live pilot and do not add more seeds"
+  },
+  "conditional_live_pilot": {
+    "only_if_go": true,
+    "selection_independent_of_model_output": true,
+    "pairs": {
+      "VALIDATED_REVERSAL": 3,
+      "NO_CHANGE_CONTROL": 3,
+      "NEAR_TIE": 2
+    },
+    "maximum_model_calls": 16,
+    "smoke_calls_included_in_maximum": true,
+    "model_prompt_sampling_must_match_within_all_conditions": true
+  },
+  "prohibited": [
+    "expanding beyond the ten registered seeds",
+    "lowering the uncertainty threshold after observing results",
+    "selecting probes based on Gemini behavior",
+    "supplying hidden rival policy identity to the Chief"
+  ]
+}

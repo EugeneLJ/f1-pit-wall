@@ -130,6 +130,17 @@ The reward is written to `/logs/verifier/reward.txt` (one number in [0, 1]); the
 `/logs/verifier/report.json`. A "play every decision but do nothing" policy (USE, STAY) is the reward's
 zero point `D`, so it also scores 0.
 
+## C6/C7 evidence analysis (analysis-only; not part of the official Frontier–Reference gap)
+
+The adaptive-rival probes, the verified B7 case audit, and the strict
+Frontier–Reference gap exporter are documented in
+[`docs/C6_EVIDENCE_PIPELINE.md`](docs/C6_EVIDENCE_PIPELINE.md). The C7 reconciliation and the
+preregistered expansion are in [`docs/C7_C6_COUNT_RECONCILIATION.md`](docs/C7_C6_COUNT_RECONCILIATION.md),
+[`docs/C7_ADAPTIVE_EXPANSION_REPORT.md`](docs/C7_ADAPTIVE_EXPANSION_REPORT.md) and
+[`docs/C7_LIVE_PAIRED_PROBE_REPORT.md`](docs/C7_LIVE_PAIRED_PROBE_REPORT.md). They do not change the engine,
+Harbor task, scoring or verifier. They work on the benchmark 2.0.1 two-team B7 artifacts, which run
+outside Harbor, so they are kept separate from the 1.1.0/2.1.0 Harbor gap.
+
 Edit the engine only in `src/f1pitwall/`, then run `scripts/sync_engine.py`
 (the sim image, the verifier image and the reference solution each need a copy; `devtests` fails on drift).
 All track and component coefficients are synthetic placeholders.

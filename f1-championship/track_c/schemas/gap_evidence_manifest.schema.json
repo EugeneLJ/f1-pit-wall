@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://f1-pit-wall.local/schemas/gap-evidence-manifest-v1.json",
+  "title": "C6 Gap Evidence input manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "benchmark", "runs"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "benchmark": {
+      "type": "object",
+      "required": ["version", "config_hash", "reward_version"],
+      "properties": {
+        "version": {"type": "string"},
+        "config_hash": {"type": "string"},
+        "reward_version": {"type": "string"}
+      }
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["run_id", "role", "seed_id", "comparison_group", "complete"],
+        "properties": {
+          "run_id": {"type": "string"},
+          "role": {"enum": ["FRONTIER", "REFERENCE", "COMPETITION"]},
+          "seed_id": {"type": "string"},
+          "comparison_group": {"type": "string"},
+          "complete": {"type": "boolean"},
+          "model": {"type": ["string", "null"]},
+          "provider": {"type": ["string", "null"]},
+          "harness": {"type": ["object", "null"]},
+          "policy_provenance": {"type": ["object", "null"]},
+          "constructors_points": {"type": ["number", "null"]},
+          "normalized_reward": {"type": ["number", "null"]},
+          "selected_decision_failures": {"type": "array", "items": {"type": "object"}}
+        }
+      }
+    }
+  }
+}

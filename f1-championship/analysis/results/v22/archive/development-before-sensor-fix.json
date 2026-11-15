@@ -1,0 +1,790 @@
+{
+  "actual_model_results": false,
+  "aggregate": {
+    "interpretation": "bounded counts only; no model failure, matched reference gap, or natural-model-difficulty claim",
+    "m2_public_value_classes": {
+      "NEAR_TIE": 4,
+      "UNCERTAIN": 1
+    },
+    "m7_pit_actions": 3,
+    "m7_public_value_classes": {
+      "NEAR_TIE": 1,
+      "SEPARATED": 39
+    },
+    "m7_segments_evaluated": 40,
+    "replay_failures": []
+  },
+  "api_calls": 0,
+  "fixture_sha256": {
+    "m2": "3f2bb4f6df1eddbce3fa611f879988a783062f371a866c32dfcd10bd120cc4a3",
+    "m7": "af671dfa920d41064aa5336947ab8f1d90b779b85c316097a615565dabea7706"
+  },
+  "main_generation_seconds": 0.050225,
+  "official_frontier_reference_gap": null,
+  "preregistered_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "rows": [
+    {
+      "m2": {
+        "decision": {
+          "chosen_action": "STAY",
+          "classification": "NEAR_TIE",
+          "estimated_difference": 0.07724099308316035,
+          "information_access": "public-history posterior and owner-declared equal-public-information values only",
+          "near_tie_threshold": 0.5,
+          "paired_standard_error": 0.28284271247461906,
+          "partial_observability": "posterior mixture over all hidden types; not a lookup into the live assignment",
+          "runner_up_action": "PIT_HARD",
+          "values": [
+            {
+              "action": "STAY",
+              "mean": 6.0,
+              "predictive_sd": 0.19999999999999787,
+              "standard_error": 0.2
+            },
+            {
+              "action": "PIT_HARD",
+              "mean": 5.92275900691684,
+              "predictive_sd": 0.20504678157932707,
+              "standard_error": 0.2
+            }
+          ]
+        },
+        "duplicate_replay_equal": true,
+        "public_event": {
+          "attack_legal": true,
+          "car": "Rival 1",
+          "defence_applicable": false,
+          "event_id": "bounded-m2:Rival 1:2",
+          "gap_ahead": null,
+          "lap_index": 2,
+          "lap_residual": 0.134105880625,
+          "m3_active": true,
+          "observed_reaction": "INHERIT_BASELINE"
+        },
+        "public_posterior": {
+          "CONSERVATIVE": 0.7750122430152432,
+          "DEFENDER": 0.2247275257663931,
+          "OPPORTUNIST": 0.00026023121836372417
+        },
+        "source": "SEED_GENERATED_PUBLIC_EVENT_PLUS_DECLARED_SYNTHETIC_ACTION_VALUES",
+        "value_model_provenance": "synthetic counterfactual only, not an official engine outcome or fitted policy model"
+      },
+      "m7": {
+        "actions": [
+          "PIT_WET",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY"
+        ],
+        "choices": [
+          {
+            "boundary": 0,
+            "chosen_action": "PIT_WET",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 2.640830850153934,
+            "observed_weather": "WET"
+          },
+          {
+            "boundary": 1,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 16.849596964237936,
+            "observed_weather": "WET"
+          },
+          {
+            "boundary": 2,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 14.45403259094737,
+            "observed_weather": "DAMP"
+          },
+          {
+            "boundary": 3,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 13.105322262875996,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 4,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 9.793418547310658,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 5,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 8.492919305118695,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 6,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 6.7006297751823105,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 7,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 4.225000000000001,
+            "observed_weather": "DRY"
+          }
+        ],
+        "replay_equal": true,
+        "result": {
+          "classification": [
+            {
+              "car": "Apex A",
+              "compounds_raced": [
+                "WET"
+              ],
+              "elapsed": 2213.3829960223998,
+              "finish_penalty_sec": 0.0,
+              "official_micro_race_elapsed": 2213.3829960223998,
+              "status": "FINISHED",
+              "wet_exempt": true
+            },
+            {
+              "car": "Rival 1",
+              "compounds_raced": [
+                "MEDIUM",
+                "SOFT"
+              ],
+              "elapsed": 2217.23548672,
+              "finish_penalty_sec": 0.0,
+              "official_micro_race_elapsed": 2217.23548672,
+              "status": "FINISHED",
+              "wet_exempt": false
+            }
+          ],
+          "observations replayable": true,
+          "sanction_note": "preserves existing +20 s normal-finish rule; no suspended/red-flag result modelled"
+        },
+        "source": "naturally seeded public Markov trace, never retried for preferred outcome"
+      },
+      "seed": 101,
+      "seed_generation_seconds": 0.010452
+    },
+    {
+      "m2": {
+        "decision": {
+          "chosen_action": "PIT_HARD",
+          "classification": "UNCERTAIN",
+          "estimated_difference": 0.9509739003726088,
+          "information_access": "public-history posterior and owner-declared equal-public-information values only",
+          "near_tie_threshold": 0.5,
+          "paired_standard_error": 0.28284271247461906,
+          "partial_observability": "posterior mixture over all hidden types; not a lookup into the live assignment",
+          "runner_up_action": "STAY",
+          "values": [
+            {
+              "action": "PIT_HARD",
+              "mean": 6.950973900372609,
+              "predictive_sd": 0.29632924368370817,
+              "standard_error": 0.2
+            },
+            {
+              "action": "STAY",
+              "mean": 6.0,
+              "predictive_sd": 0.19999999999999787,
+              "standard_error": 0.2
+            }
+          ]
+        },
+        "duplicate_replay_equal": true,
+        "public_event": {
+          "attack_legal": true,
+          "car": "Rival 1",
+          "defence_applicable": false,
+          "event_id": "bounded-m2:Rival 1:0",
+          "gap_ahead": null,
+          "lap_index": 0,
+          "lap_residual": -0.088443436304,
+          "m3_active": true,
+          "observed_reaction": "ATTACK"
+        },
+        "public_posterior": {
+          "CONSERVATIVE": 0.010804358904064596,
+          "DEFENDER": 0.037141304832920524,
+          "OPPORTUNIST": 0.9520543362630149
+        },
+        "source": "SEED_GENERATED_PUBLIC_EVENT_PLUS_DECLARED_SYNTHETIC_ACTION_VALUES",
+        "value_model_provenance": "synthetic counterfactual only, not an official engine outcome or fitted policy model"
+      },
+      "m7": {
+        "actions": [
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "PIT_WET",
+          "STAY"
+        ],
+        "choices": [
+          {
+            "boundary": 0,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 16.3,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 1,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 14.76506426719967,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 2,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 13.320700542730787,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 3,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 11.869225350689176,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 4,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 10.690425842387313,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 5,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 7.4770510468809235,
+            "observed_weather": "DAMP"
+          },
+          {
+            "boundary": 6,
+            "chosen_action": "PIT_WET",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 0.5561055856041275,
+            "observed_weather": "WET"
+          },
+          {
+            "boundary": 7,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 15.402000000000001,
+            "observed_weather": "DAMP"
+          }
+        ],
+        "replay_equal": true,
+        "result": {
+          "classification": [
+            {
+              "car": "Apex A",
+              "compounds_raced": [
+                "SOFT",
+                "WET"
+              ],
+              "elapsed": 2196.75302,
+              "finish_penalty_sec": 0.0,
+              "official_micro_race_elapsed": 2196.75302,
+              "status": "FINISHED",
+              "wet_exempt": true
+            },
+            {
+              "car": "Rival 1",
+              "compounds_raced": [
+                "MEDIUM",
+                "SOFT"
+              ],
+              "elapsed": 2205.04608,
+              "finish_penalty_sec": 0.0,
+              "official_micro_race_elapsed": 2205.04608,
+              "status": "FINISHED",
+              "wet_exempt": false
+            }
+          ],
+          "observations replayable": true,
+          "sanction_note": "preserves existing +20 s normal-finish rule; no suspended/red-flag result modelled"
+        },
+        "source": "naturally seeded public Markov trace, never retried for preferred outcome"
+      },
+      "seed": 102,
+      "seed_generation_seconds": 0.009441
+    },
+    {
+      "m2": {
+        "decision": {
+          "chosen_action": "PIT_HARD",
+          "classification": "NEAR_TIE",
+          "estimated_difference": 0.4543176884149718,
+          "information_access": "public-history posterior and owner-declared equal-public-information values only",
+          "near_tie_threshold": 0.5,
+          "paired_standard_error": 0.28284271247461906,
+          "partial_observability": "posterior mixture over all hidden types; not a lookup into the live assignment",
+          "runner_up_action": "STAY",
+          "values": [
+            {
+              "action": "PIT_HARD",
+              "mean": 6.454317688414972,
+              "predictive_sd": 0.5633352634195161,
+              "standard_error": 0.2
+            },
+            {
+              "action": "STAY",
+              "mean": 6.0,
+              "predictive_sd": 0.19999999999999787,
+              "standard_error": 0.2
+            }
+          ]
+        },
+        "duplicate_replay_equal": true,
+        "public_event": {
+          "attack_legal": true,
+          "car": "Rival 1",
+          "defence_applicable": false,
+          "event_id": "bounded-m2:Rival 1:1",
+          "gap_ahead": null,
+          "lap_index": 1,
+          "lap_residual": 0.028318260624,
+          "m3_active": true,
+          "observed_reaction": "ATTACK"
+        },
+        "public_posterior": {
+          "CONSERVATIVE": 0.26757720548807007,
+          "DEFENDER": 0.25134738554815117,
+          "OPPORTUNIST": 0.48107540896377876
+        },
+        "source": "SEED_GENERATED_PUBLIC_EVENT_PLUS_DECLARED_SYNTHETIC_ACTION_VALUES",
+        "value_model_provenance": "synthetic counterfactual only, not an official engine outcome or fitted policy model"
+      },
+      "m7": {
+        "actions": [
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY"
+        ],
+        "choices": [
+          {
+            "boundary": 0,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 6.523654176129774,
+            "observed_weather": "DAMP"
+          },
+          {
+            "boundary": 1,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 2.5533047903197748,
+            "observed_weather": "DAMP"
+          },
+          {
+            "boundary": 2,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 13.653711888852435,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 3,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 11.648202756131205,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 4,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 10.058304377059022,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 5,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 8.874752818170045,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 6,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 6.918642681664373,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 7,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 5.275000000000002,
+            "observed_weather": "DRY"
+          }
+        ],
+        "replay_equal": true,
+        "result": {
+          "classification": [
+            {
+              "car": "Rival 1",
+              "compounds_raced": [
+                "MEDIUM",
+                "SOFT"
+              ],
+              "elapsed": 2200.6012014399994,
+              "finish_penalty_sec": 0.0,
+              "official_micro_race_elapsed": 2200.6012014399994,
+              "status": "FINISHED",
+              "wet_exempt": false
+            },
+            {
+              "car": "Apex A",
+              "compounds_raced": [
+                "SOFT"
+              ],
+              "elapsed": 2207.647966176,
+              "finish_penalty_sec": 20.0,
+              "official_micro_race_elapsed": 2227.647966176,
+              "status": "FINISHED",
+              "wet_exempt": false
+            }
+          ],
+          "observations replayable": true,
+          "sanction_note": "preserves existing +20 s normal-finish rule; no suspended/red-flag result modelled"
+        },
+        "source": "naturally seeded public Markov trace, never retried for preferred outcome"
+      },
+      "seed": 103,
+      "seed_generation_seconds": 0.009772
+    },
+    {
+      "m2": {
+        "decision": {
+          "chosen_action": "STAY",
+          "classification": "NEAR_TIE",
+          "estimated_difference": 0.050345865042247695,
+          "information_access": "public-history posterior and owner-declared equal-public-information values only",
+          "near_tie_threshold": 0.5,
+          "paired_standard_error": 0.28284271247461906,
+          "partial_observability": "posterior mixture over all hidden types; not a lookup into the live assignment",
+          "runner_up_action": "PIT_HARD",
+          "values": [
+            {
+              "action": "STAY",
+              "mean": 6.0,
+              "predictive_sd": 0.20000000000001564,
+              "standard_error": 0.2
+            },
+            {
+              "action": "PIT_HARD",
+              "mean": 5.949654134957752,
+              "predictive_sd": 0.2171191539766888,
+              "standard_error": 0.2
+            }
+          ]
+        },
+        "duplicate_replay_equal": true,
+        "public_event": {
+          "attack_legal": true,
+          "car": "Rival 1",
+          "defence_applicable": false,
+          "event_id": "bounded-m2:Rival 1:2",
+          "gap_ahead": null,
+          "lap_index": 2,
+          "lap_residual": 0.040005605942,
+          "m3_active": true,
+          "observed_reaction": "INHERIT_BASELINE"
+        },
+        "public_posterior": {
+          "CONSERVATIVE": 0.5456481653878392,
+          "DEFENDER": 0.45013288311562555,
+          "OPPORTUNIST": 0.004218951496535279
+        },
+        "source": "SEED_GENERATED_PUBLIC_EVENT_PLUS_DECLARED_SYNTHETIC_ACTION_VALUES",
+        "value_model_provenance": "synthetic counterfactual only, not an official engine outcome or fitted policy model"
+      },
+      "m7": {
+        "actions": [
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY"
+        ],
+        "choices": [
+          {
+            "boundary": 0,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 16.3,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 1,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 14.725631468661854,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 2,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 13.424025809747468,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 3,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 11.90992462806323,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 4,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 10.547319026707145,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 5,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 8.555021713675925,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 6,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 7.42108696219297,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 7,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 5.275000000000002,
+            "observed_weather": "DRY"
+          }
+        ],
+        "replay_equal": true,
+        "result": {
+          "classification": [
+            {
+              "car": "Rival 1",
+              "compounds_raced": [
+                "MEDIUM",
+                "SOFT"
+              ],
+              "elapsed": 2189.875,
+              "finish_penalty_sec": 0.0,
+              "official_micro_race_elapsed": 2189.875,
+              "status": "FINISHED",
+              "wet_exempt": false
+            },
+            {
+              "car": "Apex A",
+              "compounds_raced": [
+                "SOFT"
+              ],
+              "elapsed": 2195.1,
+              "finish_penalty_sec": 20.0,
+              "official_micro_race_elapsed": 2215.1,
+              "status": "FINISHED",
+              "wet_exempt": false
+            }
+          ],
+          "observations replayable": true,
+          "sanction_note": "preserves existing +20 s normal-finish rule; no suspended/red-flag result modelled"
+        },
+        "source": "naturally seeded public Markov trace, never retried for preferred outcome"
+      },
+      "seed": 104,
+      "seed_generation_seconds": 0.009349
+    },
+    {
+      "m2": {
+        "decision": {
+          "chosen_action": "STAY",
+          "classification": "NEAR_TIE",
+          "estimated_difference": 0.07376042022253504,
+          "information_access": "public-history posterior and owner-declared equal-public-information values only",
+          "near_tie_threshold": 0.5,
+          "paired_standard_error": 0.28284271247461906,
+          "partial_observability": "posterior mixture over all hidden types; not a lookup into the live assignment",
+          "runner_up_action": "PIT_HARD",
+          "values": [
+            {
+              "action": "STAY",
+              "mean": 6.0,
+              "predictive_sd": 0.19999999999999787,
+              "standard_error": 0.2
+            },
+            {
+              "action": "PIT_HARD",
+              "mean": 5.926239579777465,
+              "predictive_sd": 0.20592818795883466,
+              "standard_error": 0.2
+            }
+          ]
+        },
+        "duplicate_replay_equal": true,
+        "public_event": {
+          "attack_legal": true,
+          "car": "Rival 1",
+          "defence_applicable": false,
+          "event_id": "bounded-m2:Rival 1:0",
+          "gap_ahead": null,
+          "lap_index": 0,
+          "lap_residual": 0.117857572536,
+          "m3_active": true,
+          "observed_reaction": "INHERIT_BASELINE"
+        },
+        "public_posterior": {
+          "CONSERVATIVE": 0.7418858037268056,
+          "DEFENDER": 0.2576860361230489,
+          "OPPORTUNIST": 0.0004281601501455026
+        },
+        "source": "SEED_GENERATED_PUBLIC_EVENT_PLUS_DECLARED_SYNTHETIC_ACTION_VALUES",
+        "value_model_provenance": "synthetic counterfactual only, not an official engine outcome or fitted policy model"
+      },
+      "m7": {
+        "actions": [
+          "PIT_WET",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY",
+          "STAY"
+        ],
+        "choices": [
+          {
+            "boundary": 0,
+            "chosen_action": "PIT_WET",
+            "classification": "NEAR_TIE",
+            "estimated_margin_sec": 0.44007548925792506,
+            "observed_weather": "WET"
+          },
+          {
+            "boundary": 1,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 15.009607438185274,
+            "observed_weather": "DAMP"
+          },
+          {
+            "boundary": 2,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 14.236032975163184,
+            "observed_weather": "DRY"
+          },
+          {
+            "boundary": 3,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 16.202470309349685,
+            "observed_weather": "WET"
+          },
+          {
+            "boundary": 4,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 15.52768634885592,
+            "observed_weather": "WET"
+          },
+          {
+            "boundary": 5,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 15.497401671005253,
+            "observed_weather": "WET"
+          },
+          {
+            "boundary": 6,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 12.81762901051056,
+            "observed_weather": "DAMP"
+          },
+          {
+            "boundary": 7,
+            "chosen_action": "STAY",
+            "classification": "SEPARATED",
+            "estimated_margin_sec": 14.2075,
+            "observed_weather": "WET"
+          }
+        ],
+        "replay_equal": true,
+        "result": {
+          "classification": [
+            {
+              "car": "Apex A",
+              "compounds_raced": [
+                "WET"
+              ],
+              "elapsed": 2183.4287898656003,
+              "finish_penalty_sec": 0.0,
+              "official_micro_race_elapsed": 2183.4287898656003,
+              "status": "FINISHED",
+              "wet_exempt": true
+            },
+            {
+              "car": "Rival 1",
+              "compounds_raced": [
+                "MEDIUM"
+              ],
+              "elapsed": 1953.3695532479999,
+              "finish_penalty_sec": 20.0,
+              "official_micro_race_elapsed": 1973.3695532479999,
+              "status": "RETIRED",
+              "wet_exempt": false
+            }
+          ],
+          "observations replayable": true,
+          "sanction_note": "preserves existing +20 s normal-finish rule; no suspended/red-flag result modelled"
+        },
+        "source": "naturally seeded public Markov trace, never retried for preferred outcome"
+      },
+      "seed": 105,
+      "seed_generation_seconds": 0.010991
+    }
+  ],
+  "rows_sha256": "4e87128c3e29c4a6f554e82f5dce2223f7f2d77006f36c38cdc0106096a10584",
+  "schema_version": 1,
+  "seed_budget": "two smoke rows or five development rows; no additional seed searches",
+  "synthetic_vs_natural": {
+    "natural": "seeded Markov weather rival behavior and M2 draw classes only",
+    "synthetic": "declared decision-value objects and micro-race, not official engine results"
+  }
+}

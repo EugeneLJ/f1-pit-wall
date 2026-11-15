@@ -55,7 +55,8 @@ def verify_model(api_key):
         from google import genai
     except ImportError as exc:
         raise RuntimeError("google-genai SDK is unavailable") from exc
-    names = [model.name for model in genai.Client(api_key=api_key).models.list()]
+    client = genai.Client(api_key=api_key)  # keep a reference: a temporary client closes mid-listing
+    names = [model.name for model in client.models.list()]
     requested = f"models/{MODEL}"
     return {"requested_model": MODEL, "listed": requested in names, "listed_model_count": len(names)}
 

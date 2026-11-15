@@ -1,0 +1,239 @@
+{
+  "calls": 16,
+  "classifications": {
+    "FAILURE_TO_ADAPT": 3,
+    "INCONCLUSIVE": 1,
+    "NEAR_TIE": 2,
+    "NO_ADAPTATION_NEEDED": 2
+  },
+  "completed_pairs": 8,
+  "estimated_cost_usd": 0.107259,
+  "experiment": "C7_LIVE_PAIRED_DIAGNOSTIC",
+  "latency_ms": {
+    "mean": 14096.915,
+    "p95": 30596.406
+  },
+  "missing_pairs": [],
+  "official_frontier_reference_gap": false,
+  "pair_results": [
+    {
+      "classification": "FAILURE_TO_ADAPT",
+      "conditions": {
+        "a": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 1.92088,
+          "observation_hash": "d350d7685673d5af50b68738f055f83b108d178e2836ddb1f830e3e08c6ad347",
+          "record_status": "VALID_ACTION",
+          "reference_action": "PIT_HARD/STAY"
+        },
+        "b": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "56991e6138417706df06d843dcf00282172e65d8d30cc8e04482ef6b95eee663",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        }
+      },
+      "pair_id": "s409-r2-d4-undercut",
+      "probe_class": "INSUFFICIENT_EVIDENCE",
+      "reason": "reference reverses but Chief action does not",
+      "reference_reversal": true,
+      "regret_source": "C6 authoritative public-input rollout q_all point estimates",
+      "regret_uncertainty": "reference preference CI retained in frozen pair; chosen-action regret has no CI"
+    },
+    {
+      "classification": "FAILURE_TO_ADAPT",
+      "conditions": {
+        "a": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "0065d27b14a5e20861c7edd8d1ae310af572093fc6b5fd47d80968b0f92907d8",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        },
+        "b": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 1.48298,
+          "observation_hash": "42508d070597ee401b89a0e041649d4794f65d41085aca51b45b76127a274a36",
+          "record_status": "VALID_ACTION",
+          "reference_action": "PIT_MEDIUM/STAY"
+        }
+      },
+      "pair_id": "s409-r0-d9-long_stint",
+      "probe_class": "INSUFFICIENT_EVIDENCE",
+      "reason": "reference reverses but Chief action does not",
+      "reference_reversal": true,
+      "regret_source": "C6 authoritative public-input rollout q_all point estimates",
+      "regret_uncertainty": "reference preference CI retained in frozen pair; chosen-action regret has no CI"
+    },
+    {
+      "classification": "FAILURE_TO_ADAPT",
+      "conditions": {
+        "a": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 3.90035,
+          "observation_hash": "3fb981174ff07dcedd2c910a678caad862e4d114e6f6e0333be7782a75e86251",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/PIT_HARD"
+        },
+        "b": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "3d1c0ff87cf7ec6b36c303f14446667b0a21aedfa951f58e70363f41bea8ffd9",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        }
+      },
+      "pair_id": "s407-r2-d8-event_aware",
+      "probe_class": "INSUFFICIENT_EVIDENCE",
+      "reason": "reference reverses but Chief action does not",
+      "reference_reversal": true,
+      "regret_source": "C6 authoritative public-input rollout q_all point estimates",
+      "regret_uncertainty": "reference preference CI retained in frozen pair; chosen-action regret has no CI"
+    },
+    {
+      "classification": "INCONCLUSIVE",
+      "conditions": {
+        "a": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 4.11655,
+          "observation_hash": "b3c30d2865f8f1449823961ca8f814b4959fd1ab81e37bed7b5029bc4b01b765",
+          "record_status": "VALID_ACTION",
+          "reference_action": "PIT_HARD/STAY"
+        },
+        "b": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 3.39905,
+          "observation_hash": "71729f54f3a1ad8820909dfe4941b14ff0dfacc2af6d7746c84f5db037eadc4e",
+          "record_status": "VALID_ACTION",
+          "reference_action": "PIT_HARD/STAY"
+        }
+      },
+      "pair_id": "s404-r4-d8-event_aware",
+      "probe_class": "INSUFFICIENT_EVIDENCE",
+      "reason": "stable reference but paired regret evidence is incomplete",
+      "reference_reversal": false,
+      "regret_source": "C6 authoritative public-input rollout q_all point estimates",
+      "regret_uncertainty": "reference preference CI retained in frozen pair; chosen-action regret has no CI"
+    },
+    {
+      "classification": "NO_ADAPTATION_NEEDED",
+      "conditions": {
+        "a": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "33739aeb86a72dd815b5ad7a5bffe01bea3b1ce29588bcdbe6f381ecee28b73b",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        },
+        "b": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "d38f38ee5c51c781710c3e1f2e5a65e21cc3cb53a717c90316afb5ddd7143ecb",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        }
+      },
+      "pair_id": "s410-r3-d12-undercut",
+      "probe_class": "INSUFFICIENT_EVIDENCE",
+      "reason": "reference and Chief action are stable",
+      "reference_reversal": false,
+      "regret_source": "C6 authoritative public-input rollout q_all point estimates",
+      "regret_uncertainty": "reference preference CI retained in frozen pair; chosen-action regret has no CI"
+    },
+    {
+      "classification": "NO_ADAPTATION_NEEDED",
+      "conditions": {
+        "a": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "3dde15bd195787ad253f9f9c5cbfbbd256aee2a99e814b8d4c3f5dc5ec6ed349",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        },
+        "b": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "311e24238f3a64f5594167ab0b36d161109267df74a7f89ece08dbffcdfe155f",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        }
+      },
+      "pair_id": "s406-r6-d6-long_stint",
+      "probe_class": "INSUFFICIENT_EVIDENCE",
+      "reason": "reference and Chief action are stable",
+      "reference_reversal": false,
+      "regret_source": "C6 authoritative public-input rollout q_all point estimates",
+      "regret_uncertainty": "reference preference CI retained in frozen pair; chosen-action regret has no CI"
+    },
+    {
+      "classification": "NEAR_TIE",
+      "conditions": {
+        "a": {
+          "chosen_action": "PIT_HARD/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "77186e34b914daaebde8f2176153b78118804244b7ac5abfedfc2c2e5c50aff6",
+          "record_status": "VALID_ACTION",
+          "reference_action": "PIT_HARD/STAY"
+        },
+        "b": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 2.39583,
+          "observation_hash": "0a889412c373cafd3f471e5f48c72e16a1a6c7ef1b4eb117243234f62c04880f",
+          "record_status": "VALID_ACTION",
+          "reference_action": "PIT_HARD/STAY"
+        }
+      },
+      "pair_id": "s413-r4-d8-long_stint",
+      "probe_class": "NEAR_TIE",
+      "reason": "reference preference is not separated",
+      "reference_reversal": false,
+      "regret_source": "C6 authoritative public-input rollout q_all point estimates",
+      "regret_uncertainty": "reference preference CI retained in frozen pair; chosen-action regret has no CI"
+    },
+    {
+      "classification": "NEAR_TIE",
+      "conditions": {
+        "a": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "2328cdab13de1072794ec0cd3cb5c0bdca0f32492678623876907ca677ff04a2",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        },
+        "b": {
+          "chosen_action": "STAY/STAY",
+          "expected_team_points_regret": 0.0,
+          "observation_hash": "be419213d4a235429df4422c9ea366f18714ec592cb57424d1c9436550d33eaf",
+          "record_status": "VALID_ACTION",
+          "reference_action": "STAY/STAY"
+        }
+      },
+      "pair_id": "s408-r3-d7-conservative_2stop",
+      "probe_class": "NEAR_TIE",
+      "reason": "reference preference is not separated",
+      "reference_reversal": false,
+      "regret_source": "C6 authoritative public-input rollout q_all point estimates",
+      "regret_uncertainty": "reference preference CI retained in frozen pair; chosen-action regret has no CI"
+    }
+  ],
+  "requested_model": "gemini-3.8-flash",
+  "returned_models": {
+    "gemini-3.8-flash": 16
+  },
+  "sampling": {
+    "max_output_tokens": 8192,
+    "temperature": 0.0
+  },
+  "schema_version": 1,
+  "selection_criteria": "all 8 preregistered expansion candidates, in frozen file order; no model output used",
+  "selection_version": "c7-expansion-selection-v1",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 29062,
+    "output_tokens": 895,
+    "thinking_tokens": 21895,
+    "total_tokens": 51852
+  },
+  "valid_actions": 16
+}

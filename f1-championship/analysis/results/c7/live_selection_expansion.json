@@ -1,0 +1,75 @@
+{
+  "counts": {
+    "NEAR_TIE": 2,
+    "NO_CHANGE_CONTROL": 3,
+    "REVERSAL": 3
+  },
+  "criteria": "all 8 preregistered expansion candidates, in frozen file order; no model output used",
+  "maximum_model_calls": 16,
+  "pairs": [
+    {
+      "altered_observation_hash": "56991e6138417706df06d843dcf00282172e65d8d30cc8e04482ef6b95eee663",
+      "baseline_observation_hash": "d350d7685673d5af50b68738f055f83b108d178e2836ddb1f830e3e08c6ad347",
+      "pair_id": "s409-r2-d4-undercut",
+      "probe_category": "SC_VSC_OPPORTUNISTIC_RIVAL_ACTION",
+      "reference_class": "REVERSAL"
+    },
+    {
+      "altered_observation_hash": "42508d070597ee401b89a0e041649d4794f65d41085aca51b45b76127a274a36",
+      "baseline_observation_hash": "0065d27b14a5e20861c7edd8d1ae310af572093fc6b5fd47d80968b0f92907d8",
+      "pair_id": "s409-r0-d9-long_stint",
+      "probe_category": "SC_VSC_OPPORTUNISTIC_RIVAL_ACTION",
+      "reference_class": "REVERSAL"
+    },
+    {
+      "altered_observation_hash": "3d1c0ff87cf7ec6b36c303f14446667b0a21aedfa951f58e70363f41bea8ffd9",
+      "baseline_observation_hash": "3fb981174ff07dcedd2c910a678caad862e4d114e6f6e0333be7782a75e86251",
+      "pair_id": "s407-r2-d8-event_aware",
+      "probe_category": "SC_VSC_OPPORTUNISTIC_RIVAL_ACTION",
+      "reference_class": "REVERSAL"
+    },
+    {
+      "altered_observation_hash": "71729f54f3a1ad8820909dfe4941b14ff0dfacc2af6d7746c84f5db037eadc4e",
+      "baseline_observation_hash": "b3c30d2865f8f1449823961ca8f814b4959fd1ab81e37bed7b5029bc4b01b765",
+      "pair_id": "s404-r4-d8-event_aware",
+      "probe_category": "LATER_OR_FEWER_RIVAL_PIT",
+      "reference_class": "NO_CHANGE_CONTROL"
+    },
+    {
+      "altered_observation_hash": "d38f38ee5c51c781710c3e1f2e5a65e21cc3cb53a717c90316afb5ddd7143ecb",
+      "baseline_observation_hash": "33739aeb86a72dd815b5ad7a5bffe01bea3b1ce29588bcdbe6f381ecee28b73b",
+      "pair_id": "s410-r3-d12-undercut",
+      "probe_category": "SC_VSC_OPPORTUNISTIC_RIVAL_ACTION",
+      "reference_class": "NO_CHANGE_CONTROL"
+    },
+    {
+      "altered_observation_hash": "311e24238f3a64f5594167ab0b36d161109267df74a7f89ece08dbffcdfe155f",
+      "baseline_observation_hash": "3dde15bd195787ad253f9f9c5cbfbbd256aee2a99e814b8d4c3f5dc5ec6ed349",
+      "pair_id": "s406-r6-d6-long_stint",
+      "probe_category": "LATER_OR_FEWER_RIVAL_PIT",
+      "reference_class": "NO_CHANGE_CONTROL"
+    },
+    {
+      "altered_observation_hash": "0a889412c373cafd3f471e5f48c72e16a1a6c7ef1b4eb117243234f62c04880f",
+      "baseline_observation_hash": "77186e34b914daaebde8f2176153b78118804244b7ac5abfedfc2c2e5c50aff6",
+      "pair_id": "s413-r4-d8-long_stint",
+      "probe_category": "LATER_OR_FEWER_RIVAL_PIT",
+      "reference_class": "NEAR_TIE"
+    },
+    {
+      "altered_observation_hash": "be419213d4a235429df4422c9ea366f18714ec592cb57424d1c9436550d33eaf",
+      "baseline_observation_hash": "2328cdab13de1072794ec0cd3cb5c0bdca0f32492678623876907ca677ff04a2",
+      "pair_id": "s408-r3-d7-conservative_2stop",
+      "probe_category": "EARLIER_OR_EXTRA_RIVAL_PIT",
+      "reference_class": "NEAR_TIE"
+    }
+  ],
+  "preregistered_counts": {
+    "NEAR_TIE": 2,
+    "NO_CHANGE_CONTROL": 3,
+    "VALIDATED_REVERSAL": 3
+  },
+  "schema_version": 1,
+  "selection_version": "c7-expansion-selection-v1",
+  "source_sha256": "061794dd39dafbcb96169479625aaffc6bd012f4bda2f81058ed786fd1906f31"
+}

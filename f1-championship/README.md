@@ -137,7 +137,9 @@ Frontier–Reference gap exporter are documented in
 [`docs/C6_EVIDENCE_PIPELINE.md`](docs/C6_EVIDENCE_PIPELINE.md). The C7 reconciliation and the
 preregistered expansion are in [`docs/C7_C6_COUNT_RECONCILIATION.md`](docs/C7_C6_COUNT_RECONCILIATION.md),
 [`docs/C7_ADAPTIVE_EXPANSION_REPORT.md`](docs/C7_ADAPTIVE_EXPANSION_REPORT.md) and
-[`docs/C7_LIVE_PAIRED_PROBE_REPORT.md`](docs/C7_LIVE_PAIRED_PROBE_REPORT.md). They do not change the engine,
+[`docs/C7_LIVE_PAIRED_PROBE_REPORT.md`](docs/C7_LIVE_PAIRED_PROBE_REPORT.md). The 16-call live Gemini result is in
+[`docs/C7_LIVE_EXPANSION_RESULTS.md`](docs/C7_LIVE_EXPANSION_RESULTS.md): 3 of 3 reversals were not followed, but Gemini stayed out in 15 of 16 calls, so this is not
+evidence of a rival-specific failure. They do not change the engine,
 Harbor task, scoring or verifier. They work on the benchmark 2.0.1 two-team B7 artifacts, which run
 outside Harbor, so they are kept separate from the 1.1.0/2.1.0 Harbor gap.
 

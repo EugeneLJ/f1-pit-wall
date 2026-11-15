@@ -44,6 +44,9 @@ class RuntimeSpec:
     rival: str = "SCRIPTED"
     benchmark_version: str = C.SCENARIO_VERSION
     c5_weekend: bool = False
+    m2_tendencies: bool = False   # Kimi M2: hidden per-race tendencies of the uncontrolled (scripted) rivals
+    m6_compliance: bool = False   # Kimi M6: WDC-dependent order compliance of the controlled team
+    m7_weather: bool = False      # Kimi M7: weather, wet compounds, forecasts
     chief_model: str = "gemini-3.8-flash"
     engineer_model: str = "gemini-3.5-flash-lite"
     rival_model: str = PR.DEFAULT_REDBOOL_MODEL
@@ -59,8 +62,12 @@ class RuntimeSpec:
         if self.rival != "FIXED_REPLAY" and self.replay_journal:
             raise ValueError("replay_journal is only used by FIXED_REPLAY")
 
+    def features(self) -> list:
+        return [name for name, on in (("C5", self.c5_weekend), ("M2", self.m2_tendencies),
+                                      ("M6", self.m6_compliance), ("M7", self.m7_weather)) if on]
+
     def label(self) -> str:
-        return f"{self.engineers}|{self.rival}|{self.benchmark_version}" + ("|C5" if self.c5_weekend else "")
+        return "|".join([self.engineers, self.rival, self.benchmark_version] + self.features())
 
 
 def build_config(spec: RuntimeSpec) -> C.IntegratedConfig:
@@ -73,11 +80,15 @@ def build_config(spec: RuntimeSpec) -> C.IntegratedConfig:
                          redbool_chief={"provider": "verda_openai_compatible", "model": spec.rival_model},
                          rival_condition="ADAPTIVE" if spec.rival == "ADAPTIVE_LLM" else "FIXED_REPLAY",
                          mclearn_engineers=spec.engineers)
+    cfg = C.with_version(cfg, spec.benchmark_version)
+    if spec.m2_tendencies or spec.m6_compliance or spec.m7_weather:
+        cfg = C.with_features(cfg, {"m2_tendencies": spec.m2_tendencies, "m6_compliance": spec.m6_compliance,
+                                    "m7_weather": spec.m7_weather})
     if spec.c5_weekend:
         if spec.benchmark_version != C.SCENARIO_VERSION:
             raise ValueError("c5_weekend requires benchmark 2.2.0")
-        return C.with_c5_weekend(cfg)
-    return C.with_version(cfg, spec.benchmark_version)
+        cfg = C.with_c5_weekend(cfg)
+    return cfg
 
 
 def read_journal(path: str) -> list:

@@ -96,6 +96,7 @@ def main():
     parser.add_argument("--max-ticks", type=int, default=8)
     parser.add_argument("--usd-limit", type=float, default=5.0)
     parser.add_argument("--c5", action="store_true")
+    parser.add_argument("--m2-m6-m7", action="store_true", help="also enable Kimi's M2, M6 and M7")
     parser.add_argument("--matrix", action="store_true")
     parser.add_argument("--engineers", default="CHIEF_ONLY", choices=R.ENGINEER_AXIS)
     parser.add_argument("--rival", default="SCRIPTED", choices=R.RIVAL_AXIS)
@@ -103,17 +104,19 @@ def main():
     args = parser.parse_args()
     load_env(args.env_file)
     out_root = Path(args.out)
+    feats = {k: args.m2_m6_m7 for k in ("m2_tendencies", "m6_compliance", "m7_weather")}
     if not args.matrix:
-        run_one(R.RuntimeSpec(args.engineers, args.rival, c5_weekend=args.c5, replay_journal=args.replay_journal),
+        run_one(R.RuntimeSpec(args.engineers, args.rival, c5_weekend=args.c5, replay_journal=args.replay_journal,
+                              **feats),
                 out_root, args.max_ticks, args.usd_limit)
         return
     adaptive = None
     for eng, rival in (("CHIEF_ONLY", "SCRIPTED"), ("GEMINI_LITE_ENGINEERS", "SCRIPTED"),
                        ("CHIEF_ONLY", "ADAPTIVE_LLM"), ("GEMINI_LITE_ENGINEERS", "ADAPTIVE_LLM")):
-        done = run_one(R.RuntimeSpec(eng, rival, c5_weekend=args.c5), out_root, args.max_ticks, args.usd_limit)
+        done = run_one(R.RuntimeSpec(eng, rival, c5_weekend=args.c5, **feats), out_root, args.max_ticks, args.usd_limit)
         if (eng, rival) == ("CHIEF_ONLY", "ADAPTIVE_LLM"):
             adaptive = done["journal_path"]
-    run_one(R.RuntimeSpec("CHIEF_ONLY", "FIXED_REPLAY", c5_weekend=args.c5, replay_journal=adaptive),
+    run_one(R.RuntimeSpec("CHIEF_ONLY", "FIXED_REPLAY", c5_weekend=args.c5, replay_journal=adaptive, **feats),
             out_root, args.max_ticks, args.usd_limit)
 
 

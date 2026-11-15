@@ -40,6 +40,9 @@ from track_c import c5  # noqa: E402
 
 SEED = json.loads((TASK / "tests" / "hidden_seed.json").read_text())["base_seed"]
 CFG = C.with_c5_weekend(C.solo_coordination(engineers="CHIEF_ONLY", chief={"provider": "harbor_agent"}))
+UNIFIED = C.with_c5_weekend(C.with_features(C.with_version(C.solo_coordination(engineers="CHIEF_ONLY",
+                                                                                chief={"provider": "harbor_agent"}), "2.2.0"),
+                                            {"m2_tendencies": True, "m6_compliance": True, "m7_weather": True}))
 SETUPS = ("balanced", "low_drag", "high_downforce")
 NEUTRAL_P = {"type": "PRACTICE", "driver_a": {"program": "SETUP_TEST", "setup_id": "balanced", "laps": 0},
              "driver_b": {"program": "SETUP_TEST", "setup_id": "balanced", "laps": 0}}
@@ -58,7 +61,7 @@ def qual(a, b):
 
 
 def session_at_qualifying(race_index):
-    s = S.IntegratedSession(CFG, SEED, clock=lambda: 0.0)
+    s = S.IntegratedSession(CFG, SEED, clock=lambda: 0.0)  # CFG is replaced by --unified
     practice_done = 0
     while not (s.decision_type == S.QUALIFYING and s.state.race_index == race_index):
         if s.decision_type == S.PRACTICE:
@@ -74,8 +77,14 @@ def session_at_qualifying(race_index):
     return s
 
 
+def clone(s):
+    """Deep copy of a session; module references held by M6 are shared, not copied."""
+    memo = {id(v): v for v in vars(s).values() if type(v).__name__ == "module"}
+    return copy.deepcopy(s, memo)
+
+
 def evaluate(s, a, b, futures, continuation):
-    node = copy.deepcopy(s)
+    node = clone(s)
     node.submit("Apex", node.tick_id, qual(a, b))
     race = node.race_state
     fut = E.futures_for(race, futures, f"c5|{node.state.race_index}")
@@ -89,7 +98,11 @@ def evaluate(s, a, b, futures, continuation):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--futures", type=int, default=32)
+    parser.add_argument("--unified", action="store_true", help="C5 + M2 + M6 + M7 (unified 2.2.0 candidate)")
     args = parser.parse_args()
+    global CFG
+    if args.unified:
+        CFG = UNIFIED
     rows = []
     for race_index in range(8):
         s = session_at_qualifying(race_index)
@@ -141,7 +154,7 @@ def main():
            "practice_plan": PLAN, "race_policy": "published baseline for every car (also event_aware)",
            "estimator": "exact expected Apex points over published retirement probabilities, public SC/VSC futures",
            "rows": rows}
-    path = HERE / "results" / "c5" / "counterfactual.json"
+    path = HERE / "results" / "c5" / ("counterfactual_unified.json" if args.unified else "counterfactual.json")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=1) + "\n")
 

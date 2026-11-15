@@ -1,0 +1,1523 @@
+{
+ "schema_version": 1,
+ "benchmark_version": "2.2.0",
+ "config": {
+  "mode": "SOLO_COORDINATION",
+  "benchmark_version": "2.2.0",
+  "teams": [
+   {
+    "label": "Apex",
+    "short": "Apex",
+    "slot": "Apex",
+    "chief": {
+     "provider": "harbor_agent"
+    },
+    "engineers": "CHIEF_ONLY"
+   }
+  ],
+  "rival_condition": "ADAPTIVE",
+  "rival_policy_variant": null,
+  "decision_timeout_sec": 120.0,
+  "m2_tendencies": true,
+  "m6_compliance": true,
+  "m7_weather": true,
+  "c5_weekend": true
+ },
+ "futures": 32,
+ "practice_plan": [
+  {
+   "type": "PRACTICE",
+   "driver_a": {
+    "program": "QUALI_SIM",
+    "setup_id": "low_drag",
+    "laps": 8
+   },
+   "driver_b": {
+    "program": "QUALI_SIM",
+    "setup_id": "high_downforce",
+    "laps": 8
+   }
+  },
+  {
+   "type": "PRACTICE",
+   "driver_a": {
+    "program": "LONG_RUN",
+    "setup_id": "low_drag",
+    "laps": 16
+   },
+   "driver_b": {
+    "program": "LONG_RUN",
+    "setup_id": "high_downforce",
+    "laps": 16
+   }
+  }
+ ],
+ "race_policy": "published baseline for every car (also event_aware)",
+ "estimator": "exact expected Apex points over published retirement probabilities, public SC/VSC futures",
+ "rows": [
+  {
+   "race": 1,
+   "track": "Harbor Grand Prix",
+   "archetype": "mixed",
+   "truth_hidden": {
+    "balanced": {
+     "qualifying_pace_offset_sec": 0.0,
+     "long_run_pace_offset_sec_per_lap": 0.0,
+     "deg_multiplier_factor": 1.0
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": -0.4567,
+     "long_run_pace_offset_sec_per_lap": -0.0715,
+     "deg_multiplier_factor": 1.2416
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": 0.3606,
+     "long_run_pace_offset_sec_per_lap": 0.1077,
+     "deg_multiplier_factor": 0.8106
+    }
+   },
+   "public_estimates_after_practice": {
+    "balanced": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     }
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": {
+      "mean": -0.427120485697,
+      "ci95": 0.052266666667,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.005,
+      "ci95": 0.1176,
+      "laps_observed": 0
+     }
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.318600901834,
+      "ci95": 0.053344443287,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": -0.025,
+      "ci95": 0.1372,
+      "laps_observed": 0
+     }
+    }
+   },
+   "options": {
+    "balanced/balanced": {
+     "baseline": {
+      "expected_points": 23.772,
+      "grid_A": 2,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 22.558,
+      "grid_A": 2,
+      "grid_B": 3
+     }
+    },
+    "balanced/low_drag": {
+     "baseline": {
+      "expected_points": 24.45,
+      "grid_A": 3,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 23.384,
+      "grid_A": 3,
+      "grid_B": 1
+     }
+    },
+    "balanced/high_downforce": {
+     "baseline": {
+      "expected_points": 18.208,
+      "grid_A": 2,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 17.604,
+      "grid_A": 2,
+      "grid_B": 8
+     }
+    },
+    "low_drag/balanced": {
+     "baseline": {
+      "expected_points": 23.772,
+      "grid_A": 1,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 22.803,
+      "grid_A": 1,
+      "grid_B": 3
+     }
+    },
+    "low_drag/low_drag": {
+     "baseline": {
+      "expected_points": 25.071,
+      "grid_A": 1,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 23.074,
+      "grid_A": 1,
+      "grid_B": 2
+     }
+    },
+    "low_drag/high_downforce": {
+     "baseline": {
+      "expected_points": 18.268,
+      "grid_A": 1,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 17.754,
+      "grid_A": 1,
+      "grid_B": 8
+     }
+    },
+    "high_downforce/balanced": {
+     "baseline": {
+      "expected_points": 22.595,
+      "grid_A": 6,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 19.761,
+      "grid_A": 6,
+      "grid_B": 2
+     }
+    },
+    "high_downforce/low_drag": {
+     "baseline": {
+      "expected_points": 24.928,
+      "grid_A": 6,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 21.911,
+      "grid_A": 6,
+      "grid_B": 1
+     }
+    },
+    "high_downforce/high_downforce": {
+     "baseline": {
+      "expected_points": 15.763,
+      "grid_A": 5,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 14.983,
+      "grid_A": 5,
+      "grid_B": 8
+     }
+    }
+   },
+   "control": "balanced/balanced",
+   "control_points": 23.772,
+   "best": "low_drag/low_drag",
+   "best_points": 25.071,
+   "best_minus_control": 1.298,
+   "best_minus_control_se": 0.283,
+   "best_under_event_aware": "balanced/low_drag",
+   "worst": "high_downforce/high_downforce",
+   "spread": 9.307,
+   "reference_priors_only": "high_downforce/high_downforce",
+   "reference_after_practice": "high_downforce/high_downforce",
+   "reference_after_practice_points": 15.763,
+   "reference_priors_only_points": 15.763
+  },
+  {
+   "race": 2,
+   "track": "Marina Grand Prix",
+   "archetype": "street",
+   "truth_hidden": {
+    "balanced": {
+     "qualifying_pace_offset_sec": 0.0,
+     "long_run_pace_offset_sec_per_lap": 0.0,
+     "deg_multiplier_factor": 1.0
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": -0.3448,
+     "long_run_pace_offset_sec_per_lap": 0.0179,
+     "deg_multiplier_factor": 1.2757
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": 0.327,
+     "long_run_pace_offset_sec_per_lap": -0.0668,
+     "deg_multiplier_factor": 0.7629
+    }
+   },
+   "public_estimates_after_practice": {
+    "balanced": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     }
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": {
+      "mean": -0.348652995769,
+      "ci95": 0.052266666667,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.005,
+      "ci95": 0.1176,
+      "laps_observed": 0
+     }
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.293858893576,
+      "ci95": 0.053344443287,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": -0.025,
+      "ci95": 0.1372,
+      "laps_observed": 0
+     }
+    }
+   },
+   "options": {
+    "balanced/balanced": {
+     "baseline": {
+      "expected_points": 26.815,
+      "grid_A": 1,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 27.056,
+      "grid_A": 1,
+      "grid_B": 2
+     }
+    },
+    "balanced/low_drag": {
+     "baseline": {
+      "expected_points": 25.58,
+      "grid_A": 2,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 24.88,
+      "grid_A": 2,
+      "grid_B": 1
+     }
+    },
+    "balanced/high_downforce": {
+     "baseline": {
+      "expected_points": 25.551,
+      "grid_A": 1,
+      "grid_B": 5
+     },
+     "event_aware": {
+      "expected_points": 25.214,
+      "grid_A": 1,
+      "grid_B": 5
+     }
+    },
+    "low_drag/balanced": {
+     "baseline": {
+      "expected_points": 25.582,
+      "grid_A": 1,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 23.783,
+      "grid_A": 1,
+      "grid_B": 2
+     }
+    },
+    "low_drag/low_drag": {
+     "baseline": {
+      "expected_points": 21.373,
+      "grid_A": 1,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 20.739,
+      "grid_A": 1,
+      "grid_B": 2
+     }
+    },
+    "low_drag/high_downforce": {
+     "baseline": {
+      "expected_points": 26.663,
+      "grid_A": 1,
+      "grid_B": 5
+     },
+     "event_aware": {
+      "expected_points": 24.892,
+      "grid_A": 1,
+      "grid_B": 5
+     }
+    },
+    "high_downforce/balanced": {
+     "baseline": {
+      "expected_points": 26.695,
+      "grid_A": 2,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 26.934,
+      "grid_A": 2,
+      "grid_B": 1
+     }
+    },
+    "high_downforce/low_drag": {
+     "baseline": {
+      "expected_points": 25.798,
+      "grid_A": 2,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 25.521,
+      "grid_A": 2,
+      "grid_B": 1
+     }
+    },
+    "high_downforce/high_downforce": {
+     "baseline": {
+      "expected_points": 27.091,
+      "grid_A": 1,
+      "grid_B": 5
+     },
+     "event_aware": {
+      "expected_points": 27.056,
+      "grid_A": 1,
+      "grid_B": 5
+     }
+    }
+   },
+   "control": "balanced/balanced",
+   "control_points": 26.815,
+   "best": "high_downforce/high_downforce",
+   "best_points": 27.091,
+   "best_minus_control": 0.276,
+   "best_minus_control_se": 0.24,
+   "best_under_event_aware": "balanced/balanced",
+   "worst": "low_drag/low_drag",
+   "spread": 5.718,
+   "reference_priors_only": "balanced/high_downforce",
+   "reference_after_practice": "balanced/high_downforce",
+   "reference_after_practice_points": 25.551,
+   "reference_priors_only_points": 25.551
+  },
+  {
+   "race": 3,
+   "track": "Velocity Grand Prix",
+   "archetype": "high_speed",
+   "truth_hidden": {
+    "balanced": {
+     "qualifying_pace_offset_sec": 0.0,
+     "long_run_pace_offset_sec_per_lap": 0.0,
+     "deg_multiplier_factor": 1.0
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": -0.326,
+     "long_run_pace_offset_sec_per_lap": -0.0462,
+     "deg_multiplier_factor": 1.3065
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": 0.3013,
+     "long_run_pace_offset_sec_per_lap": -0.0556,
+     "deg_multiplier_factor": 0.7894
+    }
+   },
+   "public_estimates_after_practice": {
+    "balanced": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     }
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": {
+      "mean": -0.327614609761,
+      "ci95": 0.052266666667,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.005,
+      "ci95": 0.1176,
+      "laps_observed": 0
+     }
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.317758010865,
+      "ci95": 0.053344443287,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": -0.025,
+      "ci95": 0.1372,
+      "laps_observed": 0
+     }
+    }
+   },
+   "options": {
+    "balanced/balanced": {
+     "baseline": {
+      "expected_points": 23.7,
+      "grid_A": 4,
+      "grid_B": 5
+     },
+     "event_aware": {
+      "expected_points": 23.943,
+      "grid_A": 4,
+      "grid_B": 5
+     }
+    },
+    "balanced/low_drag": {
+     "baseline": {
+      "expected_points": 23.458,
+      "grid_A": 5,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 22.62,
+      "grid_A": 5,
+      "grid_B": 2
+     }
+    },
+    "balanced/high_downforce": {
+     "baseline": {
+      "expected_points": 23.517,
+      "grid_A": 4,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 23.58,
+      "grid_A": 4,
+      "grid_B": 8
+     }
+    },
+    "low_drag/balanced": {
+     "baseline": {
+      "expected_points": 23.7,
+      "grid_A": 2,
+      "grid_B": 5
+     },
+     "event_aware": {
+      "expected_points": 22.558,
+      "grid_A": 2,
+      "grid_B": 5
+     }
+    },
+    "low_drag/low_drag": {
+     "baseline": {
+      "expected_points": 22.437,
+      "grid_A": 2,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 21.449,
+      "grid_A": 2,
+      "grid_B": 3
+     }
+    },
+    "low_drag/high_downforce": {
+     "baseline": {
+      "expected_points": 23.916,
+      "grid_A": 2,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 22.252,
+      "grid_A": 2,
+      "grid_B": 8
+     }
+    },
+    "high_downforce/balanced": {
+     "baseline": {
+      "expected_points": 27.098,
+      "grid_A": 5,
+      "grid_B": 4
+     },
+     "event_aware": {
+      "expected_points": 26.975,
+      "grid_A": 5,
+      "grid_B": 4
+     }
+    },
+    "high_downforce/low_drag": {
+     "baseline": {
+      "expected_points": 26.599,
+      "grid_A": 5,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 25.033,
+      "grid_A": 5,
+      "grid_B": 2
+     }
+    },
+    "high_downforce/high_downforce": {
+     "baseline": {
+      "expected_points": 27.436,
+      "grid_A": 4,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 27.133,
+      "grid_A": 4,
+      "grid_B": 8
+     }
+    }
+   },
+   "control": "balanced/balanced",
+   "control_points": 23.7,
+   "best": "high_downforce/high_downforce",
+   "best_points": 27.436,
+   "best_minus_control": 3.736,
+   "best_minus_control_se": 0.446,
+   "best_under_event_aware": "high_downforce/high_downforce",
+   "worst": "low_drag/low_drag",
+   "spread": 5.0,
+   "reference_priors_only": "high_downforce/high_downforce",
+   "reference_after_practice": "high_downforce/high_downforce",
+   "reference_after_practice_points": 27.436,
+   "reference_priors_only_points": 27.436
+  },
+  {
+   "race": 4,
+   "track": "Granite Grand Prix",
+   "archetype": "high_degradation",
+   "truth_hidden": {
+    "balanced": {
+     "qualifying_pace_offset_sec": 0.0,
+     "long_run_pace_offset_sec_per_lap": 0.0,
+     "deg_multiplier_factor": 1.0
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": -0.3429,
+     "long_run_pace_offset_sec_per_lap": 0.0007,
+     "deg_multiplier_factor": 1.2497
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": 0.2351,
+     "long_run_pace_offset_sec_per_lap": -0.1558,
+     "deg_multiplier_factor": 0.7743
+    }
+   },
+   "public_estimates_after_practice": {
+    "balanced": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     }
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": {
+      "mean": -0.368757652069,
+      "ci95": 0.052266666667,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.005,
+      "ci95": 0.1176,
+      "laps_observed": 0
+     }
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.223473982789,
+      "ci95": 0.053344443287,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": -0.025,
+      "ci95": 0.1372,
+      "laps_observed": 0
+     }
+    }
+   },
+   "options": {
+    "balanced/balanced": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 1,
+      "grid_B": 4
+     },
+     "event_aware": {
+      "expected_points": 27.13,
+      "grid_A": 1,
+      "grid_B": 4
+     }
+    },
+    "balanced/low_drag": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 2,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 27.13,
+      "grid_A": 2,
+      "grid_B": 1
+     }
+    },
+    "balanced/high_downforce": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 1,
+      "grid_B": 6
+     },
+     "event_aware": {
+      "expected_points": 27.37,
+      "grid_A": 1,
+      "grid_B": 6
+     }
+    },
+    "low_drag/balanced": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 1,
+      "grid_B": 4
+     },
+     "event_aware": {
+      "expected_points": 27.13,
+      "grid_A": 1,
+      "grid_B": 4
+     }
+    },
+    "low_drag/low_drag": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 1,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 27.13,
+      "grid_A": 1,
+      "grid_B": 2
+     }
+    },
+    "low_drag/high_downforce": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 1,
+      "grid_B": 6
+     },
+     "event_aware": {
+      "expected_points": 27.37,
+      "grid_A": 1,
+      "grid_B": 6
+     }
+    },
+    "high_downforce/balanced": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 3,
+      "grid_B": 4
+     },
+     "event_aware": {
+      "expected_points": 27.07,
+      "grid_A": 3,
+      "grid_B": 4
+     }
+    },
+    "high_downforce/low_drag": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 4,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 27.13,
+      "grid_A": 4,
+      "grid_B": 1
+     }
+    },
+    "high_downforce/high_downforce": {
+     "baseline": {
+      "expected_points": 26.95,
+      "grid_A": 3,
+      "grid_B": 6
+     },
+     "event_aware": {
+      "expected_points": 27.37,
+      "grid_A": 3,
+      "grid_B": 6
+     }
+    }
+   },
+   "control": "balanced/balanced",
+   "control_points": 26.95,
+   "best": "balanced/balanced",
+   "best_points": 26.95,
+   "best_minus_control": 0.0,
+   "best_minus_control_se": 0.0,
+   "best_under_event_aware": "balanced/high_downforce",
+   "worst": "high_downforce/high_downforce",
+   "spread": 0.0,
+   "reference_priors_only": "balanced/high_downforce",
+   "reference_after_practice": "balanced/high_downforce",
+   "reference_after_practice_points": 26.95,
+   "reference_priors_only_points": 26.95
+  },
+  {
+   "race": 5,
+   "track": "Rainland Grand Prix",
+   "archetype": "wet_prone",
+   "truth_hidden": {
+    "balanced": {
+     "qualifying_pace_offset_sec": 0.0,
+     "long_run_pace_offset_sec_per_lap": 0.0,
+     "deg_multiplier_factor": 1.0
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": -0.4118,
+     "long_run_pace_offset_sec_per_lap": -0.0492,
+     "deg_multiplier_factor": 1.1796
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": 0.4146,
+     "long_run_pace_offset_sec_per_lap": -0.0593,
+     "deg_multiplier_factor": 0.7106
+    }
+   },
+   "public_estimates_after_practice": {
+    "balanced": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     }
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": {
+      "mean": -0.394866803953,
+      "ci95": 0.052266666667,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.005,
+      "ci95": 0.1176,
+      "laps_observed": 0
+     }
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.409451851334,
+      "ci95": 0.053344443287,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": -0.025,
+      "ci95": 0.1372,
+      "laps_observed": 0
+     }
+    }
+   },
+   "options": {
+    "balanced/balanced": {
+     "baseline": {
+      "expected_points": 15.765,
+      "grid_A": 2,
+      "grid_B": 7
+     },
+     "event_aware": {
+      "expected_points": 15.644,
+      "grid_A": 2,
+      "grid_B": 7
+     }
+    },
+    "balanced/low_drag": {
+     "baseline": {
+      "expected_points": 17.487,
+      "grid_A": 2,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 17.152,
+      "grid_A": 2,
+      "grid_B": 3
+     }
+    },
+    "balanced/high_downforce": {
+     "baseline": {
+      "expected_points": 14.201,
+      "grid_A": 2,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 14.079,
+      "grid_A": 2,
+      "grid_B": 8
+     }
+    },
+    "low_drag/balanced": {
+     "baseline": {
+      "expected_points": 16.282,
+      "grid_A": 1,
+      "grid_B": 7
+     },
+     "event_aware": {
+      "expected_points": 16.041,
+      "grid_A": 1,
+      "grid_B": 7
+     }
+    },
+    "low_drag/low_drag": {
+     "baseline": {
+      "expected_points": 17.756,
+      "grid_A": 1,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 17.541,
+      "grid_A": 1,
+      "grid_B": 3
+     }
+    },
+    "low_drag/high_downforce": {
+     "baseline": {
+      "expected_points": 14.9,
+      "grid_A": 1,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 14.779,
+      "grid_A": 1,
+      "grid_B": 8
+     }
+    },
+    "high_downforce/balanced": {
+     "baseline": {
+      "expected_points": 15.827,
+      "grid_A": 7,
+      "grid_B": 6
+     },
+     "event_aware": {
+      "expected_points": 15.496,
+      "grid_A": 7,
+      "grid_B": 6
+     }
+    },
+    "high_downforce/low_drag": {
+     "baseline": {
+      "expected_points": 17.367,
+      "grid_A": 7,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 17.154,
+      "grid_A": 7,
+      "grid_B": 2
+     }
+    },
+    "high_downforce/high_downforce": {
+     "baseline": {
+      "expected_points": 14.506,
+      "grid_A": 6,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 14.444,
+      "grid_A": 6,
+      "grid_B": 8
+     }
+    }
+   },
+   "control": "balanced/balanced",
+   "control_points": 15.765,
+   "best": "low_drag/low_drag",
+   "best_points": 17.756,
+   "best_minus_control": 1.991,
+   "best_minus_control_se": 0.274,
+   "best_under_event_aware": "low_drag/low_drag",
+   "worst": "balanced/high_downforce",
+   "spread": 3.556,
+   "reference_priors_only": "high_downforce/high_downforce",
+   "reference_after_practice": "high_downforce/high_downforce",
+   "reference_after_practice_points": 14.506,
+   "reference_priors_only_points": 14.506
+  },
+  {
+   "race": 6,
+   "track": "Metro Grand Prix",
+   "archetype": "street",
+   "truth_hidden": {
+    "balanced": {
+     "qualifying_pace_offset_sec": 0.0,
+     "long_run_pace_offset_sec_per_lap": 0.0,
+     "deg_multiplier_factor": 1.0
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": -0.4229,
+     "long_run_pace_offset_sec_per_lap": 0.0504,
+     "deg_multiplier_factor": 1.2158
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": 0.2108,
+     "long_run_pace_offset_sec_per_lap": -0.0588,
+     "deg_multiplier_factor": 0.8582
+    }
+   },
+   "public_estimates_after_practice": {
+    "balanced": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     }
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": {
+      "mean": -0.4239532607,
+      "ci95": 0.052266666667,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.005,
+      "ci95": 0.1176,
+      "laps_observed": 0
+     }
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.212154579778,
+      "ci95": 0.053344443287,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": -0.025,
+      "ci95": 0.1372,
+      "laps_observed": 0
+     }
+    }
+   },
+   "options": {
+    "balanced/balanced": {
+     "baseline": {
+      "expected_points": 24.738,
+      "grid_A": 1,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 25.281,
+      "grid_A": 1,
+      "grid_B": 3
+     }
+    },
+    "balanced/low_drag": {
+     "baseline": {
+      "expected_points": 27.008,
+      "grid_A": 2,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 27.458,
+      "grid_A": 2,
+      "grid_B": 1
+     }
+    },
+    "balanced/high_downforce": {
+     "baseline": {
+      "expected_points": 23.922,
+      "grid_A": 1,
+      "grid_B": 4
+     },
+     "event_aware": {
+      "expected_points": 24.674,
+      "grid_A": 1,
+      "grid_B": 4
+     }
+    },
+    "low_drag/balanced": {
+     "baseline": {
+      "expected_points": 23.024,
+      "grid_A": 1,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 22.523,
+      "grid_A": 1,
+      "grid_B": 3
+     }
+    },
+    "low_drag/low_drag": {
+     "baseline": {
+      "expected_points": 20.709,
+      "grid_A": 1,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 22.045,
+      "grid_A": 1,
+      "grid_B": 2
+     }
+    },
+    "low_drag/high_downforce": {
+     "baseline": {
+      "expected_points": 22.015,
+      "grid_A": 1,
+      "grid_B": 4
+     },
+     "event_aware": {
+      "expected_points": 21.717,
+      "grid_A": 1,
+      "grid_B": 4
+     }
+    },
+    "high_downforce/balanced": {
+     "baseline": {
+      "expected_points": 25.401,
+      "grid_A": 3,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 26.147,
+      "grid_A": 3,
+      "grid_B": 2
+     }
+    },
+    "high_downforce/low_drag": {
+     "baseline": {
+      "expected_points": 28.076,
+      "grid_A": 3,
+      "grid_B": 1
+     },
+     "event_aware": {
+      "expected_points": 27.669,
+      "grid_A": 3,
+      "grid_B": 1
+     }
+    },
+    "high_downforce/high_downforce": {
+     "baseline": {
+      "expected_points": 25.221,
+      "grid_A": 2,
+      "grid_B": 4
+     },
+     "event_aware": {
+      "expected_points": 25.76,
+      "grid_A": 2,
+      "grid_B": 4
+     }
+    }
+   },
+   "control": "balanced/balanced",
+   "control_points": 24.738,
+   "best": "high_downforce/low_drag",
+   "best_points": 28.076,
+   "best_minus_control": 3.338,
+   "best_minus_control_se": 0.401,
+   "best_under_event_aware": "high_downforce/low_drag",
+   "worst": "low_drag/low_drag",
+   "spread": 7.368,
+   "reference_priors_only": "balanced/high_downforce",
+   "reference_after_practice": "balanced/high_downforce",
+   "reference_after_practice_points": 23.922,
+   "reference_priors_only_points": 23.922
+  },
+  {
+   "race": 7,
+   "track": "Summit Grand Prix",
+   "archetype": "high_speed",
+   "truth_hidden": {
+    "balanced": {
+     "qualifying_pace_offset_sec": 0.0,
+     "long_run_pace_offset_sec_per_lap": 0.0,
+     "deg_multiplier_factor": 1.0
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": -0.4749,
+     "long_run_pace_offset_sec_per_lap": -0.0541,
+     "deg_multiplier_factor": 1.2949
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": 0.316,
+     "long_run_pace_offset_sec_per_lap": 0.131,
+     "deg_multiplier_factor": 0.7784
+    }
+   },
+   "public_estimates_after_practice": {
+    "balanced": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     }
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": {
+      "mean": -0.454086070854,
+      "ci95": 0.052266666667,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.005,
+      "ci95": 0.1176,
+      "laps_observed": 0
+     }
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.318033773907,
+      "ci95": 0.053344443287,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": -0.025,
+      "ci95": 0.1372,
+      "laps_observed": 0
+     }
+    }
+   },
+   "options": {
+    "balanced/balanced": {
+     "baseline": {
+      "expected_points": 20.797,
+      "grid_A": 4,
+      "grid_B": 7
+     },
+     "event_aware": {
+      "expected_points": 20.355,
+      "grid_A": 4,
+      "grid_B": 7
+     }
+    },
+    "balanced/low_drag": {
+     "baseline": {
+      "expected_points": 20.963,
+      "grid_A": 5,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 20.323,
+      "grid_A": 5,
+      "grid_B": 2
+     }
+    },
+    "balanced/high_downforce": {
+     "baseline": {
+      "expected_points": 20.85,
+      "grid_A": 4,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 20.518,
+      "grid_A": 4,
+      "grid_B": 8
+     }
+    },
+    "low_drag/balanced": {
+     "baseline": {
+      "expected_points": 21.956,
+      "grid_A": 2,
+      "grid_B": 7
+     },
+     "event_aware": {
+      "expected_points": 20.576,
+      "grid_A": 2,
+      "grid_B": 7
+     }
+    },
+    "low_drag/low_drag": {
+     "baseline": {
+      "expected_points": 21.129,
+      "grid_A": 2,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 20.691,
+      "grid_A": 2,
+      "grid_B": 3
+     }
+    },
+    "low_drag/high_downforce": {
+     "baseline": {
+      "expected_points": 21.954,
+      "grid_A": 2,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 20.909,
+      "grid_A": 2,
+      "grid_B": 8
+     }
+    },
+    "high_downforce/balanced": {
+     "baseline": {
+      "expected_points": 20.102,
+      "grid_A": 7,
+      "grid_B": 6
+     },
+     "event_aware": {
+      "expected_points": 19.881,
+      "grid_A": 7,
+      "grid_B": 6
+     }
+    },
+    "high_downforce/low_drag": {
+     "baseline": {
+      "expected_points": 20.323,
+      "grid_A": 7,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 19.826,
+      "grid_A": 7,
+      "grid_B": 2
+     }
+    },
+    "high_downforce/high_downforce": {
+     "baseline": {
+      "expected_points": 19.99,
+      "grid_A": 6,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 19.824,
+      "grid_A": 6,
+      "grid_B": 8
+     }
+    }
+   },
+   "control": "balanced/balanced",
+   "control_points": 20.797,
+   "best": "low_drag/balanced",
+   "best_points": 21.956,
+   "best_minus_control": 1.16,
+   "best_minus_control_se": 0.168,
+   "best_under_event_aware": "low_drag/high_downforce",
+   "worst": "high_downforce/high_downforce",
+   "spread": 1.967,
+   "reference_priors_only": "high_downforce/high_downforce",
+   "reference_after_practice": "high_downforce/high_downforce",
+   "reference_after_practice_points": 19.99,
+   "reference_priors_only_points": 19.99
+  },
+  {
+   "race": 8,
+   "track": "Finale Grand Prix",
+   "archetype": "mixed",
+   "truth_hidden": {
+    "balanced": {
+     "qualifying_pace_offset_sec": 0.0,
+     "long_run_pace_offset_sec_per_lap": 0.0,
+     "deg_multiplier_factor": 1.0
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": -0.4078,
+     "long_run_pace_offset_sec_per_lap": -0.048,
+     "deg_multiplier_factor": 1.288
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": 0.2252,
+     "long_run_pace_offset_sec_per_lap": -0.023,
+     "deg_multiplier_factor": 0.8262
+    }
+   },
+   "public_estimates_after_practice": {
+    "balanced": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.0,
+      "ci95": 0.0,
+      "laps_observed": 0
+     }
+    },
+    "low_drag": {
+     "qualifying_pace_offset_sec": {
+      "mean": -0.452747777669,
+      "ci95": 0.052266666667,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": 0.005,
+      "ci95": 0.1176,
+      "laps_observed": 0
+     }
+    },
+    "high_downforce": {
+     "qualifying_pace_offset_sec": {
+      "mean": 0.194723612483,
+      "ci95": 0.053344443287,
+      "laps_observed": 8
+     },
+     "long_run_pace_offset_sec_per_lap": {
+      "mean": -0.025,
+      "ci95": 0.1372,
+      "laps_observed": 0
+     }
+    }
+   },
+   "options": {
+    "balanced/balanced": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 4,
+      "grid_B": 6
+     },
+     "event_aware": {
+      "expected_points": 29.108,
+      "grid_A": 4,
+      "grid_B": 6
+     }
+    },
+    "balanced/low_drag": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 5,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 29.108,
+      "grid_A": 5,
+      "grid_B": 2
+     }
+    },
+    "balanced/high_downforce": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 4,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 29.108,
+      "grid_A": 4,
+      "grid_B": 8
+     }
+    },
+    "low_drag/balanced": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 1,
+      "grid_B": 6
+     },
+     "event_aware": {
+      "expected_points": 29.108,
+      "grid_A": 1,
+      "grid_B": 6
+     }
+    },
+    "low_drag/low_drag": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 1,
+      "grid_B": 3
+     },
+     "event_aware": {
+      "expected_points": 29.108,
+      "grid_A": 1,
+      "grid_B": 3
+     }
+    },
+    "low_drag/high_downforce": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 1,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 29.108,
+      "grid_A": 1,
+      "grid_B": 8
+     }
+    },
+    "high_downforce/balanced": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 5,
+      "grid_B": 6
+     },
+     "event_aware": {
+      "expected_points": 28.939,
+      "grid_A": 5,
+      "grid_B": 6
+     }
+    },
+    "high_downforce/low_drag": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 6,
+      "grid_B": 2
+     },
+     "event_aware": {
+      "expected_points": 29.108,
+      "grid_A": 6,
+      "grid_B": 2
+     }
+    },
+    "high_downforce/high_downforce": {
+     "baseline": {
+      "expected_points": 28.939,
+      "grid_A": 5,
+      "grid_B": 8
+     },
+     "event_aware": {
+      "expected_points": 28.939,
+      "grid_A": 5,
+      "grid_B": 8
+     }
+    }
+   },
+   "control": "balanced/balanced",
+   "control_points": 28.939,
+   "best": "balanced/balanced",
+   "best_points": 28.939,
+   "best_minus_control": 0.0,
+   "best_minus_control_se": 0.0,
+   "best_under_event_aware": "balanced/balanced",
+   "worst": "high_downforce/high_downforce",
+   "spread": 0.0,
+   "reference_priors_only": "high_downforce/high_downforce",
+   "reference_after_practice": "high_downforce/high_downforce",
+   "reference_after_practice_points": 28.939,
+   "reference_priors_only_points": 28.939
+  }
+ ]
+}

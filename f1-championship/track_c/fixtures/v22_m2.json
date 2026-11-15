@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_only",
+  "sources": [],
+  "types": ["DEFENDER", "OPPORTUNIST", "CONSERVATIVE"],
+  "prior": {
+    "DEFENDER": {"value": 0.34, "provenance": "synthetic"},
+    "OPPORTUNIST": {"value": 0.33, "provenance": "synthetic"},
+    "CONSERVATIVE": {"value": 0.33, "provenance": "synthetic"}
+  },
+  "conservative_gap_threshold_sec": {"value": 1.0, "provenance": "synthetic"},
+  "reaction_observation_confusion": {
+    "description": "public reaction-sensor confusion only; it does not create a pass or resolve a legal engine action",
+    "expected_DEFEND": {"DEFEND": 0.85, "ATTACK": 0.05, "NO_ATTACK": 0.05, "INHERIT_BASELINE": 0.05, "provenance": "synthetic"},
+    "expected_ATTACK": {"ATTACK": 0.90, "NO_ATTACK": 0.03, "INHERIT_BASELINE": 0.04, "DEFEND": 0.03, "provenance": "synthetic"},
+    "expected_NO_ATTACK": {"NO_ATTACK": 0.90, "INHERIT_BASELINE": 0.03, "ATTACK": 0.02, "DEFEND": 0.05, "provenance": "synthetic"},
+    "expected_INHERIT_BASELINE": {"INHERIT_BASELINE": 0.70, "DEFEND": 0.15, "ATTACK": 0.10, "NO_ATTACK": 0.05, "provenance": "synthetic"}
+  },
+  "lap_residual_seconds": {
+    "description": "PUBLIC pre-lap residual minus this emitted offset; it is a synthetic type-conditioned signal, not M1 pace-mode integration",
+    "defending_offset_sec": {"value": 0.12, "provenance": "synthetic"},
+    "attacking_offset_sec": {"value": -0.08, "provenance": "synthetic"},
+    "conservative_offset_sec": {"value": 0.04, "provenance": "synthetic"},
+    "observation_sd_sec": {"value": 0.06, "provenance": "synthetic"}
+  },
+  "decision_gate": {
+    "near_tie_threshold": {"value": 0.5, "provenance": "synthetic, C7 precedence"},
+    "z95": {"value": 1.96, "provenance": "synthetic normal approximation"}
+  },
+  "stream_version": "m2-hidden-types-v1"
+}

@@ -11,14 +11,15 @@ hash-chained journal (journal_version 2) that a trusted verifier replays from th
 from __future__ import annotations
 
 import copy
+import random
 import time
 from typing import Any, Callable, Dict, List, Optional
 
 from .. import coefficients as coef
 from .. import engine
 from ..championship import TEAM_DRIVERS, new_championship_state
-from ..championship_adapter import (ENGINE_TO_CHAMPIONSHIP_DRIVER, car_performance, finish_prepared_race,
-                                    start_prepared_race)
+from ..championship_adapter import (CHAMPIONSHIP_TO_ENGINE_DRIVER, ENGINE_TO_CHAMPIONSHIP_DRIVER,
+                                     car_performance, finish_prepared_race, start_prepared_race)
 from ..championship_transition import (available_component_actions, default_component_decisions, driver_team,
                                        free_units, initial_inventory, prepare_race, published_rule_decisions,
                                        replacement_cost)
@@ -53,7 +54,7 @@ class IntegratedSession:
         self.coeffs = copy.deepcopy(coeffs if coeffs is not None else coef.DEFAULT)
         if config.rival_policy_variant:
             self.coeffs = coef.with_rival_policy(self.coeffs, config.rival_policy_variant)
-        if config.benchmark_version == "2.1.0":  # opt-in FIA-based PU rules (B8)
+        if config.benchmark_version in ("2.1.0", "2.2.0"):  # successor retains B8 PU mechanics
             from .. import pu_rules
             self.coeffs = pu_rules.with_fia_pu_rules(self.coeffs)
         self._base_seed = base_seed
@@ -69,6 +70,14 @@ class IntegratedSession:
         self.decision_type = COMPONENT_DECISION
         self.race_state: Optional[Dict[str, Any]] = None
         self._active = None
+        self._m6_model = None
+        self._m6_profile = None
+        if config.m6_compliance:
+            from track_c import driver_objectives as m6
+            self._m6_model = m6
+            self._m6_profile = m6.load_m6_config()
+        self._last_order_events = []
+        self._m2_tendency_map = None
         self.journal: List[Dict[str, Any]] = []
         self.race_results: List[Dict[str, Any]] = []
         self._tick = 0
@@ -213,8 +222,65 @@ class IntegratedSession:
             raise ValueError("consumed_reports must reference this tick's Engineer record hashes")
         return {"type": RACE_STRATEGY, **clean, "consumed_reports": reports}
 
+    # ------------------------------------------------------------------ M2 rival context
+    def _initialize_m2(self) -> Optional[Dict[str, Dict[str, str]]]:
+        if not self.config.m2_tendencies:
+            return None
+        from track_c.v22.rival_tendencies import draw_tendency
+        controlled = {car["team"] for car in self.race_state["cars"] if car["team"] in self.slot_of.values()}
+        assignments = {}
+        for car in self.race_state["cars"]:
+            if car["team"] in controlled:
+                continue
+            team = driver_team(ENGINE_TO_CHAMPIONSHIP_DRIVER[car["name"]])
+            key = "driver_a" if car["name"] == CHAMPIONSHIP_TO_ENGINE_DRIVER[f"{team} A"] else "driver_b"
+            assignments.setdefault(team, {})[key] = draw_tendency(
+                self.race_state["seed"], str(self.state.race_index), car["name"])
+        return assignments
+
+    # ------------------------------------------------------------------ M6 compliance
+    def _m6_resolution(self, slot: str, order: str) -> Optional[Dict[str, Any]]:
+        """Compute a private outcome but leave the Chief's requested order untouched."""
+        if order not in ("HOLD", "KEEP_ORDER", "REQUEST_GIVE_BACK"):
+            return None
+        from .. import weather
+        if any(weather.retired_context(self.race_state, car_name)
+               for car_name in ir.team_cars(slot).values()):
+            return None
+        geometry = ir.pair_geometry(self.race_state, slot)
+        if order in ("HOLD", "KEEP_ORDER"):
+            affected_key = geometry["trailer"]
+            affected = ir.team_cars(slot)[affected_key]
+        else:
+            commitment = self.race_state["integrated"]["teams"][slot]["commitment"]
+            if commitment is None or geometry["leader"] != commitment["promoted"]:
+                return None  # The existing NOT_NEEDED restoration path wins; do not draw.
+            affected = ir.team_cars(slot)[commitment["promoted"]]
+        if order == "REQUEST_GIVE_BACK":
+            teammate = next(name for name in ir.team_cars(slot).values() if name != affected)
+        else:
+            teammate_key = "driver_b" if affected_key == "driver_a" else "driver_a"
+            teammate = ir.team_cars(slot)[teammate_key]
+        horizon = len(self.state.calendar) - self.state.race_index
+        gap = self.state.driver_points[affected] - self.state.driver_points[teammate]
+        probability = self._m6_model.compliance_probability(gap, horizon, order, self._m6_profile)
+        draw = random.Random(f"m6:v1:{self.race_state['seed']}:{self.race_state['step']}:{affected}").random()
+        return self._m6_model.resolve_order_compliance(
+            order, affected, probability, enabled=True, seeded_draw=draw)
+
+    def _public_order_events(self, reports: Dict[str, Any]) -> List[Dict[str, Any]]:
+        events = []
+        for slot in sorted(reports):
+            raw = reports[slot].get("compliance_event")
+            if raw is None:
+                continue
+            events.append({"team": self.label_of_slot[slot],
+                           "event": {**copy.deepcopy(raw), "driver": self._engine_public(raw["driver"])}})
+        return events
+
     # ------------------------------------------------------------------ resolution
     def _resolve(self) -> None:
+        self._last_order_events = []
         phase, tick = self.decision_type, self.tick_id
         before_hash = dict(self._obs_hash)
         sealed = copy.deepcopy(self._sealed)
@@ -225,7 +291,11 @@ class IntegratedSession:
         else:
             actions = {self.slot_of[label]: {k: s["action"][k] for k in ("driver_a", "driver_b", "team_order")}
                        for label, s in sealed.items()}
-            reports = ir.step(self.race_state, actions)
+            compliance = ({slot: self._m6_resolution(slot, actions[slot]["team_order"]["order"])
+                          for slot in actions} if self.config.m6_compliance else None)
+            reports = ir.step(self.race_state, actions, compliance_overrides=compliance,
+                              tendency_map=self._m2_tendency_map)
+            self._last_order_events = self._public_order_events(reports)
             if self.race_state["complete"]:
                 result = self._finish_race()
             self._last_order_reports = reports
@@ -236,6 +306,8 @@ class IntegratedSession:
                                                            "t_received")} for label, s in sealed.items()},
                  "engineer_record_hashes": engineer_hashes, "obs_before_sha256": before_hash,
                  "obs_after_sha256": dict(self._obs_hash), "t_done": t_done}
+        if self.config.m6_compliance:
+            entry["order_events"] = copy.deepcopy(getattr(self, "_last_order_events", []))
         if result is not None:
             entry["race_result"] = {"race_index": result["race_index"], "team_points": result["team_points"]}
         self._append(entry)
@@ -258,6 +330,12 @@ class IntegratedSession:
         self._active = start_prepared_race(working, self._base_seed + working.race_index, self.coeffs)
         self.state = working
         self.race_state = ir.attach(self._active.race_state, [t.slot for t in self.config.teams])
+        if self.config.m7_weather:
+            from .. import weather
+            self.race_state["config"][weather.WEATHER_KEY] = weather.create(
+                self.race_state["seed"], str(self.state.race_index),
+                len(self.race_state["config"]["decision_laps"]))
+        self._m2_tendency_map = self._initialize_m2()
         ir.update_commitments(self.race_state)
         self.decision_type = RACE_STRATEGY
 
@@ -295,6 +373,14 @@ class IntegratedSession:
                              "remaining_calendar": [_track_public(r, self.coeffs) for r in state.calendar[state.race_index:]]},
             "public_resolution_rule": PUBLIC_RESOLUTION_RULE,
         }
+        if self.config.m6_compliance:
+            teams = {self.label_of_slot[slot]: [self.public_driver(driver)
+                                                for driver in TEAM_DRIVERS[slot]] for slot in SLOTS}
+            points = {self.public_driver(driver): points for driver, points in state.driver_points.items()}
+            races_remaining = len(state.calendar) - state.race_index
+            obs["championship"]["m6_driver_objectives"] = self._m6_model.public_compliance_observation(
+                self._m6_model.wdc_standings(points, teams, races_remaining),
+                self._m6_profile, enabled=True)
         if self.decision_type == CHAMPIONSHIP_COMPLETE:
             obs["race_progress"] = {"status": "CHAMPIONSHIP_COMPLETE"}
             obs["action_schema"] = None
@@ -400,6 +486,9 @@ def team_race_view(rs: Dict[str, Any], slot: str, public_name: Callable[[str], s
     view["public_pit_history"] = [{"decision": p["decision"], "stops": [
         {"driver": public_name(s["car"]), "compound": s["compound"]} for s in p["stops"]]}
         for p in rs["integrated"].get("pit_log", [])]
+    if "v22_weather" in rs["config"]:
+        from .. import weather
+        view["weather"] = weather.weather_observation(rs)
     return view
 
 

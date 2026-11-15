@@ -164,7 +164,8 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
     config keys: grid (car names P1..P8), pace {car: base s/lap}, deg_multiplier,
     overtaking (model dict or None), dnf_prob {car: p}, decision_laps (optional),
     events (optional explicit schedule, planners/oracles only - never set by the
-    championship session).
+    championship session), car_deg_factor {car: factor} (optional, opt-in C5 setups:
+    multiplies that car's tyre degradation; absent = every car 1.0, bit-identical).
     """
     cars = _legacy_cars()
     if config is None:
@@ -181,6 +182,10 @@ def new_state(seed: int = SEED, config: dict[str, Any] | None = None) -> dict[st
         by_name[name]["base_pace"] = float(config["pace"][name])
         if start_age is not None:
             by_name[name]["tyre_age"] = int(start_age)
+    for name, factor in (config.get("car_deg_factor") or {}).items():  # opt-in C5 (2.2.0); absent by default
+        if name not in by_name or not float(factor) > 0:
+            raise ValueError("car_deg_factor needs known cars and positive factors")
+        by_name[name]["deg_factor"] = float(factor)
     decision_laps = list(config.get("decision_laps", DECISION_LAPS))
     event_probs = dict(config.get("event_probs") or LEGACY_EVENT_PROBS)
     neutral = config.get("neutralization")
@@ -397,6 +402,7 @@ def _segment_time(car: dict[str, Any], position: int, deg_multiplier: float = 1.
     tyre = (tyres["compounds"] if tyres is not None else COMPOUNDS)[car["compound"]]
     if traffic is None:
         traffic = min(0.70, 0.10 * (position - 1))
+    deg_multiplier = deg_multiplier * car.get("deg_factor", 1.0)  # per-car C5 setup factor (absent = 1.0)
     degradation = tyre["degradation"] * deg_multiplier
     cliff = tyres["cliff_sec_per_lap_per_lap"] * deg_multiplier if tyres is not None else 0.0
     life = tyre.get("life_laps", 10**6)

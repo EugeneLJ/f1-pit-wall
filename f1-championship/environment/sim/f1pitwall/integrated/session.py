@@ -29,6 +29,8 @@ from .config import INTEGRATED_VERSION, SLOTS, IntegratedConfig
 CONTRACT_VERSION = 2
 JOURNAL_VERSION = 2
 COMPONENT_DECISION = "COMPONENT_DECISION"
+PRACTICE = "PRACTICE"      # opt-in C5 weekend (2.2.0), see integrated/weekend.py
+QUALIFYING = "QUALIFYING"  # opt-in C5 weekend (2.2.0)
 RACE_STRATEGY = "RACE_STRATEGY"
 CHAMPIONSHIP_COMPLETE = "CHAMPIONSHIP_COMPLETE"
 SUBMITTED, TIMEOUT, INVALID = "SUBMITTED", "TIMEOUT", "INVALID_FALLBACK"
@@ -53,12 +55,16 @@ class IntegratedSession:
         self.coeffs = copy.deepcopy(coeffs if coeffs is not None else coef.DEFAULT)
         if config.rival_policy_variant:
             self.coeffs = coef.with_rival_policy(self.coeffs, config.rival_policy_variant)
-        if config.benchmark_version == "2.1.0":  # opt-in FIA-based PU rules (B8)
+        if config.benchmark_version in ("2.1.0", "2.2.0"):  # opt-in FIA-based PU rules (B8); 2.2.0 keeps them
             from .. import pu_rules
             self.coeffs = pu_rules.with_fia_pu_rules(self.coeffs)
         self._base_seed = base_seed
         self._broker = engineer_broker
         self._clock = clock
+        self._weekend = None
+        if config.c5_weekend:
+            from .weekend import Weekend
+            self._weekend = Weekend(self)
         self.teams = {t.label: t for t in config.teams}
         self.slot_of = {t.label: t.slot for t in config.teams}
         self.label_of_slot = {s: s for s in SLOTS}
@@ -151,6 +157,8 @@ class IntegratedSession:
 
     def fallback_action(self, label: str) -> Dict[str, Any]:
         slot = self.slot_of[label]
+        if self.decision_type in (PRACTICE, QUALIFYING):
+            return self._weekend.fallback_action(label, self.decision_type)
         if self.decision_type == COMPONENT_DECISION:
             decisions = []
             for driver in TEAM_DRIVERS[slot]:
@@ -168,6 +176,9 @@ class IntegratedSession:
         slot = self.slot_of[label]
         if not isinstance(action, dict) or action.get("type") != self.decision_type:
             raise ValueError(f"action type must be {self.decision_type}")
+        if self.decision_type in (PRACTICE, QUALIFYING):
+            clean = self._weekend.validate(label, self.decision_type, action)
+            return {**clean, "consumed_reports": _reports(action)}
         if self.decision_type == COMPONENT_DECISION:
             if set(action) - {"type", "decisions", "consumed_reports"}:
                 raise ValueError("component action must contain type and decisions")
@@ -222,6 +233,14 @@ class IntegratedSession:
         result = None
         if phase == COMPONENT_DECISION:
             self._apply_components({label: s["action"] for label, s in sealed.items()})
+        elif phase in (PRACTICE, QUALIFYING):
+            weekend_actions = {label: {k: v for k, v in s["action"].items() if k != "consumed_reports"}
+                               for label, s in sealed.items()}
+            start = self._weekend.resolve(phase, weekend_actions)
+            if start is not None:
+                self._start_race(start)
+            else:
+                self.decision_type = self._weekend.phase()
         else:
             actions = {self.slot_of[label]: {k: s["action"][k] for k in ("driver_a", "driver_b", "team_order")}
                        for label, s in sealed.items()}
@@ -255,8 +274,17 @@ class IntegratedSession:
                 chosen[(names[item["driver"]], item["component"])] = item["action"]
         decisions = published_rule_decisions(working, self.coeffs, set(self.slot_of.values()), chosen)
         prepare_race(working, decisions, self.coeffs)
-        self._active = start_prepared_race(working, self._base_seed + working.race_index, self.coeffs)
         self.state = working
+        if self._weekend is not None:  # 2.2.0 C5: practice and qualifying before the race starts
+            self._weekend.begin()
+            self.decision_type = PRACTICE
+            return
+        self._start_race(None)
+
+    def _start_race(self, weekend: Optional[Dict[str, Any]]) -> None:
+        """weekend: None (published model) or the C5 grid / pace / degradation from qualifying."""
+        self._active = start_prepared_race(self.state, self._base_seed + self.state.race_index, self.coeffs,
+                                           weekend=weekend)
         self.race_state = ir.attach(self._active.race_state, [t.slot for t in self.config.teams])
         ir.update_commitments(self.race_state)
         self.decision_type = RACE_STRATEGY
@@ -321,6 +349,10 @@ class IntegratedSession:
                                     "grid_drop_this_race": state.grid_penalties[d] if state.race_prepared else None,
                                     "published_pace_estimate": round(car_performance(state, d, self.coeffs)["pace"], 6)}
             for d in state.power_units if driver_team(d) != slot}
+        if self.decision_type in (PRACTICE, QUALIFYING):
+            obs["race_progress"] = {"status": self.decision_type, "completed_decisions": 0}
+            obs.update(self._weekend.observation(label, self.decision_type))
+            return obs
         if self.decision_type == COMPONENT_DECISION:
             obs["race_progress"] = {"status": "PRE_RACE", "completed_decisions": 0}
             first = TEAM_DRIVERS[slot][0]
@@ -335,6 +367,8 @@ class IntegratedSession:
             return obs
         obs["race_progress"] = self._race_view(slot)
         obs["starting_grid"] = [self.public_driver(d) for d in self._active.starting_grid]
+        if self._weekend is not None and self._weekend.race_observation(label) is not None:
+            obs["weekend_result"] = self._weekend.race_observation(label)
         obs["team_orders"] = self._map_names(ir.public_order_view(self.race_state, slot))
         legal = "|".join(engine.legal_actions(self.race_state))
         obs["action_schema"] = {"type": RACE_STRATEGY, "driver_a": legal, "driver_b": legal,

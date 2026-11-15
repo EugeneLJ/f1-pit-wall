@@ -17,7 +17,8 @@ from ..version import BENCHMARK_VERSION as LEGACY_VERSION
 
 INTEGRATED_VERSION = "2.0.1"
 FIA_PU_VERSION = "2.1.0"  # opt-in: FIA-2026-based PU allocation/penalty/grid rules (B8)
-OPT_IN_VERSIONS = (FIA_PU_VERSION,)
+SCENARIO_VERSION = "2.2.0"  # opt-in successor; every 2.2.0 feature is a flag and off by default
+OPT_IN_VERSIONS = (FIA_PU_VERSION, SCENARIO_VERSION)
 SOLO_LEGACY = "SOLO_LEGACY"
 SOLO_COORDINATION = "SOLO_COORDINATION"
 TWO_TEAM_COMPETITION = "TWO_TEAM_COMPETITION"
@@ -29,6 +30,11 @@ ENGINEER_CONDITIONS = ("CHIEF_ONLY", "GEMINI_LITE_ENGINEERS", "RECORDED_RECOMMEN
 RIVAL_CONDITIONS = ("ADAPTIVE", "FIXED_REPLAY")
 
 VERSION_NOTES = {
+    "2.2.0": ("OPT-IN candidate: 2.1.0 plus feature flags, all off by default. With every flag off a 2.2.0 "
+              "season equals 2.1.0. c5_weekend: PRACTICE x2 and QUALIFYING before each race (track_c.c5): "
+              "practice measurements estimate hidden setup effects; the qualifying order is the provisional "
+              "grid (2.1.0 PU grid penalties apply after it); the frozen setups set per-car long-run pace and "
+              "tyre degradation for the race."),
     "2.1.0": ("OPT-IN (B8): 2.0.1 plus FIA-2026-based power-unit rules (pu_rules.py, "
               "fixtures/pu_rules_fia2026.json): per-driver element allocation, team physical stock, "
               "B8.2.8 10/5 penalties (cumulative), B2.5.4b grid formation with back-of-grid above the "
@@ -70,6 +76,7 @@ class IntegratedConfig:
     rival_policy_variant: Optional[str] = None  # uncontrolled teams' pit rule (None = published)
     decision_timeout_sec: float = 120.0
     benchmark_version: str = INTEGRATED_VERSION
+    c5_weekend: bool = False  # 2.2.0: PRACTICE x2 -> QUALIFYING before each race (track_c.c5)
 
     def validate(self) -> None:
         if self.mode not in MODES:
@@ -93,13 +100,22 @@ class IntegratedConfig:
             raise ValueError("unknown rival condition")
         if self.benchmark_version not in (INTEGRATED_VERSION,) + OPT_IN_VERSIONS:
             raise ValueError(f"integrated modes are benchmark {INTEGRATED_VERSION} or opt-in {OPT_IN_VERSIONS}")
+        if not isinstance(self.c5_weekend, bool):
+            raise ValueError("c5_weekend must be a boolean")
+        if self.c5_weekend and self.benchmark_version != SCENARIO_VERSION:
+            raise ValueError("the C5 practice/qualifying weekend requires opt-in benchmark 2.2.0")
+        if self.c5_weekend and self.mode == SOLO_LEGACY:
+            raise ValueError("the C5 weekend is an integrated-mode feature")
 
     def as_dict(self) -> Dict[str, Any]:
-        return {"mode": self.mode, "benchmark_version": self.benchmark_version,
-                "teams": [{"label": t.label, "short": t.short, "slot": t.slot,
-                           "chief": copy.deepcopy(t.chief), "engineers": t.engineers} for t in self.teams],
-                "rival_condition": self.rival_condition, "rival_policy_variant": self.rival_policy_variant,
-                "decision_timeout_sec": self.decision_timeout_sec}
+        output = {"mode": self.mode, "benchmark_version": self.benchmark_version,
+                  "teams": [{"label": t.label, "short": t.short, "slot": t.slot,
+                             "chief": copy.deepcopy(t.chief), "engineers": t.engineers} for t in self.teams],
+                  "rival_condition": self.rival_condition, "rival_policy_variant": self.rival_policy_variant,
+                  "decision_timeout_sec": self.decision_timeout_sec}
+        if self.c5_weekend:  # only when enabled, so existing config hashes are unchanged
+            output["c5_weekend"] = True
+        return output
 
     def config_hash(self) -> str:
         text = json.dumps(self.as_dict(), sort_keys=True, separators=(",", ":"))
@@ -113,7 +129,7 @@ class IntegratedConfig:
         return IntegratedConfig(self.mode, [TeamSpec(a.label, a.short, b.slot, a.chief, a.engineers),
                                             TeamSpec(b.label, b.short, a.slot, b.chief, b.engineers)],
                                 self.rival_condition, self.rival_policy_variant,
-                                self.decision_timeout_sec, self.benchmark_version)
+                                self.decision_timeout_sec, self.benchmark_version, c5_weekend=self.c5_weekend)
 
     @staticmethod
     def from_dict(value: Dict[str, Any]) -> "IntegratedConfig":
@@ -121,7 +137,8 @@ class IntegratedConfig:
                           t.get("engineers", "CHIEF_ONLY")) for t in value["teams"]]
         cfg = IntegratedConfig(value["mode"], teams, value.get("rival_condition", "ADAPTIVE"),
                                value.get("rival_policy_variant"), float(value.get("decision_timeout_sec", 120.0)),
-                               value.get("benchmark_version", INTEGRATED_VERSION))
+                               value.get("benchmark_version", INTEGRATED_VERSION),
+                               c5_weekend=value.get("c5_weekend", False))
         cfg.validate()
         return cfg
 
@@ -129,7 +146,15 @@ class IntegratedConfig:
 def with_version(cfg: IntegratedConfig, version: str) -> IntegratedConfig:
     """Same configuration under another integrated version (e.g. the opt-in 2.1.0 PU rules)."""
     out = IntegratedConfig(cfg.mode, list(cfg.teams), cfg.rival_condition, cfg.rival_policy_variant,
-                           cfg.decision_timeout_sec, version)
+                           cfg.decision_timeout_sec, version, c5_weekend=cfg.c5_weekend)
+    out.validate()
+    return out
+
+
+def with_c5_weekend(cfg: IntegratedConfig) -> IntegratedConfig:
+    """Same configuration under opt-in 2.2.0 with the C5 practice/qualifying weekend enabled."""
+    out = IntegratedConfig(cfg.mode, list(cfg.teams), cfg.rival_condition, cfg.rival_policy_variant,
+                           cfg.decision_timeout_sec, SCENARIO_VERSION, c5_weekend=True)
     out.validate()
     return out
 

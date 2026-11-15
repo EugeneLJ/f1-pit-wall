@@ -66,15 +66,23 @@ def car_performance(state: ChampionshipState, driver: str,
 
 
 def race_config(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAULT,
-                events: Optional[List[str]] = None) -> Dict[str, Any]:
-    """Qualifying order by pace (grid drops are applied afterwards)."""
+                events: Optional[List[str]] = None, weekend: Optional[Mapping[str, Any]] = None) -> Dict[str, Any]:
+    """Qualifying order by pace (grid drops are applied afterwards).
+
+    weekend (opt-in C5, 2.2.0): {"grid": engine car names in qualifying order, "pace_offset": {car: s/lap},
+    "deg_factor": {car: factor}} from the practice/qualifying phases. None = the unchanged published model."""
     track = state.calendar[state.race_index]
     perf = {CHAMPIONSHIP_TO_ENGINE_DRIVER[d]: car_performance(state, d, coeffs)
             for d in CHAMPIONSHIP_TO_ENGINE_DRIVER}
     grid = sorted(perf, key=lambda name: (perf[name]["pace"], name))
+    pace = {name: values["pace"] for name, values in perf.items()}
+    if weekend is not None:
+        grid = list(weekend["grid"])
+        for name, offset in weekend.get("pace_offset", {}).items():
+            pace[name] += float(offset)
     config = {
         "grid": grid,
-        "pace": {name: values["pace"] for name, values in perf.items()},
+        "pace": pace,
         "deg_multiplier": coef.degradation_multiplier(track.tyre_degradation, coeffs),
         "overtaking": coef.overtaking_model(coeffs),
         "overtaking_difficulty": coef.overtaking_difficulty(track.overtaking_difficulty, coeffs),
@@ -86,6 +94,8 @@ def race_config(state: ChampionshipState, coeffs: Mapping[str, Any] = coef.DEFAU
     }
     if coeffs.get("rival_policy_variant"):  # opt-in (B5-P1); absent in the published model
         config["rival_policy"] = coeffs["rival_policy_variant"]
+    if weekend is not None and weekend.get("deg_factor"):
+        config["car_deg_factor"] = dict(weekend["deg_factor"])
     return config
 
 
@@ -108,7 +118,8 @@ def run_championship_race(state: ChampionshipState, component_decisions: Any, ra
 
 def start_prepared_race(state: ChampionshipState, seed: int,
                         coeffs: Mapping[str, Any] = coef.DEFAULT,
-                        events: Optional[List[str]] = None) -> PreparedChampionshipRace:
+                        events: Optional[List[str]] = None,
+                        weekend: Optional[Mapping[str, Any]] = None) -> PreparedChampionshipRace:
     """Apply a prepared race's grid drops and initialize the race engine."""
     if not state.race_prepared:
         raise ValueError("championship race has not been prepared")
@@ -121,7 +132,7 @@ def start_prepared_race(state: ChampionshipState, seed: int,
         grid_drop_positions=dict(state.grid_penalties),
         applied_to_grid=state.grid_penalties_applied,
     )
-    race_state = engine.new_state(seed, race_config(state, coeffs, events))
+    race_state = engine.new_state(seed, race_config(state, coeffs, events, weekend))
     starting_grid = _apply_grid_penalties(race_state, prepared, coeffs)
     applied = mark_grid_penalties_applied(state)
     return PreparedChampionshipRace(race_index=race_index, race_name=state.calendar[race_index].name,

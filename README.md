@@ -2,7 +2,7 @@
 
 **Can AI win the championship, not just the race?**
 
-> **Verified submission · Benchmark 2.1.0 · [Try the demo](#try-it-yourself) · [Research extensions](#what-comes-next-22)**
+> **Verified submission · Benchmark 2.1.0 · [Watch the demo video](https://youtu.be/A9vm8M3uLek) · [Try the demo](#try-it-yourself) · [Research extensions](#what-comes-next-22)**
 
 Imagine managing a Formula 1-inspired racing team. You have **two drivers, eight races, 120 decisions, and one goal: score as many championship points as possible**. Every choice affects something else. A tyre change may win time now but sacrifice track position; using an ageing power-unit component may preserve a spare for a more important race; helping one driver may hurt the other.
 

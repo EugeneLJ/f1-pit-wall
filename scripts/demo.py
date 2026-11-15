@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TASK_SRC = ROOT / "f1-championship"
 RUNS = TASK_SRC / "analysis" / "results" / "reference_runs"
 REPLAY_HELPER = Path(__file__).resolve().parent / "demo_v21_replay.py"
+CF_HELPER = Path(__file__).resolve().parent / "demo_v21_counterfactual.py"
 CAPTURE_DIR = "demo_artifacts"
 EXIT_INVALID = 2
 EXIT_UNVERIFIED = 3
@@ -243,12 +244,17 @@ def provenance(source: Source, task: Path | None, metadata: dict[str, Any]) -> d
 
 # ------------------------------------------------------------------ analysis (labelled counterfactual)
 def _counterfactual(jobs):
-    """Sequential (about 0.2 s per decision). Uses the repository engine through the committed analysis
-    code (analysis/b21_decisions.py); devtests keep it identical to the image copies."""
-    if str(TASK_SRC / "analysis") not in sys.path:
-        sys.path.insert(0, str(TASK_SRC / "analysis"))
-    import b21_decisions as B
-    return {tick: B.evaluate({"tick_id": tick, "race": race, "action": action}, CF_FUTURES) for tick, race, action in jobs}
+    """About 0.2 s per decision. Runs the committed analysis code (analysis/b21_decisions.py, repository
+    engine; devtests keep it identical to the image copies) in a fresh interpreter so that no other
+    `f1pitwall` package loaded by a caller can be picked up."""
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "jobs.pickle"
+        path.write_bytes(pickle.dumps(jobs))
+        proc = subprocess.run([sys.executable, "-I", str(CF_HELPER), str(path), str(CF_FUTURES)],
+                              capture_output=True, text=True)
+    if proc.returncode != 0:
+        raise RuntimeError((proc.stderr.strip().splitlines() or ["counterfactual helper failed"])[-1][:300])
+    return json.loads(proc.stdout)
 
 
 def decision_examples(verified_run: dict[str, Any], states_file: Path, reference: dict[str, Any] | None) -> list[dict[str, Any]]:

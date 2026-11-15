@@ -1,0 +1,1 @@
+{"benchmark": "1.1.0", "policy": "reference", "seed": 908388963605659265, "points": 287, "seconds": 58.8, "imported_from": "reference_eval.json (commit 408828e, same reference.py)"}

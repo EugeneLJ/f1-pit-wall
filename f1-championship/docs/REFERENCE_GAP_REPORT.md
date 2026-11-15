@@ -102,6 +102,59 @@ Stop-early here means walking away after 60 of 120 decisions: points are banked 
 
 **What this supports.** The reference beats every recorded frontier policy on average, with paired standard errors of 1–1.5 points. **What it does not support:** a large gap. The reference wins most seasons, not all, and the best Gemini policy (r2) is within about 15 points.
 
+### 3.2b The three fresh 1.1.0 scripts, staged paired evaluation (`analysis/staged_eval.py`)
+
+**Staged seed budget.** The 100-seed replay of the new scripts was stopped before completion; no results had been written, and `reference_eval.json` is unchanged. Replays now follow a staged budget, cached per (benchmark, policy, policy-source hash, configuration, seed) under `analysis/results/cache/1.1.0/`:
+
+| Tier | Seeds |
+|---|---|
+| Smoke | 2 |
+| Dev | 5 |
+| Intermediate | 10 → 20 |
+| Final held-out | Seeds 21–100 of the evaluation list, untouched and run only with a stated reason |
+
+**What these numbers are.** These are **replays of the scripts the agents wrote**, not new model runs. The fresh API runs are the three single-seed Harbor runs in §3.1b.
+
+**Intermediate tier, 20 paired seeds** (evaluation seeds 1–20; the reference rows are cached from `reference_eval.json`):
+
+| Policy | Mean pts | Reference − policy (mean) | Per-seed SD | Reference ahead | Time per season |
+|---|---:|---:|---:|---:|---:|
+| reference | 266.8 | — | — | — | 60 s |
+| `v110_gemini_01` | 256.6 | **+10.2** | 8.6 | 17 / 20 | 280 s |
+| `v110_gemini_02` | 260.5 | **+6.2** | 9.7 | 16 / 20 | 2.2 s |
+| `v110_gemini_03` | 261.1 | **+5.7** | 8.0 | 15 / 20 | 1.3 s |
+| baseline | 228.8 | +38.0 | 10.0 | 20 / 20 | < 1 s |
+
+At 10 seeds the gaps were +10.5, +7.3 and +6.3. Per-seed differences are in `analysis/results/staged_inter20.json`.
+
+**Reading.**
+- The reference is ahead of all three new scripts on average and in most seasons.
+- But the gap to the 1.1.0 scripts (+5.7 to +10.2) is smaller than to the 1.0.0 scripts (+16.9 to +28.2 against those scripts on 100 seeds).
+- For two of the three it is below the 10-point threshold set in `NEXT_STEPS.md`.
+- These are 20-seed descriptive results. **No significance claim is made.**
+
+### 3.3 Bounded reference improvement (`analysis/reference_improve.py`, 5 paired dev seeds)
+
+Variants change only the reference's own search; mechanics, reward and seeds are untouched.
+
+| Variant | Mean pts | Gain vs base per seed | Mean gain | Time per season | Fits Harbor (3600 s)? |
+|---|---:|---|---:|---:|---|
+| base (32 futures, 1-step) | 253.6 | — | — | 53 s | yes |
+| 16 futures | 252.8 | −3, +2, +3, −6, 0 | −0.8 | 38 s | yes |
+| 64 futures | 254.4 | 0, +4, +5, −10, +5 | +0.8 | 73 s | yes |
+| two-step lookahead on the top 3 | 255.2 | +5, +5, +17, −11, −8 | +1.6 | 224 s | yes |
+| plan budget 96 paths / 8 sweeps | 254.2 | 0, 0, +3, 0, 0 | +0.6 | 63 s | yes |
+
+**Results.**
+- No variant is a consistent improvement on 5 seeds. The largest, two-step, has mixed signs. Nothing was promoted, and none of these numbers is a claim.
+- **Component planning under the final race policy is infeasible within the timeout.** Valuing plans with the rollout race policy costs about 6.6 s per race × 48 paths × about 420 plan evaluations.
+- **Not yet tested:** an alternative rollout continuation. The obvious stronger continuations are the rollout itself (that is the two-step test) or an agent-written script, which a reference should not depend on.
+
+**Conclusion for 1.1.0.**
+- The reference is a moderately stronger public-information player: about +6 to +10 points per season over the fresh 1.1.0 scripts on 20 seeds.
+- Cheap search changes do not widen this reliably.
+- A large or consistent 1.1.0 gap is **not** established.
+
 ## 4. Why the frontier lost points
 
 All three examples are from `docs/FRONTIER_REPEAT_REPORT.md` §4 and `analysis/results/rep_runs/*/confirm_own_continuation.json`. A loss counts only if it exceeds 1 point and 2 s.e. with the agent's own script as the continuation; realized single-seed outcomes are not used. In every case the information needed was in the observation or the rules.
@@ -158,7 +211,10 @@ These are decisions inside scripts the model wrote (25 of the 26 confirmed insta
 Only items that could cost judging points.
 
 1. **Gap size.** About 0.05–0.10 reward (14–28 points) against the 1.0.0 runs, and possibly much less on 1.1.0 (see 2). A stronger model than Gemini 3.8 Flash that writes a faithful simulator and enumerates all actions could close most of it. Document Gemini 3.8 Flash as the judged model.
-2. **Frontier runs on 1.1.0.** **Open, and the most important item.** Three fresh runs are in: 282, 279 and 286 against the reference's 286, a mean gap of +3.7 on one seed. The 1.0.0 evidence supports a gap; the 1.1.0 evidence does not. The 100-seed replay of the three new scripts (§3.2b) and a bounded reference improvement decide whether a gap can be claimed.
+2. **Frontier runs on 1.1.0.** Three fresh runs scored 282, 279 and 286 against the reference's 286 (one seed; +3.7 mean).
+   - Replayed on 20 paired seeds, the three scripts trail the reference by +10.2, +6.2 and +5.7 points (§3.2b).
+   - Bounded search changes to the reference did not widen this reliably (§3.3).
+   - **State the 1.1.0 gap as modest (about 6–10 points per season), not large.** The next step is the 2.1.0 port (`docs/REFERENCE_2_1_0_PORT.md`), not more 1.1.0 tuning.
 3. **Early SOFT stop looks odd.** The largest recurring loss is "stop a SOFT at lap 3". It follows from the published coefficients, and it is in the rules, but a judge may read it as an unrealistic tyre model. Have the one-line explanation ready (SOFT loses 0.35 s per lap of age × track multiplier).
 4. **Root of the repository is a different, older task.** The root README now points to `f1-championship/` first; the demo must use that path.
 5. **Branches are not merged.** The submission branch must be pushed and named in the README/video; `main` does not contain the championship task's later work.

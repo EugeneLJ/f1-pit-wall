@@ -78,6 +78,7 @@ the published SC/VSC model, plus a search over season replacement plans. It is b
 | Gemini 3.8 Flash, task seed, benchmark 1.1.0 (Harbor, 3 runs on the same seed) | 282 / 279 / 286 | 0.754 / 0.742 / 0.770 |
 | Reference, mean of 100 seeds | 271.8 | 0.724 |
 | Scripts written by the four 1.0.0 Gemini runs, same 100 seeds | 243.7–254.9 | 0.617–0.660 |
+| Scripts written by the three 1.1.0 Gemini runs, 20 paired seeds (reference 266.8 on these) | 256.6–261.1 | — |
 | Simple public heuristic (`F1_SOLUTION=baseline`) | 231.6 | 0.571 |
 
 Details, limits and open items: [docs/REFERENCE_GAP_REPORT.md](docs/REFERENCE_GAP_REPORT.md).

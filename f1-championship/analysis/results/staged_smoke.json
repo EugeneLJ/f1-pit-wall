@@ -1,0 +1,226 @@
+{
+ "runs": [
+  {
+   "stage": "smoke",
+   "seeds": [
+    9000,
+    9017
+   ],
+   "base": "reference",
+   "policies": {
+    "reference": {
+     "points": [
+      260,
+      256
+     ],
+     "mean_points": 258,
+     "reference_minus_policy_per_seed": [
+      0,
+      0
+     ],
+     "mean_paired_gap": 0,
+     "sd_paired_gap": 0.0,
+     "base_better_equal_worse": [
+      0,
+      2,
+      0
+     ],
+     "seconds_per_season": 53.3,
+     "computed_now": 2
+    },
+    "reference:f16": {
+     "points": [
+      260,
+      256
+     ],
+     "mean_points": 258,
+     "reference_minus_policy_per_seed": [
+      0,
+      0
+     ],
+     "mean_paired_gap": 0,
+     "sd_paired_gap": 0.0,
+     "base_better_equal_worse": [
+      0,
+      2,
+      0
+     ],
+     "seconds_per_season": 53.9,
+     "computed_now": 2
+    },
+    "reference:f64": {
+     "points": [
+      260,
+      256
+     ],
+     "mean_points": 258,
+     "reference_minus_policy_per_seed": [
+      0,
+      0
+     ],
+     "mean_paired_gap": 0,
+     "sd_paired_gap": 0.0,
+     "base_better_equal_worse": [
+      0,
+      2,
+      0
+     ],
+     "seconds_per_season": 53.3,
+     "computed_now": 2
+    },
+    "reference:two_step": {
+     "points": [
+      265,
+      261
+     ],
+     "mean_points": 263,
+     "reference_minus_policy_per_seed": [
+      -5,
+      -5
+     ],
+     "mean_paired_gap": -5,
+     "sd_paired_gap": 0.0,
+     "base_better_equal_worse": [
+      0,
+      0,
+      2
+     ],
+     "seconds_per_season": 224.8,
+     "computed_now": 2
+    },
+    "reference:plan_rich": {
+     "points": [
+      260,
+      256
+     ],
+     "mean_points": 258,
+     "reference_minus_policy_per_seed": [
+      0,
+      0
+     ],
+     "mean_paired_gap": 0,
+     "sd_paired_gap": 0.0,
+     "base_better_equal_worse": [
+      0,
+      2,
+      0
+     ],
+     "seconds_per_season": 69.3,
+     "computed_now": 2
+    }
+   },
+   "wall_seconds": 225.2
+  },
+  {
+   "stage": "smoke",
+   "seeds": [
+    9000,
+    9017
+   ],
+   "base": "reference",
+   "policies": {
+    "reference": {
+     "points": [
+      260,
+      256
+     ],
+     "mean_points": 258,
+     "reference_minus_policy_per_seed": [
+      0,
+      0
+     ],
+     "mean_paired_gap": 0,
+     "sd_paired_gap": 0.0,
+     "base_better_equal_worse": [
+      0,
+      2,
+      0
+     ],
+     "seconds_per_season": 53.3,
+     "computed_now": 0
+    },
+    "reference:f16": {
+     "points": [
+      257,
+      258
+     ],
+     "mean_points": 257.5,
+     "reference_minus_policy_per_seed": [
+      3,
+      -2
+     ],
+     "mean_paired_gap": 0.5,
+     "sd_paired_gap": 3.54,
+     "base_better_equal_worse": [
+      1,
+      0,
+      1
+     ],
+     "seconds_per_season": 35.1,
+     "computed_now": 2
+    },
+    "reference:f64": {
+     "points": [
+      260,
+      260
+     ],
+     "mean_points": 260,
+     "reference_minus_policy_per_seed": [
+      0,
+      -4
+     ],
+     "mean_paired_gap": -2,
+     "sd_paired_gap": 2.83,
+     "base_better_equal_worse": [
+      0,
+      1,
+      1
+     ],
+     "seconds_per_season": 63.8,
+     "computed_now": 2
+    },
+    "reference:two_step": {
+     "points": [
+      265,
+      261
+     ],
+     "mean_points": 263,
+     "reference_minus_policy_per_seed": [
+      -5,
+      -5
+     ],
+     "mean_paired_gap": -5,
+     "sd_paired_gap": 0.0,
+     "base_better_equal_worse": [
+      0,
+      0,
+      2
+     ],
+     "seconds_per_season": 218.1,
+     "computed_now": 2
+    },
+    "reference:plan_rich": {
+     "points": [
+      260,
+      256
+     ],
+     "mean_points": 258,
+     "reference_minus_policy_per_seed": [
+      0,
+      0
+     ],
+     "mean_paired_gap": 0,
+     "sd_paired_gap": 0.0,
+     "base_better_equal_worse": [
+      0,
+      2,
+      0
+     ],
+     "seconds_per_season": 63.1,
+     "computed_now": 2
+    }
+   },
+   "wall_seconds": 218.4
+  }
+ ]
+}

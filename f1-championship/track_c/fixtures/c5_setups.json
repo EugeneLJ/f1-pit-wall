@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "data_status": "synthetic_only",
+  "sources": [],
+  "defaults": {
+    "default_setup_id": "balanced",
+    "sessions_total": {"value": 2, "provenance": "synthetic"},
+    "lap_budget_per_driver": {"value": 24, "provenance": "synthetic"},
+    "ci95_z": {"value": 1.96, "provenance": "synthetic normal-approximation constant"},
+    "rivals_run_plan": "ONE_RUN"
+  },
+  "noise_model": {
+    "distribution": "independent zero-mean Gaussian per keyed lap/run; synthetic",
+    "programs": {
+      "SETUP_TEST": {
+        "metric": "long_run_pace_offset_sec_per_lap",
+        "observation_sd_per_lap": {"value": 0.18, "provenance": "synthetic"}
+      },
+      "QUALI_SIM": {
+        "metric": "qualifying_pace_offset_sec",
+        "observation_sd_per_lap": {"value": 0.08, "provenance": "synthetic"}
+      },
+      "LONG_RUN": {
+        "metric": "deg_multiplier_factor",
+        "observation_sd_per_lap": {"value": 0.03, "provenance": "synthetic"}
+      }
+    },
+    "qualifying_sd_per_run": {"value": 0.06, "provenance": "synthetic"},
+    "two_run_aggregation": "minimum time of two independently keyed runs; synthetic",
+    "draw_algorithm": "SHA-256 domain-separated keys to two uniforms then Box-Muller; synthetic deterministic stream"
+  },
+  "setups": {
+    "balanced": {
+      "description": "neutral synthetic default; used by rivals without practice information",
+      "priors": {
+        "qualifying_pace_offset_sec": {"mean": 0.0, "sd": 0.0, "provenance": "synthetic"},
+        "long_run_pace_offset_sec_per_lap": {"mean": 0.0, "sd": 0.0, "provenance": "synthetic"},
+        "deg_multiplier_factor": {"mean": 1.0, "sd": 0.0, "provenance": "synthetic"}
+      }
+    },
+    "low_drag": {
+      "description": "synthetic qualifying-biased trade-off, not a fitted or model-failure coefficient",
+      "priors": {
+        "qualifying_pace_offset_sec": {"mean": -0.42, "sd": 0.08, "provenance": "synthetic"},
+        "long_run_pace_offset_sec_per_lap": {"mean": 0.005, "sd": 0.06, "provenance": "synthetic"},
+        "deg_multiplier_factor": {"mean": 1.25, "sd": 0.035, "provenance": "synthetic"}
+      }
+    },
+    "high_downforce": {
+      "description": "synthetic race-biased trade-off with one-lap cost and lower synthetic degradation",
+      "priors": {
+        "qualifying_pace_offset_sec": {"mean": 0.3, "sd": 0.1, "provenance": "synthetic"},
+        "long_run_pace_offset_sec_per_lap": {"mean": -0.025, "sd": 0.07, "provenance": "synthetic"},
+        "deg_multiplier_factor": {"mean": 0.78, "sd": 0.045, "provenance": "synthetic"}
+      }
+    }
+  },
+  "reference": {
+    "label": "PUBLIC_INPUT_HEURISTIC_NOT_OPTIMAL_NOT_A_REWARD_POLICY",
+    "race_laps": {"value": 42, "provenance": "synthetic"},
+    "grid_loss_points_per_place": {"value": 2.0, "provenance": "synthetic"},
+    "points_by_position": {"value": [25, 18, 15, 12, 10, 8, 6, 4], "provenance": "synthetic reference approximation"},
+    "information_weights": {
+      "qualifying_pace_offset_sec": {"value": 1.0, "provenance": "synthetic"},
+      "long_run_pace_offset_sec_per_lap": {"value": 42.0, "provenance": "synthetic"},
+      "deg_multiplier_factor": {"value": null, "provenance": "synthetic: race_laps times archetype base degradation-time loss"}
+    },
+    "practice_batch_laps": {"value": 6, "provenance": "synthetic"}
+  },
+  "archetypes": {
+    "mixed": {
+      "base_deg_time_loss_sec_per_lap": {"value": 0.05, "provenance": "synthetic"}
+    },
+    "street": {
+      "base_deg_time_loss_sec_per_lap": {"value": 0.062, "provenance": "synthetic"}
+    },
+    "high_speed": {
+      "base_deg_time_loss_sec_per_lap": {"value": 0.045, "provenance": "synthetic"}
+    },
+    "high_degradation": {
+      "base_deg_time_loss_sec_per_lap": {"value": 0.07, "provenance": "synthetic"}
+    },
+    "wet_prone": {
+      "base_deg_time_loss_sec_per_lap": {"value": 0.058, "provenance": "synthetic"}
+    }
+  }
+}

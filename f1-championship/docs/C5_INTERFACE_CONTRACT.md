@@ -75,3 +75,47 @@ The engine owner then wires the phases, the observations and the journal.
 - Number of practice sessions and the lap budget.
 - Whether rivals run practice (proposal: rivals use the published default setup, no information).
 - Whether sprint formats are included (proposal: no).
+
+## Contract amendments
+
+The isolated Track C v1 implementation keeps the action shapes above and makes these
+lower-level choices explicit. These amendments do not change the shared engine or a
+published benchmark.
+
+1. **Defaults.** There are exactly two one-based practice sessions and a **24-lap
+   weekend budget per controlled driver**, shared across all programs/setup options.
+   Zero-lap actions are legal because both drivers are required in each action.
+   Actions cannot consume PU wear or inventory, and v1 adds no tyre-set resource.
+   Rivals use the neutral `balanced` setup with no practice information. Sprints are
+   not included.
+2. **Programs and estimates.** `SETUP_TEST` measures long-run setup pace,
+   `QUALI_SIM` measures one-lap setup pace with its published independent noise
+   level, and `LONG_RUN` measures only the tyre-degradation multiplier. Thus a lap
+   spent on tyre information is not a setup-pace comparison lap. Hidden effects are
+   shared within one team/weekend; both drivers contribute evidence. Public
+   `known_setup_estimates` is nested by setup and pace metric, each with
+   `{mean, ci95, laps_observed}`; `ci95` is the half-width. `tyre_wear_estimates`
+   uses the same shape. Gaussian precision weighting combines prior observations
+   with each batch's published per-lap observation SD.
+3. **State transition.** `initial_public_state` constructs a fresh practice state.
+   `simulate_practice` returns `{measurements, state}` rather than relying on caller
+   mutation: `state` is the next fresh public state, including absolute lap indices,
+   history, accounting, and phase. All measurements and public observation fields
+   are JSON serializable and exclude keys/noise values.
+4. **Qualifying.** `TWO_RUN` returns the minimum of two independently keyed runs;
+   `(time, public_car_id)` breaks exact ties. A direct team action is accepted, and a
+   `team → QUALIFYING action` map supports sealed simultaneous controlled teams.
+   Missing teams are neutral rivals. The output has only `order` and `times`; grid
+   penalties and `pu_rules.fia_grid` are intentionally not reimplemented.
+5. **Parc fermé.** Trusted infrastructure uses `make_parc_ferme_choice` to produce a
+   frozen, private `ParcFermeChoice` containing the secret key and car→setup tuples.
+   `race_modifiers` requires this envelope, not a mutable public action, and exposes
+   only the computed setup config to the engine owner. `race_modifiers(None)` returns
+   `{}` to represent no C5 config; the neutral setup returns exactly zero pace offset
+   and factor 1.0 for each selected car. Race arithmetic remains additive for pace
+   and multiplicative for degradation.
+
+The C5 reference is a public-prior/practice-estimate heuristic only. It uses marginal
+Gaussian variance reduction for practice allocation and posterior-mean provisional
+positions/expected F1-point values for qualifying. It is not a reward policy,
+reference planner change, or causal estimate of true race points.

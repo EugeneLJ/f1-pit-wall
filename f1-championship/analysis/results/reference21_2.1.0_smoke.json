@@ -6,7 +6,7 @@
    7100,
    7117
   ],
-  "wall_seconds": 65.9,
+  "wall_seconds": 0.3,
   "policies": {
    "reference21": {
     "points": [
@@ -33,78 +33,53 @@
      }
     ]
    },
-   "coordinator": {
+   "gemini_v21_01": {
     "points": [
-     211,
-     222
+     253,
+     277
     ],
-    "mean_points": 216.5,
+    "mean_points": 265,
     "reference21_minus_policy": [
-     35,
-     62
+     -7,
+     7
     ],
-    "mean_paired_gap": 48.5,
-    "seconds_per_season": 0.1,
+    "mean_paired_gap": 0,
+    "seconds_per_season": 0.3,
     "fallbacks": 0,
     "resyncs": 0,
     "replacements": [
      {
-      "Apex A": 0,
-      "Apex B": 0
+      "Apex A": 3,
+      "Apex B": 3
      },
      {
-      "Apex A": 0,
-      "Apex B": 0
+      "Apex A": 3,
+      "Apex B": 3
      }
     ]
    },
-   "baseline": {
+   "gemini:v21-gemini-01": {
     "points": [
-     211,
-     222
+     253,
+     277
     ],
-    "mean_points": 216.5,
+    "mean_points": 265,
     "reference21_minus_policy": [
-     35,
-     62
+     -7,
+     7
     ],
-    "mean_paired_gap": 48.5,
+    "mean_paired_gap": 0,
     "seconds_per_season": 0.1,
     "fallbacks": 0,
     "resyncs": 0,
     "replacements": [
      {
-      "Apex A": 0,
-      "Apex B": 0
+      "Apex A": 3,
+      "Apex B": 3
      },
      {
-      "Apex A": 0,
-      "Apex B": 0
-     }
-    ]
-   },
-   "fallback": {
-    "points": [
-     80,
-     80
-    ],
-    "mean_points": 80,
-    "reference21_minus_policy": [
-     166,
-     204
-    ],
-    "mean_paired_gap": 185,
-    "seconds_per_season": 0.1,
-    "fallbacks": 0,
-    "resyncs": 0,
-    "replacements": [
-     {
-      "Apex A": 0,
-      "Apex B": 0
-     },
-     {
-      "Apex A": 0,
-      "Apex B": 0
+      "Apex A": 3,
+      "Apex B": 3
      }
     ]
    }
@@ -140,7 +115,7 @@
    "fallbacks": 0,
    "resyncs": 0,
    "race_decisions": 112,
-   "cached": false
+   "cached": true
   },
   {
    "version": "2.1.0",
@@ -171,168 +146,116 @@
    "fallbacks": 0,
    "resyncs": 0,
    "race_decisions": 112,
-   "cached": false
+   "cached": true
   },
   {
    "version": "2.1.0",
-   "policy": "coordinator",
+   "policy": "gemini_v21_01",
    "seed": 7100,
-   "points": 211,
+   "points": 253,
    "replacements": {
-    "Apex A": 0,
-    "Apex B": 0
+    "Apex A": 3,
+    "Apex B": 3
    },
    "stock_left": {
-    "stock:ICE": 3,
-    "stock:turbo": 3,
-    "stock:energy_store": 3
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
    },
    "per_race": [
-    30,
-    22,
+    33,
+    35,
     18,
-    28,
-    30,
     37,
-    28,
-    18
+    33,
+    31,
+    33,
+    33
    ],
-   "seconds": 0.1,
-   "cached": false
+   "seconds": 0.3,
+   "cached": true
   },
   {
    "version": "2.1.0",
-   "policy": "coordinator",
+   "policy": "gemini_v21_01",
    "seed": 7117,
-   "points": 222,
+   "points": 277,
    "replacements": {
-    "Apex A": 0,
-    "Apex B": 0
+    "Apex A": 3,
+    "Apex B": 3
    },
    "stock_left": {
-    "stock:ICE": 3,
-    "stock:turbo": 3,
-    "stock:energy_store": 3
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
    },
    "per_race": [
-    25,
     37,
+    40,
     27,
-    28,
-    26,
-    43,
-    18,
-    18
-   ],
-   "seconds": 0.1,
-   "cached": false
-  },
-  {
-   "version": "2.1.0",
-   "policy": "baseline",
-   "seed": 7100,
-   "points": 211,
-   "replacements": {
-    "Apex A": 0,
-    "Apex B": 0
-   },
-   "stock_left": {
-    "stock:ICE": 3,
-    "stock:turbo": 3,
-    "stock:energy_store": 3
-   },
-   "per_race": [
-    30,
-    22,
-    18,
-    28,
-    30,
-    37,
-    28,
-    18
-   ],
-   "seconds": 0.1,
-   "cached": false
-  },
-  {
-   "version": "2.1.0",
-   "policy": "baseline",
-   "seed": 7117,
-   "points": 222,
-   "replacements": {
-    "Apex A": 0,
-    "Apex B": 0
-   },
-   "stock_left": {
-    "stock:ICE": 3,
-    "stock:turbo": 3,
-    "stock:energy_store": 3
-   },
-   "per_race": [
-    25,
-    37,
+    40,
     27,
-    28,
-    26,
     43,
-    18,
-    18
+    30,
+    33
    ],
-   "seconds": 0.1,
-   "cached": false
+   "seconds": 0.3,
+   "cached": true
   },
   {
    "version": "2.1.0",
-   "policy": "fallback",
+   "policy": "gemini:v21-gemini-01",
    "seed": 7100,
-   "points": 80,
+   "points": 253,
    "replacements": {
-    "Apex A": 0,
-    "Apex B": 0
+    "Apex A": 3,
+    "Apex B": 3
    },
    "stock_left": {
-    "stock:ICE": 3,
-    "stock:turbo": 3,
-    "stock:energy_store": 3
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
    },
    "per_race": [
-    10,
-    10,
-    6,
-    10,
-    14,
-    10,
-    10,
-    10
+    33,
+    35,
+    18,
+    37,
+    33,
+    31,
+    33,
+    33
    ],
    "seconds": 0.1,
+   "invalid_actions_replaced_by_fallback": [],
    "cached": false
   },
   {
    "version": "2.1.0",
-   "policy": "fallback",
+   "policy": "gemini:v21-gemini-01",
    "seed": 7117,
-   "points": 80,
+   "points": 277,
    "replacements": {
-    "Apex A": 0,
-    "Apex B": 0
+    "Apex A": 3,
+    "Apex B": 3
    },
    "stock_left": {
-    "stock:ICE": 3,
-    "stock:turbo": 3,
-    "stock:energy_store": 3
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
    },
    "per_race": [
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10
+    37,
+    40,
+    27,
+    40,
+    27,
+    43,
+    30,
+    33
    ],
    "seconds": 0.1,
+   "invalid_actions_replaced_by_fallback": [],
    "cached": false
   }
  ]

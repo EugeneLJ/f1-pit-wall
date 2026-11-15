@@ -46,6 +46,9 @@ No agent had been evaluated on 2.1.0 before these fixes. B8's evaluation never r
 | `v21-nop-01` | 0.0 |
 | `v21-v110-oracle-01` (1.1.0 task) | 0.7698 (286), unchanged |
 | **`v21-gemini-01` (live Gemini 3.8 Flash, OpenCode, same flags as the 1.1.0 runs)** | **279 points, reward 0.742.** Complete, intact, 0 rejected, about 10 min wall. |
+| **`v21-gemini-02` (live, same task build and flags)** | **256 points, reward 0.651.** Complete, intact, 0 rejected, about 10 min. 118 / 120 decisions by its `strategy.py` (whole-field segment simulator; 7 DEFENSIVE_BUFFER orders). |
+| **`v21-gemini-03` (live, same task build and flags)** | **276 points, reward 0.730.** Complete, intact, 0 rejected, about 8 min. 119 / 120 decisions by `/tmp/run_season.py` (one completed SWAP). |
+| **Mean of the 3 live runs** | **270.3 points, reward 0.708. The reference leads by +18.7 on the task seed (+10, +33, +13).** |
 
 **Reproduce:** `scripts/make_integrated_task.sh f1-championship-2.1.0 CHIEF_ONLY 2.1.0`, then `harbor run -p f1-championship-2.1.0 -a oracle`.
 
@@ -69,6 +72,18 @@ Per-seed values are in `analysis/results/reference21_2.1.0_inter20.json`.
 
 **The reference in every evaluated season:** 0 fallbacks, 0 resyncs. It always used all 9 stock units (Apex A 6, Apex B 3), bundling Apex A's three elements before race 7 on the task seed. It runs in 61–100 s per season, against a 3600 s limit.
 
+### All three live runs' scripts on the same 20 paired seeds
+
+| Script (replay; each reproduces its Harbor score exactly on the task seed) | Mean pts | Reference − script | SE | Reference ahead |
+|---|---:|---:|---:|---:|
+| `v21-gemini-01` | 267.3 | +9.05 | 2.2 | 15 / 20 |
+| `v21-gemini-02` | 244.3 | **+32.05** | 2.4 | 20 / 20 |
+| `v21-gemini-03` | 267.8 | +8.55 | 1.8 | 15 / 20 |
+| **Mean of the three** | **259.8** | **+16.6** (median +9.05) | | |
+
+- No script submitted an illegal action on these 20 seeds.
+- All three use the same component behaviour: they never exceed allocation, and leave 3 stock units unused on every seed.
+
 ### Where the gap comes from (attribution, 20 paired seeds)
 
 | Policy | Mean pts | Reference − policy |
@@ -77,6 +92,15 @@ Per-seed values are in `analysis/results/reference21_2.1.0_inter20.json`.
 | reference components + Gemini race policy | 268.3 | **+8.0** (SE 2.2) |
 | Gemini components + reference race policy | 275.8 | **+0.6** (SE 1.2) |
 | Gemini script, both phases | 267.3 | +9.05 |
+
+**Runs 02 and 03, same design:**
+
+| Run | Reference components + that run's race policy | That run's components + reference race policy |
+|---|---:|---:|
+| 02 | +27.1 (SE 2.3) | +0.55 (SE 1.2) |
+| 03 | +7.9 (SE 1.9) | +0.55 (SE 1.2) |
+
+The three runs' component rules produce identical plans, hence the identical +0.55.
 
 - **Almost all of the gap is in race decisions.**
 - Gemini's penalty-averse component rule costs about 0.6 points, a near tie, even though it leaves stock unused.
@@ -87,18 +111,38 @@ Per-seed values are in `analysis/results/reference21_2.1.0_inter20.json`.
 | | 1.1.0 | 2.1.0 |
 |---|---|---|
 | Reference on the task seed (Harbor) | 286, 0.770 | 289, 0.782 |
-| Live Gemini runs on the task seed | 282 / 279 / 286 (3 runs), mean gap +3.7 | 279 (1 run), gap +10 |
-| Script replays, 20 paired seeds | gaps +10.2 / +6.2 / +5.7 (3 scripts) | gap +9.05 (1 script) |
+| Live Gemini runs on the task seed | 282 / 279 / 286; reference − Gemini **+3.7** mean (0 to +7) | 279 / 256 / 276; reference − Gemini **+18.7** mean (+10 to +33) |
+| Script replays, 20 paired seeds | +10.2 / +6.2 / +5.7 (mean +7.4) | +9.05 / +32.05 / +8.55 (mean +16.6, median +9.05) |
 | Published baseline gap (20 seeds) | +38.0 | +55.1 |
 | Reference runtime per season | 36–60 s | 61–100 s |
-| Main source of Gemini's loss | race decisions (search, event model, objective; §4 of `REFERENCE_GAP_REPORT.md`) | race decisions (+8.0 of +9.05) |
+| Main source of Gemini's loss | race decisions | race decisions (component part +0.55 in all three runs) |
 
 **Reading.**
-- On 2.1.0 the reference leads by a similar, modest margin. A single 2.1.0 run cannot show a larger gap than on 1.1.0: the 1.1.0 single-seed gaps ranged 0 to +7, and the 20-seed script gaps overlap.
-- The published baseline falls further behind under 2.1.0, because it never replaces and races on worn elements.
-- **No significance claim is made.** There is one live run, and the replays come from one script.
+- On 2.1.0 the reference leads all three live runs and all three scripts. The average gap is larger than on 1.1.0, but it is driven by one run (02). Two of three runs are within the 1.1.0 range (+9 vs +6 to +10).
+- **The larger 2.1.0 average is not attributed to the 2.1.0 power-unit mechanics.** Their measured contribution is +0.55 in every run. Plausible but untested explanations are run-to-run variance in the strategy Gemini writes, and the longer 2.1.0 instruction. Neither is a finding.
+- The 20-seed tiers use different seed sets in the two versions, so the cross-version numbers are descriptive.
+- n = 3 live runs per version; no significance claim is made.
 
-## 6. Decision-level analysis of the live 2.1.0 run (`analysis/b21_decisions.py`)
+## 6. Decision-level analysis of the live 2.1.0 runs (`analysis/b21_decisions.py --run v21-gemini-0N`)
+
+### Across the three runs
+
+| | Run 01 | Run 02 | Run 03 |
+|---|---|---|---|
+| Same action as reference | 73% | 52% | 74% |
+| Candidates / robust | 15 / 7 | 25 / 18 | 13 / 7 |
+| **Early SOFT stop never taken (lap 3–6), robust** | races 5, 8 | races 4, 5, 8 | races 5, 8 |
+| **Missed stop under SC, race 7 lap 12 (t095), robust** | +3.9 | +1.6 | +3.9 |
+| Mid-race missed stops, robust decisions | 5 | 10 | 4 |
+| Other robust | — | 4 unneeded stops, incl. MEDIUM→MEDIUM at lap 15 (+7.0, +10.2) | VSC double stack onto MEDIUM at lap 36 (+2.9) |
+
+**Two failures recur robustly in all three runs:**
+- the early SOFT stop is never taken (1.1.0's T1);
+- the cheap stop under the race-7 SC is missed (T4).
+
+Mid-race missed stops (T3) recur in all three runs. Run 03's VSC double stack onto a short-life tyre is the same pattern Red Bool (DeepSeek) showed in B7. No robust candidate in any run involves components.
+
+### Run 01 in detail
 
 **Method.**
 - The live journal v2 replays exactly from the task seed.

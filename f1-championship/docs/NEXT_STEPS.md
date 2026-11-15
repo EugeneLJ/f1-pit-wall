@@ -2,7 +2,7 @@
 
 **2.1.0 (current, branch `feature/reference-2.1.0`).** The reference port is done and runs in Harbor: oracle 289 / 0.782. One live Gemini run scored 279 / 0.742. On 20 paired script-replay seeds the reference leads by +9.05, almost entirely from race decisions. See `docs/REFERENCE_2_1_0_REPORT.md`. Open items:
 1. [DONE] Decision-level analysis of `v21-gemini-01` (`analysis/b21_decisions.py`): 7 robust candidates, all missed stops. They are the 1.1.0 T1 (early SOFT stop) and T3/T4 (mid-race and SC stops) types; none involves components.
-2. More live 2.1.0 runs, about $0.7 each. Needs a decision.
+2. [DONE] Two more live 2.1.0 runs: 256 and 276 (279 earlier). On the task seed the reference leads by +18.7 on average. The 20-seed script gaps are +9.05 / +32.05 / +8.55. Early-SOFT and SC-stop failures recur in all three runs; the component contribution is +0.55.
 3. Only if the gap must grow: race-side reference strengthening. Staged: 2 smoke seeds, then 5 dev seeds.
 
 ---

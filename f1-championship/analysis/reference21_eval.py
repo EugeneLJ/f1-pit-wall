@@ -60,16 +60,32 @@ def engine_hash():
     return h.hexdigest()[:10]
 
 
+def run_dir(run):
+    return HERE / "results" / "reference_runs" / run
+
+
+def sources(policy):
+    """Source files of a policy; 'gemini:<run>', 'hybrid_refcomp:<run>', 'hybrid_refrace:<run>' for any run."""
+    if policy in SOURCES:
+        return SOURCES[policy]
+    kind, run = policy.split(":", 1)
+    script = sorted((run_dir(run) / "scripts").glob("*.txt"))
+    base = [run_dir(run) / "policy.py", *script]
+    if kind == "gemini":
+        return base
+    return [TASK / "integrated_task/solution/reference_v21.py", TASK / "solution/reference.py", *base]
+
+
 def key(policy, version):
     h = hashlib.sha256()
-    for p in SOURCES[policy]:
+    for p in sources(policy):
         h.update(Path(p).read_bytes())
     return f"{h.hexdigest()[:10]}-{engine_hash()}"
 
 
 def play(args):
     policy, seed, version = args
-    path = HERE / "results" / "cache" / version / policy / key(policy, version) / f"{seed}.json"
+    path = HERE / "results" / "cache" / version / policy.replace(":", "@") / key(policy, version) / f"{seed}.json"
     if path.exists():
         return json.loads(path.read_text()) | {"cached": True}
     from f1pitwall.integrated import config as C, policies as P
@@ -88,12 +104,14 @@ def play(args):
             player = reference_v21.Reference21(json.loads(json.dumps(public_rules(cfg))))
             decide = player.decide
         elif policy.startswith("hybrid_"):  # attribution: one phase from the reference, the other from the script
+            run = policy.split(":", 1)[1] if ":" in policy else "v21-gemini-01"
+            comp_from_ref = policy.startswith("hybrid_refcomp")
             import reference_v21
             from importlib.machinery import SourceFileLoader
             rules = json.loads(json.dumps(public_rules(cfg)))
             player = reference_v21.Reference21(rules)
-            gem = SourceFileLoader("gem_v21", str(HERE / "results/reference_runs/v21-gemini-01/policy.py")).load_module().make(rules)
-            ref_phase = "COMPONENT_DECISION" if policy == "hybrid_refcomp_geminirace" else "RACE_STRATEGY"
+            gem = SourceFileLoader(f"gem_{run}", str(run_dir(run) / "policy.py")).load_module().make(rules)
+            ref_phase = "COMPONENT_DECISION" if comp_from_ref else "RACE_STRATEGY"
 
             def decide(obs):
                 if obs["decision_type"] == ref_phase:
@@ -105,9 +123,9 @@ def play(args):
                 action = gem(obs)
                 player.model.submit("Apex", player.model.tick_id, json.loads(json.dumps(action)))
                 return action
-        elif policy.startswith("gemini_"):  # replay of an agent-written script (not a model run)
+        elif policy.startswith("gemini"):  # replay of an agent-written script (not a model run)
             from importlib.machinery import SourceFileLoader
-            mod = SourceFileLoader(policy, str(SOURCES[policy][0])).load_module()
+            mod = SourceFileLoader(policy.replace(":", "_"), str(sources(policy)[0])).load_module()
             decide = mod.make(json.loads(json.dumps(public_rules(cfg))))
         else:
             decide = P.scripted(policy)

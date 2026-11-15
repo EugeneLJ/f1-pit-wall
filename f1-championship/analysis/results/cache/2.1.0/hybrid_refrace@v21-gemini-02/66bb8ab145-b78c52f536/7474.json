@@ -1,0 +1,1 @@
+{"version": "2.1.0", "policy": "hybrid_refrace:v21-gemini-02", "seed": 7474, "points": 256, "replacements": {"Apex A": 3, "Apex B": 3}, "stock_left": {"stock:ICE": 1, "stock:turbo": 1, "stock:energy_store": 1}, "per_race": [28, 40, 27, 40, 15, 43, 30, 33], "seconds": 16.0, "invalid_actions_replaced_by_fallback": []}

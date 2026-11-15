@@ -88,9 +88,9 @@ Details, limits and open items: [docs/REFERENCE_GAP_REPORT.md](docs/REFERENCE_GA
 | 2.1.0 | Points | Reward |
 |---|---:|---:|
 | Reference, task seed (Harbor) | 289 | 0.782 |
-| Gemini 3.8 Flash, task seed (Harbor, 1 run) | 279 | 0.742 |
+| Gemini 3.8 Flash, task seed (Harbor, 3 runs) | 279 / 256 / 276 | 0.742 / 0.651 / 0.730 |
 | Reference, mean of 20 seeds | 276.3 | — |
-| Gemini script replayed on the same 20 seeds | 267.3 | — |
+| The three Gemini scripts replayed on the same 20 seeds | 267.3 / 244.3 / 267.8 | — |
 
 Details: [docs/REFERENCE_2_1_0_REPORT.md](docs/REFERENCE_2_1_0_REPORT.md).
 

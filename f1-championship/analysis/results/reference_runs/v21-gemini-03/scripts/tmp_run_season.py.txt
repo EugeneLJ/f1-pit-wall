@@ -1,0 +1,265 @@
+#!/usr/bin/env python3
+"""Autonomous Pit Wall Strategist for Apex GP."""
+
+import json
+import subprocess
+import sys
+import time
+
+def call_f1ctl(args):
+    cmd = ["f1ctl"] + args
+    try:
+        res = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        return json.loads(res)
+    except subprocess.CalledProcessError as exc:
+        print(f"f1ctl call failed: {exc.output.decode('utf-8')}", file=sys.stderr)
+        try:
+            return json.loads(exc.output)
+        except Exception:
+            raise exc
+
+def observe():
+    res = call_f1ctl(["observe"])
+    if not res.get("ok"):
+        raise RuntimeError(f"Observe failed: {res}")
+    return res["observation"]
+
+def act(decision_id, action_payload):
+    action_str = json.dumps(action_payload)
+    res = call_f1ctl(["act", decision_id, action_str])
+    if not res.get("ok"):
+        raise RuntimeError(f"Act failed for {decision_id}: {res}")
+    return res
+
+def solve_driver_strategy(current_lap, current_compound, current_age, compounds_used, laps_total, deg_mult, pit_loss_current, pit_loss_green, warmup_secs, track_status):
+    specs = {
+        'HARD': {'offset': 0.28, 'deg': 0.055, 'life': 24, 'warmup': warmup_secs.get('HARD', 1.0)},
+        'MEDIUM': {'offset': 0.00, 'deg': 0.140, 'life': 16, 'warmup': warmup_secs.get('MEDIUM', 0.6)},
+        'SOFT': {'offset': -0.55, 'deg': 0.350, 'life': 10, 'warmup': warmup_secs.get('SOFT', 0.3)},
+    }
+    def lap_cost(c, age):
+        sp = specs[c]
+        deg = sp['deg'] * deg_mult * age
+        cliff = 0.25 * deg_mult * max(0, age - sp['life'])
+        return sp['offset'] + deg + cliff
+
+    decision_laps = list(range(current_lap, laps_total, 3))
+    memo = {}
+
+    if track_status == 'SC':
+        curr_seg_age_delta = 1
+    elif track_status == 'VSC':
+        curr_seg_age_delta = 2
+    else:
+        curr_seg_age_delta = 3
+
+    def dp(idx, c, age, has_two):
+        lap = decision_laps[idx]
+        state = (idx, c, age, has_two)
+        if state in memo:
+            return memo[state]
+        is_last = (idx == len(decision_laps) - 1)
+        next_lap = laps_total if is_last else decision_laps[idx + 1]
+        seg_len = next_lap - lap
+        age_delta = curr_seg_age_delta if idx == 0 else seg_len
+
+        best_val = float('inf')
+        best_act = None
+
+        # Option 1: STAY
+        cost_stay = sum(lap_cost(c, age + i + 1) for i in range(seg_len))
+        if is_last:
+            tot = cost_stay + (0.0 if has_two else 20.0)
+            if tot < best_val:
+                best_val = tot
+                best_act = 'STAY'
+        else:
+            fut, _ = dp(idx + 1, c, age + age_delta, has_two)
+            tot = cost_stay + fut
+            if tot < best_val:
+                best_val = tot
+                best_act = 'STAY'
+
+        # Option 2: PIT_<new_c>
+        pl = pit_loss_current if idx == 0 else pit_loss_green
+        for new_c in ['SOFT', 'MEDIUM', 'HARD']:
+            new_has_two = has_two or (new_c not in compounds_used and new_c != c)
+            cost_pit = pl + specs[new_c]['warmup'] + sum(lap_cost(new_c, i + 1) for i in range(seg_len))
+            if is_last:
+                tot = cost_pit + (0.0 if new_has_two else 20.0)
+                if tot < best_val:
+                    best_val = tot
+                    best_act = f'PIT_{new_c}'
+            else:
+                fut, _ = dp(idx + 1, new_c, age_delta, new_has_two)
+                tot = cost_pit + fut
+                if tot < best_val:
+                    best_val = tot
+                    best_act = f'PIT_{new_c}'
+
+        memo[state] = (best_val, best_act)
+        return memo[state]
+
+    return dp(0, current_compound, current_age, len(compounds_used) >= 2)
+
+def choose_team_order(obs):
+    to = obs.get("team_orders", {})
+    legal = to.get("legal_team_orders", ["RACE"])
+
+    if "KEEP_ORDER" in legal and "RACE" not in legal:
+        return {"order": "KEEP_ORDER"}
+
+    feas = to.get("exchange_feasibility_if_no_pit", {})
+    if feas.get("executable") and feas.get("safe") and "SWAP" in legal:
+        leader_key = feas.get("leader")
+        trailer_key = feas.get("trailer")
+        if leader_key and trailer_key:
+            leader = obs["race_progress"]["drivers"][leader_key]
+            trailer = obs["race_progress"]["drivers"][trailer_key]
+            trail_age = trailer["tyre_age"]
+            lead_age = leader["tyre_age"]
+            trail_c = trailer["compound"]
+            lead_c = leader["compound"]
+
+            trailer_faster = False
+            if trail_c == lead_c and (lead_age - trail_age) >= 6:
+                trailer_faster = True
+            elif trail_c == "SOFT" and lead_c in ("MEDIUM", "HARD") and lead_age >= trail_age:
+                trailer_faster = True
+            elif trail_c == "MEDIUM" and lead_c == "HARD" and lead_age >= trail_age:
+                trailer_faster = True
+
+            if trailer_faster:
+                return {"order": "SWAP"}
+
+    return {"order": "RACE"}
+
+def handle_component_decision(obs):
+    race_idx = obs["championship"]["race_index"]
+    print(f"\n>>> [COMPONENT_DECISION] Race {race_idx + 1}/{obs['championship']['races_total']}: {obs['current_track']['name']}")
+    
+    # We replace before Race 4 (index 4) or if wear >= 0.50
+    decisions = []
+    for driver in ["Apex A", "Apex B"]:
+        driver_comps = obs["controlled_drivers"][driver]["components"]
+        for comp in ["ICE", "turbo", "energy_store"]:
+            wear = driver_comps[comp]["wear"]
+            cost_info = driver_comps[comp].get("replace_cost_if_only_replacement", {})
+            stock = cost_info.get("team_stock_remaining", 0)
+            places = cost_info.get("grid_places_if_replaced", 0)
+            
+            # Replace if race_idx == 4 and places == 0 and stock > 0, or if wear >= 0.50 and stock > 0
+            if (race_idx == 4 or wear >= 0.50) and places == 0 and stock > 0:
+                action = "REPLACE"
+            else:
+                action = "USE"
+            decisions.append({"driver": driver, "component": comp, "action": action})
+            print(f"  {driver} {comp:12}: wear={wear:.3f}, stock={stock}, places={places} -> {action}")
+    
+    return {"type": "COMPONENT_DECISION", "decisions": decisions}
+
+def handle_race_strategy(obs):
+    rp = obs["race_progress"]
+    track = obs["current_track"]
+    lap = rp["lap"]
+    laps_total = rp["laps_total"]
+    status = rp["track_status"]
+    deg_mult = 0.5 + track["tyre_degradation"]
+    pit_loss_green = rp["pit"]["loss_sec"]["GREEN"]
+    pit_loss_curr = rp["pit"]["loss_sec"][status]
+    warmup = rp["pit"]["out_lap_warmup_sec"]
+
+    da = rp["drivers"]["driver_a"]
+    db = rp["drivers"]["driver_b"]
+
+    val_a, act_a = solve_driver_strategy(lap, da["compound"], da["tyre_age"], set(da["compounds_used"]), laps_total, deg_mult, pit_loss_curr, pit_loss_green, warmup, status)
+    val_b, act_b = solve_driver_strategy(lap, db["compound"], db["tyre_age"], set(db["compounds_used"]), laps_total, deg_mult, pit_loss_curr, pit_loss_green, warmup, status)
+
+    serviced_first = rp["pit"].get("if_both_pit_serviced_first", "driver_a")
+
+    # Double stack resolution
+    if act_a.startswith("PIT") and act_b.startswith("PIT"):
+        if status == "GREEN":
+            # Determine which car should pit now and which should stay
+            # Urgency check: soft near cliff, or car with older tyres
+            sp_a = {"SOFT": 10, "MEDIUM": 16, "HARD": 24}[da["compound"]]
+            sp_b = {"SOFT": 10, "MEDIUM": 16, "HARD": 24}[db["compound"]]
+            urgency_a = da["tyre_age"] - sp_a
+            urgency_b = db["tyre_age"] - sp_b
+            
+            if urgency_a > urgency_b:
+                act_b = "STAY"
+            elif urgency_b > urgency_a:
+                act_a = "STAY"
+            else:
+                # Equal urgency, follow serviced_first
+                if serviced_first == "driver_a":
+                    act_b = "STAY"
+                else:
+                    act_a = "STAY"
+            print(f"  [Double-stack prevented under GREEN] Car A: {act_a}, Car B: {act_b}")
+        elif status == "VSC":
+            # Under VSC, if second car has relatively low age (< 12), delay second car
+            second_driver = db if serviced_first == "driver_a" else da
+            if second_driver["tyre_age"] < 12:
+                if serviced_first == "driver_a":
+                    act_b = "STAY"
+                else:
+                    act_a = "STAY"
+                print(f"  [Double-stack avoided under VSC] Car A: {act_a}, Car B: {act_b}")
+
+    # Mandatory two-compound check:
+    # If at lap 42 (last decision), and car has only used 1 compound, MUST pit for another compound
+    if lap == 42:
+        if len(da["compounds_used"]) < 2 and not act_a.startswith("PIT"):
+            # Choose SOFT (fastest for 3 laps)
+            act_a = "PIT_SOFT" if da["compound"] != "SOFT" else "PIT_MEDIUM"
+            print(f"  [Mandatory 2-compound enforced] Car A: {act_a}")
+        if len(db["compounds_used"]) < 2 and not act_b.startswith("PIT"):
+            act_b = "PIT_SOFT" if db["compound"] != "SOFT" else "PIT_MEDIUM"
+            print(f"  [Mandatory 2-compound enforced] Car B: {act_b}")
+
+    team_order = choose_team_order(obs)
+
+    print(f"Lap {lap:2d}/45 [{status:5}] | A: P{da['position']} ({da['compound']}-{da['tyre_age']}L) -> {act_a:10} | B: P{db['position']} ({db['compound']}-{db['tyre_age']}L) -> {act_b:10} | Order: {team_order['order']}")
+
+    return {
+        "type": "RACE_STRATEGY",
+        "driver_a": act_a,
+        "driver_b": act_b,
+        "team_order": team_order
+    }
+
+def main():
+    step = 0
+    while True:
+        step += 1
+        obs = observe()
+        dec_type = obs.get("decision_type")
+        dec_id = obs.get("decision_id")
+
+        if dec_type == "CHAMPIONSHIP_COMPLETE":
+            print("\n==========================================")
+            print("       CHAMPIONSHIP COMPLETE!             ")
+            print("==========================================")
+            standings = obs.get("championship", {}).get("team_standings", [])
+            for s in standings:
+                print(f"  {s['team']:10}: {s['points']} pts")
+            print("\nDriver standings:")
+            for s in obs.get("championship", {}).get("driver_standings", []):
+                print(f"  {s['driver']:10}: {s['points']} pts")
+            break
+
+        if dec_type == "COMPONENT_DECISION":
+            action = handle_component_decision(obs)
+        elif dec_type == "RACE_STRATEGY":
+            action = handle_race_strategy(obs)
+        else:
+            raise ValueError(f"Unknown decision_type: {dec_type}")
+
+        act(dec_id, action)
+        # Small sleep to be polite
+        time.sleep(0.05)
+
+if __name__ == "__main__":
+    main()

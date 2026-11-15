@@ -1,0 +1,441 @@
+"""Apex GP Championship Strategy Engine
+Implements optimal PU management and race strategy rollouts for the F1 championship.
+"""
+
+import json
+import socket
+import sys
+import time
+
+SOCKET_PATH = "/run/f1sim/sim.sock"
+
+POINTS = [25, 18, 15, 12, 10, 8, 6, 4]
+
+BASE_PACE = {
+    "Apex A": 89.65,
+    "Apex B": 89.85,
+    "Nova A": 89.75,
+    "Nova B": 90.00,
+    "Orion A": 89.55,
+    "Orion B": 89.90,
+    "Vertex A": 90.05,
+    "Vertex B": 90.15,
+}
+
+ARCHETYPE_OFFSETS = {
+    "Apex": {"high_degradation": -0.05, "high_speed": 0.1, "mixed": 0.05, "street": -0.15, "wet_prone": 0.05},
+    "Nova": {"high_degradation": -0.15, "high_speed": 0.05, "mixed": 0.1, "street": 0.05, "wet_prone": -0.05},
+    "Orion": {"high_degradation": 0.05, "high_speed": -0.15, "mixed": -0.05, "street": 0.15, "wet_prone": 0.0},
+    "Vertex": {"high_degradation": 0.1, "high_speed": 0.0, "mixed": 0.1, "street": -0.05, "wet_prone": -0.15},
+}
+
+TYRE_SPECS = {
+    "HARD": {"deg": 0.055, "life": 24, "offset": 0.28, "warmup": 1.0},
+    "MEDIUM": {"deg": 0.14, "life": 16, "offset": 0.0, "warmup": 0.6},
+    "SOFT": {"deg": 0.35, "life": 10, "offset": -0.55, "warmup": 0.3},
+}
+
+CLIFF_K = 0.25
+DIRTY_AIR_GAP = 1.0
+DIRTY_AIR_LOSS = 0.15
+PASS_BASE = 0.2
+PASS_SCALE = 2.0
+MIN_GAP = 0.3
+
+
+def request_sim(payload):
+    with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as conn:
+        conn.settimeout(30.0)
+        conn.connect(SOCKET_PATH)
+        conn.sendall((json.dumps(payload) + "\n").encode("utf-8"))
+        chunks = []
+        while True:
+            chunk = conn.recv(65536)
+            if not chunk:
+                break
+            chunks.append(chunk)
+            if chunk.endswith(b"\n"):
+                break
+    return json.loads(b"".join(chunks).decode("utf-8"))
+
+
+def get_observation():
+    resp = request_sim({"cmd": "observe"})
+    return resp["observation"]
+
+
+def send_action(decision_id, action):
+    resp = request_sim({"cmd": "act", "decision_id": decision_id, "action": action})
+    return resp
+
+
+def solve_component_decision(obs):
+    race_index = obs["championship"]["race_index"]
+    decisions = []
+    
+    print(f"\n=== COMPONENT DECISION: Race {race_index} ({obs['current_track']['name']}) ===")
+    for driver_name in ["Apex A", "Apex B"]:
+        driver_data = obs["controlled_drivers"][driver_name]
+        for comp_name in ["ICE", "turbo", "energy_store"]:
+            comp_info = driver_data["components"][comp_name]
+            wear = comp_info["wear"]
+            cost_info = comp_info["replace_cost_if_only_replacement"]
+            elements_used = cost_info["elements_used"]
+            stock = cost_info["team_stock_remaining"]
+            
+            should_replace = False
+            # Half-season replacement plan: replace before Race 4 if elements_used == 1
+            if race_index >= 4 and elements_used == 1 and stock > 0:
+                should_replace = True
+            elif wear >= 0.45 and elements_used == 1 and stock > 0:
+                should_replace = True
+            elif wear >= 0.85 and stock > 0:
+                should_replace = True
+                
+            action = "REPLACE" if should_replace else "USE"
+            decisions.append({
+                "driver": driver_name,
+                "component": comp_name,
+                "action": action
+            })
+            print(f"  {driver_name} {comp_name}: wear={wear:.3f}, elements_used={elements_used}, stock={stock} -> {action}")
+            
+    return {
+        "type": "COMPONENT_DECISION",
+        "decisions": decisions
+    }
+
+
+def simulate_segment(cars, actions_apex, team_order, track_info, pit_info, track_status):
+    archetype = track_info["archetype"]
+    overtaking_diff = track_info["overtaking_difficulty"]
+    deg_mult = 0.5 + track_info["tyre_degradation"]
+    pass_margin = PASS_BASE + overtaking_diff * PASS_SCALE
+    
+    sorted_cars = sorted(cars.values(), key=lambda c: c["elapsed"])
+    laps_remaining = cars["Apex A"]["laps_remaining"]
+    
+    pit_loss = pit_info["loss_sec"].get(track_status, 20.0)
+    warmup_specs = pit_info["out_lap_warmup_sec"]
+    
+    pit_actions = {}
+    for c in sorted_cars:
+        name = c["name"]
+        if name in actions_apex:
+            act = actions_apex[name]
+            if act.startswith("PIT_"):
+                pit_actions[name] = act.replace("PIT_", "")
+            else:
+                pit_actions[name] = None
+        else:
+            c_life = TYRE_SPECS[c["compound"]]["life"]
+            should_pit = False
+            if c["tyre_age"] >= c_life:
+                should_pit = True
+            elif laps_remaining == 3 and len(c["compounds_used"]) == 1:
+                should_pit = True
+            elif track_status in ("SC", "VSC") and c["tyre_age"] >= c_life - 3:
+                should_pit = True
+                
+            if should_pit:
+                if laps_remaining <= 6:
+                    chosen = "SOFT"
+                elif laps_remaining <= 14:
+                    chosen = "MEDIUM"
+                else:
+                    chosen = "HARD"
+                if len(c["compounds_used"]) == 1 and chosen in c["compounds_used"]:
+                    order = ["SOFT", "MEDIUM", "HARD"]
+                    for alt in order:
+                        if alt != chosen:
+                            chosen = alt
+                            break
+                pit_actions[name] = chosen
+            else:
+                pit_actions[name] = None
+
+    team_pit_count = {"Apex": 0, "Nova": 0, "Orion": 0, "Vertex": 0}
+    new_cars = {}
+    for c in sorted_cars:
+        name = c["name"]
+        team = c["team"]
+        car = dict(c)
+        
+        is_pit = pit_actions[name] is not None
+        out_lap = False
+        if is_pit:
+            new_compound = pit_actions[name]
+            car["elapsed"] += pit_loss
+            if team_pit_count[team] > 0:
+                car["elapsed"] += pit_info["double_stack_queue_sec"]
+            team_pit_count[team] += 1
+            car["compound"] = new_compound
+            car["tyre_age"] = 0
+            if new_compound not in car["compounds_used"]:
+                car["compounds_used"] = car["compounds_used"] + [new_compound]
+            out_lap = True
+            
+        seg_time = 0.0
+        age = car["tyre_age"]
+        spec = TYRE_SPECS[car["compound"]]
+        base = BASE_PACE[name] + ARCHETYPE_OFFSETS[team][archetype] + car.get("wear_pace_loss", 0.0)
+        
+        age_step = 1 if track_status == "GREEN" else (2/3 if track_status == "VSC" else 1/3)
+        time_factor = 1.0 if track_status == "GREEN" else (1.3 if track_status == "VSC" else 1.4)
+        
+        for l in range(3):
+            deg_loss = spec["deg"] * deg_mult * age
+            cliff_loss = CLIFF_K * deg_mult * max(0.0, age - spec["life"])
+            lap_t = (base + spec["offset"] + deg_loss + cliff_loss) * time_factor
+            if l == 0 and out_lap:
+                lap_t += warmup_specs[car["compound"]]
+            seg_time += lap_t
+            age += age_step
+            
+        car["tyre_age"] = int(age)
+        car["seg_ideal_time"] = seg_time
+        car["ideal_elapsed"] = car["elapsed"] + seg_time
+        car["laps_remaining"] -= 3
+        new_cars[name] = car
+
+    road_order = [c["name"] for c in sorted(cars.values(), key=lambda c: c["elapsed"])]
+    
+    for i in range(1, len(road_order)):
+        chaser_name = road_order[i]
+        leader_name = road_order[i-1]
+        gap = cars[chaser_name]["elapsed"] - cars[leader_name]["elapsed"]
+        if gap <= DIRTY_AIR_GAP and track_status == "GREEN":
+            new_cars[chaser_name]["ideal_elapsed"] += DIRTY_AIR_LOSS * 3
+
+    if track_status == "GREEN":
+        apex_a_pos = road_order.index("Apex A")
+        apex_b_pos = road_order.index("Apex B")
+        adjacent = abs(apex_a_pos - apex_b_pos) == 1
+        
+        if team_order == "SWAP" and adjacent:
+            ahead = "Apex A" if apex_a_pos < apex_b_pos else "Apex B"
+            behind = "Apex B" if ahead == "Apex A" else "Apex A"
+            gap = cars[behind]["elapsed"] - cars[ahead]["elapsed"]
+            if gap <= 1.5:
+                deficit = max(0.0, new_cars[ahead]["ideal_elapsed"] - new_cars[behind]["ideal_elapsed"])
+                needed_lift = deficit + 1.0
+                if needed_lift <= 2.0:
+                    new_cars[ahead]["ideal_elapsed"] += needed_lift
+        elif team_order == "DEFENSIVE_BUFFER" and adjacent:
+            behind = "Apex B" if apex_a_pos < apex_b_pos else "Apex A"
+            new_cars[behind]["ideal_elapsed"] += 0.35
+            new_cars[behind]["defending"] = True
+
+    final_cars = [dict(c) for c in sorted(new_cars.values(), key=lambda c: c["elapsed"])]
+    changed = True
+    while changed:
+        changed = False
+        for i in range(len(final_cars) - 1):
+            car1 = final_cars[i]
+            car2 = final_cars[i+1]
+            if car2["ideal_elapsed"] < car1["ideal_elapsed"]:
+                req = pass_margin
+                if car1.get("defending", False):
+                    req += 1.0
+                if (car1["ideal_elapsed"] - car2["ideal_elapsed"]) >= req and track_status == "GREEN":
+                    final_cars[i], final_cars[i+1] = final_cars[i+1], final_cars[i]
+                    changed = True
+                else:
+                    car2["ideal_elapsed"] = car1["ideal_elapsed"] + MIN_GAP
+
+    for c in final_cars:
+        c["elapsed"] = c["ideal_elapsed"]
+        new_cars[c["name"]] = c
+        
+    return new_cars
+
+
+def evaluate_apex_strategy(current_cars, track_info, pit_info, track_status, act_a, act_b, order):
+    cars = {name: dict(c) for name, c in current_cars.items()}
+    laps_rem = cars["Apex A"]["laps_remaining"]
+    
+    cars = simulate_segment(cars, {"Apex A": act_a, "Apex B": act_b}, order, track_info, pit_info, track_status)
+    laps_rem -= 3
+    
+    while laps_rem > 0:
+        actions = {}
+        for name in ["Apex A", "Apex B"]:
+            c = cars[name]
+            life = TYRE_SPECS[c["compound"]]["life"]
+            need_pit = False
+            # Check if tyres will suffer cliff next segment
+            if c["tyre_age"] + 3 > life:
+                need_pit = True
+            elif laps_rem == 3 and len(c["compounds_used"]) == 1:
+                need_pit = True
+                
+            if need_pit:
+                if laps_rem <= 6:
+                    choice = "PIT_SOFT"
+                elif laps_rem <= 15:
+                    choice = "PIT_MEDIUM"
+                else:
+                    choice = "PIT_HARD"
+                comp_choice = choice.replace("PIT_", "")
+                if len(c["compounds_used"]) == 1 and comp_choice in c["compounds_used"]:
+                    for alt in ["MEDIUM", "HARD", "SOFT"]:
+                        if alt not in c["compounds_used"]:
+                            choice = f"PIT_{alt}"
+                            break
+                actions[name] = choice
+            else:
+                actions[name] = "STAY"
+                
+        cars = simulate_segment(cars, actions, "RACE", track_info, pit_info, "GREEN")
+        laps_rem -= 3
+
+    for name, c in cars.items():
+        if len(c["compounds_used"]) < 2:
+            c["elapsed"] += 20.0
+
+    final_standings = sorted(cars.values(), key=lambda c: c["elapsed"])
+    points_a = 0
+    points_b = 0
+    for pos, c in enumerate(final_standings):
+        if c["name"] == "Apex A":
+            points_a = POINTS[pos]
+        elif c["name"] == "Apex B":
+            points_b = POINTS[pos]
+            
+    tot_elapsed = cars["Apex A"]["elapsed"] + cars["Apex B"]["elapsed"]
+    return (points_a + points_b, -tot_elapsed, points_a, points_b)
+
+
+def solve_race_strategy(obs):
+    progress = obs["race_progress"]
+    track_info = obs["current_track"]
+    pit_info = progress["pit"]
+    track_status = progress["track_status"]
+    team_orders_info = obs.get("team_orders", {})
+    legal_orders = team_orders_info.get("legal_team_orders", ["RACE"])
+    commitment = team_orders_info.get("commitment")
+    
+    cars = {}
+    for c in progress["classification"]:
+        name = c["driver"]
+        wear_loss = 0.0
+        if name in obs.get("controlled_drivers", {}):
+            wear_loss = obs["controlled_drivers"][name]["projection_if_all_used"]["wear_pace_loss"]
+        cars[name] = {
+            "name": name,
+            "team": c["team"],
+            "compound": c["compound"],
+            "compounds_used": list(c["compounds_used"]),
+            "tyre_age": c["tyre_age"],
+            "elapsed": c["elapsed"],
+            "laps_remaining": progress["laps_remaining"],
+            "wear_pace_loss": wear_loss
+        }
+        
+    driver_a = progress["drivers"]["driver_a"]
+    driver_b = progress["drivers"]["driver_b"]
+    laps_rem = progress["laps_remaining"]
+    legal_actions = progress["legal_actions"]
+    
+    def sensible_actions(driver_data):
+        opts = ["STAY"]
+        comp = driver_data["compound"]
+        age = driver_data["tyre_age"]
+        life = TYRE_SPECS[comp]["life"]
+        
+        can_pit = (track_status in ("SC", "VSC") and age >= 3) or (age + 3 >= life) or (laps_rem <= 12)
+        if can_pit:
+            for c in ["SOFT", "MEDIUM", "HARD"]:
+                if c == "SOFT" and laps_rem > 10:
+                    continue
+                opts.append(f"PIT_{c}")
+        return [o for o in opts if o in legal_actions]
+
+    cand_a = sensible_actions(driver_a)
+    cand_b = sensible_actions(driver_b)
+    
+    allowed_orders = []
+    if commitment is not None:
+        allowed_orders = [o for o in ["KEEP_ORDER", "REQUEST_GIVE_BACK"] if o in legal_orders]
+        if not allowed_orders:
+            allowed_orders = [o for o in ["RACE"] if o in legal_orders]
+    else:
+        if "RACE" in legal_orders:
+            allowed_orders.append("RACE")
+        for o in ["HOLD", "SWAP", "DEFENSIVE_BUFFER"]:
+            if o in legal_orders:
+                feas = team_orders_info.get("exchange_feasibility_if_no_pit", {})
+                if o == "SWAP" and feas.get("executable", False) and feas.get("safe", False):
+                    allowed_orders.append("SWAP")
+                elif o in ("HOLD", "DEFENSIVE_BUFFER"):
+                    allowed_orders.append(o)
+
+    if not allowed_orders:
+        allowed_orders = legal_orders[:1]
+
+    best_score = (-1, -1e9, 0, 0)
+    best_action = ("STAY", "STAY", {"order": allowed_orders[0]})
+    
+    for act_a in cand_a:
+        for act_b in cand_b:
+            for order_name in allowed_orders:
+                if order_name == "SWAP" and (act_a.startswith("PIT_") or act_b.startswith("PIT_")):
+                    continue
+                order_payload = {"order": order_name}
+                score = evaluate_apex_strategy(cars, track_info, pit_info, track_status, act_a, act_b, order_name)
+                if score > best_score:
+                    best_score = score
+                    best_action = (act_a, act_b, order_payload)
+
+    action_payload = {
+        "type": "RACE_STRATEGY",
+        "driver_a": best_action[0],
+        "driver_b": best_action[1],
+        "team_order": best_action[2]
+    }
+    
+    if "engineer_reports" in obs and obs["engineer_reports"]:
+        action_payload["consumed_reports"] = [r["record_hash"] for r in obs["engineer_reports"]]
+        
+    print(f"Lap {progress['lap']:2d} ({track_status:5s}): A={best_action[0]:10s} B={best_action[1]:10s} Order={best_action[2]['order']:16s} -> Proj {best_score[0]} pts (A:{best_score[2]}, B:{best_score[3]})")
+    return action_payload
+
+
+def run_full_championship():
+    step = 0
+    while True:
+        step += 1
+        obs = get_observation()
+        dec_type = obs.get("decision_type")
+        dec_id = obs.get("decision_id")
+        
+        if dec_type == "CHAMPIONSHIP_COMPLETE":
+            print("\n==========================================")
+            print("🏆 CHAMPIONSHIP COMPLETE!")
+            print("==========================================")
+            standings = obs.get("championship", {}).get("team_standings", [])
+            print("Team Standings:")
+            for s in standings:
+                print(f"  {s['team']:10s}: {s['points']} pts")
+            driver_st = obs.get("championship", {}).get("driver_standings", [])
+            print("\nDriver Standings:")
+            for d in driver_st:
+                print(f"  {d['driver']:10s}: {d['points']} pts")
+            break
+            
+        if dec_type == "COMPONENT_DECISION":
+            action = solve_component_decision(obs)
+        elif dec_type == "RACE_STRATEGY":
+            action = solve_race_strategy(obs)
+        else:
+            print(f"Unknown decision type: {dec_type}")
+            break
+            
+        resp = send_action(dec_id, action)
+        if not resp.get("ok"):
+            print(f"ERROR on {dec_id}: {resp}")
+            sys.exit(1)
+
+
+if __name__ == "__main__":
+    run_full_championship()

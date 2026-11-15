@@ -38,7 +38,7 @@ from f1pitwall.integrated import race as ir  # noqa: E402
 from f1pitwall.integrated import session as S  # noqa: E402
 from f1pitwall.integrated import verify as V  # noqa: E402
 
-RUN = HERE / "results" / "reference_runs" / "v21-gemini-01"
+RUN = HERE / "results" / "reference_runs" / "v21-gemini-01"  # overridden by --run
 SLOT = "Apex"
 SIGNIFICANT = 1.0
 
@@ -118,6 +118,11 @@ def classify(item, ev):
     return labels or ["same_pit_pattern"]
 
 
+def _set_run(path):
+    global RUN
+    RUN = Path(path)
+
+
 def job(args):
     item, futures = args
     ev = evaluate(item, futures)
@@ -138,10 +143,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--futures", type=int, default=16)
     parser.add_argument("--workers", type=int, default=10)
+    parser.add_argument("--run", default="v21-gemini-01")
     args = parser.parse_args()
+    global RUN
+    RUN = HERE / "results" / "reference_runs" / args.run
     items, points = states()
     by_tick = {i["tick_id"]: i for i in items}
-    with mp.Pool(args.workers) as pool:
+    with mp.Pool(args.workers, initializer=_set_run, initargs=(str(RUN),)) as pool:
         evals = dict(pool.map(job, [(i, args.futures) for i in items], chunksize=2))
         cands = [t for t, ev in evals.items() if ev["regret"] > SIGNIFICANT and ev["regret"] > 2 * ev["se"]]
         robust = dict(pool.map(robust_job, [(by_tick[t], args.futures) for t in cands], chunksize=1))

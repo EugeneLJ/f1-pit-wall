@@ -5,7 +5,7 @@
   "seeds": [
    3905429505653179902
   ],
-  "wall_seconds": 66.1,
+  "wall_seconds": 0.3,
   "policies": {
    "reference21": {
     "points": [
@@ -26,41 +26,22 @@
      }
     ]
    },
-   "gemini_v21_01": {
+   "gemini:v21-gemini-03": {
     "points": [
-     279
+     276
     ],
-    "mean_points": 279,
+    "mean_points": 276,
     "reference21_minus_policy": [
-     10
+     13
     ],
-    "mean_paired_gap": 10,
-    "seconds_per_season": 0.3,
+    "mean_paired_gap": 13,
+    "seconds_per_season": 0.1,
     "fallbacks": 0,
     "resyncs": 0,
     "replacements": [
      {
       "Apex A": 3,
       "Apex B": 3
-     }
-    ]
-   },
-   "baseline": {
-    "points": [
-     229
-    ],
-    "mean_points": 229,
-    "reference21_minus_policy": [
-     60
-    ],
-    "mean_paired_gap": 60,
-    "seconds_per_season": 0.1,
-    "fallbacks": 0,
-    "resyncs": 0,
-    "replacements": [
-     {
-      "Apex A": 0,
-      "Apex B": 0
      }
     ]
    }
@@ -96,13 +77,13 @@
    "fallbacks": 0,
    "resyncs": 0,
    "race_decisions": 112,
-   "cached": false
+   "cached": true
   },
   {
    "version": "2.1.0",
-   "policy": "gemini_v21_01",
+   "policy": "gemini:v21-gemini-03",
    "seed": 3905429505653179902,
-   "points": 279,
+   "points": 276,
    "replacements": {
     "Apex A": 3,
     "Apex B": 3
@@ -114,7 +95,7 @@
    },
    "per_race": [
     43,
-    40,
+    37,
     27,
     30,
     33,
@@ -122,34 +103,8 @@
     33,
     33
    ],
-   "seconds": 0.3,
-   "cached": false
-  },
-  {
-   "version": "2.1.0",
-   "policy": "baseline",
-   "seed": 3905429505653179902,
-   "points": 229,
-   "replacements": {
-    "Apex A": 0,
-    "Apex B": 0
-   },
-   "stock_left": {
-    "stock:ICE": 3,
-    "stock:turbo": 3,
-    "stock:energy_store": 3
-   },
-   "per_race": [
-    43,
-    26,
-    25,
-    28,
-    28,
-    33,
-    30,
-    16
-   ],
    "seconds": 0.1,
+   "invalid_actions_replaced_by_fallback": [],
    "cached": false
   }
  ]

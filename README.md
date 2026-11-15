@@ -43,6 +43,130 @@ The latest local suite covers legacy regression, schema validation,
 race-to-race transitions, adapter integration, contract validation, trace
 reproducibility, and complete two-race/eight-race smoke runs.
 
+## One-command judge demo (eight-race Championship)
+
+`./scripts/demo.sh` always creates a **fresh Harbor + OpenCode trial** for the
+packaged `f1-championship` task. It does not replay a recorded score or substitute
+an old result when the new run fails. Prerequisites are Docker, Harbor 0.26.0,
+and a model credential. Python 3.12 is required for the per-race canonical replay;
+`f1-championship/scripts/py312` is used automatically when the default `python3`
+is a different version.
+
+```bash
+# Credential value stays out of shell history and is never written to the report.
+read -rsp "GEMINI_API_KEY: " GEMINI_API_KEY; printf '\n'
+export GEMINI_API_KEY
+./scripts/demo.sh
+
+# Or let Harbor read credentials from an inaccessible-to-git env file:
+F1_ENV_FILE=/secure/path/f1-pit-wall.env ./scripts/demo.sh
+```
+
+The final line is the report location:
+
+```text
+Report: /.../jobs/demo-<timestamp>-<pid>/report.html
+```
+
+Open this file directly in a browser. It is static, self-contained HTML with no
+server, JavaScript, framework, or external assets. The run directory also contains:
+
+```text
+harbor.log                    Harbor/OpenCode console output
+run.json                     execution metadata (no credential values)
+demo_result.json             machine-readable verification/result summary
+demo_artifacts/              copied verifier report/reward and sealed evidence
+harbor-output/               complete fresh Harbor job
+report.html                  human-readable report
+```
+
+Completion, replay integrity, constructors' points, and normalized reward come
+from the isolated verifier. The post-run ASCII display reads only verified
+race-completion transitions; it is explicitly labelled **not live**. Interactive
+terminals update one line, while non-TTY logs receive all race lines.
+
+### Demo configuration
+
+All paths may be absolute. Relative benchmark/output paths are resolved from the
+repository root.
+
+| Variable | Default / purpose |
+|---|---|
+| `F1_MODEL` | `gemini/gemini-3.8-flash` |
+| `F1_API_KEY_NAME` | `GEMINI_API_KEY`; variable name only, never its value |
+| `F1_ENV_FILE` | Optional Harbor credential env-file path |
+| `F1_BENCHMARK_PATH` | `f1-championship` |
+| `F1_OUTPUT_DIR` | `jobs`; every invocation creates a new child directory |
+| `F1_HARBOR_BIN` | `harbor` |
+| `F1_JOB_NAME` | `opencode` |
+| `F1_AGENT_HOST` | `generativelanguage.googleapis.com`; set empty to omit the allow-host flag |
+| `F1_PYTHON` | `python3`, or the task's `scripts/py312` when needed |
+| `F1_PROGRESS` | `auto`, `always`, or `never` |
+| `F1_REPLAY_DELAY` | Seconds between verified replay frames; defaults to zero for non-TTY |
+
+For example:
+
+```bash
+F1_MODEL=gemini/another-model \
+F1_API_KEY_NAME=GEMINI_API_KEY \
+F1_BENCHMARK_PATH=/path/to/f1-championship \
+./scripts/demo.sh
+```
+
+A comparison is rendered only when **all** reference inputs are supplied, both
+runs are complete/intact with valid evidence, benchmark/scalar versions match,
+and verifier seed files match byte-for-byte:
+
+```bash
+F1_REFERENCE_REPORT=/path/to/reference/verifier/report.json \
+F1_REFERENCE_EVIDENCE=/path/to/reference/artifacts/evidence/f1sim \
+F1_REFERENCE_SEED=/path/to/reference-task/tests/hidden_seed.json \
+./scripts/demo.sh
+```
+
+`F1_FRONTIER_SEED_PATH` overrides the current seed location if needed. Seed values
+are never displayed. `F1_FAILURE_EVIDENCE` optionally points to a
+`confirm_own_continuation.json` analysis; malformed evidence is reported and
+ignored, not converted into failures.
+
+To print the captured verified replay again:
+
+```bash
+python3 scripts/demo.py replay --run-dir jobs/demo-<timestamp>-<pid>
+```
+
+The script preserves any nonzero Harbor/lint exit code. With a successful Harbor
+process, exit 0 requires complete, intact, consistent fresh artifacts; exit 2 is
+a local/report-generation error, and exit 3 means missing, failed, or incomplete
+verification. A zero official reward alone is not treated as an execution error.
+
+### Demo regression tests and actual coverage
+
+```bash
+python3 -m unittest discover -s tests -p 'test_demo_ux.py' -v
+```
+
+The 15 offline tests cover parsing the checked-in **real sealed r1/r2 verifier
+reports, journals, and manifests**, canonical per-race replay generation,
+successful and failed fresh run directories, incomplete runs, missing/mismatched
+references, malformed and missing evidence, unbound/tampered traces and summaries,
+confirmed/malformed failure analysis, stable HTML, TTY/non-TTY progress, and exit
+propagation. A fake local Harbor executable exercises the full `demo.sh`
+orchestration and verifies the `-a opencode` invocation without Docker or any
+paid/API call.
+
+The canonical replay tests use the real r1 journal and its published repeat seed.
+Because this development host has Python 3.11, they bypass only the production
+version guard; this exercises the code but is **not claimed as an official Python
+3.12 replay execution**. Unbound existing analysis traces are never accepted as
+verified progress.
+
+**Not executed in this development environment:** Docker image builds, a real
+Harbor 0.26 + OpenCode trial, a live Gemini request, or a fresh run under the
+actual Python 3.12 runtime (Docker, Harbor, 3.12, and live credentials are
+unavailable). The judge command above always attempts a real fresh run and reports
+any failure rather than falling back to these fixtures.
+
 ## Legacy P0 Harbor task
 
 The preserved Harbor task controls both Apex GP drivers at laps 8, 12 and 16
@@ -155,12 +279,12 @@ The first three frontier-agent trials matched the planning reference and did
 not expose a failure. See [`docs/EVALUATION_2026-11-14.md`](docs/EVALUATION_2026-11-14.md)
 for the exact jobs, traces, scores, and proposed next experiment.
 
-Championship v0.1 remains a deterministic integration milestone, not the final
-benchmark. Track and component coefficients are explicitly synthetic
-placeholders. Practice, qualifying, upgrades, team orders, weather expansion,
-Race Engineer agents, a fair reference planner, historical calibration, and a
-Championship verifier/reward are not implemented yet. The existing Harbor
-verifier continues to evaluate only the legacy P0 task.
+The root-level Championship v0.1 prototype remains a deterministic integration
+milestone, not the final benchmark. Track and component coefficients are
+explicitly synthetic placeholders; its Harbor verifier evaluates only legacy P0.
+The separately packaged `f1-championship` task used by this demo has its own
+provisional sealed verifier/reward and broader implementation; see
+[`f1-championship/README.md`](f1-championship/README.md) for its current scope.
 
 ## Optional MCP adapter
 

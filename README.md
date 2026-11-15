@@ -1,204 +1,184 @@
-# F1 Pit Wall
+# F1 Championship Strategist
 
-**Submission: benchmark 2.1.0, [`f1-championship/`](f1-championship/README.md)**. An eight-race
-constructors' championship with FIA-2026-based power-unit rules and team orders, played through a sealed
-simulator sidecar (120 sequential decisions). Reference 289 points (reward 0.7817) against three fresh
-Gemini 3.8 Flash runs at 279, 256 and 276.
+**Can AI win the championship, not just the race?**
 
-```bash
-f1-championship/scripts/run_v21.sh oracle          # reference (289, 0.7817)
-f1-championship/scripts/run_v21.sh nop             # do-nothing baseline (reward 0)
-f1-championship/scripts/run_v21.sh probe-stop      # stop-early baseline (reward 0)
-f1-championship/scripts/run_v21.sh probe-complete  # exploit probe, then honest finish
-GEMINI_ENV_FILE=<env file> f1-championship/scripts/run_v21.sh opencode   # frontier run
-```
+> **Verified submission · Benchmark 2.1.0 · [Try the demo](#try-it-yourself) · [Research extensions](#what-comes-next-22)**
 
-Demo with an HTML report: `scripts/demo.sh recorded` (instant, a committed genuine run) or
-`F1_ENV_FILE=<env file> scripts/demo.sh live` (a fresh Gemini season).
+Imagine managing a Formula 1-inspired racing team. You have **two drivers, eight races, 120 decisions, and one goal: score as many championship points as possible**. Every choice affects something else. A tyre change may win time now but sacrifice track position; using an ageing power-unit component may preserve a spare for a more important race; helping one driver may hurt the other.
 
-Results, integrity evidence, the 1.1.0 comparison and the diagnostic studies are in
-[`f1-championship/README.md`](f1-championship/README.md).
+**F1 Championship Strategist** is an interactive benchmark for testing whether AI agents can make good decisions across an entire season—not merely finish a single race.
 
-The files at the repository root (`instruction.md`, `task.toml`, `environment/`, `tests/`, `solution/`)
-are the earlier single-race task, kept only as a regression baseline. The rest of this page describes
-that earlier state.
+**[One-command recorded demo](#try-it-yourself)** · **[Verified results](#what-happened-when-we-tested-gemini)** · **[Integrity checks](#can-the-agent-cheat)** · **[Technical documentation](f1-championship/README.md)**
 
----
+<!-- Optional: insert the existing genuine demo screenshot here after selecting a verified path. -->
 
-## Earlier notes: F1 Championship Strategy Benchmark
+## The championship, explained
 
-An eight-race, deterministic F1 Team Principal and Pit Wall benchmark for
-long-horizon strategy research. The Championship connects race results,
-Constructors' standings, component wear, replacements, grid penalties, and
-limited team resources across a synthetic season.
+A *Constructors' Championship* rewards the **combined results of both drivers on a team**. The agent acts as Chief Strategist for fictional team **Apex GP**. Six other cars follow fixed, published rules in the submitted version.
 
-The repository also preserves the original judge-runnable Harbor race as the
-`legacy_p0` regression baseline. Its task contract, verifier, and reward remain
-unchanged while Championship development continues independently.
+| | Verified 2.1.0 task |
+|---|---|
+| Season | 8 simulated races |
+| Cars managed | 2 |
+| Sequential decision points | 120 |
+| Decisions | Power-unit use/replacement, pit timing and tyre compound, team orders |
+| Goal | Maximise combined Constructors' Championship points |
+| Opponents | Fixed-rule rivals, **not** rival language-model agents |
+| Evaluation | Harbor + OpenCode, sealed simulator and independent verifier |
 
-## Championship v0.1
+Three racing concepts worth knowing:
 
-The current deterministic Championship supports:
+- **Pit stop:** a car enters the pit lane for fresh tyres. New tyres may improve pace, but the stop costs time and track position.
+- **Safety Car (SC) / Virtual Safety Car (VSC):** the field slows after an incident. Stopping during these periods can cost less time than stopping during normal racing.
+- **Starting-grid penalty:** a car may have to start further back after exceeding its power-unit component allocation. Some resources therefore matter across many races.
 
-- Eight synthetic tracks across five archetypes.
-- Persistent Driver and Constructors' Championship standings.
-- Persistent ICE, turbo, and energy-store wear and replacement counts.
-- Limited component spares and excess-replacement grid penalties.
-- Actual grid-penalty integration with the existing eight-car race engine.
-- Race-to-race state transfer and deterministic two-race/eight-race execution.
-- A phase-ordered public observation/action contract.
-- Reproducible, JSON-serializable decision traces.
+The AI reads the current state and the published rules, then selects an action. It cannot see future random events, rewind a mistake, or ask the simulator to reveal the outcome of an unchosen strategy.
 
-The Chief Strategist currently receives two implemented decision types only:
+## Why these decisions are genuinely hard
 
-1. `COMPONENT_DECISION`: `USE` or `REPLACE` for each Apex A/B component.
-2. `RACE_STRATEGY`: sequential `PIT` or `STAY` decisions for both Apex cars.
+### 1. Winning this race versus protecting the season
 
-Observations include current standings, controlled-driver component state,
-spare inventory, remaining calendar, current synthetic track characteristics,
-starting grid, and current race progress. They exclude hidden seeds, future
-event schedules, simulator-internal car state, and privileged oracle data.
+An ageing power-unit component might still be usable today. Replacing it early may reduce a reliability risk, but it also consumes a limited allocation and can create a later grid penalty. A one-race optimiser can miss the cost of using resources before they are really needed.
 
-Core modules:
+**Capability tested:** long-horizon planning, limited-resource allocation, and reasoning about future consequences.
 
-- `environment/f1pitwall/championship.py`: persistent state and calendar schema
-- `environment/f1pitwall/championship_transition.py`: component and season state transitions
-- `environment/f1pitwall/championship_adapter.py`: legacy race-engine integration
-- `environment/f1pitwall/championship_contract.py`: observation/action phase machine
+### 2. The right pit stop depends on what you *don't* know
 
-The latest local suite covers legacy regression, schema validation,
-race-to-race transitions, adapter integration, contract validation, trace
-reproducibility, and complete two-race/eight-race smoke runs.
+A Safety Car makes stopping cheaper, but not automatically better. The decision depends on tyre age, remaining laps, traffic, the other car's strategy and what might happen next. The rules and probabilities are public; the actual future is not.
 
-## Legacy P0 Harbor task
+**Capability tested:** planning and updating decisions under uncertainty.
 
-The preserved Harbor task controls both Apex GP drivers at laps 8, 12 and 16
-of a 20-lap synthetic race. Tyres, elapsed time, track position, and pit
-consequences persist. It implements sequential decisions, shared-pit-crew
-coupling, and seeded GREEN/VSC/SC events.
+### 3. Two individually sensible actions can be a poor team decision
 
-### Legacy agent contract
+Both cars may want fresh tyres at once, but the team has one pit crew. The second car can lose time in a **double stack**. Likewise, an order to swap positions can benefit one driver without helping the team's total score.
 
-Inside the task container:
+**Capability tested:** joint optimisation with shared resources and competing objectives.
+
+### 4. A good result is not proof of a good decision
+
+In a recorded Race 7 Safety Car situation, Gemini stayed out while the reference pitted. **Both ultimately scored 33 points in that race.** A public-information counterfactual nonetheless estimated about **3.9 points of decision regret** for Gemini's choice in the illustrated run. That is **an expected, model-based decision difference—not 3.9 realised points lost in Race 7**.
+
+**Capability tested:** distinguishing decision quality from a lucky outcome, without confusing counterfactual estimates with observed scores.
+
+## Try it yourself
+
+The repository includes a self-contained HTML report with an eight-race points chart, race cards, decision examples, provenance and verification checks.
+
+**Instant replay of a genuine, recorded Harbor run:**
 
 ```bash
-f1ctl rules
-f1ctl observe
-f1ctl act '{"driver_a":"PIT","driver_b":"STAY"}'
+scripts/demo.sh recorded
 ```
 
-Each `act` advances four laps and returns the next causally available
-observation. Repeat until three actions are submitted. There is deliberately no
-future-outcome preview command. The CLI writes `/app/submission/actions.json`.
+**Fresh Gemini/OpenCode season:**
 
-The agent sees the complete tyre, traffic, pit-loss, double-stack and rival
-policy rules. It sees only the current track status; later seeded events remain
-hidden until their decision points.
+```bash
+F1_ENV_FILE=/secure/path/to/gemini.env scripts/demo.sh live
+```
 
-### Legacy mechanics
+The live mode requires Docker, Docker Compose, Harbor 0.26.0 and a valid `GEMINI_API_KEY` in the environment file. The recorded mode re-verifies historical evidence; it does **not** make a fresh model call, and needs only Bash and [uv](https://docs.astral.sh/uv/) (Python 3.12)—no Docker, Harbor or API key. On headless servers the report path is printed; use `F1_OPEN=0` to disable auto-opening. A failed live run is never silently replaced with recorded results.
 
-- Eight cars: two Apex cars and six deterministic rivals.
-- Actions: `PIT` or `STAY` independently for both Apex drivers.
-- A pit stop installs a new MEDIUM tyre.
-- Pit loss: GREEN 18s, VSC 10s, SC 5s.
-- If both Apex cars pit together, Driver B waits an additional 6s.
-- Lap time combines driver base pace, compound offset, age-dependent
-  degradation and a bounded traffic penalty.
-- Event generation uses a fixed seed and probabilities GREEN 0.60, VSC 0.25,
-  SC 0.15 at each decision.
-- Objective: combined official-style constructors' points, not either driver's
-  individual position.
+See [complete setup and evidence paths](f1-championship/README.md).
 
-For seed `20261114`, the observed event history is GREEN, GREEN, SC. It is
-reported only after completion.
+## What happened when we tested Gemini?
 
-### Legacy trusted scoring
+We compared **Gemini 3.8 Flash**, operating through OpenCode in genuine Harbor runs, against a strong **public-information reference**. The reference evaluates choices using the published simulator rules; it is a useful benchmark, **not** a proof of optimality and not an equally resource-constrained language model.
 
-Harbor transfers only `/app/submission/actions.json` to the isolated verifier.
-The verifier does not import agent-visible code or trust a claimed score. It
-validates exactly three actions and independently replays the race using
-`tests/trusted_engine.py`.
+| Player | Constructors' points | Normalised reward | Instruction |
+|---|---:|---:|---|
+| **Public-information reference** | **289** | **0.7817** | r1; reproduced under r2 |
+| Gemini run 1 | 279 | 0.7421 | r1 |
+| Gemini run 2 | 256 | 0.6508 | r1 |
+| Gemini run 3 | 276 | 0.7302 | r1 |
+| Gemini separate run | 279 | 0.7421 | **r2** |
 
-Official-style points for the eight-car field are `25, 18, 15, 12, 10, 8, 6,
-4`. Reward uses fixed, documented anchors:
+The reference led each of the **three r1 Gemini runs** by **10, 33 and 13 points**—an **18.7-point mean gap**. The r2 run is reported separately, not pooled into that mean. An additional genuine live demo execution also scored 279 points (reward 0.7421).
+
+Gemini completed the championship and performed competitively. The finding is narrower and more interesting: **a capable AI agent can finish successfully while overlooking consequential strategic options.** On a single seed and three r1 model trials, this is descriptive evidence, not a significance claim or a universal ranking of models. Replays of model-written scripts on additional seeds are **not** fresh model runs.
+
+The full run inventory, seed handling, reference method and decision-level counterfactuals are in [the technical README](f1-championship/README.md) and [reference report](f1-championship/docs/REFERENCE_2_1_0_REPORT.md).
+
+## Can the agent cheat?
+
+A useful benchmark must be difficult to exploit, not just difficult to play.
 
 ```text
-clip((constructors_points - 10) / (23 - 10), 0, 1)
+OpenCode + Gemini (agent container)
+     │  f1ctl rules / observe / act
+     ▼
+Sealed simulator sidecar (hidden state, no network)
+     │  hash-chained journal + manifest
+     ▼
+Isolated verifier
+     │  check evidence + replay all decisions
+     ▼
+Verified season points and reward
 ```
 
-The low anchor is the validated every-decision double-stack policy. The high
-anchor is the best score found by exhaustive enumeration of all 64 legal action
-sequences. Invalid or incomplete submissions score zero.
+The agent does not control the official journal or reward. The verifier independently replays every decision, reconstructs observations and checks the evidence.
 
-| Policy | Action summary | Points | Reward |
-|---|---|---:|---:|
-| Oracle | A pits early; B stays, then pits under SC | 23 | 1.00000000 |
-| Do nothing | both stay at all three decisions | 16 | 0.46153846 |
-| Pit spam | both pit at all three decisions | 10 | 0.00000000 |
-| Stop early | fewer than three decisions | — | 0.00000000 |
+| Integrity probe | Observed result |
+|---|---|
+| Do nothing | Reward **0** |
+| Stop after boundary-attack attempts | Reward **0** (incomplete season) |
+| Attempt attacks, then finish with a simple honest policy | **229 points, reward 0.5437**—the honest policy's own result |
+| Six journal/manifest tampering cases | **6/6 rejected**, reward 0 |
+| Reproduce the reference on a clean host | **289 points**, matching the original journal |
 
-`tests/test.sh` initializes `/logs/verifier/reward.txt` to zero and always
-normalizes it to one finite scalar in `[0, 1]`.
+This is not a claim that every possible exploit has been ruled out. It is a reproducible set of tests for the specific evaluation boundary. See the [submission checklist](f1-championship/docs/SUBMISSION_CHECKLIST.md).
 
-## Run and verify
+## Reproduce the verified benchmark
 
-Prerequisites are Python 3.12+, Docker, and Harbor 0.26.0:
+The submitted configuration is **2.1.0 · `SOLO_COORDINATION` · `CHIEF_ONLY` · fixed-rule rivals**. It contains **no Gemini Engineers, DeepSeek rival, practice/qualifying or weather expansion**.
+
+From a checkout of `submission/2.1.0`, after installing [the prerequisites](f1-championship/README.md):
 
 ```bash
-uv tool install 'harbor==0.26.0'
-python3 -m unittest discover -s tests -p 'test_local.py' -v
-python3 -m unittest discover -s tests -p 'test_*.py' -v
-harbor lint .
-harbor run -p . -a oracle
-harbor run -p . -a nop
+f1-championship/scripts/run_v21.sh oracle
+f1-championship/scripts/run_v21.sh nop
+f1-championship/scripts/run_v21.sh probe-stop
+f1-championship/scripts/run_v21.sh probe-complete
+# Fresh frontier run (API key required):
+GEMINI_ENV_FILE=/secure/path/to/gemini.env f1-championship/scripts/run_v21.sh opencode
 ```
 
-The agent image pins Node 22 and OpenCode `1.19.5` so installation remains
-compatible with the offline task policy. A Gemini run uses a host-side env file
-and permits only the inference hostname during the agent phase:
+The legacy single-race files at the repository root are retained for regression and historical comparison. The verified eight-race submission, its builder, evidence and detailed documentation are under [`f1-championship/`](f1-championship/README.md).
 
-```bash
-harbor run -p . -a opencode -m gemini/gemini-3.8-flash \
-  --api-key-name GEMINI_API_KEY \
-  --env-file /secure/path/f1-pit-wall.env \
-  --allow-agent-host generativelanguage.googleapis.com
-```
+## What comes next: 2.2
 
-## Validation and limitations
+The next step is to make the world—and the organisation making decisions inside it—more complex. Picture fictional teams **McLearn Racing** and **Red Bool Racing**, with drivers, race engineers and rivals who may have different priorities.
 
-The local suite exhaustively checks all 64 legal strategies for parity between
-the public simulator and isolated verifier. It also checks state persistence,
-hidden future observations, oracle, do-nothing, pit-spam, invalid, extra-field
-and stop-early paths.
+| Experimental extension | New strategic question |
+|---|---|
+| **Practice & Qualifying (C5)** | What is worth learning with limited practice laps, and which setup should carry into the race? |
+| **Rival tendencies (M2)** | Can an agent infer a rival's defensive behaviour from observations rather than hidden labels? |
+| **Driver objectives (M6)** | Will a driver obey a team order that hurts their personal championship position? |
+| **Weather & wet tyres (M7)** | Should a team pit for rain that may not arrive? |
+| **Engineer advice / adaptive rivals** | Can multiple AI decision-makers improve teamwork—or make the wrong choice more confidently? |
 
-The current action journal is a minimal Harbor interaction contract, not a
-cryptographic append-only protocol. The verifier ignores mutable state and
-replays only the final action sequence, but a deliberately adversarial agent
-could edit its sequence after observing later events. A policy-on-held-out-seed
-contract or authenticated sidecar is required before claiming strong hindsight
-resistance.
+These extensions have been developed and tested in **separate experimental branches**. They are **work in progress**, not features or results of the submitted 2.1.0 benchmark. Combining them and validating a new full-season Frontier–Reference comparison is a separate milestone. See the experimental `feature/v22-integrated-candidate` and `feature/c5-integration` branches for their respective validation records.
 
-The first three frontier-agent trials matched the planning reference and did
-not expose a failure. See [`docs/EVALUATION_2026-11-14.md`](docs/EVALUATION_2026-11-14.md)
-for the exact jobs, traces, scores, and proposed next experiment.
+## Gemini API Challenge: when a racing team becomes a team of AI agents
 
-Championship v0.1 remains a deterministic integration milestone, not the final
-benchmark. Track and component coefficients are explicitly synthetic
-placeholders. Practice, qualifying, upgrades, team orders, weather expansion,
-Race Engineer agents, a fair reference planner, historical calibration, and a
-Championship verifier/reward are not implemented yet. The existing Harbor
-verifier continues to evaluate only the legacy P0 task.
+A further experiment gave the Chief Strategist two AI Race Engineers:
 
-## Optional MCP adapter
+- **Gemini 3.8 Flash:** Chief, responsible for the final team decision.
+- **Two Gemini 3.5 Flash-Lite Engineers:** driver-specific advice, passed through a structured broker.
 
-The task is CLI-first. `environment/f1pitwall/mcp_server.py` is an optional
-FastMCP extension over the public rules and initial observation. It is not
-installed or registered for evaluation.
+Across **40 evaluated states**, real Engineer advice changed the Chief's decision in **5**. The preregistered C8 diagnostic did **not** establish that Engineers improve average decision quality. In one illustrative state, the Chief switched from HARD to MEDIUM following advice; a counterfactual estimated **4.5–5.1 additional points of regret**. This is a specific case, not a demonstrated average causal effect.
 
-## Sources and scope
+**Research question:** *Does adding more AI agents produce better strategy, or does it introduce new ways for a team to disagree and make mistakes?*
 
-- [Harbor quickstart](https://harborframework.com/docs/quickstart)
-- [Harbor task creation guide](https://harborframework.com/docs/guides/creating-tasks)
-- [Harbor repository](https://github.com/harbor-framework/harbor)
-- [`docs/HANDOFF.md`](docs/HANDOFF.md) is research background, not proof of an
-  implemented feature or measured frontier-agent gap.
+These Gemini API diagnostics are **separate from the official Chief-only 2.1.0 Harbor results**. [Read the C8 experiment](f1-championship/docs/C8_ENGINEER_CONFLICT_RESULTS.md).
+
+## References & further reading
+
+Research background for interactive agent evaluation, consequential multi-step tasks and AI teamwork:
+
+1. Liu et al. (2024). [*AgentBench: Evaluating LLMs as Agents*](https://arxiv.org/abs/2308.03688). ICLR 2024.
+2. Yao et al. (2024). [*τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains*](https://arxiv.org/abs/2406.12045).
+3. Xu et al. (2025). [*TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks*](https://arxiv.org/abs/2412.14161). NeurIPS 2025.
+4. Cemri et al. (2025). [*Why Do Multi-Agent LLM Systems Fail?*](https://arxiv.org/abs/2503.13657). NeurIPS 2025.
+5. [FIA Formula One Regulations](https://www.fia.com/regulations) — motorsport rules background; the championship uses **synthetic** cars, races and performance parameters, with selected power-unit rules scaled from 2026 regulations.
+
+*F1 Championship Strategist is a fictional, motorsport-inspired research benchmark, not affiliated with Formula 1, its teams or the FIA. McLearn Racing and Red Bool Racing are fictional names.*

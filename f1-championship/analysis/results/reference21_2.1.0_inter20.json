@@ -1,0 +1,2885 @@
+{
+ "report": {
+  "stage": "inter20",
+  "version": "2.1.0",
+  "seeds": [
+   7300,
+   7329,
+   7358,
+   7387,
+   7416,
+   7445,
+   7474,
+   7503,
+   7532,
+   7561,
+   7590,
+   7619,
+   7648,
+   7677,
+   7706,
+   7735,
+   7764,
+   7793,
+   7822,
+   7851
+  ],
+  "wall_seconds": 200.9,
+  "policies": {
+   "reference21": {
+    "points": [
+     279,
+     267,
+     282,
+     299,
+     272,
+     276,
+     256,
+     283,
+     285,
+     274,
+     302,
+     256,
+     264,
+     286,
+     276,
+     275,
+     245,
+     274,
+     276,
+     299
+    ],
+    "mean_points": 276.3,
+    "reference21_minus_policy": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "mean_paired_gap": 0,
+    "seconds_per_season": 99.3,
+    "fallbacks": 0,
+    "resyncs": 0,
+    "replacements": [
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     }
+    ]
+   },
+   "hybrid_refcomp_geminirace": {
+    "points": [
+     273,
+     271,
+     273,
+     289,
+     273,
+     265,
+     245,
+     283,
+     274,
+     279,
+     287,
+     246,
+     249,
+     273,
+     265,
+     257,
+     253,
+     274,
+     273,
+     264
+    ],
+    "mean_points": 268.3,
+    "reference21_minus_policy": [
+     6,
+     -4,
+     9,
+     10,
+     -1,
+     11,
+     11,
+     0,
+     11,
+     -5,
+     15,
+     10,
+     15,
+     13,
+     11,
+     18,
+     -8,
+     0,
+     3,
+     35
+    ],
+    "mean_paired_gap": 8,
+    "seconds_per_season": 74.8,
+    "fallbacks": 0,
+    "resyncs": 0,
+    "replacements": [
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     }
+    ]
+   },
+   "hybrid_geminicomp_refrace": {
+    "points": [
+     276,
+     260,
+     282,
+     296,
+     275,
+     279,
+     256,
+     284,
+     288,
+     273,
+     302,
+     272,
+     252,
+     279,
+     272,
+     275,
+     248,
+     274,
+     273,
+     299
+    ],
+    "mean_points": 275.75,
+    "reference21_minus_policy": [
+     3,
+     7,
+     0,
+     3,
+     -3,
+     -3,
+     0,
+     -1,
+     -3,
+     1,
+     0,
+     -16,
+     12,
+     7,
+     4,
+     0,
+     -3,
+     0,
+     3,
+     0
+    ],
+    "mean_paired_gap": 0.55,
+    "seconds_per_season": 25.0,
+    "fallbacks": 0,
+    "resyncs": 0,
+    "replacements": [
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     }
+    ]
+   },
+   "gemini_v21_01": {
+    "points": [
+     266,
+     268,
+     279,
+     296,
+     276,
+     267,
+     241,
+     288,
+     270,
+     276,
+     286,
+     248,
+     252,
+     268,
+     261,
+     264,
+     249,
+     260,
+     266,
+     264
+    ],
+    "mean_points": 267.25,
+    "reference21_minus_policy": [
+     13,
+     -1,
+     3,
+     3,
+     -4,
+     9,
+     15,
+     -5,
+     15,
+     -2,
+     16,
+     8,
+     12,
+     18,
+     15,
+     11,
+     -4,
+     14,
+     10,
+     35
+    ],
+    "mean_paired_gap": 9.05,
+    "seconds_per_season": 0.4,
+    "fallbacks": 0,
+    "resyncs": 0,
+    "replacements": [
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     },
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     }
+    ]
+   }
+  }
+ },
+ "rows": [
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7300,
+   "points": 279,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    43,
+    33,
+    43,
+    27,
+    33
+   ],
+   "seconds": 100.6,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7329,
+   "points": 267,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    25,
+    40,
+    24,
+    25,
+    30,
+    43,
+    43,
+    37
+   ],
+   "seconds": 100.5,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7358,
+   "points": 282,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    30,
+    40,
+    33,
+    43,
+    30,
+    33
+   ],
+   "seconds": 99.6,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7387,
+   "points": 299,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    43,
+    37,
+    43,
+    40,
+    33
+   ],
+   "seconds": 100.3,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7416,
+   "points": 272,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    33,
+    30,
+    40,
+    33,
+    43,
+    27,
+    33
+   ],
+   "seconds": 100.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7445,
+   "points": 276,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    40,
+    33,
+    43,
+    27,
+    33
+   ],
+   "seconds": 100.2,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7474,
+   "points": 256,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    28,
+    40,
+    27,
+    40,
+    15,
+    43,
+    30,
+    33
+   ],
+   "seconds": 100.6,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7503,
+   "points": 283,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    33,
+    43,
+    28,
+    43,
+    27,
+    33
+   ],
+   "seconds": 99.6,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7532,
+   "points": 285,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    26,
+    40,
+    43,
+    40,
+    27,
+    33
+   ],
+   "seconds": 100.2,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7561,
+   "points": 274,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    26,
+    40,
+    28,
+    40,
+    30,
+    37
+   ],
+   "seconds": 100.1,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7590,
+   "points": 302,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    43,
+    43,
+    33,
+    37,
+    33,
+    43,
+    27,
+    43
+   ],
+   "seconds": 98.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7619,
+   "points": 256,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    40,
+    25,
+    30,
+    28,
+    43,
+    27,
+    33
+   ],
+   "seconds": 97.8,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7648,
+   "points": 264,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    23,
+    40,
+    43,
+    25,
+    27,
+    33
+   ],
+   "seconds": 98.5,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7677,
+   "points": 286,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    40,
+    27,
+    43,
+    33,
+    40
+   ],
+   "seconds": 98.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7706,
+   "points": 276,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    40,
+    33,
+    43,
+    27,
+    30
+   ],
+   "seconds": 99.0,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7735,
+   "points": 275,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    33,
+    33,
+    33,
+    43,
+    27,
+    33
+   ],
+   "seconds": 99.0,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7764,
+   "points": 245,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    35,
+    10,
+    40,
+    33,
+    37,
+    27,
+    33
+   ],
+   "seconds": 99.0,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7793,
+   "points": 274,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    40,
+    28,
+    43,
+    30,
+    33
+   ],
+   "seconds": 99.0,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7822,
+   "points": 276,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    30,
+    40,
+    27,
+    43,
+    27,
+    33
+   ],
+   "seconds": 97.1,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 7851,
+   "points": 299,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    37,
+    40,
+    43,
+    43,
+    33
+   ],
+   "seconds": 97.3,
+   "invalid_actions_replaced_by_fallback": [],
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7300,
+   "points": 273,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    40,
+    27,
+    43,
+    33,
+    40,
+    27,
+    33
+   ],
+   "seconds": 73.5,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7329,
+   "points": 271,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    25,
+    40,
+    30,
+    25,
+    28,
+    40,
+    43,
+    40
+   ],
+   "seconds": 73.3,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7358,
+   "points": 273,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    40,
+    30,
+    40,
+    30,
+    43,
+    27,
+    33
+   ],
+   "seconds": 73.1,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7387,
+   "points": 289,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    40,
+    37,
+    43,
+    33,
+    33
+   ],
+   "seconds": 73.3,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7416,
+   "points": 273,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    37,
+    30,
+    40,
+    33,
+    40,
+    27,
+    33
+   ],
+   "seconds": 73.2,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7445,
+   "points": 265,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    27,
+    40,
+    27,
+    40,
+    33,
+    40,
+    25,
+    33
+   ],
+   "seconds": 73.7,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7474,
+   "points": 245,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    23,
+    40,
+    27,
+    40,
+    15,
+    40,
+    27,
+    33
+   ],
+   "seconds": 72.5,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7503,
+   "points": 283,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    33,
+    43,
+    28,
+    43,
+    27,
+    33
+   ],
+   "seconds": 71.8,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7532,
+   "points": 274,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    35,
+    26,
+    40,
+    43,
+    40,
+    27,
+    33
+   ],
+   "seconds": 72.7,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7561,
+   "points": 279,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    40,
+    28,
+    43,
+    28,
+    37,
+    33,
+    40
+   ],
+   "seconds": 73.3,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7590,
+   "points": 287,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    43,
+    33,
+    35,
+    33,
+    40,
+    27,
+    43
+   ],
+   "seconds": 75.8,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7619,
+   "points": 246,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    27,
+    40,
+    25,
+    33,
+    28,
+    33,
+    27,
+    33
+   ],
+   "seconds": 76.6,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7648,
+   "points": 249,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    27,
+    40,
+    33,
+    37,
+    27,
+    25,
+    27,
+    33
+   ],
+   "seconds": 76.8,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7677,
+   "points": 273,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    40,
+    30,
+    40,
+    23,
+    40
+   ],
+   "seconds": 76.5,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7706,
+   "points": 265,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    40,
+    27,
+    40,
+    33,
+    40,
+    27,
+    28
+   ],
+   "seconds": 76.5,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7735,
+   "points": 257,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    40,
+    33,
+    23,
+    33,
+    40,
+    25,
+    33
+   ],
+   "seconds": 76.9,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7764,
+   "points": 253,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    27,
+    35,
+    18,
+    40,
+    33,
+    40,
+    27,
+    33
+   ],
+   "seconds": 76.9,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7793,
+   "points": 274,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    40,
+    28,
+    40,
+    33,
+    33
+   ],
+   "seconds": 76.8,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7822,
+   "points": 273,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    43,
+    30,
+    40,
+    27,
+    33
+   ],
+   "seconds": 77.0,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_refcomp_geminirace",
+   "seed": 7851,
+   "points": 264,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    30,
+    33,
+    27,
+    35,
+    30,
+    40,
+    43,
+    26
+   ],
+   "seconds": 76.7,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7300,
+   "points": 276,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    37,
+    33,
+    43,
+    30,
+    33
+   ],
+   "seconds": 24.6,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7329,
+   "points": 260,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    25,
+    40,
+    24,
+    25,
+    30,
+    43,
+    40,
+    33
+   ],
+   "seconds": 24.7,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7358,
+   "points": 282,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    30,
+    40,
+    33,
+    43,
+    30,
+    33
+   ],
+   "seconds": 24.9,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7387,
+   "points": 296,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    40,
+    37,
+    43,
+    40,
+    33
+   ],
+   "seconds": 25.0,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7416,
+   "points": 275,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    33,
+    30,
+    43,
+    33,
+    40,
+    30,
+    33
+   ],
+   "seconds": 25.0,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7445,
+   "points": 279,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    43,
+    33,
+    43,
+    27,
+    33
+   ],
+   "seconds": 24.9,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7474,
+   "points": 256,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    28,
+    40,
+    27,
+    40,
+    15,
+    43,
+    30,
+    33
+   ],
+   "seconds": 24.8,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7503,
+   "points": 284,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    33,
+    43,
+    26,
+    43,
+    30,
+    33
+   ],
+   "seconds": 25.1,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7532,
+   "points": 288,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    26,
+    40,
+    43,
+    40,
+    30,
+    33
+   ],
+   "seconds": 24.9,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7561,
+   "points": 273,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    26,
+    40,
+    28,
+    40,
+    33,
+    33
+   ],
+   "seconds": 24.6,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7590,
+   "points": 302,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    43,
+    43,
+    33,
+    37,
+    33,
+    43,
+    30,
+    40
+   ],
+   "seconds": 24.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7619,
+   "points": 272,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    40,
+    25,
+    43,
+    28,
+    43,
+    30,
+    33
+   ],
+   "seconds": 24.9,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7648,
+   "points": 252,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    23,
+    35,
+    33,
+    25,
+    30,
+    33
+   ],
+   "seconds": 25.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7677,
+   "points": 279,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    40,
+    27,
+    43,
+    33,
+    33
+   ],
+   "seconds": 25.1,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7706,
+   "points": 272,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    33,
+    33,
+    43,
+    30,
+    30
+   ],
+   "seconds": 25.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7735,
+   "points": 275,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    33,
+    33,
+    33,
+    43,
+    27,
+    33
+   ],
+   "seconds": 25.1,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7764,
+   "points": 248,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    35,
+    10,
+    40,
+    33,
+    37,
+    30,
+    33
+   ],
+   "seconds": 25.2,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7793,
+   "points": 274,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    40,
+    28,
+    43,
+    30,
+    33
+   ],
+   "seconds": 25.1,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7822,
+   "points": 273,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    30,
+    33,
+    28,
+    43,
+    30,
+    33
+   ],
+   "seconds": 25.1,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "hybrid_geminicomp_refrace",
+   "seed": 7851,
+   "points": 299,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    37,
+    40,
+    43,
+    43,
+    33
+   ],
+   "seconds": 25.3,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7300,
+   "points": 266,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    40,
+    27,
+    33,
+    33,
+    40,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7329,
+   "points": 268,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    25,
+    40,
+    30,
+    25,
+    28,
+    40,
+    40,
+    40
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7358,
+   "points": 279,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    40,
+    30,
+    33,
+    33,
+    43,
+    30,
+    40
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7387,
+   "points": 296,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    27,
+    40,
+    37,
+    43,
+    40,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7416,
+   "points": 276,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    37,
+    30,
+    40,
+    33,
+    40,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7445,
+   "points": 267,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    27,
+    40,
+    27,
+    40,
+    33,
+    40,
+    27,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7474,
+   "points": 241,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    23,
+    40,
+    27,
+    33,
+    15,
+    40,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7503,
+   "points": 288,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    33,
+    43,
+    30,
+    43,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7532,
+   "points": 270,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    35,
+    26,
+    33,
+    43,
+    40,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7561,
+   "points": 276,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    40,
+    28,
+    40,
+    28,
+    37,
+    33,
+    40
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7590,
+   "points": 286,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    43,
+    33,
+    31,
+    33,
+    40,
+    30,
+    43
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7619,
+   "points": 248,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    27,
+    40,
+    25,
+    27,
+    33,
+    33,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7648,
+   "points": 252,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    27,
+    40,
+    33,
+    37,
+    27,
+    25,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7677,
+   "points": 268,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    30,
+    40,
+    25,
+    40
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7706,
+   "points": 261,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    40,
+    27,
+    33,
+    33,
+    40,
+    30,
+    28
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7735,
+   "points": 264,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    40,
+    33,
+    28,
+    33,
+    40,
+    27,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7764,
+   "points": 249,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    27,
+    35,
+    18,
+    33,
+    33,
+    40,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7793,
+   "points": 260,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    28,
+    40,
+    26,
+    33
+   ],
+   "seconds": 0.3,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7822,
+   "points": 266,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    33,
+    40,
+    27,
+    33,
+    30,
+    40,
+    30,
+    33
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 7851,
+   "points": 264,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    30,
+    33,
+    27,
+    35,
+    30,
+    40,
+    43,
+    26
+   ],
+   "seconds": 0.4,
+   "invalid_actions_replaced_by_fallback": [],
+   "cached": true
+  }
+ ]
+}

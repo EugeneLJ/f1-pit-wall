@@ -17,6 +17,16 @@ Results are comparable only within one version.
 
 **Unchanged:** everything else equals 2.0.1. With no replacement beyond allocation, 2.1.0 and 2.0.1 seasons score identically.
 
+**2.1.0 amendments before the first evaluation** (branch `feature/reference-2.1.0`, commit `84ed780`). No agent had been evaluated on 2.1.0 before these.
+1. **Worn elements.** An element above the wear limit may keep running (USE is always legal) with the published pace and reliability cost, and REPLACE is legal only while the team has stock. Before this, two drivers over the limit with one unit of that type left had no legal joint action, and even the published fallback failed. B8's evaluation never reached that state, so its results are unchanged.
+2. **Legacy pool.** The legacy shared free-unit pool is 0 under 2.1.0. Observations had shown `free_units_available: 4`, which does not exist in 2.1.0.
+3. **Harbor task.** It is generated with `scripts/make_integrated_task.sh <dest> CHIEF_ONLY 2.1.0`.
+   - `mode.json` carries `benchmark_version`.
+   - `f1ctl rules` publishes `power_unit_rules` and marks the legacy pool superseded.
+   - The instruction gets a 2.1.0 power-unit section.
+   - The verifier rejects evidence from another version.
+   - The scalar formula is unchanged (`b6-integrated-p0`).
+
 ## 2.0.1 — action-schema clarification (B7-P0)
 
 **What changed.** `action_schema` now states that component decisions are a list and that `consumed_reports` is a top-level field, and it gives one format example per phase. This is the same for both teams.

@@ -1,0 +1,156 @@
+{
+ "report": {
+  "stage": "task",
+  "version": "2.1.0",
+  "seeds": [
+   3905429505653179902
+  ],
+  "wall_seconds": 66.1,
+  "policies": {
+   "reference21": {
+    "points": [
+     289
+    ],
+    "mean_points": 289,
+    "reference21_minus_policy": [
+     0
+    ],
+    "mean_paired_gap": 0,
+    "seconds_per_season": 65.8,
+    "fallbacks": 0,
+    "resyncs": 0,
+    "replacements": [
+     {
+      "Apex A": 6,
+      "Apex B": 3
+     }
+    ]
+   },
+   "gemini_v21_01": {
+    "points": [
+     279
+    ],
+    "mean_points": 279,
+    "reference21_minus_policy": [
+     10
+    ],
+    "mean_paired_gap": 10,
+    "seconds_per_season": 0.3,
+    "fallbacks": 0,
+    "resyncs": 0,
+    "replacements": [
+     {
+      "Apex A": 3,
+      "Apex B": 3
+     }
+    ]
+   },
+   "baseline": {
+    "points": [
+     229
+    ],
+    "mean_points": 229,
+    "reference21_minus_policy": [
+     60
+    ],
+    "mean_paired_gap": 60,
+    "seconds_per_season": 0.1,
+    "fallbacks": 0,
+    "resyncs": 0,
+    "replacements": [
+     {
+      "Apex A": 0,
+      "Apex B": 0
+     }
+    ]
+   }
+  }
+ },
+ "rows": [
+  {
+   "version": "2.1.0",
+   "policy": "reference21",
+   "seed": 3905429505653179902,
+   "points": 289,
+   "replacements": {
+    "Apex A": 6,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 0,
+    "stock:turbo": 0,
+    "stock:energy_store": 0
+   },
+   "per_race": [
+    43,
+    40,
+    27,
+    37,
+    33,
+    43,
+    33,
+    33
+   ],
+   "seconds": 65.8,
+   "decisions": 120,
+   "fallbacks": 0,
+   "resyncs": 0,
+   "race_decisions": 112,
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "gemini_v21_01",
+   "seed": 3905429505653179902,
+   "points": 279,
+   "replacements": {
+    "Apex A": 3,
+    "Apex B": 3
+   },
+   "stock_left": {
+    "stock:ICE": 1,
+    "stock:turbo": 1,
+    "stock:energy_store": 1
+   },
+   "per_race": [
+    43,
+    40,
+    27,
+    30,
+    33,
+    40,
+    33,
+    33
+   ],
+   "seconds": 0.3,
+   "cached": false
+  },
+  {
+   "version": "2.1.0",
+   "policy": "baseline",
+   "seed": 3905429505653179902,
+   "points": 229,
+   "replacements": {
+    "Apex A": 0,
+    "Apex B": 0
+   },
+   "stock_left": {
+    "stock:ICE": 3,
+    "stock:turbo": 3,
+    "stock:energy_store": 3
+   },
+   "per_race": [
+    43,
+    26,
+    25,
+    28,
+    28,
+    33,
+    30,
+    16
+   ],
+   "seconds": 0.1,
+   "cached": false
+  }
+ ]
+}

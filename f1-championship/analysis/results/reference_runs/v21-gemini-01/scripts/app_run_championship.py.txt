@@ -1,0 +1,382 @@
+#!/usr/bin/env python3
+"""
+F1 Pit Wall Championship Controller for Apex GP.
+Maximizes Apex GP total constructors' points across the 8-race season.
+"""
+
+import json
+import subprocess
+import sys
+import time
+
+def f1ctl_observe(retries=3):
+    for attempt in range(retries):
+        try:
+            out = subprocess.check_output(['f1ctl', 'observe'], text=True)
+            res = json.loads(out)
+            if res.get('ok'):
+                return res['observation']
+        except Exception as exc:
+            if attempt == retries - 1:
+                raise
+            time.sleep(1.0)
+    raise RuntimeError("Failed to observe from f1ctl after retries")
+
+def f1ctl_rules(retries=3):
+    for attempt in range(retries):
+        try:
+            out = subprocess.check_output(['f1ctl', 'rules'], text=True)
+            res = json.loads(out)
+            if res.get('ok'):
+                return res['rules']
+        except Exception as exc:
+            if attempt == retries - 1:
+                raise
+            time.sleep(1.0)
+    raise RuntimeError("Failed to get rules from f1ctl after retries")
+
+def f1ctl_act(decision_id, action_payload, retries=3):
+    action_str = json.dumps(action_payload)
+    cmd = ['f1ctl', 'act', decision_id, action_str]
+    for attempt in range(retries):
+        try:
+            out = subprocess.check_output(cmd, text=True)
+            res = json.loads(out)
+            if res.get('ok') and res.get('accepted') == decision_id:
+                return res
+            else:
+                print(f"Warning: act attempt {attempt+1} unexpected response: {res}", file=sys.stderr)
+        except subprocess.CalledProcessError as err:
+            print(f"act CalledProcessError stdout: {err.stdout}, stderr: {err.stderr}", file=sys.stderr)
+            if attempt == retries - 1:
+                raise
+        except Exception as exc:
+            print(f"act Exception: {exc}", file=sys.stderr)
+            if attempt == retries - 1:
+                raise
+        time.sleep(1.0)
+    raise RuntimeError(f"f1ctl act failed for {decision_id}")
+
+def stint_time(compound_name, start_age, num_laps, track_deg_mult, is_out_lap=False):
+    compounds = {
+        'SOFT': {'offset': -0.55, 'deg': 0.35, 'life': 10, 'warmup': 0.3},
+        'MEDIUM': {'offset': 0.0, 'deg': 0.14, 'life': 16, 'warmup': 0.6},
+        'HARD': {'offset': 0.28, 'deg': 0.055, 'life': 24, 'warmup': 1.0}
+    }
+    c = compounds[compound_name]
+    total = 0.0
+    for i in range(num_laps):
+        age = start_age + i + 1
+        t = c['offset'] + c['deg'] * track_deg_mult * age
+        if age > c['life']:
+            t += 0.25 * track_deg_mult * (age - c['life'])
+        if i == 0 and is_out_lap:
+            t += c['warmup']
+        total += t
+    return total
+
+def find_best_plan(driver_state, current_lap, total_laps, track_deg_mult, pit_loss_green, status, pit_loss_now):
+    compounds = ['SOFT', 'MEDIUM', 'HARD']
+    start_compound = driver_state['compound']
+    start_age = driver_state['tyre_age']
+    compounds_used = set(driver_state['compounds_used'])
+    
+    future_decision_laps = [lap for lap in range(current_lap, total_laps, 3)]
+    
+    best_cost = 1e9
+    best_action = 'STAY'
+    best_compound = None
+    best_plan_desc = ''
+
+    # 0 future stops option
+    rem_laps = total_laps - current_lap
+    if len(compounds_used) >= 2 or rem_laps == 0:
+        cost = stint_time(start_compound, start_age, rem_laps, track_deg_mult, is_out_lap=False)
+        if cost < best_cost:
+            best_cost = cost
+            best_action = 'STAY'
+            best_plan_desc = f'0 stops (stay on {start_compound} for {rem_laps} laps)'
+
+    # 1 stop plans
+    for d in future_decision_laps:
+        laps_to_d = d - current_lap
+        cost_before_pit = stint_time(start_compound, start_age, laps_to_d, track_deg_mult, is_out_lap=False) if laps_to_d > 0 else 0.0
+        p_loss = pit_loss_now if d == current_lap else pit_loss_green
+        
+        for c2 in compounds:
+            used = set(compounds_used) | {c2}
+            if len(used) < 2 and total_laps > d:
+                continue
+            laps_after_pit = total_laps - d
+            cost_after_pit = stint_time(c2, 0, laps_after_pit, track_deg_mult, is_out_lap=True)
+            tot = cost_before_pit + p_loss + cost_after_pit
+            if tot < best_cost:
+                best_cost = tot
+                best_action = f'PIT_{c2}' if d == current_lap else 'STAY'
+                best_compound = c2 if d == current_lap else None
+                best_plan_desc = f'1 stop at L{d} -> {c2}'
+
+    # 2 stop plans
+    for i, d1 in enumerate(future_decision_laps):
+        laps_to_d1 = d1 - current_lap
+        cost_to_d1 = stint_time(start_compound, start_age, laps_to_d1, track_deg_mult, is_out_lap=False) if laps_to_d1 > 0 else 0.0
+        p_loss1 = pit_loss_now if d1 == current_lap else pit_loss_green
+        
+        for c2 in compounds:
+            for d2 in future_decision_laps[i+1:]:
+                laps_stint2 = d2 - d1
+                cost_stint2 = stint_time(c2, 0, laps_stint2, track_deg_mult, is_out_lap=True)
+                p_loss2 = pit_loss_green
+                
+                for c3 in compounds:
+                    used = set(compounds_used) | {c2, c3}
+                    if len(used) < 2:
+                        continue
+                    laps_stint3 = total_laps - d2
+                    cost_stint3 = stint_time(c3, 0, laps_stint3, track_deg_mult, is_out_lap=True)
+                    tot = cost_to_d1 + p_loss1 + cost_stint2 + p_loss2 + cost_stint3
+                    if tot < best_cost:
+                        best_cost = tot
+                        best_action = f'PIT_{c2}' if d1 == current_lap else 'STAY'
+                        best_compound = c2 if d1 == current_lap else None
+                        best_plan_desc = f'2 stops at L{d1} ({c2}) and L{d2} ({c3})'
+
+    return best_action, best_compound, best_cost, best_plan_desc
+
+def decide_components(obs, rules):
+    race_index = obs['championship']['race_index']
+    decisions = []
+    for driver in ['Apex A', 'Apex B']:
+        driver_info = obs['controlled_drivers'][driver]
+        for comp in ['ICE', 'turbo', 'energy_store']:
+            comp_info = driver_info['components'][comp]
+            wear = comp_info['wear']
+            replace_cost = comp_info['replace_cost_if_only_replacement']
+            stock = replace_cost.get('team_stock_remaining', 0)
+            grid_places = replace_cost.get('grid_places_if_replaced', 0)
+            legal = comp_info.get('legal_actions', ['USE', 'REPLACE'])
+            
+            action = 'USE'
+            # Optimal replacement at Race 4 (5th race) splits wear:
+            # 2.50 stress before, 2.40 stress after. Both < 0.42 max wear.
+            # 0 grid penalties!
+            if race_index == 4 and stock > 0 and grid_places == 0 and 'REPLACE' in legal:
+                action = 'REPLACE'
+            elif wear >= 0.55 and stock > 0 and grid_places == 0 and 'REPLACE' in legal:
+                action = 'REPLACE'
+            
+            if action not in legal:
+                action = legal[0]
+                
+            decisions.append({
+                'driver': driver,
+                'component': comp,
+                'action': action
+            })
+            
+    return {
+        'type': 'COMPONENT_DECISION',
+        'decisions': decisions
+    }
+
+def decide_race_strategy(obs, rules):
+    progress = obs['race_progress']
+    current_lap = progress['lap']
+    total_laps = progress['laps_total'] # 45
+    track_status = progress['track_status'] # GREEN, SC, VSC
+    legal_actions = progress.get('legal_actions', ['STAY', 'PIT_SOFT', 'PIT_MEDIUM', 'PIT_HARD'])
+    
+    track = obs['current_track']
+    track_deg = track['tyre_degradation']
+    track_deg_mult = 0.5 + track_deg
+    
+    pit_info = progress['pit']
+    pit_loss_green = pit_info['loss_sec']['GREEN']
+    pit_loss_now = pit_info['loss_sec'].get(track_status, pit_loss_green)
+    double_stack_queue = pit_info.get('double_stack_queue_sec', 6.0)
+    serviced_first = pit_info.get('if_both_pit_serviced_first', 'driver_a')
+    
+    driver_a = progress['drivers']['driver_a']
+    driver_b = progress['drivers']['driver_b']
+    
+    # Check DNF
+    dnf_a = driver_a.get('status') == 'RETIRED' or driver_a.get('dnf')
+    dnf_b = driver_b.get('status') == 'RETIRED' or driver_b.get('dnf')
+    
+    if dnf_a:
+        action_a = 'STAY'
+    else:
+        action_a, comp_a, cost_a, plan_a = find_best_plan(
+            driver_a, current_lap, total_laps, track_deg_mult, pit_loss_green, track_status, pit_loss_now
+        )
+        
+    if dnf_b:
+        action_b = 'STAY'
+    else:
+        action_b, comp_b, cost_b, plan_b = find_best_plan(
+            driver_b, current_lap, total_laps, track_deg_mult, pit_loss_green, track_status, pit_loss_now
+        )
+    
+    # Check double stacking conflict
+    if action_a.startswith('PIT') and action_b.startswith('PIT'):
+        if track_status == 'GREEN':
+            # Never double stack under GREEN
+            c_a = driver_a['compound']
+            c_b = driver_b['compound']
+            life_a = progress['tyre_life_laps'][c_a]
+            life_b = progress['tyre_life_laps'][c_b]
+            ratio_a = driver_a['tyre_age'] / life_a
+            ratio_b = driver_b['tyre_age'] / life_b
+            
+            if ratio_a >= ratio_b:
+                action_b = 'STAY'
+            else:
+                action_a = 'STAY'
+        elif track_status in ('SC', 'VSC'):
+            second_driver = 'driver_b' if serviced_first == 'driver_a' else 'driver_a'
+            second_state = driver_b if second_driver == 'driver_b' else driver_a
+            second_c = second_state['compound']
+            second_life = progress['tyre_life_laps'][second_c]
+            
+            if second_state['tyre_age'] < 0.6 * second_life and len(second_state['compounds_used']) >= 2:
+                if second_driver == 'driver_b':
+                    action_b = 'STAY'
+                else:
+                    action_a = 'STAY'
+            elif track_status == 'VSC':
+                if second_driver == 'driver_b':
+                    action_b = 'STAY'
+                else:
+                    action_a = 'STAY'
+
+    # Two-compound rule safety check
+    if current_lap >= total_laps - progress['segment_laps']:
+        if not dnf_a and len(driver_a['compounds_used']) == 1 and not action_a.startswith('PIT'):
+            for c in ['HARD', 'MEDIUM', 'SOFT']:
+                if c not in driver_a['compounds_used']:
+                    action_a = f'PIT_{c}'
+                    break
+        if not dnf_b and len(driver_b['compounds_used']) == 1 and not action_b.startswith('PIT'):
+            for c in ['HARD', 'MEDIUM', 'SOFT']:
+                if c not in driver_b['compounds_used']:
+                    action_b = f'PIT_{c}'
+                    break
+
+    # Ensure actions are legal
+    if action_a not in legal_actions:
+        action_a = 'STAY'
+    if action_b not in legal_actions:
+        action_b = 'STAY'
+
+    # Team orders
+    team_order_info = obs.get('team_orders', {})
+    legal_orders = team_order_info.get('legal_team_orders', ['RACE', 'HOLD', 'SWAP', 'DEFENSIVE_BUFFER'])
+    open_commitment = team_order_info.get('commitment')
+    feasibility = team_order_info.get('exchange_feasibility_if_no_pit', {})
+    
+    order = 'RACE'
+    commitment = None
+    
+    if 'KEEP_ORDER' in legal_orders or 'REQUEST_GIVE_BACK' in legal_orders:
+        if 'KEEP_ORDER' in legal_orders:
+            order = 'KEEP_ORDER'
+        else:
+            order = legal_orders[0]
+    elif 'RACE' in legal_orders:
+        order = 'RACE'
+        if not action_a.startswith('PIT') and not action_b.startswith('PIT'):
+            if feasibility.get('adjacent') and feasibility.get('executable') and feasibility.get('safe'):
+                leader = feasibility.get('leader')
+                trailer = feasibility.get('trailer')
+                lead_state = driver_a if leader == 'driver_a' else driver_b
+                trail_state = driver_b if leader == 'driver_a' else driver_a
+                
+                c_lead = lead_state['compound']
+                c_trail = trail_state['compound']
+                age_lead = lead_state['tyre_age']
+                age_trail = trail_state['tyre_age']
+                
+                trailer_is_faster = (age_lead - age_trail >= 6) or (c_trail == 'SOFT' and age_trail <= 6 and c_lead != 'SOFT')
+                if trailer_is_faster and current_lap <= total_laps - 9:
+                    order = 'SWAP'
+                    commitment = {
+                        'objective': 'PASS_CAR_AHEAD',
+                        'deadline_lap': min(total_laps, current_lap + 6),
+                        'give_back_if': 'OBJECTIVE_NOT_MET'
+                    }
+                    
+        if order == 'RACE' and 'DEFENSIVE_BUFFER' in legal_orders:
+            if feasibility.get('adjacent') and not action_a.startswith('PIT') and not action_b.startswith('PIT'):
+                pos_a = driver_a['position']
+                pos_b = driver_b['position']
+                min_pos = min(pos_a, pos_b)
+                rear_gap = feasibility.get('rear_gap_sec', 99.0)
+                if min_pos <= 4 and rear_gap < 0.8 and current_lap >= 24:
+                    order = 'DEFENSIVE_BUFFER'
+
+    if order not in legal_orders:
+        order = legal_orders[0]
+
+    team_order_payload = {'order': order}
+    if commitment and order == 'SWAP':
+        team_order_payload['commitment'] = commitment
+
+    consumed_reports = [r['record_hash'] for r in obs.get('engineer_reports', []) if 'record_hash' in r]
+
+    payload = {
+        'type': 'RACE_STRATEGY',
+        'driver_a': action_a,
+        'driver_b': action_b,
+        'team_order': team_order_payload
+    }
+    if consumed_reports:
+        payload['consumed_reports'] = consumed_reports
+        
+    return payload
+
+def run_season():
+    rules = f1ctl_rules()
+    print("Loaded championship rules successfully.")
+    
+    tick_count = 0
+    while True:
+        obs = f1ctl_observe()
+        decision_id = obs['decision_id']
+        decision_type = obs['decision_type']
+        
+        if decision_type == 'CHAMPIONSHIP_COMPLETE':
+            print("=" * 60)
+            print("CHAMPIONSHIP COMPLETE!")
+            print("Final Standings:")
+            for team in obs['championship']['team_standings']:
+                print(f"  {team['team']}: {team['points']} pts")
+            print("Driver Standings:")
+            for d in obs['championship']['driver_standings']:
+                print(f"  {d['driver']}: {d['points']} pts")
+            print("=" * 60)
+            break
+            
+        tick_count += 1
+        if decision_type == 'COMPONENT_DECISION':
+            race_idx = obs['championship']['race_index']
+            track_name = obs['current_track']['name']
+            print(f"[{decision_id}] Race {race_idx+1}/8 ({track_name}) - COMPONENT_DECISION")
+            action = decide_components(obs, rules)
+            resp = f1ctl_act(decision_id, action)
+            print(f"  -> Acted: {action['type']} (accepted {resp.get('accepted')})")
+            
+        elif decision_type == 'RACE_STRATEGY':
+            lap = obs['race_progress']['lap']
+            status = obs['race_progress']['track_status']
+            pos_a = obs['race_progress']['drivers']['driver_a']['position']
+            pos_b = obs['race_progress']['drivers']['driver_b']['position']
+            print(f"[{decision_id}] Lap {lap}/45 [{status}] - Apex A: P{pos_a}, Apex B: P{pos_b}")
+            action = decide_race_strategy(obs, rules)
+            print(f"  -> Decisions: Apex A: {action['driver_a']}, Apex B: {action['driver_b']}, Order: {action['team_order']['order']}")
+            resp = f1ctl_act(decision_id, action)
+            
+        else:
+            raise ValueError(f"Unknown decision_type: {decision_type}")
+
+if __name__ == '__main__':
+    run_season()

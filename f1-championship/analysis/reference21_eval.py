@@ -36,13 +36,20 @@ def build_task(version):
     subprocess.run(["bash", str(TASK / "scripts" / "make_integrated_task.sh"), str(BUILT), "CHIEF_ONLY", version],
                    check=True, capture_output=True)
 
-STAGES = {"smoke": [7100, 7117], "dev": [7100 + 17 * i for i in range(5)],
+STAGES = {"task": [json.loads((TASK / "tests" / "hidden_seed.json").read_text())["base_seed"]],
+          "smoke": [7100, 7117], "dev": [7100 + 17 * i for i in range(5)],
           "inter10": [7300 + 29 * i for i in range(10)], "inter20": [7300 + 29 * i for i in range(20)]}
 SOURCES = {"reference21": [TASK / "integrated_task/solution/reference_v21.py", TASK / "solution/reference.py",
                            TASK / "solution/play.py", TASK / "integrated_task/sim/f1sim/integrated_server.py"],
            "baseline": [TASK / "src/f1pitwall/integrated/policies.py"],
            "coordinator": [TASK / "src/f1pitwall/integrated/policies.py"],
-           "fallback": [TASK / "src/f1pitwall/integrated/session.py"]}
+           "fallback": [TASK / "src/f1pitwall/integrated/session.py"],
+           "hybrid_refcomp_geminirace": [TASK / "integrated_task/solution/reference_v21.py", TASK / "solution/reference.py",
+                                         HERE / "results/reference_runs/v21-gemini-01/scripts/app_run_championship.py.txt"],
+           "hybrid_geminicomp_refrace": [TASK / "integrated_task/solution/reference_v21.py", TASK / "solution/reference.py",
+                                         HERE / "results/reference_runs/v21-gemini-01/scripts/app_run_championship.py.txt"],
+           "gemini_v21_01": [HERE / "results/reference_runs/v21-gemini-01/policy.py",
+                             HERE / "results/reference_runs/v21-gemini-01/scripts/app_run_championship.py.txt"]}
 
 
 def engine_hash():
@@ -80,14 +87,43 @@ def play(args):
             import reference_v21
             player = reference_v21.Reference21(json.loads(json.dumps(public_rules(cfg))))
             decide = player.decide
+        elif policy.startswith("hybrid_"):  # attribution: one phase from the reference, the other from the script
+            import reference_v21
+            from importlib.machinery import SourceFileLoader
+            rules = json.loads(json.dumps(public_rules(cfg)))
+            player = reference_v21.Reference21(rules)
+            gem = SourceFileLoader("gem_v21", str(HERE / "results/reference_runs/v21-gemini-01/policy.py")).load_module().make(rules)
+            ref_phase = "COMPONENT_DECISION" if policy == "hybrid_refcomp_geminirace" else "RACE_STRATEGY"
+
+            def decide(obs):
+                if obs["decision_type"] == ref_phase:
+                    return player.decide(obs)
+                if obs["decision_type"] == "RACE_STRATEGY":  # keep the reference's model in step
+                    race = player.model.race_state
+                    race["events"][race["step"]] = obs["race_progress"]["track_status"]
+                    player._sync_cars(race, obs["race_progress"])
+                action = gem(obs)
+                player.model.submit("Apex", player.model.tick_id, json.loads(json.dumps(action)))
+                return action
+        elif policy.startswith("gemini_"):  # replay of an agent-written script (not a model run)
+            from importlib.machinery import SourceFileLoader
+            mod = SourceFileLoader(policy, str(SOURCES[policy][0])).load_module()
+            decide = mod.make(json.loads(json.dumps(public_rules(cfg))))
         else:
             decide = P.scripted(policy)
+        from f1pitwall.integrated.session import TickError
+        invalid = []
         while session.decision_type != CHAMPIONSHIP_COMPLETE:
             obs = json.loads(json.dumps(session.observation("Apex")))
             obs["decision_id"] = obs["tick_id"]
-            session.submit("Apex", session.tick_id, decide(obs))
+            try:
+                session.submit("Apex", session.tick_id, decide(obs))
+            except TickError as exc:  # rejected as in Harbor; a replay cannot reproduce the agent's
+                invalid.append({"tick_id": session.tick_id, "error": str(exc)})  # reaction: published fallback
+                session.close_tick(session.tick_id)
+        stats["invalid_actions_replaced_by_fallback"] = invalid
         if policy == "reference21":
-            stats = {k: v for k, v in player.stats.items() if k != "version"}
+            stats.update({k: v for k, v in player.stats.items() if k != "version"})
     grid_penalties = sum(1 for rr in session.race_results for e in rr["classification"] if False)
     out = {"version": version, "policy": policy, "seed": seed, "points": session.state.team_points["Apex"],
            "replacements": {d: sum(c.replacements for c in session.state.power_units[d].values()) for d in ("Apex A", "Apex B")},

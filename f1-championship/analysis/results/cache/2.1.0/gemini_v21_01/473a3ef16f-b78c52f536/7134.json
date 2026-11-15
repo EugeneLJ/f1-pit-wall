@@ -1,0 +1,1 @@
+{"version": "2.1.0", "policy": "gemini_v21_01", "seed": 7134, "points": 274, "replacements": {"Apex A": 3, "Apex B": 3}, "stock_left": {"stock:ICE": 1, "stock:turbo": 1, "stock:energy_store": 1}, "per_race": [30, 37, 30, 43, 25, 43, 33, 33], "seconds": 0.5, "invalid_actions_replaced_by_fallback": [{"tick_id": "t024", "error": "PASS_CAR_AHEAD needs a car ahead of the pair"}]}

@@ -1,0 +1,26 @@
+import json
+import subprocess
+import copy
+
+def get_observation():
+    out = subprocess.check_output(['f1ctl', 'observe'])
+    return json.loads(out)['observation']
+
+def get_rules():
+    out = subprocess.check_output(['f1ctl', 'rules'])
+    return json.loads(out)['rules']
+
+def simulate_segment(state, actions, rules):
+    """
+    Simulates one 3-lap segment forward according to track_a_model.
+    actions: dict of driver -> action ('STAY', 'PIT_SOFT', 'PIT_MEDIUM', 'PIT_HARD')
+    """
+    pass
+
+obs = get_observation()
+rules = get_rules()
+print('Obs keys:', list(obs.keys()))
+print('Current lap:', obs['race_progress']['lap'])
+print('Classification:')
+for c in obs['race_progress']['classification']:
+    print(f"  P{c['position']}: {c['driver']} ({c['team']}) - {c['compound']} age {c['tyre_age']}, elapsed {c['elapsed']:.2f}")

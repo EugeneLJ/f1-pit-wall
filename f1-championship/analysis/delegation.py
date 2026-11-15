@@ -21,7 +21,7 @@ from pathlib import Path
 
 SECRET_PATTERNS = [re.compile(r"AIza[0-9A-Za-z_\-]{20,}"), re.compile(r"sk-[A-Za-z0-9]{20,}"),
                    re.compile(r"GEMINI_API_KEY\s*=\s*\S+"), re.compile(r"(?i)authorization:\s*bearer\s+\S+")]
-ACT_ID = re.compile(r"\bd(\d{3})\b")
+ACT_ID = re.compile(r"\b[dt](\d{3})\b")  # journal v1 decision ids (d001) and v2 tick ids (t001)
 
 
 def scan_secrets(text):
@@ -35,6 +35,10 @@ def main(trajectory_path, evidence_dir, out_dir):
     trajectory = json.loads(raw)
     journal = [json.loads(line) for line in (Path(evidence_dir) / "journal.jsonl").read_text().splitlines() if line]
     accepted = [e for e in journal if e["kind"] == "accepted"]
+    if not accepted and any(e["kind"] == "resolved" for e in journal):  # journal v2 (integrated tasks)
+        accepted = [{**e, "decision_id": e["tick_id"],
+                     "t_received": next(iter(e["submissions"].values()))["t_received"]}
+                    for e in journal if e["kind"] == "resolved"]
 
     files, events = {}, []
     manual_ids = set()

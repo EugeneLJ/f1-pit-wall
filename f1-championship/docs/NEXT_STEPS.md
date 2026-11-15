@@ -1,4 +1,13 @@
-# Next steps after `feature/afterquery-reference` (handoff, 2026-11-15)
+# Next steps (updated 2026-11-15)
+
+**2.1.0 (current, branch `feature/reference-2.1.0`).** The reference port is done and runs in Harbor: oracle 289 / 0.782. One live Gemini run scored 279 / 0.742. On 20 paired script-replay seeds the reference leads by +9.05, almost entirely from race decisions. See `docs/REFERENCE_2_1_0_REPORT.md`. Open items:
+1. Decision-level analysis of `v21-gemini-01`, reusing `b7_analysis` with the 2.1.0 config.
+2. More live 2.1.0 runs, about $0.7 each. Needs a decision.
+3. Only if the gap must grow: race-side reference strengthening. Staged: 2 smoke seeds, then 5 dev seeds.
+
+---
+
+# Earlier: next steps after `feature/afterquery-reference` (handoff, 2026-11-15)
 
 Read `docs/REFERENCE_GAP_REPORT.md` first. State at handoff:
 

@@ -1,0 +1,317 @@
+#!/usr/bin/env python3
+import json
+import math
+import sys
+
+def stint_time(compound_name, start_age, num_laps, track_deg_mult, is_out_lap=False):
+    compounds = {
+        'SOFT': {'offset': -0.55, 'deg': 0.35, 'life': 10, 'warmup': 0.3},
+        'MEDIUM': {'offset': 0.0, 'deg': 0.14, 'life': 16, 'warmup': 0.6},
+        'HARD': {'offset': 0.28, 'deg': 0.055, 'life': 24, 'warmup': 1.0}
+    }
+    c = compounds[compound_name]
+    total = 0.0
+    for i in range(num_laps):
+        age = start_age + i + 1
+        t = c['offset'] + c['deg'] * track_deg_mult * age
+        if age > c['life']:
+            t += 0.25 * track_deg_mult * (age - c['life'])
+        if i == 0 and is_out_lap:
+            t += c['warmup']
+        total += t
+    return total
+
+
+def find_best_plan(driver_state, current_lap, total_laps, track_deg_mult, pit_loss_green, status, pit_loss_now):
+    """
+    Finds the optimal remaining pit plan for a single driver from current_lap to total_laps.
+    Returns: (best_action_now, best_compound_now_if_pit, best_total_cost, full_plan)
+    """
+    compounds = ['SOFT', 'MEDIUM', 'HARD']
+    start_compound = driver_state['compound']
+    start_age = driver_state['tyre_age']
+    compounds_used = set(driver_state['compounds_used'])
+    
+    # Decisions remaining: decision every 3 laps from current_lap to total_laps - 3
+    # Note: decision is at current_lap. The car can PIT NOW (at current_lap) or STAY.
+    # Future decision laps:
+    future_decision_laps = [lap for lap in range(current_lap, total_laps, 3)]
+    
+    best_cost = 1e9
+    best_action = 'STAY'
+    best_compound = None
+    best_plan_desc = ''
+
+    # Plan options:
+    # 0 future stops: only possible if current_lap == total_laps (already at finish) or if compounds_used >= 2
+    # But 0 stops means running current tyre to the end.
+    rem_laps = total_laps - current_lap
+    if len(compounds_used) >= 2 or rem_laps == 0:
+        cost = stint_time(start_compound, start_age, rem_laps, track_deg_mult, is_out_lap=False)
+        if cost < best_cost:
+            best_cost = cost
+            best_action = 'STAY'
+            best_plan_desc = f'0 stops (stay on {start_compound} for {rem_laps} laps)'
+
+    # 1 stop plans:
+    # Pit at lap d in future_decision_laps
+    for d in future_decision_laps:
+        laps_to_d = d - current_lap
+        cost_before_pit = stint_time(start_compound, start_age, laps_to_d, track_deg_mult, is_out_lap=False) if laps_to_d > 0 else 0.0
+        p_loss = pit_loss_now if d == current_lap else pit_loss_green
+        
+        for c2 in compounds:
+            used = set(compounds_used) | {c2}
+            if len(used) < 2 and total_laps > d:
+                continue # Violates 2-compound rule
+            laps_after_pit = total_laps - d
+            cost_after_pit = stint_time(c2, 0, laps_after_pit, track_deg_mult, is_out_lap=True)
+            tot = cost_before_pit + p_loss + cost_after_pit
+            if tot < best_cost:
+                best_cost = tot
+                best_action = f'PIT_{c2}' if d == current_lap else 'STAY'
+                best_compound = c2 if d == current_lap else None
+                best_plan_desc = f'1 stop at L{d} -> {c2}'
+
+    # 2 stop plans:
+    # Pit at d1, then pit at d2
+    for i, d1 in enumerate(future_decision_laps):
+        laps_to_d1 = d1 - current_lap
+        cost_to_d1 = stint_time(start_compound, start_age, laps_to_d1, track_deg_mult, is_out_lap=False) if laps_to_d1 > 0 else 0.0
+        p_loss1 = pit_loss_now if d1 == current_lap else pit_loss_green
+        
+        for c2 in compounds:
+            for d2 in future_decision_laps[i+1:]:
+                laps_stint2 = d2 - d1
+                cost_stint2 = stint_time(c2, 0, laps_stint2, track_deg_mult, is_out_lap=True)
+                p_loss2 = pit_loss_green
+                
+                for c3 in compounds:
+                    used = set(compounds_used) | {c2, c3}
+                    if len(used) < 2:
+                        continue
+                    laps_stint3 = total_laps - d2
+                    cost_stint3 = stint_time(c3, 0, laps_stint3, track_deg_mult, is_out_lap=True)
+                    tot = cost_to_d1 + p_loss1 + cost_stint2 + p_loss2 + cost_stint3
+                    if tot < best_cost:
+                        best_cost = tot
+                        best_action = f'PIT_{c2}' if d1 == current_lap else 'STAY'
+                        best_compound = c2 if d1 == current_lap else None
+                        best_plan_desc = f'2 stops at L{d1} ({c2}) and L{d2} ({c3})'
+
+    return best_action, best_compound, best_cost, best_plan_desc
+
+
+def decide_components(obs, rules):
+    """
+    Decides USE or REPLACE for PU elements before each race.
+    """
+    race_index = obs['championship']['race_index']
+    races_total = obs['championship']['races_total'] # 8
+    
+    # We replace before race 4 (Race index 4):
+    # Stress of first 4 races (0, 1, 2, 3) = 2.50
+    # Stress of last 4 races (4, 5, 6, 7) = 2.40
+    # Wear stays strictly under 0.42 throughout entire season.
+    # Cost: 0 grid penalties!
+    decisions = []
+    for driver in ['Apex A', 'Apex B']:
+        driver_info = obs['controlled_drivers'][driver]
+        for comp in ['ICE', 'turbo', 'energy_store']:
+            comp_info = driver_info['components'][comp]
+            wear = comp_info['wear']
+            replace_cost = comp_info['replace_cost_if_only_replacement']
+            stock = replace_cost.get('team_stock_remaining', 0)
+            grid_places = replace_cost.get('grid_places_if_replaced', 0)
+            
+            action = 'USE'
+            # Trigger replacement if race_index == 4 and stock > 0 and grid_places == 0
+            if race_index == 4 and stock > 0 and grid_places == 0:
+                action = 'REPLACE'
+            elif wear >= 0.55 and stock > 0 and grid_places == 0:
+                action = 'REPLACE'
+            
+            decisions.append({
+                'driver': driver,
+                'component': comp,
+                'action': action
+            })
+            
+    return {
+        'type': 'COMPONENT_DECISION',
+        'decisions': decisions
+    }
+
+
+def decide_race_strategy(obs, rules):
+    """
+    Decides driver_a action, driver_b action, and team_order for RACE_STRATEGY.
+    """
+    progress = obs['race_progress']
+    current_lap = progress['lap']
+    total_laps = progress['laps_total'] # 45
+    track_status = progress['track_status'] # GREEN, SC, VSC
+    
+    track = obs['current_track']
+    track_deg = track['tyre_degradation']
+    track_deg_mult = 0.5 + track_deg
+    
+    pit_info = progress['pit']
+    pit_loss_green = pit_info['loss_sec']['GREEN']
+    pit_loss_now = pit_info['loss_sec'].get(track_status, pit_loss_green)
+    double_stack_queue = pit_info.get('double_stack_queue_sec', 6.0)
+    serviced_first = pit_info.get('if_both_pit_serviced_first', 'driver_a')
+    
+    driver_a = progress['drivers']['driver_a']
+    driver_b = progress['drivers']['driver_b']
+    
+    # 1. Evaluate independent best plan for Driver A
+    action_a, comp_a, cost_a, plan_a = find_best_plan(
+        driver_a, current_lap, total_laps, track_deg_mult, pit_loss_green, track_status, pit_loss_now
+    )
+    
+    # 2. Evaluate independent best plan for Driver B
+    action_b, comp_b, cost_b, plan_b = find_best_plan(
+        driver_b, current_lap, total_laps, track_deg_mult, pit_loss_green, track_status, pit_loss_now
+    )
+    
+    # Check double stacking conflict:
+    both_want_pit = action_a.startswith('PIT') and action_b.startswith('PIT')
+    if both_want_pit:
+        # If track status is GREEN, never double stack!
+        if track_status == 'GREEN':
+            # Decide which driver needs the stop more:
+            # Look at tyre age relative to life:
+            c_a = driver_a['compound']
+            c_b = driver_b['compound']
+            life_a = progress['tyre_life_laps'][c_a]
+            life_b = progress['tyre_life_laps'][c_b]
+            ratio_a = driver_a['tyre_age'] / life_a
+            ratio_b = driver_b['tyre_age'] / life_b
+            
+            # The driver with higher urgency pits now, other stays
+            if ratio_a >= ratio_b:
+                action_b = 'STAY'
+            else:
+                action_a = 'STAY'
+        elif track_status in ('SC', 'VSC'):
+            # Under SC/VSC, check if second car should wait
+            # Second car loses extra double_stack_queue (6.0s)
+            second_driver = 'driver_b' if serviced_first == 'driver_a' else 'driver_a'
+            second_state = driver_b if second_driver == 'driver_b' else driver_a
+            second_c = second_state['compound']
+            second_life = progress['tyre_life_laps'][second_c]
+            
+            # If second car tyre age is still relatively young (< 60% of life), delay its pit
+            if second_state['tyre_age'] < 0.6 * second_life and len(second_state['compounds_used']) >= 2:
+                if second_driver == 'driver_b':
+                    action_b = 'STAY'
+                else:
+                    action_a = 'STAY'
+            elif track_status == 'VSC':
+                # VSC saving is 9s, double stack loses 6s -> net saving only 3s, not worth queueing
+                if second_driver == 'driver_b':
+                    action_b = 'STAY'
+                else:
+                    action_a = 'STAY'
+
+    # Safety check: Mandatory Two-Compound Rule!
+    # If this is the last decision (lap == total_laps - 3 = 42) and a driver has only used 1 compound:
+    if current_lap >= total_laps - progress['segment_laps']:
+        if len(driver_a['compounds_used']) == 1 and not action_a.startswith('PIT'):
+            # Must pit! Pick a compound different from starting compound
+            other_comp = 'HARD' if driver_a['compound'] != 'HARD' else 'SOFT'
+            action_a = f'PIT_{other_comp}'
+        if len(driver_b['compounds_used']) == 1 and not action_b.startswith('PIT'):
+            other_comp = 'HARD' if driver_b['compound'] != 'HARD' else 'SOFT'
+            action_b = f'PIT_{other_comp}'
+
+    # Team Orders:
+    team_order_info = obs.get('team_orders', {})
+    legal_orders = team_order_info.get('legal_team_orders', ['RACE', 'HOLD', 'SWAP', 'DEFENSIVE_BUFFER'])
+    open_commitment = team_order_info.get('commitment')
+    feasibility = team_order_info.get('exchange_feasibility_if_no_pit', {})
+    
+    order = 'RACE'
+    commitment = None
+    
+    # Case A: Commitment is DUE
+    if 'KEEP_ORDER' in legal_orders or 'REQUEST_GIVE_BACK' in legal_orders:
+        # Check commitment status
+        if open_commitment:
+            status = open_commitment.get('status')
+            # If objective met or keeping order is advantageous:
+            if status == 'OBJECTIVE_MET':
+                order = 'KEEP_ORDER'
+            else:
+                # If trailer is faster or give back is required:
+                # Keep order unless give back is safer
+                order = 'KEEP_ORDER'
+        else:
+            order = 'KEEP_ORDER'
+            
+    # Case B: Standard team orders
+    elif 'RACE' in legal_orders:
+        order = 'RACE'
+        
+        # Check SWAP condition:
+        # Only consider SWAP if neither car is pitting
+        if not action_a.startswith('PIT') and not action_b.startswith('PIT'):
+            if feasibility.get('adjacent') and feasibility.get('executable') and feasibility.get('safe'):
+                leader = feasibility.get('leader') # 'driver_a' or 'driver_b'
+                trailer = feasibility.get('trailer')
+                lead_state = driver_a if leader == 'driver_a' else driver_b
+                trail_state = driver_b if leader == 'driver_a' else driver_a
+                
+                # Check tyre difference: is trailer much faster?
+                c_lead = lead_state['compound']
+                c_trail = trail_state['compound']
+                age_lead = lead_state['tyre_age']
+                age_trail = trail_state['tyre_age']
+                
+                # If trailer has fresher tyres (at least 6 laps newer, or softer compound with low age)
+                trailer_is_faster = (age_lead - age_trail >= 6) or (c_trail == 'SOFT' and age_trail <= 6 and c_lead != 'SOFT')
+                if trailer_is_faster and current_lap <= total_laps - 9:
+                    order = 'SWAP'
+                    # commitment to pass car ahead within 6 laps
+                    commitment = {
+                        'objective': 'PASS_CAR_AHEAD',
+                        'deadline_lap': min(total_laps, current_lap + 6),
+                        'give_back_if': 'OBJECTIVE_NOT_MET'
+                    }
+                    
+        # Check DEFENSIVE_BUFFER condition:
+        # If leader is in podium position (P1, P2, P3), trailer is adjacent and directly behind (< 1.0s),
+        # and rival is directly behind trailer (< 0.8s), use buffer to protect position!
+        if order == 'RACE' and 'DEFENSIVE_BUFFER' in legal_orders:
+            if feasibility.get('adjacent') and not action_a.startswith('PIT') and not action_b.startswith('PIT'):
+                pos_a = driver_a['position']
+                pos_b = driver_b['position']
+                min_pos = min(pos_a, pos_b)
+                rear_gap = feasibility.get('rear_gap_sec', 99.0)
+                # If we are protecting a high position (P1 to P4) and rival is right behind (< 0.8s):
+                if min_pos <= 4 and rear_gap < 0.8 and current_lap >= 24:
+                    order = 'DEFENSIVE_BUFFER'
+
+    team_order_payload = {'order': order}
+    if commitment:
+        team_order_payload['commitment'] = commitment
+
+    return {
+        'type': 'RACE_STRATEGY',
+        'driver_a': action_a,
+        'driver_b': action_b,
+        'team_order': team_order_payload
+    }
+
+if __name__ == '__main__':
+    # Test on current observation
+    import subprocess
+    obs = json.loads(subprocess.check_output(['f1ctl', 'observe']))['observation']
+    rules = json.loads(subprocess.check_output(['f1ctl', 'rules']))['rules']
+    print('Testing decision logic on decision_id:', obs['decision_id'], 'type:', obs['decision_type'])
+    if obs['decision_type'] == 'COMPONENT_DECISION':
+        act = decide_components(obs, rules)
+    elif obs['decision_type'] == 'RACE_STRATEGY':
+        act = decide_race_strategy(obs, rules)
+    print('Generated action:', json.dumps(act, indent=2))

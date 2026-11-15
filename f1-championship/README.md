@@ -83,6 +83,17 @@ the published SC/VSC model, plus a search over season replacement plans. It is b
 
 Details, limits and open items: [docs/REFERENCE_GAP_REPORT.md](docs/REFERENCE_GAP_REPORT.md).
 
+**Benchmark 2.1.0 (integrated, FIA-2026-based power-unit rules).** Generate the task with `scripts/make_integrated_task.sh f1-championship-2.1.0 CHIEF_ONLY 2.1.0`, then run `harbor run -p f1-championship-2.1.0 -a oracle`.
+
+| 2.1.0 | Points | Reward |
+|---|---:|---:|
+| Reference, task seed (Harbor) | 289 | 0.782 |
+| Gemini 3.8 Flash, task seed (Harbor, 1 run) | 279 | 0.742 |
+| Reference, mean of 20 seeds | 276.3 | — |
+| Gemini script replayed on the same 20 seeds | 267.3 | — |
+
+Details: [docs/REFERENCE_2_1_0_REPORT.md](docs/REFERENCE_2_1_0_REPORT.md).
+
 ## Run (judges: start here)
 
 Requirements: Harbor 0.26+, local Docker with Compose. Run from the repository root.

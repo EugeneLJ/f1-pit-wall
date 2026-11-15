@@ -1,0 +1,18 @@
+{
+  "benchmark_version": "2.1.0",
+  "engineer_record_files": {},
+  "head_hash": "e73dc65098c3334c518d395ea960a33f644a361cc0595ff4ab6e0e6d54bb8bd4",
+  "journal_entries": 120,
+  "journal_sha256": "4e0f81dc1381e5d338f5fbd67e9d36a9c32b88b5ce6ff59a33fe551d893b9f88",
+  "journal_version": 2,
+  "request_stats": {
+    "act_accepted": 120,
+    "act_rejected": 0,
+    "observe": 7,
+    "ping": 653,
+    "protocol_errors": 0,
+    "rules": 8
+  },
+  "sealed_at": 1794723881.369722,
+  "server_version": "2.1.0"
+}

@@ -1,0 +1,127 @@
+{
+  "checks": [
+    {
+      "detail": "2.1.0 / b6-integrated-p0",
+      "name": "Benchmark and scalar version",
+      "pass": true
+    },
+    {
+      "detail": "complete=True, 120 of 120 ticks, 8 of 8 races",
+      "name": "Verifier: season complete",
+      "pass": true
+    },
+    {
+      "detail": "hash chain, manifest and full replay accepted by the isolated verifier",
+      "name": "Verifier: sealed replay intact",
+      "pass": true
+    },
+    {
+      "detail": "P=279, D=92, U=344, reward=0.7420634920634921",
+      "name": "Reward matches the published formula",
+      "pass": true
+    },
+    {
+      "detail": "reward.txt = 0.74206349",
+      "name": "reward.txt equals report.json",
+      "pass": true
+    },
+    {
+      "detail": "4e0f81dc1381e5d338f5fbd67e9d36a9c32b88b5ce6ff59a33fe551d893b9f88",
+      "name": "Journal SHA-256 matches manifest",
+      "pass": true
+    },
+    {
+      "detail": "120 entries",
+      "name": "Manifest entry count and head hash",
+      "pass": true
+    },
+    {
+      "detail": "manifest 2.1.0, journal v2",
+      "name": "Journal v2 for benchmark 2.1.0",
+      "pass": true
+    },
+    {
+      "detail": "120 resolved entries",
+      "name": "Resolved ticks match the verifier",
+      "pass": true
+    },
+    {
+      "detail": "120 ticks replayed; Apex 279 pts; 8 race results equal the journal's race_result entries",
+      "name": "Authoritative replay (verifier package)",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "examples": [
+    {
+      "action": {
+        "consumed_reports": [],
+        "driver_a": "STAY",
+        "driver_b": "STAY",
+        "team_order": {
+          "commitment": null,
+          "order": "RACE"
+        },
+        "type": "RACE_STRATEGY"
+      },
+      "best": "PIT_HARD/STAY",
+      "chosen": "STAY/STAY",
+      "lap": 12,
+      "laps_remaining": 33,
+      "race_index": 6,
+      "race_name": "Summit Grand Prix",
+      "reference_run_action": "PIT_HARD/STAY",
+      "regret": 3.9286,
+      "se": 0.8169,
+      "status": "SC",
+      "tick_id": "t095"
+    },
+    {
+      "action": {
+        "consumed_reports": [],
+        "driver_a": "STAY",
+        "driver_b": "PIT_HARD",
+        "team_order": {
+          "commitment": null,
+          "order": "RACE"
+        },
+        "type": "RACE_STRATEGY"
+      },
+      "best": "STAY/STAY",
+      "chosen": "STAY/PIT_HARD",
+      "lap": 36,
+      "laps_remaining": 9,
+      "race_index": 1,
+      "race_name": "Marina Grand Prix",
+      "reference_run_action": "STAY/STAY",
+      "regret": 2.6562,
+      "se": 1.1502,
+      "status": "VSC",
+      "tick_id": "t028"
+    }
+  ],
+  "harbor_exit_code": 0,
+  "journal_sha256": "4e0f81dc1381e5d338f5fbd67e9d36a9c32b88b5ce6ff59a33fe551d893b9f88",
+  "mode": "live",
+  "points": 279,
+  "provenance": {
+    "agent": "opencode",
+    "finished_at": "2026-11-15T06:25:09.589139Z",
+    "instruction": "r2",
+    "model": "gemini/gemini-3.8-flash",
+    "started_at": "2026-11-15T06:12:31.968662Z",
+    "task_checksum": "a008cb00ad4344436fc58e69df828b809f85e5498e068bdf8a9a203425d03a48",
+    "trial": "task__cNFJrtp"
+  },
+  "reference": {
+    "points": 289,
+    "reward": 0.7817460317460317,
+    "source": "v21-oracle-01",
+    "verified": true
+  },
+  "report_html": "jobs/demo-live-20261115T061229Z/report.html",
+  "reward": 0.7420634920634921,
+  "schema_version": 2,
+  "source": "live",
+  "verified": true
+}

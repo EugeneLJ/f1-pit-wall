@@ -126,6 +126,11 @@ F1_ENV_FILE=<file containing GEMINI_API_KEY=...> scripts/demo.sh live   # fresh 
 **Requirements:** the same as above (Docker, Harbor 0.26.0, uv for Python 3.12). Only `live` needs the API key.
 Tests: `f1-championship/scripts/py312 -m unittest tests.test_demo_ux`.
 
+**Verified live demo run.** `scripts/demo.sh live` was run on 2026-11-15 06:12–06:25 UTC on Verda.
+It finished with Harbor exit 0, all 10 checks passed, and it scored 279 points (reward 0.7421)
+against the Reference's 289. Gemini again missed the race-7 Safety Car stop (3.9 expected points).
+Evidence: `analysis/results/demo/live-20261115T061229Z/`. Previews: `docs/demo/*.jpg`.
+
 ## 4. Verified Frontier–Reference results (2.1.0)
 
 **Scope of every row:**

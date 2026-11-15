@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "mode": "live",
+  "agent": "opencode",
+  "model": "gemini/gemini-3.8-flash",
+  "started_at": "2026-11-15T06:12:29Z",
+  "harbor_version": "0.26.0",
+  "credential": "env file (value never recorded)"
+}

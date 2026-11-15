@@ -1,0 +1,340 @@
+{
+  "adaptive_rival": {
+    "classification": "INSUFFICIENT_EVIDENCE",
+    "gemini_deepseek_scores_are_official_gap": false,
+    "paired_chief_responses_available": false,
+    "reason": "B7 contains one adaptive trajectory per layer, not matched Gemini decisions under baseline and altered visible rival evidence",
+    "visibility": {
+      "layer1": {
+        "decisions_after_any_visible_rival_pit": 85,
+        "new_visible_rival_stops": 39,
+        "race_decisions": 112,
+        "rival_team": "Red Bool Racing",
+        "team": "McLearn Racing"
+      },
+      "layer2": {
+        "decisions_after_any_visible_rival_pit": 85,
+        "new_visible_rival_stops": 41,
+        "race_decisions": 112,
+        "rival_team": "Red Bool Racing",
+        "team": "McLearn Racing"
+      }
+    }
+  },
+  "engineer_coordination": {
+    "case_studies": [
+      {
+        "engineer_usage": {
+          "action_disagreement_does_not_imply_ignored": true,
+          "available": 0,
+          "delivered": 0,
+          "explicitly_consumed": 0
+        },
+        "information_value": [],
+        "labels": [
+          {
+            "evidence": [
+              "status=VSC",
+              "chosen=PIT_SOFT/PIT_SOFT|RACE",
+              "reference=STAY/STAY|RACE",
+              "double_stack",
+              "event:VSC",
+              "opponent:rival_team_within_2s"
+            ],
+            "label": "FAILURE_TO_ADAPT_TO_SC_VSC_OR_RIVAL"
+          }
+        ],
+        "observation_hash": "d92caccc59513e4cba1cb641411e1f56752ddf4ca8b8e075abc3e581fb65d148",
+        "regret": {
+          "confirmed": true,
+          "near_tie_threshold_points": 1.0,
+          "points": {
+            "high": 15.2137,
+            "low": 10.3279,
+            "mean": 12.7708
+          },
+          "source": "AUTHORITATIVE_ENGINE_PUBLIC_INPUT_ROLLOUT",
+          "status": "CONFIRMED_POSITIVE_REGRET"
+        },
+        "team": "Red Bool Racing",
+        "tick_id": "t033"
+      },
+      {
+        "engineer_usage": {
+          "action_disagreement_does_not_imply_ignored": true,
+          "available": 2,
+          "delivered": 2,
+          "explicitly_consumed": 1
+        },
+        "information_value": [
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.drivers.driver_a.tyre_age",
+            "engineer_id": "engineer_a",
+            "path": "race_context.assigned_driver_state.tyre_age",
+            "redundancy": "NOT_DUPLICATED",
+            "value": 5
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.laps_remaining",
+            "engineer_id": "engineer_a",
+            "path": "race_context.laps_remaining",
+            "redundancy": "REDUNDANT_ACROSS_REPORTS",
+            "value": 33
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.drivers.driver_b.tyre_age",
+            "engineer_id": "engineer_b",
+            "path": "race_context.assigned_driver_state.tyre_age",
+            "redundancy": "NOT_DUPLICATED",
+            "value": 11
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.drivers.driver_b.compound",
+            "engineer_id": "engineer_b",
+            "path": "race_context.assigned_driver_state.compound",
+            "redundancy": "NOT_DUPLICATED",
+            "value": "MEDIUM"
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.laps_remaining",
+            "engineer_id": "engineer_b",
+            "path": "race_context.laps_remaining",
+            "redundancy": "REDUNDANT_ACROSS_REPORTS",
+            "value": 33
+          }
+        ],
+        "labels": [
+          {
+            "evidence": [
+              "engineer_b proposed PIT_HARD for driver_b",
+              "Chief chose PIT_HARD",
+              "reference STAY"
+            ],
+            "label": "EXCESSIVE_RELIANCE_ON_ENGINEER_RECOMMENDATIONS"
+          }
+        ],
+        "observation_hash": "25aca507cc9198c34a778cdd68679a443d1484ea331d9723214205e88189bd93",
+        "regret": {
+          "confirmed": true,
+          "near_tie_threshold_points": 1.0,
+          "points": {
+            "high": 6.8812,
+            "low": 2.8294,
+            "mean": 4.8553
+          },
+          "source": "AUTHORITATIVE_ENGINE_PUBLIC_INPUT_ROLLOUT",
+          "status": "CONFIRMED_POSITIVE_REGRET"
+        },
+        "team": "McLearn Racing",
+        "tick_id": "t035"
+      },
+      {
+        "engineer_usage": {
+          "action_disagreement_does_not_imply_ignored": true,
+          "available": 0,
+          "delivered": 0,
+          "explicitly_consumed": 0
+        },
+        "information_value": [],
+        "labels": [
+          {
+            "evidence": [
+              "status=GREEN",
+              "chosen=STAY/STAY|RACE",
+              "reference=PIT_HARD/STAY|RACE",
+              "opponent:rival_team_within_2s"
+            ],
+            "label": "FAILURE_TO_ADAPT_TO_SC_VSC_OR_RIVAL"
+          }
+        ],
+        "observation_hash": "0bcafbbb8071943a99a227dde4e5e78914db682fb4a5e7d2ffec65d8ae2c7bf2",
+        "regret": {
+          "confirmed": true,
+          "near_tie_threshold_points": 1.0,
+          "points": {
+            "high": 10.1224,
+            "low": 5.6096,
+            "mean": 7.866
+          },
+          "source": "AUTHORITATIVE_ENGINE_PUBLIC_INPUT_ROLLOUT",
+          "status": "CONFIRMED_POSITIVE_REGRET"
+        },
+        "team": "Red Bool Racing",
+        "tick_id": "t037"
+      },
+      {
+        "engineer_usage": {
+          "action_disagreement_does_not_imply_ignored": true,
+          "available": 2,
+          "delivered": 2,
+          "explicitly_consumed": 2
+        },
+        "information_value": [
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.drivers.driver_a.tyre_age",
+            "engineer_id": "engineer_a",
+            "path": "race_context.assigned_driver_state.tyre_age",
+            "redundancy": "NOT_DUPLICATED",
+            "value": 6
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.drivers.driver_a.compound",
+            "engineer_id": "engineer_a",
+            "path": "race_context.assigned_driver_state.compound",
+            "redundancy": "NOT_DUPLICATED",
+            "value": "HARD"
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.drivers.driver_b.tyre_age",
+            "engineer_id": "engineer_b",
+            "path": "race_context.assigned_driver_state.tyre_age",
+            "redundancy": "NOT_DUPLICATED",
+            "value": 15
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.laps_remaining",
+            "engineer_id": "engineer_b",
+            "path": "race_context.laps_remaining",
+            "redundancy": "NOT_DUPLICATED",
+            "value": 18
+          }
+        ],
+        "labels": [
+          {
+            "evidence": [
+              "engineer_b proposed PIT_MEDIUM for driver_b",
+              "Chief chose PIT_MEDIUM",
+              "reference STAY"
+            ],
+            "label": "EXCESSIVE_RELIANCE_ON_ENGINEER_RECOMMENDATIONS"
+          }
+        ],
+        "observation_hash": "a98f34bccb1f538e8ec23ef3b3d25a00ecf4cb436da951fffb9c58e0db941329",
+        "regret": {
+          "confirmed": true,
+          "near_tie_threshold_points": 1.0,
+          "points": {
+            "high": 8.7128,
+            "low": 3.3506,
+            "mean": 6.0317
+          },
+          "source": "AUTHORITATIVE_ENGINE_PUBLIC_INPUT_ROLLOUT",
+          "status": "CONFIRMED_POSITIVE_REGRET"
+        },
+        "team": "McLearn Racing",
+        "tick_id": "t040"
+      },
+      {
+        "engineer_usage": {
+          "action_disagreement_does_not_imply_ignored": true,
+          "available": 2,
+          "delivered": 2,
+          "explicitly_consumed": 1
+        },
+        "information_value": [
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.drivers.driver_a.tyre_age",
+            "engineer_id": "engineer_a",
+            "path": "race_context.assigned_driver_state.tyre_age",
+            "redundancy": "NOT_DUPLICATED",
+            "value": 9
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.track_status",
+            "engineer_id": "engineer_a",
+            "path": "race_context.track_status",
+            "redundancy": "REDUNDANT_ACROSS_REPORTS",
+            "value": "VSC"
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.laps_remaining",
+            "engineer_id": "engineer_a",
+            "path": "race_context.laps_remaining",
+            "redundancy": "REDUNDANT_ACROSS_REPORTS",
+            "value": 15
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.laps_remaining",
+            "engineer_id": "engineer_b",
+            "path": "race_context.laps_remaining",
+            "redundancy": "REDUNDANT_ACROSS_REPORTS",
+            "value": 15
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.track_status",
+            "engineer_id": "engineer_b",
+            "path": "race_context.track_status",
+            "redundancy": "REDUNDANT_ACROSS_REPORTS",
+            "value": "VSC"
+          },
+          {
+            "category": "PUBLIC_ALREADY_AVAILABLE_HIGHLIGHTED",
+            "chief_lineage_path": "race_progress.drivers.driver_b.tyre_age",
+            "engineer_id": "engineer_b",
+            "path": "race_context.assigned_driver_state.tyre_age",
+            "redundancy": "NOT_DUPLICATED",
+            "value": 3
+          }
+        ],
+        "labels": [
+          {
+            "evidence": [
+              "status=VSC",
+              "chosen=PIT_MEDIUM/STAY|RACE",
+              "reference=STAY/STAY|RACE",
+              "event:VSC"
+            ],
+            "label": "FAILURE_TO_ADAPT_TO_SC_VSC_OR_RIVAL"
+          },
+          {
+            "evidence": [
+              "engineer_a proposed PIT_MEDIUM for driver_a",
+              "Chief chose PIT_MEDIUM",
+              "reference STAY"
+            ],
+            "label": "EXCESSIVE_RELIANCE_ON_ENGINEER_RECOMMENDATIONS"
+          }
+        ],
+        "observation_hash": "071464a3928c8068eab37ceea5867c3cfa3ee4fa52c621ea728e8160ea51bf57",
+        "regret": {
+          "confirmed": true,
+          "near_tie_threshold_points": 1.0,
+          "points": {
+            "high": 8.2615,
+            "low": 4.5371,
+            "mean": 6.3993
+          },
+          "source": "AUTHORITATIVE_ENGINE_PUBLIC_INPUT_ROLLOUT",
+          "status": "CONFIRMED_POSITIVE_REGRET"
+        },
+        "team": "McLearn Racing",
+        "tick_id": "t041"
+      }
+    ],
+    "causal_claim": "NOT_SUPPORTED_BY_UNMATCHED_LAYER_1_LAYER_2_SEASONS",
+    "confirmed_decisions": 20,
+    "evidence_scope": "C4 equal-information decision regret and sealed report provenance",
+    "failure_labels": {
+      "EXCESSIVE_RELIANCE_ON_ENGINEER_RECOMMENDATIONS": 10,
+      "FAILURE_TO_ADAPT_TO_SC_VSC_OR_RIVAL": 14,
+      "UNJUSTIFIED_REJECTION_OF_USEFUL_RECOMMENDATIONS": 1
+    }
+  },
+  "integrity": "C4_BUNDLES_VERIFIED",
+  "schema_version": 1,
+  "source": "frozen B7 f9b47c4"
+}

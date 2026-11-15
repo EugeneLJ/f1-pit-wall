@@ -74,6 +74,13 @@ scripts/make_probe_task.sh /tmp/probe complete && harbor run -p /tmp/probe -a or
 scripts/py312 -m unittest discover -s devtests -v  # local tests on the image interpreter (no Docker)
 ```
 
+## C6 evidence analysis
+
+The analysis-only adaptive-rival probes, verified B7 case audit, and the strict
+Frontier–Reference gap exporter are documented in
+[`docs/C6_EVIDENCE_PIPELINE.md`](docs/C6_EVIDENCE_PIPELINE.md). They do not change
+the engine, Harbor task, scoring, or verifier, and require no paid API calls.
+
 Edit the engine only in `src/f1pitwall/`, then run `scripts/sync_engine.py`
 (the sim and verifier images each need a copy; `devtests` fails on drift).
 All track and component coefficients are synthetic placeholders.
